@@ -1,0 +1,34 @@
+:root {
+    /* Corporate Styles*/
+
+    /* Colors - Pastel Mode */
+    --color-pastel-lavender: #caa8d9;
+    --color-pastel-peach: #fac8c4;
+    --color-pastel-cream: #fcf0cd;
+    --color-pastel-aqua: #9ce0e8;
+
+    /* Colors - Energetic Mode */
+    --color-energetic-purple: #9b59b6;
+    --color-energetic-orange: #f39c12;
+    --color-energetic-yellow: #f1c40f;
+    --color-energetic-blue: #3498db;
+
+    /* Font */
+    --font-style: "Oswald";
+}
+
+/* Pastel theme */
+[data-theme="pastel"] {
+    --primary-color: var(--color-pastel-lavender);
+    --secondary-color: var(--color-pastel-peach);
+    --background-color: var(--color-pastel-cream);
+    --accent-color: var(--color-pastel-aqua);
+}
+
+/* Energetic theme */
+[data-theme="energetic"] {
+    --primary-color: var(--color-energetic-purple);
+    --secondary-color: var(--color-energetic-orange);
+    --background-color: var(--color-energetic-yellow);
+    --accent-color: var(--color-energetic-blue);
+}
