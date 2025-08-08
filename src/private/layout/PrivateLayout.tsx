@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-export const PublicLayout = () => {
+export const PrivateLayout = () => {
     return (
         <>
-            <h1>public navbar</h1>
+            <h1>user navbar</h1>
             <main>
                 <Outlet />
             </main>

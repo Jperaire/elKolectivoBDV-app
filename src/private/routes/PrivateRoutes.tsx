@@ -1,0 +1,23 @@
+import { Route } from "react-router-dom";
+import { PrivateGuard } from "../../routes/guards";
+
+import { PrivateLayout } from "../layout/PrivateLayout";
+import {
+    MerchPage,
+    DonationsPage,
+    MembershipFormPage,
+    ProfilePage,
+    ActivitySignupPage,
+} from "../pages";
+
+export const PrivateRoutes = (
+    <Route path="/user" element={<PrivateGuard />}>
+        <Route element={<PrivateLayout />}>
+            <Route index element={<ProfilePage />} />
+            <Route path="merch" element={<MerchPage />} />
+            <Route path="donations" element={<DonationsPage />} />
+            <Route path="membership-form" element={<MembershipFormPage />} />
+            <Route path="signup" element={<ActivitySignupPage />} />
+        </Route>
+    </Route>
+);
