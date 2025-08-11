@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { loginWithEmail } from "../../firebase/auth/auth-methods";
+import {
+    loginWithEmail,
+    loginWithGoogle,
+} from "../../firebase/auth/auth-methods";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { FirebaseError } from "firebase/app";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
@@ -10,6 +14,7 @@ export const LoginPage = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!loading && user) {
@@ -21,9 +26,32 @@ export const LoginPage = () => {
         e.preventDefault();
         try {
             const cred = await loginWithEmail(email, password);
-            console.log("Logged-in user:", cred.user);
-        } catch (error) {
-            console.error("Error logging in::", error);
+            console.log("Logged in user:", cred.user);
+            navigate("/user");
+        } catch (err: unknown) {
+            if (err instanceof FirebaseError) {
+                console.error("Login error:", err);
+                setError(err.message);
+            } else {
+                console.error("Unknown error:", err);
+                setError("Login failed");
+            }
+        }
+    };
+
+    const handleGoogleLogin = async () => {
+        setError(null);
+        try {
+            const cred = await loginWithGoogle();
+            console.log("Google login user:", cred.user);
+        } catch (err: unknown) {
+            if (err instanceof FirebaseError) {
+                console.error("Google login error:", err);
+                setError(err.message);
+            } else {
+                console.error("Unknown error:", err);
+                setError("Google login failed");
+            }
         }
     };
 
@@ -47,8 +75,11 @@ export const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button>Iniciar sesión</button>
+                <button>Inicia sessió</button>
+                <button onClick={handleGoogleLogin}>Continua amb Google</button>
             </form>
+
+            {error && <p>{error}</p>}
         </>
     );
 };
