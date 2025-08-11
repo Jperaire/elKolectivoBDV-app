@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { registerWithEmail } from "../../firebase/auth/auth-methods";
+import { registerWithEmail } from "../../firebase/auth/methods";
 import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
