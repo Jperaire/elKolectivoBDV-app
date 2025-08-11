@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { loginWithEmail, loginWithGoogle } from "../../firebase/auth/methods";
+import { loginWithEmail, loginWithGoogle } from "../../auth/firebase/methods";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { AuthContext } from "../../auth/context/AuthContext";
 import { FirebaseError } from "firebase/app";
 
 export const LoginPage = () => {

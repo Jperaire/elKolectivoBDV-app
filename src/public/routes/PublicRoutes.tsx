@@ -10,6 +10,7 @@ import {
     NewsPage,
     Unauthorized,
     ResetPasswordPage,
+    NotFound,
 } from "../pages";
 
 export const PublicRoutes = (
@@ -23,5 +24,6 @@ export const PublicRoutes = (
         <Route path="news" element={<NewsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
+        <Route path="*" element={<NotFound />} />
     </Route>
 );

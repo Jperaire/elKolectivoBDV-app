@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { registerWithEmail } from "../../firebase/auth/methods";
+import { registerWithEmail } from "../../auth/firebase/methods";
 import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 export const RegisterPage = () => {
     const { user, loading } = useContext(AuthContext);
