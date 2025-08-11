@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { Navbar } from "../../shared/components/Navbar";
+import { navLinks } from "../../shared/config/nav";
 export const AdminLayout = () => {
     return (
         <>
-            <h1>admin navbar</h1>
+            <Navbar variant="admin" links={navLinks.admin} />
             <main>
                 <Outlet />
             </main>

@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import { PrivateGuard } from "../../routes/guards";
 
-import { PrivateLayout } from "../layout/PrivateLayout";
+import { PrivateLayout } from "../../layouts/PrivateLayout";
 import {
     MerchPage,
     DonationsPage,

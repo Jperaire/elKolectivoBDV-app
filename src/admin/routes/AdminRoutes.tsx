@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import { AdminGuard } from "../../routes/guards";
 
-import { AdminLayout } from "../layout/AdminLayout";
+import { AdminLayout } from "../../layouts/AdminLayout";
 import {
     AdminDashboard,
     ActivitiesManagerPage,

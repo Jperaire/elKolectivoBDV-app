@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background-color: var(--secondary-color);
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 20px;
+}
+
+.links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.loginBtn {
+    background-color: var(--accent-color);
+    color: var(--text-on-accent, #fff);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.loginBtn:hover {
+    background-color: var(--accent-color-hover, #444);
+}

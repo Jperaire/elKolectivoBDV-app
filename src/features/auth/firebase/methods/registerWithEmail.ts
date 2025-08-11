@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../auth";
-import { createUserInFirestore } from "../../../services/user-service";
+import { createUserInFirestore } from "../../../../services/user-service";
 
 export const registerWithEmail = async (
     name: string,

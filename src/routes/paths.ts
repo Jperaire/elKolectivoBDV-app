@@ -12,7 +12,6 @@ export const ROUTES = {
 
     // Private Routes (user)
     USER: "/user",
-    USER_PROFILE: "/user/profile",
     USER_DONATIONS: "/user/donations",
     USER_MERCH: "/user/merch",
     USER_MEMBERSHIP_FORM: "/user/membership-form",

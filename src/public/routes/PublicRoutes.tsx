@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { PublicLayout } from "../layout/PublicLayout";
+import { PublicLayout } from "../../layouts/PublicLayout";
 import {
     HomePage,
     LoginPage,

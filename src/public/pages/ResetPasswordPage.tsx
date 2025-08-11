@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { resetPassword } from "../../auth/firebase/methods";
+import { resetPassword } from "../../features/auth/firebase/methods";
 
 export const ResetPasswordPage = () => {
     const [email, setEmail] = useState("");

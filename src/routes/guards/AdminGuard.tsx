@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../../auth/context/AuthContext";
+import { AuthContext } from "../../features/auth/context/AuthContext";
 
 export const AdminGuard = () => {
     const { user, userData, loading } = useContext(AuthContext);
