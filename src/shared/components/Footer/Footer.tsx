@@ -46,6 +46,16 @@ export const Footer = () => {
                         </a>
                     </p>
                     <p>
+                        <strong>Podcast:</strong>{" "}
+                        <a
+                            href="https://open.spotify.com/show/11U847hmBbZ5Mch5JwbxLI?si=dfa3b5d8ce744fb0"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Spotify
+                        </a>
+                    </p>
+                    <p>
                         <strong>Adreça:</strong> Barberà del Vallès, Barcelona
                     </p>
                 </div>

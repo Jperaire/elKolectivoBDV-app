@@ -18,7 +18,6 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
             <Link to="/" className={styles.logoWrapper}>
                 <img src={logo} alt="Kolectivo BDV" className={styles.logo} />
             </Link>
-
             <ul className={styles.links}>
                 {links.map((link) => (
                     <li key={link.path}>
@@ -26,7 +25,6 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
                     </li>
                 ))}
             </ul>
-
             <div className={styles.actions}>
                 <ThemeSwitcher />
                 <ButtonLink to="/login" size="small">

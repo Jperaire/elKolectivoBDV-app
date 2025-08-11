@@ -1,24 +1,38 @@
 .container {
     width: 100%;
-    height: 100vh;
-    background: linear-gradient(90deg, #b77ccf, #e9945b, #f4df7d, #5ed1d6);
+    height: 80vh;
+    background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-lg);
+    gap: var(--space-xxl);
 }
 
-.container p {
-    color: white;
-    font-weight: 400;
+.infoBanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.welcome,
+.subtitle {
     text-align: center;
-    letter-spacing: var(--spacing-xs);
+    letter-spacing: var(--space-xs);
+    color: rgb(252, 242, 222);
+    font-weight: 300;
+    font-size: clamp(1rem, 2vw, 4rem);
 }
 
 .logo {
-    width: 280px;
-    height: auto;
-    max-width: 100%;
+    font-weight: 500;
+    color: wheat;
+}
+
+.reversedK {
+    display: inline-block;
+    transform: scaleX(-1);
+    color: wheat;
 }

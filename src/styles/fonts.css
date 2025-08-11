@@ -3,8 +3,3 @@
     src: url("../assets/fonts/Oswald//Oswald-VariableFont_wght.ttf")
         format("truetype");
 }
-
-body {
-    font-family: "Oswald", sans-serif;
-    font-weight: 100;
-}

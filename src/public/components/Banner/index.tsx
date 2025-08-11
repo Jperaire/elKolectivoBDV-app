@@ -1,13 +1,21 @@
 import styles from "./Banner.module.css";
-import logo from "../../../assets/images/logos/main-logo.png";
 import { ButtonLink } from "../../../shared/components/ButtonLink";
 
 export const Banner = () => {
     return (
         <div className={styles.container}>
-            <p className={styles.welcome}>BENVINGUDIS A</p>
-            <img src={logo} alt="Logo associación" className={styles.logo} />
-            <p className={styles.subtitle}>EL COLECTIU LGTBNBIQ+ DEL VALLÈS</p>
+            <div className={styles.infoBanner}>
+                <p className={styles.welcome}>BENVINGUDIS A</p>
+                <h1
+                    className={`${styles.logo} animate__animated animate__backInDown`}
+                >
+                    EL <span className={styles.reversedK}>K</span>
+                    OLECTIVO BDV
+                </h1>
+                <p className={styles.subtitle}>
+                    EL COLECTIU LGTBNBIQ+ DEL VALLÈS
+                </p>
+            </div>
             <ButtonLink
                 to="/calendar"
                 variant="third"
