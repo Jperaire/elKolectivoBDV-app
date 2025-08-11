@@ -1,3 +1,4 @@
+export { ResetPasswordPage } from "./ResetPasswordPage";
 export { Unauthorized } from "./Unauthorized";
 export { AboutPage } from "./AboutPage";
 export { CalendarPage } from "./CalendarPage";

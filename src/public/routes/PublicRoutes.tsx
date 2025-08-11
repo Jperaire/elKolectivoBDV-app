@@ -9,6 +9,7 @@ import {
     CalendarPage,
     NewsPage,
     Unauthorized,
+    ResetPasswordPage,
 } from "../pages";
 
 export const PublicRoutes = (
@@ -21,5 +22,6 @@ export const PublicRoutes = (
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+        <Route path="reset-password" element={<ResetPasswordPage />} />
     </Route>
 );

@@ -76,7 +76,9 @@ export const LoginPage = () => {
                     required
                 />
                 <button>Inicia sessió</button>
-                <button onClick={handleGoogleLogin}>Continua amb Google</button>
+                <button type="button" onClick={handleGoogleLogin}>
+                    Continua amb Google
+                </button>
             </form>
 
             {error && <p>{error}</p>}

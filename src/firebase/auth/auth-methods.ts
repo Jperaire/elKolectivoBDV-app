@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
     signInWithPopup,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "./auth";
 import { createUserInFirestore } from "./user-service";
@@ -34,3 +35,8 @@ export const loginWithGoogle = async () => {
     // TODO: TAMBIÉN HABRÍA QUE REGISTRARLO EN FIREBASE?¿?
     return await signInWithPopup(auth, provider);
 };
+
+// Reset Password
+export function resetPassword(email: string) {
+    return sendPasswordResetEmail(auth, email);
+}

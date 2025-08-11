@@ -7,5 +7,3 @@ export const Unauthorized = () => (
         <Link to="/">Volver al inicio</Link>
     </div>
 );
-
-// TODO: NO SE SI LE VOY A DAR USO??¿??
