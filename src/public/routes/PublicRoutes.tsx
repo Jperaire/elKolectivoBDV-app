@@ -8,6 +8,7 @@ import {
     ContactPage,
     CalendarPage,
     NewsPage,
+    Unauthorized,
 } from "../pages";
 
 export const PublicRoutes = (
@@ -19,5 +20,6 @@ export const PublicRoutes = (
         <Route path="contact" element={<ContactPage />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="unauthorized" element={<Unauthorized />} />
     </Route>
 );

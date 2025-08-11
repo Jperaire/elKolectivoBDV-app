@@ -1,3 +1,4 @@
+export { Unauthorized } from "./Unauthorized";
 export { AboutPage } from "./AboutPage";
 export { CalendarPage } from "./CalendarPage";
 export { ContactPage } from "./ContactPage";

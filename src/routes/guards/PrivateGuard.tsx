@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-
-const isAuthenticated = true;
+import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 export const PrivateGuard = () => {
-    return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+    const { user, loading } = useContext(AuthContext);
+
+    if (loading) return <p>Loading...</p>;
+
+    return user ? <Outlet /> : <Navigate to="/login" replace />;
 };
