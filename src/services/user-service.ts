@@ -6,10 +6,10 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
-import { AppUserData } from "../types";
+import { AppUserData } from "../auth/types";
 import { updateProfile } from "firebase/auth";
-import { auth } from "./auth";
-import { db } from "../../firebase/firestore";
+import { auth } from "../auth/firebase/auth";
+import { db } from "../firebase/firestore";
 
 export const createUserInFirestore = async (
     uid: string,

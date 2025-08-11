@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../firebase/auth";
-import { getUserFromFirestore } from "../firebase/user-service";
+import { getUserFromFirestore } from "../../services/user-service";
 
 import { AuthContext } from "./AuthContext";
 

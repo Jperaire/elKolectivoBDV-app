@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
-import { updateUserProfile } from "../../auth/firebase/user-service";
+import { updateUserProfile } from "../../services/user-service";
 import { deleteAccount, signOutUser } from "../../auth/firebase/methods";
 
 export const ProfilePage = () => {

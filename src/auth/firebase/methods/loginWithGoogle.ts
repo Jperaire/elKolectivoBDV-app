@@ -3,7 +3,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
-import { ensureUserDoc } from "../user-service";
+import { ensureUserDoc } from "../../../services/user-service";
 import { auth } from "../auth";
 
 export const loginWithEmail = (email: string, password: string) =>
