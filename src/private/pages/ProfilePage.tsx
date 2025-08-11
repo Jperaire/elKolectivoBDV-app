@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { updateUserProfile } from "../../auth/firebase/user-service";
-import { deleteAccount } from "../../auth/firebase/methods";
+import { deleteAccount, signOutUser } from "../../auth/firebase/methods";
 
 export const ProfilePage = () => {
-    const { user, userData, logout } = useContext(AuthContext);
+    const { user, userData } = useContext(AuthContext);
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
     const [photoURL, setPhotoURL] = useState(userData?.photoURL ?? "");
     const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ export const ProfilePage = () => {
     const handleClose = async () => {
         if (!window.confirm("¿Seguro que quieres cerrar tu sesión?")) return;
         try {
-            await logout();
+            await signOutUser();
             setStatus("Sesión cerrada");
         } catch (err) {
             console.error(err);
