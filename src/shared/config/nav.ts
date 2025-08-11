@@ -1,12 +1,10 @@
 export const navLinks = {
     public: [
-        { label: "Inici", path: "/" },
         { label: "Calendari", path: "/calendar" },
         { label: "Notícies", path: "/news" },
         { label: "Contacte", path: "/contact" },
     ],
     private: [
-        { label: "Inici", path: "/" },
         { label: "El meu perfil", path: "/user/profile" },
         { label: "Donacions", path: "/user/donations" },
         { label: "Tanca sessió", path: "/logout" },

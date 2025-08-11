@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-md);
+    padding: var(--space-md);
     width: 100%;
     height: var(--nav-h);
     background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
@@ -15,19 +15,19 @@
 }
 
 .logo {
-    height: 20px;
+    height: 25px;
 }
 
 .links {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--space-lg);
     text-transform: uppercase;
     color: white;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .actions {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--space-sm);
 }
