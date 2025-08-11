@@ -1,8 +1,21 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+} from "firebase/auth";
+import { ensureUserDoc } from "../user-service";
 import { auth } from "../auth";
+
+export const loginWithEmail = (email: string, password: string) =>
+    signInWithEmailAndPassword(auth, email, password);
 
 export const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    // TODO: TAMBIÉN HABRÍA QUE REGISTRARLO EN FIREBASE?¿?
-    return await signInWithPopup(auth, provider);
+    const cred = await signInWithPopup(auth, provider);
+    await ensureUserDoc(cred.user.uid, {
+        email: cred.user.email,
+        displayName: cred.user.displayName ?? null,
+        photoURL: cred.user.photoURL ?? null,
+    });
+    return cred;
 };

@@ -8,6 +8,7 @@ export const RegisterPage = () => {
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -27,8 +28,8 @@ export const RegisterPage = () => {
             return;
         }
         try {
-            const cred = await registerWithEmail(email, password);
-            console.log("Registered user:", cred.user);
+            const cred = await registerWithEmail(userName, email, password);
+            console.log("Registered user:", cred.displayName);
         } catch (err: unknown) {
             if (err instanceof FirebaseError) {
                 console.error("Registration error:", err);
@@ -43,6 +44,13 @@ export const RegisterPage = () => {
         <div>
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Your name"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    required
+                />
                 <input
                     type="email"
                     placeholder="Email address"
