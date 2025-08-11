@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import ThemeSwitcher from "../ThemeSwitcher";
 import logo from "../../../assets/images/logos/main-logo.png";
+import { ButtonLink } from "../ButtonLink";
 
 type Variant = "public" | "private" | "admin";
 type LinkItem = { label: string; path: string };
@@ -28,9 +29,9 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
 
             <div className={styles.actions}>
                 <ThemeSwitcher />
-                <Link to="/login" className={styles.loginBtn}>
+                <ButtonLink to="/login" size="small">
                     Inicia sessió
-                </Link>
+                </ButtonLink>
             </div>
         </nav>
     );
