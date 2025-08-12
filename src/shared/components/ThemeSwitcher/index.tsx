@@ -1,22 +1,14 @@
-import { useEffect, useState } from "react";
-import styles from "./ThemeSwitcher.module.css";
+import { useContext } from "react";
 
-type Theme = "pastel" | "energetic";
+import styles from "./ThemeSwitcher.module.css";
+import { ThemeContext } from "../../../context/Theme/ThemeContext";
 
 export default function ThemeSwitcher() {
-    const [theme, setTheme] = useState<Theme>("pastel");
+    const ctx = useContext(ThemeContext);
+    if (!ctx)
+        throw new Error("ThemeSwitcher must be used within ThemeProvider");
 
-    const apply = (t: Theme) => {
-        document.documentElement.setAttribute("data-theme", t);
-        localStorage.setItem("theme", t);
-        setTheme(t);
-    };
-
-    useEffect(() => {
-        const saved = (localStorage.getItem("theme") as Theme) || "pastel";
-        apply(saved);
-    }, []);
-
+    const { theme, toggleTheme } = ctx;
     const isEnergetic = theme === "energetic";
 
     return (
@@ -28,10 +20,31 @@ export default function ThemeSwitcher() {
                 aria-label={`Canviar tema a ${
                     isEnergetic ? "pastel" : "energètic"
                 }`}
-                onClick={() => apply(isEnergetic ? "pastel" : "energetic")}
+                onClick={toggleTheme}
             >
-                <span className={styles.thumb} />
+                <span className={styles.thumb}>
+                    {isEnergetic ? "⚡" : "🧁"}
+                </span>
             </button>
+
+            <div className={styles.palette}>
+                <span
+                    className={styles.swatch}
+                    style={{ backgroundColor: "var(--primary-color)" }}
+                />
+                <span
+                    className={styles.swatch}
+                    style={{ backgroundColor: "var(--secondary-color)" }}
+                />
+                <span
+                    className={styles.swatch}
+                    style={{ backgroundColor: "var(--background-color)" }}
+                />
+                <span
+                    className={styles.swatch}
+                    style={{ backgroundColor: "var(--accent-color)" }}
+                />
+            </div>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import styles from "./Banner.module.css";
 import { ButtonLink } from "../../../shared/components/ButtonLink";
+import ThemeSwitcher from "../../../shared/components/ThemeSwitcher";
 
 export const Banner = () => {
     return (
@@ -26,6 +27,9 @@ export const Banner = () => {
             >
                 Properes activitats
             </ButtonLink>
+            <div className={styles.switcherWrapper}>
+                <ThemeSwitcher />
+            </div>
         </div>
     );
 };

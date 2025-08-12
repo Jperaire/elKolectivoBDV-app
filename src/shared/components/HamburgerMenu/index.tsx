@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images/icons";
 import { ButtonLink } from "../ButtonLink";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 type LinkItem = { label: string; path: string };
 interface HamburgerMenuProps {
@@ -45,6 +46,9 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                     <ButtonLink to="/login" size="large" variant="third">
                         Inicia sessió
                     </ButtonLink>
+                </li>
+                <li>
+                    <ThemeSwitcher />
                 </li>
             </ul>
         </div>

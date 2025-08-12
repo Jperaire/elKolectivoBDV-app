@@ -3,6 +3,7 @@ import styles from "./Navbar.module.css";
 import logo from "../../../assets/images/logos/main-logo.png";
 import { ButtonLink } from "../ButtonLink";
 import { HamburgerMenu } from "../HamburgerMenu";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 type Variant = "public" | "private" | "admin";
 type LinkItem = { label: string; path: string };
@@ -15,12 +16,10 @@ interface NavbarProps {
 export const Navbar = ({ variant, links }: NavbarProps) => {
     return (
         <nav className={`${styles.navbar} ${styles[variant]}`}>
-            {/* Logo */}
             <Link to="/" className={styles.logoWrapper}>
                 <img src={logo} alt="Kolectivo BDV" className={styles.logo} />
             </Link>
 
-            {/* Desktop links */}
             <ul className={styles.navLinks}>
                 {links.map((link) => (
                     <li key={link.path}>
@@ -34,7 +33,6 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
                 </li>
             </ul>
 
-            {/* Mobile menu */}
             <HamburgerMenu links={links} />
         </nav>
     );
