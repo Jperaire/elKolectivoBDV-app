@@ -59,3 +59,7 @@ p {
 small {
     font-size: var(--fs-xs);
 }
+a {
+    font-size: var(--fs-lg);
+    font-weight: 300;
+}

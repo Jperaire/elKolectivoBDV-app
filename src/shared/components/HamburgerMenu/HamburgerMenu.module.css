@@ -1,0 +1,77 @@
+.hamburgerMenu {
+    position: relative;
+}
+
+/* Button */
+.burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.burger:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+.burger:active {
+    transform: scale(0.95);
+}
+
+.burger img {
+    width: 40px;
+    height: auto;
+}
+
+/* Hided menu */
+.menuLinks {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-xxl);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
+    z-index: 1002;
+}
+
+.open {
+    display: flex;
+}
+
+.menuLinks a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: var(--space-xs);
+}
+
+.menuLinks a:hover,
+.menuLinks a:active {
+    color: wheat;
+}
+
+/* Close button */
+.closeButton {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.closeButton img {
+    width: 40px;
+    height: auto;
+}
+
+/* Hamburger menu only visible in mobile */
+@media (min-width: 576px) {
+    .hamburgerMenu {
+        display: none;
+    }
+}

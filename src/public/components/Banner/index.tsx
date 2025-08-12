@@ -8,6 +8,8 @@ export const Banner = () => {
                 <p className={styles.welcome}>BENVINGUDIS A</p>
                 <h1
                     className={`${styles.logo} animate__animated animate__backInDown`}
+                    translate="no"
+                    lang="zxx"
                 >
                     EL <span className={styles.reversedK}>K</span>
                     OLECTIVO BDV
@@ -18,7 +20,7 @@ export const Banner = () => {
             </div>
             <ButtonLink
                 to="/calendar"
-                variant="third"
+                variant="primary"
                 size="large"
                 className="animate__animated animate__pulse animate__infinite"
             >

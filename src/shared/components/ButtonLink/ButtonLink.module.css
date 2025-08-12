@@ -19,10 +19,12 @@
 .primary {
     background-color: var(--primary-color);
     color: #fff;
+    border: 2px solid wheat;
 }
 
 .primary:hover {
-    background-color: var(--accent-color);
+    background-color: transparent;
+    color: #fff;
 }
 
 /* Secondary button */
@@ -38,15 +40,14 @@
 }
 
 /* Third button */
+
 .third {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: #fff;
-    border: 2px solid #fff;
 }
 
 .third:hover {
-    background-color: transparent;
-    color: #fff;
+    background-color: var(--accent-color);
 }
 
 /* ===== Sizes ===== */
