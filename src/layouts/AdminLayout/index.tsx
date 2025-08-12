@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../../shared/components/Navbar";
+import { Navbar } from "../../shared/components";
 import { navLinks } from "../../shared/config/nav";
 export const AdminLayout = () => {
     return (

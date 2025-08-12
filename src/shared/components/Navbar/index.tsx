@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/images/logos/main-logo.png";
-import { ButtonLink } from "../ButtonLink";
-import { HamburgerMenu } from "../HamburgerMenu";
-import ThemeSwitcher from "../ThemeSwitcher";
+import { ButtonLink, HamburgerMenu } from "../";
 
 type Variant = "public" | "private" | "admin";
 type LinkItem = { label: string; path: string };

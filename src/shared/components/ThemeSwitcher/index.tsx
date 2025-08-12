@@ -3,7 +3,7 @@ import { useContext } from "react";
 import styles from "./ThemeSwitcher.module.css";
 import { ThemeContext } from "../../../context/Theme/ThemeContext";
 
-export default function ThemeSwitcher() {
+export const ThemeSwitcher = () => {
     const ctx = useContext(ThemeContext);
     if (!ctx)
         throw new Error("ThemeSwitcher must be used within ThemeProvider");
@@ -47,4 +47,4 @@ export default function ThemeSwitcher() {
             </div>
         </div>
     );
-}
+};
