@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import ThemeSwitcher from "../ThemeSwitcher";
 import logo from "../../../assets/images/logos/main-logo.png";
 import { ButtonLink } from "../ButtonLink";
 import { HamburgerMenu } from "../HamburgerMenu";
@@ -28,15 +27,12 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
                         <Link to={link.path}>{link.label}</Link>
                     </li>
                 ))}
+                <li className={styles.cta}>
+                    <ButtonLink to="/login" size="small" variant="third">
+                        Inicia sessió
+                    </ButtonLink>
+                </li>
             </ul>
-
-            {/* Actions */}
-            <div className={styles.actions}>
-                <ThemeSwitcher />
-                <ButtonLink to="/login" size="small">
-                    Inicia sessió
-                </ButtonLink>
-            </div>
 
             {/* Mobile menu */}
             <HamburgerMenu links={links} />
