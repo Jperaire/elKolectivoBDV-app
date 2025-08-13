@@ -1,0 +1,7 @@
+.homeContainer {
+    background-color: rgb(244, 237, 223);
+    padding-bottom: var(--space-xxl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxl);
+}

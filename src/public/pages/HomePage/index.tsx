@@ -1,9 +1,10 @@
-import { Accordion, AccordionItem } from "../../shared/components/Accordion";
-import { Banner } from "../components/Banner";
+import { Accordion, AccordionItem } from "../../../shared/components/Accordion";
+import { Banner } from "../../components/Banner";
+import styles from "./HomePage.module.css";
 
 export const HomePage = () => {
     return (
-        <>
+        <div className={styles.homeContainer}>
             <Banner />
 
             <section aria-labelledby="qui-som">
@@ -76,6 +77,6 @@ export const HomePage = () => {
                     </AccordionItem>
                 </Accordion>
             </section>
-        </>
+        </div>
     );
 };

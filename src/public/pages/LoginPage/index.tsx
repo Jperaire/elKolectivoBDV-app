@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { FirebaseError } from "firebase/app";
+import { AuthContext } from "../../../features/auth/context/AuthContext";
 import {
     loginWithEmail,
     loginWithGoogle,
-} from "../../features/auth/firebase/methods";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../features/auth/context/AuthContext";
-import { FirebaseError } from "firebase/app";
+} from "../../../features/auth/firebase/methods";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
