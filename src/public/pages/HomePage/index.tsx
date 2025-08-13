@@ -1,3 +1,4 @@
+import { Accordion, AccordionItem } from "../../shared/components/Accordion";
 import { Banner } from "../components/Banner";
 
 export const HomePage = () => {
@@ -54,26 +55,26 @@ export const HomePage = () => {
             <section aria-labelledby="faqs">
                 <h2 id="faqs">Preguntes freqüents</h2>
 
-                <h3>Qui pot formar part d’El ꓘolectivo?</h3>
-                <p>
-                    Qualsevol persona del col·lectiu LGTBINBQ+ pot formar part.
-                    Només cal escriure’ns per correu electrònic o Instagram.
-                </p>
+                <Accordion>
+                    <AccordionItem title="Qui pot formar part d’El ꓘolectivo?">
+                        Qualsevol persona del col·lectiu LGTBINBQ+ pot formar
+                        part. Només cal escriure’ns per correu electrònic o
+                        Instagram.
+                    </AccordionItem>
 
-                <h3>Què significa formar part de l’associació?</h3>
-                <p>
-                    No implica paperassa ni despeses econòmiques. Només cal
-                    venir a les assemblees, participar en la presa de decisions
-                    i col·laborar en les tasques que acordin les persones
-                    membres.
-                </p>
+                    <AccordionItem title="Què significa formar part de l’associació?">
+                        No implica paperassa ni despeses econòmiques. Només cal
+                        venir a les assemblees, participar en la presa de
+                        decisions i col·laborar en les tasques que acordin les
+                        persones membres.
+                    </AccordionItem>
 
-                <h3>Només poden participar persones del col·lectiu?</h3>
-                <p>
-                    A les assemblees sí, per garantir un espai segur. Les
-                    activitats públiques són obertes a tothom, especialment les
-                    de sensibilització i informació.
-                </p>
+                    <AccordionItem title="Només poden participar persones del col·lectiu?">
+                        A les assemblees sí, per garantir un espai segur. Les
+                        activitats públiques són obertes a tothom, especialment
+                        les de sensibilització i informació.
+                    </AccordionItem>
+                </Accordion>
             </section>
         </>
     );

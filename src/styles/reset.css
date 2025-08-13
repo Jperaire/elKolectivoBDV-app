@@ -7,6 +7,10 @@
 
 main {
     padding-top: var(--nav-h);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxl);
+    margin-bottom: var(--space-xxl);
 }
 
 a {

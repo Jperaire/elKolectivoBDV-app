@@ -1,0 +1,38 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    max-width: 768px;
+    margin: auto;
+    border: 2px solid #fff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-md);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-family: "Oswald", sans-serif;
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.icon {
+    transition: transform 0.3s ease;
+    width: 40px;
+    font-weight: 100;
+}
+
+.icon.open {
+    transform: rotate(180deg);
+}
+
+.panel {
+    padding: var(--space-md);
+    line-height: 1.5;
+}
