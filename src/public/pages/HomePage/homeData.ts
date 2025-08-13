@@ -8,12 +8,16 @@ export const sections = {
         title: "Què fem",
     },
     values: {
-        id: "els-nostres-valors",
-        title: "Els nostres valors",
+        id: "valors-principis",
+        title: "Valors i principis",
     },
     faqs: {
         id: "faqs",
         title: "Preguntes freqüents",
+    },
+    contact: {
+        id: "contacte",
+        title: "Contacta amb nosaltris",
     },
 };
 
@@ -26,7 +30,18 @@ export const whatWeDo = [
     "Sensibilitzem la població sobre la necessitat de drets, espais i referents LGTBINBQ+.",
 ];
 
-export const values = ["Equitat", "Transfeminisme", "Inclusió", "Companyia"];
+export const values = [
+    "Equitat",
+    "Transfeminisme",
+    "Inclusió",
+    "Companyia",
+    "Solidaritat",
+    "Respecte",
+    "Antiracisme",
+    "Anticapacitisme",
+    "Antifeixisme",
+    "Anticapitalisme",
+];
 
 export const faqs = [
     {

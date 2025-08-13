@@ -20,7 +20,7 @@
 
 body {
     font-size: var(--fs-md);
-    font-weight: 100;
+    font-weight: 200;
     line-height: 1.5;
 }
 
@@ -55,6 +55,9 @@ p,
 a,
 ul,
 ol,
-li {
+li,
+label,
+input,
+textarea {
     font-family: "Montserrat", sans-serif;
 }

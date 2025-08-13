@@ -4,7 +4,6 @@ import {
     HomePage,
     LoginPage,
     RegisterPage,
-    ContactPage,
     CalendarPage,
     NewsPage,
     Unauthorized,
@@ -17,7 +16,6 @@ export const PublicRoutes = (
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route path="contact" element={<ContactPage />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />

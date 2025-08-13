@@ -2,30 +2,42 @@
     /* Corporate Styles*/
 
     /* Colors - Pastel Mode */
-    --color-pastel-lavender: #caa8d9;
-    --color-pastel-peach: #fac8c4;
-    --color-pastel-cream: #fcf0cd;
-    --color-pastel-aqua: #9ce0e8;
+    --pastel-purple: #caa8d9;
+    --pastel-pink: #fac8c4;
+    --pastel-yellow: #f9de8b;
+    --pastel-blue: #9ce0e8;
+    --pastel-green: #a8d5ba;
+    --pastel-red: #f5a3a3;
+    --pastel-orange: #f8d0a1;
 
     /* Colors - Energetic Mode */
-    --color-energetic-purple: #9b59b6;
-    --color-energetic-orange: #f39c12;
-    --color-energetic-yellow: #f1c40f;
-    --color-energetic-blue: #3498db;
+    --energetic-purple: #9b59b6;
+    --energetic-pink: #ff6b81;
+    --energetic-yellow: #f1c40f;
+    --energetic-blue: #3498db;
+    --energetic-green: #27ae60;
+    --energetic-red: #e74c3c;
+    --energetic-orange: #f39c12;
 }
 
 /* Pastel theme */
 [data-theme="pastel"] {
-    --primary-color: var(--color-pastel-lavender);
-    --secondary-color: var(--color-pastel-peach);
-    --background-color: var(--color-pastel-cream);
-    --accent-color: var(--color-pastel-aqua);
+    --variable-purple: var(--pastel-purple);
+    --variable-pink: var(--pastel-pink);
+    --variable-yellow: var(--pastel-yellow);
+    --variable-blue: var(--pastel-blue);
+    --variable-green: var(--pastel-green);
+    --variable-red: var(--pastel-red);
+    --variable-orange: var(--pastel-orange);
 }
 
 /* Energetic theme */
 [data-theme="energetic"] {
-    --primary-color: var(--color-energetic-purple);
-    --secondary-color: var(--color-energetic-orange);
-    --background-color: var(--color-energetic-yellow);
-    --accent-color: var(--color-energetic-blue);
+    --variable-purple: var(--energetic-purple);
+    --variable-pink: var(--energetic-pink);
+    --variable-yellow: var(--energetic-yellow);
+    --variable-blue: var(--energetic-blue);
+    --variable-green: var(--energetic-green);
+    --variable-red: var(--energetic-red);
+    --variable-orange: var(--energetic-orange);
 }

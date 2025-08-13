@@ -12,7 +12,7 @@
     width: var(--w);
     height: var(--h);
     border-radius: var(--h);
-    background: var(--accent-color);
+    background: var(--variable-blue);
     border: 1px solid rgba(0, 0, 0, 0.08);
     cursor: pointer;
     transition: background 0.2s ease;
@@ -35,7 +35,7 @@
 }
 
 .toggle[aria-pressed="true"] {
-    background: var(--primary-color);
+    background: var(--variable-purple);
 }
 
 .toggle[aria-pressed="true"] .thumb {

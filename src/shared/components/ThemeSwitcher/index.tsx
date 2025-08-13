@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import styles from "./ThemeSwitcher.module.css";
 import { ThemeContext } from "../../../context/Theme/ThemeContext";
+import { themeVariables } from "../../utils/colors";
 
 export const ThemeSwitcher = () => {
     const ctx = useContext(ThemeContext);
@@ -28,22 +29,13 @@ export const ThemeSwitcher = () => {
             </button>
 
             <div className={styles.palette}>
-                <span
-                    className={styles.swatch}
-                    style={{ backgroundColor: "var(--primary-color)" }}
-                />
-                <span
-                    className={styles.swatch}
-                    style={{ backgroundColor: "var(--secondary-color)" }}
-                />
-                <span
-                    className={styles.swatch}
-                    style={{ backgroundColor: "var(--background-color)" }}
-                />
-                <span
-                    className={styles.swatch}
-                    style={{ backgroundColor: "var(--accent-color)" }}
-                />
+                {themeVariables.map((color, i) => (
+                    <span
+                        key={i}
+                        className={styles.swatch}
+                        style={{ backgroundColor: color }}
+                    />
+                ))}
             </div>
         </div>
     );

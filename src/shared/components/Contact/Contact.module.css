@@ -1,0 +1,29 @@
+.contactContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.firstCol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.mapImg {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .contactContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .mapImg {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+    }
+}

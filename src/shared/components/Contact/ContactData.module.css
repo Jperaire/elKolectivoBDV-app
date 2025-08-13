@@ -1,0 +1,33 @@
+.social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    gap: var(--space-sm);
+}
+
+.social a p {
+    font-size: 0.9rem;
+}
+
+.social a img {
+    width: 28px;
+    height: auto;
+}
+
+.social a img:hover {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+    .social a {
+        justify-content: start;
+    }
+}

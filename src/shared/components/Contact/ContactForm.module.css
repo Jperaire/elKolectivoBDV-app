@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: auto;
+    width: 100%;
+    max-width: 450px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.formGroup label {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+input,
+textarea {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--pastel-orange);
+    font-size: var(--fs-md);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--energetic-orange);
+}
+
+.submitBtn {
+    background-color: var(--variable-orange);
+    color: white;
+    padding: var(--space-md);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.submitBtn:hover {
+    background-color: var(--variable-blue);
+}

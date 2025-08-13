@@ -1,7 +1,7 @@
 .accordion {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-md);
     max-width: 768px;
     margin: auto;
 }
@@ -13,18 +13,25 @@
     width: 100%;
     padding: var(--space-md);
     color: #fff;
-    text-transform: uppercase;
     letter-spacing: 0.1rem;
-    font-family: "Oswald", sans-serif;
-    background-color: var(--primary-color);
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: var(--variable-purple);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
     text-align: left;
+    transition: background-color 0.5s ease;
+}
+
+.header:hover {
+    background-color: var(--variable-yellow);
 }
 
 .icon {
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     width: 40px;
     font-weight: 100;
 }
@@ -34,6 +41,17 @@
 }
 
 .panel {
-    padding: var(--space-md);
     line-height: 1.5;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+}
+
+.panel.open {
+    padding: var(--space-md);
+    max-height: 500px;
+    opacity: 1;
 }

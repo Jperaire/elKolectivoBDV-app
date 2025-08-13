@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react";
 import styles from "./Accordion.module.css";
-import { ArrowIcon } from "../../../assets/images/icons";
+import { ArrowIcon } from "../../../assets/images";
 
 interface AccordionItemProps {
     title: string;
@@ -23,7 +23,10 @@ export const AccordionItem = ({ title, children }: AccordionItemProps) => {
                     className={`${styles.icon} ${open ? styles.open : ""}`}
                 />
             </button>
-            {open && <div className={styles.panel}>{children}</div>}
+
+            <div className={`${styles.panel} ${open ? styles.open : ""}`}>
+                {children}
+            </div>
         </div>
     );
 };

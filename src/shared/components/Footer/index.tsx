@@ -1,9 +1,5 @@
 import styles from "./Footer.module.css";
-import {
-    InstagramIcon,
-    EmailIcon,
-    PodcastIcon,
-} from "../../../assets/images/icons";
+import { InstagramIcon, EmailIcon, PodcastIcon } from "../../../assets/images";
 
 export const Footer = () => {
     return (

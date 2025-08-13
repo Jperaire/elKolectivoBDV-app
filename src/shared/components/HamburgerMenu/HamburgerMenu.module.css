@@ -34,6 +34,7 @@
     position: fixed;
     inset: 0;
     background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
+    font-weight: 500;
     z-index: 1002;
 }
 

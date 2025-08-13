@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
-import { CloseIcon, MenuIcon } from "../../../assets/images/icons";
+import { CloseIcon, MenuIcon } from "../../../assets/images";
 import { ButtonLink, ThemeSwitcher } from "../";
 
 type LinkItem = { label: string; path: string };
@@ -24,7 +24,7 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                 </button>
             )}
 
-            <ul className={`${styles.menuLinks} ${open ? styles.open : ""}`}>
+            <ul className={`${styles.menuLinks} ${open ? styles.open : ""} `}>
                 {open && (
                     <button
                         className={styles.closeButton}
