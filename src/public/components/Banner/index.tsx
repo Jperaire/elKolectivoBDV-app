@@ -4,18 +4,18 @@ import { ThemeSwitcher } from "../../../shared/components";
 
 export const Banner = () => {
     return (
-        <div className={styles.container}>
-            <div className={styles.infoBanner}>
-                <p className={styles.welcome}>BENVINGUDIS A</p>
+        <div className={styles.banner}>
+            <div className={styles.bannerInfo}>
+                <p className={styles.bannerKicker}>BENVINGUDIS A</p>
                 <h1
-                    className={`${styles.logo} animate__animated animate__backInDown`}
+                    className={`${styles.bannerLogo} animate__animated animate__backInDown`}
                     translate="no"
                     lang="zxx"
                 >
                     EL <span className={styles.reversedK}>K</span>
                     OLECTIVO BDV
                 </h1>
-                <p className={styles.subtitle}>
+                <p className={styles.bannerSubtitle}>
                     EL COLECTIU LGTBNBIQ+ DEL VALLÈS
                 </p>
             </div>
@@ -27,7 +27,7 @@ export const Banner = () => {
             >
                 Properes activitats
             </ButtonLink>
-            <div className={styles.switcherWrapper}>
+            <div className={styles.themeSwitcher}>
                 <ThemeSwitcher />
             </div>
         </div>
