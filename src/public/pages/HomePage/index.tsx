@@ -64,7 +64,7 @@ export const HomePage = () => {
                 {/* Values */}
                 <section
                     aria-labelledby={sections.values.id}
-                    className={styles.values}
+                    className={styles.valuesContainer}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.values.id}>{sections.values.title}</h2>
@@ -111,13 +111,17 @@ export const HomePage = () => {
                         <h2 id={sections.contact.id}>
                             {sections.contact.title}
                         </h2>
-                        <p>
-                            Tens algun dubte o vols preguntar-nos alguna cosa?
-                            Ets una entitat i tens una proposta? Contacta’ns a
-                            través de les nostres xarxes socials o mitjançant el
-                            formulari de sota!
-                        </p>
-                        <Contact />
+                        <div className={styles.contactContainer}>
+                            <p>
+                                Tens algun dubte o vols preguntar-nos alguna
+                                cosa? Ets una entitat i tens una proposta?
+                                Contacta’ns a través de les nostres xarxes
+                                socials o mitjançant el formulari de sota!
+                            </p>
+                            <div className={styles.contactWrapper}>
+                                <Contact />
+                            </div>
+                        </div>
                     </Card>
                 </section>
             </div>
