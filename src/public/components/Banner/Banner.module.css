@@ -8,6 +8,7 @@
     flex-direction: column;
     gap: 3.5rem;
     position: relative;
+    padding-top: calc(var(--nav-h) - 3px);
 }
 
 .bannerInfo {

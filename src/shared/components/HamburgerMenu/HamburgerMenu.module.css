@@ -58,8 +58,8 @@
 /* Close button */
 .closeButton {
     position: absolute;
-    top: 1.5rem;
-    right: 2.1rem;
+    top: 0.6rem;
+    right: 1.8rem;
     background: none;
     border: none;
     cursor: pointer;

@@ -27,12 +27,12 @@
 }
 
 .social img {
-    width: 28px;
+    width: 20px;
     height: auto;
 }
 
 .copy {
-    font-size: var(--fs-xs);
+    font-size: 0.6rem;
 }
 
 @media (min-width: 768px) {
@@ -41,5 +41,13 @@
         justify-content: space-between;
         gap: 0;
         padding: var(--space-lg);
+    }
+
+    .social img {
+        width: 28px;
+    }
+
+    .copy {
+        font-size: var(--fs-xs);
     }
 }

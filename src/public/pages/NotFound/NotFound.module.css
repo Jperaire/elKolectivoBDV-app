@@ -1,18 +1,16 @@
 .container {
-    height: 75vh;
-    width: 80%;
-    max-width: 650px;
-    margin: auto;
+    margin: var(--space-xl) auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: var(--space-md);
     text-align: center;
     color: #333;
 }
 
 .gif {
-    max-width: 200px;
+    width: 250px;
     margin: 0 auto;
     height: auto;
 }
@@ -20,5 +18,11 @@
 @media (prefers-reduced-motion: reduce) {
     .gif {
         animation: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .gif {
+        width: 400px;
     }
 }
