@@ -1,11 +1,12 @@
-.homeContainer {
+/* ===== General HomePage ===== */
+.home {
     padding-bottom: var(--space-xxl);
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
 }
 
-.sectionsContainer {
+.homeInner {
     margin: auto;
     width: 85%;
     display: flex;
@@ -13,18 +14,66 @@
     gap: var(--space-xl);
 }
 
-.homeContainer h2 {
+/* Headings */
+.home h2 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: var(--space-xl);
     text-align: center;
     letter-spacing: 0.2rem;
 }
-
-.homeContainer p {
-    font-size: var(--fs-md);
+.sectionWho h2 {
+    color: var(--energetic-green);
+}
+.sectionWhat h2 {
+    color: var(--pastel-red);
+}
+.sectionValues h2 {
+    color: var(--variable-blue);
+}
+.sectionFaqs h2 {
+    color: var(--variable-purple);
+}
+.sectionContact h2 {
+    color: var(--variable-orange);
 }
 
-.values {
+/* General Sections */
+.sectionBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--space-lg);
+}
+
+.sectionMedia {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: var(--radius-xxl);
+}
+
+/* ===== WHAT WE DO ===== */
+.featureList {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    gap: var(--space-md);
+}
+
+.featureList li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.featureList img {
+    width: 35px;
+}
+
+/* ===== VALUES ===== */
+.chipList {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -32,8 +81,8 @@
     gap: var(--space-md);
 }
 
-.valueItem {
-    padding: var(--space-md);
+.chip {
+    padding: var(--space-sm);
     border-radius: var(--radius-lg);
     color: white;
     font-weight: bold;
@@ -45,87 +94,33 @@
     overflow: hidden;
 }
 
-.valueItem:hover {
+.chip:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
     border-color: rgba(0, 0, 0, 0.15);
 }
 
-.whoWeAreContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: var(--space-lg);
-}
+/* ===== CONTACT ===== */
 
-.whoWeAre h2 {
-    color: var(--energetic-green);
-}
-
-.groupImg {
-    max-width: 450px;
-    width: 100%;
-    margin: 0 auto;
-    border-radius: var(--radius-lg);
-}
-
-.whatWeDo h2 {
-    color: var(--pastel-red);
-}
-
-.whatWeDoList {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-md);
-    margin: auto;
-}
-
-.whatWeDoList li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-}
-
-.whatWeDoList img {
-    width: 35px;
-}
-
-.valuesContainer h2 {
-    color: var(--variable-blue);
-}
-
-.faqs h2 {
-    color: var(--variable-purple);
-}
-
-.contact h2 {
-    color: var(--variable-orange);
-}
-
-.contactContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.contactWrapper {
-    display: flex;
+.sectionContact .sectionBody p {
+    text-align: center;
 }
 
 @media (min-width: 768px) {
-    .whoWeAreContent {
+    .sectionWho .sectionBody {
         flex-direction: row;
     }
 
-    .groupImg {
+    .sectionWho .sectionMedia {
         flex: 0 0 60%;
         max-width: none;
     }
 
-    .whoWeAreContent p {
+    .sectionWho .sectionBody p {
         flex: 0 0 40%;
+    }
+
+    .sectionValues .chip {
+        padding: var(--space-md);
     }
 }

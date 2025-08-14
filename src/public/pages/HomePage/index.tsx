@@ -16,24 +16,24 @@ import { sections, description, whatWeDo, values, faqs } from "./homeData";
 
 export const HomePage = () => {
     return (
-        <div className={styles.homeContainer}>
+        <div className={styles.home}>
             <Banner />
 
-            <div className={styles.sectionsContainer}>
+            <div className={styles.homeInner}>
                 {/* Who whe are */}
                 <section
                     aria-labelledby={sections.whoWeAre.id}
-                    className={styles.whoWeAre}
+                    className={styles.sectionWho}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.whoWeAre.id}>
                             {sections.whoWeAre.title}
                         </h2>
-                        <div className={styles.whoWeAreContent}>
+                        <div className={styles.sectionBody}>
                             <Animated animation="swing">
                                 <img
                                     src={FakeImg}
-                                    className={styles.groupImg}
+                                    className={styles.sectionMedia}
                                 />
                             </Animated>
                             <p>{description}</p>
@@ -44,13 +44,13 @@ export const HomePage = () => {
                 {/* What we do */}
                 <section
                     aria-labelledby={sections.whatWeDo.id}
-                    className={styles.whatWeDo}
+                    className={styles.sectionWhat}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.whatWeDo.id}>
                             {sections.whatWeDo.title}
                         </h2>
-                        <ul className={styles.whatWeDoList}>
+                        <ul className={styles.featureList}>
                             {whatWeDo.map((item, i) => (
                                 <li key={i}>
                                     <img src={CheckIcon} alt="check icon" />
@@ -64,15 +64,15 @@ export const HomePage = () => {
                 {/* Values */}
                 <section
                     aria-labelledby={sections.values.id}
-                    className={styles.valuesContainer}
+                    className={styles.sectionValues}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.values.id}>{sections.values.title}</h2>
-                        <ul className={styles.values}>
+                        <ul className={styles.chipList}>
                             {values.map((val, i) => (
                                 <li
                                     key={i}
-                                    className={styles.valueItem}
+                                    className={styles.chip}
                                     style={{
                                         backgroundColor:
                                             getRandomColor(allColors),
@@ -88,7 +88,7 @@ export const HomePage = () => {
                 {/* FAQs */}
                 <section
                     aria-labelledby={sections.faqs.id}
-                    className={styles.faqs}
+                    className={styles.sectionFaqs}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.faqs.id}>{sections.faqs.title}</h2>
@@ -105,20 +105,20 @@ export const HomePage = () => {
                 {/* Contact */}
                 <section
                     aria-labelledby={sections.contact.id}
-                    className={styles.contact}
+                    className={styles.sectionContact}
                 >
                     <Card hoverEffect={false}>
                         <h2 id={sections.contact.id}>
                             {sections.contact.title}
                         </h2>
-                        <div className={styles.contactContainer}>
+                        <div className={styles.sectionBody}>
                             <p>
                                 Tens algun dubte o vols preguntar-nos alguna
                                 cosa? Ets una entitat i tens una proposta?
                                 Contacta’ns a través de les nostres xarxes
                                 socials o mitjançant el formulari de sota!
                             </p>
-                            <div className={styles.contactWrapper}>
+                            <div>
                                 <Contact />
                             </div>
                         </div>
