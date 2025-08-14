@@ -32,6 +32,7 @@
     color: wheat;
     font-size: clamp(2rem, 11vw, 12rem);
     text-transform: uppercase;
+    user-select: none;
 }
 
 .reversedK {

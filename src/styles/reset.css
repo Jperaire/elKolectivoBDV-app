@@ -2,10 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
+    flex: 1;
     padding-top: calc(var(--nav-h) - 3px);
     background-color: #f0f0f0;
 }
@@ -18,4 +30,24 @@ a {
 ul,
 ol {
     list-style: none;
+}
+
+button {
+    user-select: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
 }
