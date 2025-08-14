@@ -1,0 +1,24 @@
+.container {
+    height: 75vh;
+    width: 80%;
+    max-width: 650px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    text-align: center;
+    color: #333;
+}
+
+.gif {
+    max-width: 200px;
+    margin: 0 auto;
+    height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gif {
+        animation: none;
+    }
+}

@@ -30,6 +30,8 @@
 .bannerLogo {
     font-weight: 700;
     color: wheat;
+    font-size: clamp(2rem, 11vw, 12rem);
+    text-transform: uppercase;
 }
 
 .reversedK {

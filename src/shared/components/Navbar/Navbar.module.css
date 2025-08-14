@@ -16,7 +16,7 @@
 }
 
 .logo {
-    height: 30px;
+    height: 20px;
 }
 
 .navLinks {
@@ -47,5 +47,9 @@
 
     .actions {
         display: flex;
+    }
+
+    .logo {
+        height: 27px;
     }
 }

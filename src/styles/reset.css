@@ -7,7 +7,7 @@
 
 main {
     padding-top: calc(var(--nav-h) - 3px);
-    background-color: rgb(250, 249, 247);
+    background-color: #f0f0f0;
 }
 
 a {

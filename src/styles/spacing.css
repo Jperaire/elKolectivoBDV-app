@@ -13,7 +13,7 @@
     --radius-lg: 16px;
 
     /* Navbar height */
-    --nav-h: 90px;
+    --nav-h: 60px;
 }
 
 @media (min-width: 768px) {

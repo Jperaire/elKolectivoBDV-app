@@ -4,7 +4,7 @@
     gap: var(--space-lg);
     background-color: rgb(1, 24, 61);
     color: white;
-    padding: var(--space-xl);
+    padding: var(--space-md);
     text-align: center;
 }
 
