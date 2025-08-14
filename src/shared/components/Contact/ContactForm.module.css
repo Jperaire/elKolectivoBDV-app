@@ -4,6 +4,7 @@
     gap: var(--space-md);
     margin: auto;
     width: 100%;
+    min-width: 350px;
 }
 
 .formGroup {

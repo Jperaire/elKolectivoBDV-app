@@ -1,22 +1,26 @@
 import { useContext, useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { FirebaseError } from "firebase/app";
+
 import { AuthContext } from "../../../features/auth/context/AuthContext";
 import {
     loginWithEmail,
     loginWithGoogle,
 } from "../../../features/auth/firebase/methods";
+import { useForm } from "../../../shared/hooks/useForm";
+
+type LoginForm = { email: string; password: string };
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-
     const { user, loading } = useContext(AuthContext);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
+
+    const { email, password, onInputChange, onResetForm } = useForm<LoginForm>({
+        email: "",
+        password: "",
+    });
 
     useEffect(() => {
         if (!loading && user) {
@@ -26,9 +30,11 @@ export const LoginPage = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError(null);
         try {
             const cred = await loginWithEmail(email, password);
             console.log("Logged in user:", cred.user);
+            onResetForm();
             navigate("/user");
         } catch (err: unknown) {
             if (err instanceof FirebaseError) {
@@ -46,6 +52,7 @@ export const LoginPage = () => {
         try {
             const cred = await loginWithGoogle();
             console.log("Google login user:", cred.user);
+            navigate("/user");
         } catch (err: unknown) {
             if (err instanceof FirebaseError) {
                 console.error("Google login error:", err);
@@ -64,17 +71,19 @@ export const LoginPage = () => {
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
+                    name="email"
                     placeholder="Type your email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={onInputChange}
                     required
                 />
                 <br />
                 <input
                     type="password"
+                    name="password"
                     placeholder="Type your password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={onInputChange}
                     required
                 />
                 <button>Inicia sessió</button>

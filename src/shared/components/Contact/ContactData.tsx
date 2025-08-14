@@ -13,7 +13,7 @@ export const ContactData = () => {
                 <p> @elKolectivoBDV</p>
             </a>
             <a href="mailto:elkolectivobdv@gmail.com">
-                <img src={EmailIcon} alt="Email" className={styles.email} />
+                <img src={EmailIcon} alt="Email" />
                 <p>elkolectivobdv@gmail.com</p>
             </a>
             <a
