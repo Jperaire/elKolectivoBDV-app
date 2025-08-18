@@ -8,6 +8,8 @@ import {
     loginWithGoogle,
 } from "../../../features/auth/firebase/methods";
 import { useForm } from "../../../shared/hooks/useForm";
+import styles from "./LoginPage.module.css";
+import { Link } from "react-router-dom";
 
 type LoginForm = { email: string; password: string };
 
@@ -68,7 +70,7 @@ export const LoginPage = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.login}>
                 <input
                     type="email"
                     name="email"
@@ -77,7 +79,6 @@ export const LoginPage = () => {
                     onChange={onInputChange}
                     required
                 />
-                <br />
                 <input
                     type="password"
                     name="password"
@@ -86,13 +87,24 @@ export const LoginPage = () => {
                     onChange={onInputChange}
                     required
                 />
-                <button>Inicia sessió</button>
-                <button type="button" onClick={handleGoogleLogin}>
+                <button className={styles.submitBtn}>Inicia sessió</button>
+                <button
+                    className={styles.submitBtn}
+                    type="button"
+                    onClick={handleGoogleLogin}
+                >
                     Continua amb Google
                 </button>
             </form>
+
+            <p>
+                Encara no tens usuari?{" "}
+                <Link to="/register">Registra't aquí</Link>
+            </p>
 
             {error && <p>{error}</p>}
         </>
     );
 };
+
+// TODO: Refactorizar normal "Button", centrar la "p"

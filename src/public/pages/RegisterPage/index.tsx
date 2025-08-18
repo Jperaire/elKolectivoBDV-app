@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { AuthContext } from "../../../features/auth/context/AuthContext";
 import { useForm } from "../../../shared/hooks/useForm";
+import styles from "./RegisterPage.module.css";
 
 type RegisterForm = {
     userName: string;
@@ -64,9 +65,9 @@ export const RegisterPage = () => {
 
     return (
         <div>
-            <h2>Register</h2>
+            <h2>Formulari de registre</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.register}>
                 <input
                     type="text"
                     name="userName"
@@ -103,10 +104,14 @@ export const RegisterPage = () => {
                     required
                 />
 
-                <button type="submit">Register</button>
+                <button type="submit" className={styles.submitBtn}>
+                    Registrar-se
+                </button>
             </form>
 
             {error && <p>{error}</p>}
         </div>
     );
 };
+
+// TODO: alerta t'has regsitrat correctament

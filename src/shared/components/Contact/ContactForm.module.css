@@ -1,9 +1,9 @@
-.form {
+.contactForm {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
     margin: auto;
-    min-width: 350px;
+    min-width: 300px;
 }
 
 .formGroup {
@@ -13,20 +13,20 @@
 }
 
 .formGroup label {
-    font-size: 1rem;
+    font-size: var(--space-md);
     font-weight: 400;
 }
 
-input,
-textarea {
+.contactForm input,
+.contactForm textarea {
     padding: 1rem;
     border-radius: var(--radius-sm);
     border: 2px solid var(--pastel-orange);
     font-size: var(--fs-md);
 }
 
-input:focus,
-textarea:focus {
+.contactForm input:focus,
+.contactForm textarea:focus {
     outline: none;
     border-color: var(--energetic-orange);
 }
