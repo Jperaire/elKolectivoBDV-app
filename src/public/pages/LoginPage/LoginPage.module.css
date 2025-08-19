@@ -1,14 +1,23 @@
 .login {
     display: flex;
     flex-direction: column;
+    gap: var(--space-sm);
+    margin: 50px auto;
+    width: 85%;
+    max-width: 450px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-md);
     margin: 50px auto;
-    width: 90%;
+    width: 100%;
     max-width: 450px;
 }
 
 .login input {
-    padding: var(--space-md);
+    padding: 1rem;
     border-radius: var(--radius-sm);
     border: 2px solid var(--pastel-orange);
     font-size: var(--fs-md);
@@ -19,18 +28,18 @@
     border-color: var(--energetic-orange);
 }
 
-.submitBtn {
-    background-color: var(--variable-orange);
-    color: white;
-    padding: var(--space-md);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
+.helperText {
+    text-align: center;
+    margin-top: var(--space-sm);
+    font-size: var(--fs-sm);
 }
 
-.submitBtn:hover {
-    background-color: var(--variable-blue);
+.error {
+    color: var(--energetic-orange);
+    font-weight: 400;
+    background: #fff0e6;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-sm);
+    margin-top: var(--space-sm);
 }

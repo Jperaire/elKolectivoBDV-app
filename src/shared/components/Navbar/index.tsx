@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/images/logos/main-logo.png";
-import { ButtonLink, HamburgerMenu } from "../";
+import { LinkButton, HamburgerMenu } from "../";
 
 type Variant = "public" | "private" | "admin";
 type LinkItem = { label: string; path: string };
@@ -25,9 +25,9 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
                     </li>
                 ))}
                 <li className={styles.cta}>
-                    <ButtonLink to="/login" size="small" variant="third">
+                    <LinkButton to="/login" size="small" variant="third">
                         Inicia sessió
-                    </ButtonLink>
+                    </LinkButton>
                 </li>
             </ul>
 

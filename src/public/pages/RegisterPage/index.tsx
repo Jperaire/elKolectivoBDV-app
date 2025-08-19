@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+
 import { registerWithEmail } from "../../../features/auth/firebase/methods";
 import { useNavigate } from "react-router-dom";
-import { FirebaseError } from "firebase/app";
 import { AuthContext } from "../../../features/auth/context/AuthContext";
 import { useForm } from "../../../shared/hooks/useForm";
+import { Button } from "../../../shared/components";
+import { validateRegister } from "../../../shared/utils";
+
 import styles from "./RegisterPage.module.css";
 
 type RegisterForm = {
@@ -18,6 +21,8 @@ export const RegisterPage = () => {
     const navigate = useNavigate();
 
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false);
 
     const {
         userName,
@@ -34,84 +39,106 @@ export const RegisterPage = () => {
     });
 
     useEffect(() => {
-        if (!loading && user) {
-            navigate("/user");
-        }
+        if (!loading && user) navigate("/user");
     }, [loading, user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(null);
+        if (submitting) return;
 
-        if (password !== confirmPassword) {
-            setError("Passwords do not match");
+        setError(null);
+        setSuccess(null);
+
+        const msg = validateRegister({
+            userName,
+            email,
+            password,
+            confirmPassword,
+        });
+        if (msg) {
+            setError(msg);
             return;
         }
 
         try {
-            const cred = await registerWithEmail(userName, email, password);
-            console.log("Registered user:", cred.displayName);
+            setSubmitting(true);
+            await registerWithEmail(userName, email, password);
             onResetForm();
+            setSuccess("T'has registrat correctament 🎉");
             navigate("/user");
         } catch (err: unknown) {
-            if (err instanceof FirebaseError) {
-                console.error("Registration error:", err);
-                setError(err.message);
+            if (err) {
+                setError("Error en el registre. Torna-ho a intentar.");
             } else {
                 setError("Registration failed");
             }
+        } finally {
+            setSubmitting(false);
         }
     };
 
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <div>
+        <div className={styles.register}>
             <h2>Formulari de registre</h2>
 
-            <form onSubmit={handleSubmit} className={styles.register}>
+            <form
+                onSubmit={handleSubmit}
+                className={styles.registerForm}
+                noValidate
+            >
                 <input
                     type="text"
                     name="userName"
-                    placeholder="Your name"
+                    placeholder="Escriu el teu nom"
                     value={userName}
                     onChange={onInputChange}
                     required
+                    autoComplete="name"
                 />
 
                 <input
                     type="email"
                     name="email"
-                    placeholder="Email address"
+                    placeholder="Escriu la teva adreça electrònica"
                     value={email}
                     onChange={onInputChange}
                     required
+                    inputMode="email"
+                    autoComplete="email"
                 />
 
                 <input
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Contrasenya"
                     value={password}
                     onChange={onInputChange}
                     required
+                    minLength={6}
+                    autoComplete="new-password"
                 />
 
                 <input
                     type="password"
                     name="confirmPassword"
-                    placeholder="Confirm password"
+                    placeholder="Confirma la contrasenya"
                     value={confirmPassword}
                     onChange={onInputChange}
                     required
+                    autoComplete="new-password"
                 />
 
-                <button type="submit" className={styles.submitBtn}>
+                <Button isLoading={submitting} loadingText="Creant compte...">
                     Registrar-se
-                </button>
+                </Button>
             </form>
 
-            {error && <p>{error}</p>}
+            <div aria-live="polite" aria-atomic="true">
+                {error && <p className={styles.error}>⚠️ {error}</p>}
+                {success && <p className={styles.success}>{success}</p>}
+            </div>
         </div>
     );
 };
-
-// TODO: alerta t'has regsitrat correctament

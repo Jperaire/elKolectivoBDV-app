@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FirebaseError } from "firebase/app";
+import { useNavigate, Link } from "react-router-dom";
 
 import { AuthContext } from "../../../features/auth/context/AuthContext";
 import {
@@ -8,8 +7,10 @@ import {
     loginWithGoogle,
 } from "../../../features/auth/firebase/methods";
 import { useForm } from "../../../shared/hooks/useForm";
+import { Button } from "../../../shared/components";
+import { validateLogin } from "../../../shared/utils";
+
 import styles from "./LoginPage.module.css";
-import { Link } from "react-router-dom";
 
 type LoginForm = { email: string; password: string };
 
@@ -18,6 +19,7 @@ export const LoginPage = () => {
     const { user, loading } = useContext(AuthContext);
 
     const [error, setError] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false);
 
     const { email, password, onInputChange, onResetForm } = useForm<LoginForm>({
         email: "",
@@ -25,86 +27,107 @@ export const LoginPage = () => {
     });
 
     useEffect(() => {
-        if (!loading && user) {
-            navigate("/user");
-        }
+        if (!loading && user) navigate("/user");
     }, [loading, user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (submitting) return;
+
         setError(null);
+
+        const msg = validateLogin({ email, password });
+        if (msg) {
+            setError(msg);
+            return;
+        }
+
         try {
-            const cred = await loginWithEmail(email, password);
-            console.log("Logged in user:", cred.user);
+            setSubmitting(true);
+            await loginWithEmail(email, password);
             onResetForm();
             navigate("/user");
         } catch (err: unknown) {
-            if (err instanceof FirebaseError) {
-                console.error("Login error:", err);
-                setError(err.message);
+            if (err) {
+                setError("Email o contrasenya incorrectes.");
             } else {
-                console.error("Unknown error:", err);
-                setError("Login failed");
+                setError("No s'ha pogut iniciar sessió. Torna-ho a intentar.");
             }
+        } finally {
+            setSubmitting(false);
         }
     };
 
     const handleGoogleLogin = async () => {
+        if (submitting) return;
         setError(null);
+
         try {
-            const cred = await loginWithGoogle();
-            console.log("Google login user:", cred.user);
+            setSubmitting(true);
+            await loginWithGoogle();
             navigate("/user");
-        } catch (err: unknown) {
-            if (err instanceof FirebaseError) {
-                console.error("Google login error:", err);
-                setError(err.message);
-            } else {
-                console.error("Unknown error:", err);
-                setError("Google login failed");
-            }
+        } catch {
+            setError("No s'ha pogut iniciar sessió amb Google.");
+        } finally {
+            setSubmitting(false);
         }
     };
 
     if (loading) return <p>Loading...</p>;
 
     return (
-        <>
-            <form onSubmit={handleSubmit} className={styles.login}>
+        <div className={styles.login}>
+            <h2>Inicia sessió</h2>
+
+            <form
+                onSubmit={handleSubmit}
+                className={styles.loginForm}
+                noValidate
+            >
                 <input
                     type="email"
                     name="email"
-                    placeholder="Type your email"
+                    placeholder="Escriu la teva adreça electrònica"
                     value={email}
                     onChange={onInputChange}
                     required
+                    inputMode="email"
+                    autoComplete="email"
                 />
+
                 <input
                     type="password"
                     name="password"
-                    placeholder="Type your password"
+                    placeholder="Escriu la teva contrasenya"
                     value={password}
                     onChange={onInputChange}
                     required
+                    minLength={6}
+                    autoComplete="current-password"
                 />
-                <button className={styles.submitBtn}>Inicia sessió</button>
-                <button
-                    className={styles.submitBtn}
+
+                <Button isLoading={submitting} loadingText="Iniciant sessió...">
+                    Inicia sessió
+                </Button>
+
+                <Button
                     type="button"
                     onClick={handleGoogleLogin}
+                    isLoading={submitting}
+                    loadingText="Connectant..."
                 >
                     Continua amb Google
-                </button>
+                </Button>
             </form>
 
-            <p>
+            <p className={styles.helperText}>
                 Encara no tens usuari?{" "}
                 <Link to="/register">Registra't aquí</Link>
             </p>
 
-            {error && <p>{error}</p>}
-        </>
+            <div aria-live="polite" aria-atomic="true">
+                {error && <p className={styles.error}>⚠️ {error}</p>}
+            </div>
+        </div>
     );
 };
-
-// TODO: Refactorizar normal "Button", centrar la "p"

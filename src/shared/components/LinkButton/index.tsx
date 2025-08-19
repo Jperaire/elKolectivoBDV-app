@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./ButtonLink.module.css";
+import styles from "./LinkButton.module.css";
 
-type ButtonLinkProps = {
+type LinkButtonProps = {
     to: string;
     children: React.ReactNode;
     variant?: "primary" | "secondary" | "third";
@@ -9,13 +9,13 @@ type ButtonLinkProps = {
     className?: string;
 };
 
-export const ButtonLink = ({
+export const LinkButton = ({
     to,
     children,
     variant = "primary",
     size = "medium",
     className = "",
-}: ButtonLinkProps) => {
+}: LinkButtonProps) => {
     return (
         <Link
             to={to}

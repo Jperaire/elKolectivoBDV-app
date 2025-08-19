@@ -1,5 +1,5 @@
 import styles from "./NotFound.module.css";
-import { ButtonLink } from "../../../shared/components";
+import { LinkButton } from "../../../shared/components";
 
 export const NotFound = () => {
     return (
@@ -13,9 +13,9 @@ export const NotFound = () => {
                 className={styles.gif}
             />
 
-            <ButtonLink to="/" variant="third">
+            <LinkButton to="/" variant="third">
                 🏠 Torna a l'inici
-            </ButtonLink>
+            </LinkButton>
         </div>
     );
 };

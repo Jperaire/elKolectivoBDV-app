@@ -42,6 +42,7 @@
     transform: translateX(calc(var(--w) - var(--h)));
 }
 
+/* Pallete */
 .palette {
     display: flex;
     gap: 4px;

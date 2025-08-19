@@ -1,5 +1,5 @@
 import styles from "./Banner.module.css";
-import { ButtonLink } from "../../../shared/components/ButtonLink";
+import { LinkButton } from "../../../shared/components/LinkButton";
 import { ThemeSwitcher } from "../../../shared/components";
 
 export const Banner = () => {
@@ -19,14 +19,14 @@ export const Banner = () => {
                     EL COLECTIU LGTBNBIQ+ DEL VALLÈS
                 </p>
             </div>
-            <ButtonLink
+            <LinkButton
                 to="/calendar"
                 variant="primary"
                 size="large"
                 className="animate__animated animate__pulse animate__infinite"
             >
                 Properes activitats
-            </ButtonLink>
+            </LinkButton>
             <div className={styles.themeSwitcher}>
                 <ThemeSwitcher />
             </div>

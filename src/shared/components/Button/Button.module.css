@@ -1,0 +1,20 @@
+.Button {
+    background-color: var(--energetic-orange);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.Button:hover {
+    background-color: var(--variable-blue);
+}
+
+.Button:disabled {
+    background-color: var(--pastel-orange);
+    cursor: not-allowed;
+}
