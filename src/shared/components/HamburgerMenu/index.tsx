@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images";
-import { LinkButton, ThemeSwitcher } from "../";
+import { Button, LinkButton, ThemeSwitcher } from "../";
+import { AuthContext } from "../../../features/auth/context/AuthContext";
+import { signOutUser } from "../../../features/auth/firebase/methods";
 
 type LinkItem = { label: string; path: string };
 interface HamburgerMenuProps {
@@ -11,6 +13,20 @@ interface HamburgerMenuProps {
 
 export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     const [open, setOpen] = useState(false);
+    const { user, loading } = useContext(AuthContext);
+    const [signingOut, setSigningOut] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            setSigningOut(true);
+            await signOutUser();
+            setOpen(false);
+            navigate("/");
+        } finally {
+            setSigningOut(false);
+        }
+    };
 
     return (
         <div className={styles.hamburgerMenu}>
@@ -41,11 +57,29 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                     </li>
                 ))}
 
-                <li onClick={() => setOpen(false)}>
-                    <LinkButton to="/login" size="large" variant="third">
-                        Inicia sessió
-                    </LinkButton>
-                </li>
+                {!loading && !user && (
+                    <li onClick={() => setOpen(false)}>
+                        <LinkButton to="/login" size="large" variant="third">
+                            Inicia sessió
+                        </LinkButton>
+                    </li>
+                )}
+
+                {!loading && user && (
+                    <li>
+                        <Button
+                            type="button"
+                            onClick={handleLogout}
+                            isLoading={signingOut}
+                            loadingText="Tancant..."
+                            variant="third"
+                            size="large"
+                        >
+                            Tanca la sessió
+                        </Button>
+                    </li>
+                )}
+
                 <li>
                     <ThemeSwitcher />
                 </li>

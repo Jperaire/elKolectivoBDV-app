@@ -81,7 +81,7 @@ export const RegisterPage = () => {
 
     return (
         <div className={styles.register}>
-            <h2>Formulari de registre</h2>
+            <h1>Formulari de registre</h1>
 
             <form
                 onSubmit={handleSubmit}

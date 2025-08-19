@@ -77,7 +77,7 @@ export const LoginPage = () => {
 
     return (
         <div className={styles.login}>
-            <h2>Inicia sessió</h2>
+            <h1>Inicia sessió</h1>
 
             <form
                 onSubmit={handleSubmit}
@@ -121,8 +121,11 @@ export const LoginPage = () => {
             </form>
 
             <p className={styles.helperText}>
-                Encara no tens usuari?{" "}
-                <Link to="/register">Registra't aquí</Link>
+                Encara no tens usuari? Registra't
+                <Link to="/register" className={styles.registerLink}>
+                    {" "}
+                    aquí
+                </Link>
             </p>
 
             <div aria-live="polite" aria-atomic="true">

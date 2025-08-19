@@ -37,13 +37,13 @@ export const ProfilePage = () => {
     };
 
     const handleClose = async () => {
-        if (!window.confirm("¿Seguro que quieres cerrar tu sesión?")) return;
+        if (!window.confirm("¿Segur que vols tancar la sessió?")) return;
         try {
             await signOutUser();
-            setStatus("Sesión cerrada");
+            setStatus("Sessió tancada");
         } catch (err) {
             console.error(err);
-            setStatus("Error al cerrar sesión");
+            setStatus("Error al tancar la sessió");
         }
     };
 

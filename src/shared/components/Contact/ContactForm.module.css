@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    margin: auto;
-    min-width: 300px;
+    min-width: 320px;
 }
 
 .formGroup {
@@ -13,7 +12,7 @@
 }
 
 .formGroup label {
-    font-size: var(--space-md);
+    font-size: 0.9rem;
     font-weight: 400;
 }
 
@@ -31,18 +30,11 @@
     border-color: var(--energetic-orange);
 }
 
-.submitBtn {
-    background-color: var(--variable-orange);
-    color: white;
-    padding: var(--space-md);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-}
-
-.submitBtn:hover {
-    background-color: var(--variable-blue);
+.error {
+    color: var(--energetic-orange);
+    font-weight: 400;
+    background: #fff0e6;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-sm);
 }

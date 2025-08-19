@@ -1,5 +1,9 @@
 export { getRandomColor } from "./getRandomColor";
-export { validateLogin, validateRegister } from "./validations";
+export {
+    validateLogin,
+    validateRegister,
+    validateContact,
+} from "./validations";
 export {
     themeVariables,
     pastelColors,

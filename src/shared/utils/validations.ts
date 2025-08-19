@@ -1,7 +1,7 @@
-// ✅ helpers
+// Helpers
 const isEmail = (v: string) => /^\S+@\S+\.\S+$/.test(v);
 
-// ✅ register
+// Register
 export function validateRegister(v: {
     userName: string;
     email: string;
@@ -18,7 +18,7 @@ export function validateRegister(v: {
     return null;
 }
 
-// ✅ login
+// Login
 export function validateLogin(v: {
     email: string;
     password: string;
@@ -28,5 +28,19 @@ export function validateLogin(v: {
     if (!v.password.trim()) return "Introdueix la contrasenya.";
     if (v.password.length < 6)
         return "La contrasenya ha de tenir mínim 6 caràcters.";
+    return null;
+}
+
+// Contact
+export function validateContact(v: {
+    name: string;
+    email: string;
+    message: string;
+}) {
+    const isEmail = (s: string) => /^\S+@\S+\.\S+$/.test(s);
+    if (!v.name.trim()) return "El nom és obligatori";
+    if (!v.email.trim()) return "Introdueix el correu.";
+    if (!isEmail(v.email)) return "Email no vàlid.";
+    if (!v.message.trim()) return "Introdueix el missatge.";
     return null;
 }
