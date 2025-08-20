@@ -1,13 +1,19 @@
 .navbar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 1rem;
     width: 100%;
     height: var(--nav-h);
     background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
     position: fixed;
     z-index: 1000;
+}
+
+.navbarContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
 }
 
 .logoWrapper {
@@ -21,19 +27,17 @@
 
 .navLinks {
     display: none;
-    align-items: center;
-    gap: 0.5rem;
+    gap: 0.9rem;
 }
 
 .navLinks li:not(.cta) > a {
     text-transform: uppercase;
     color: white;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     transition: color 0.2s ease, border-color 0.2s ease;
     border-bottom: 2px solid transparent;
     padding-bottom: 3px;
-    letter-spacing: 0.1rem;
 }
 
 .navLinks li:not(.cta) > a:hover {
@@ -43,10 +47,7 @@
 @media (min-width: 768px) {
     .navLinks {
         display: flex;
-    }
-
-    .actions {
-        display: flex;
+        align-items: center;
     }
 
     .logo {

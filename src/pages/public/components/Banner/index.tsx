@@ -4,7 +4,7 @@ import { ThemeSwitcher } from "../../../../features/theme/components/ThemeSwitch
 
 export const Banner = () => {
     return (
-        <div className={styles.banner}>
+        <section className={styles.banner}>
             <div className={styles.bannerInfo}>
                 <p className={styles.bannerKicker}>BENVINGUDIS A</p>
                 <h1
@@ -30,6 +30,6 @@ export const Banner = () => {
             <div className={styles.themeSwitcher}>
                 <ThemeSwitcher />
             </div>
-        </div>
+        </section>
     );
 };

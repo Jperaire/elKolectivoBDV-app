@@ -16,10 +16,18 @@ body,
     min-height: 100vh;
 }
 
+body {
+    background-color: #f0f0f0;
+    max-width: 1500px;
+    margin: auto;
+}
+
 main {
     flex: 1;
     padding-top: var(--nav-h);
-    background-color: #f0f0f0;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
 }
 
 a {
