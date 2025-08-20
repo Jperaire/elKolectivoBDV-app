@@ -1,5 +1,5 @@
 .container {
-    margin: var(--space-xl) auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,11 +18,5 @@
 @media (prefers-reduced-motion: reduce) {
     .gif {
         animation: none;
-    }
-}
-
-@media (min-width: 768px) {
-    .gif {
-        width: 400px;
     }
 }

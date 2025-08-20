@@ -7,7 +7,7 @@ export const navLinks = {
     private: [
         { label: "El meu perfil", path: "/user/profile" },
         { label: "Donacions", path: "/user/donations" },
-        { label: "Tanca sessió", path: "/logout" },
+        { label: "Tanca sessió", path: "/user/test" },
     ],
     admin: [
         { label: "Panell", path: "/admin" },

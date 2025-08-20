@@ -1,19 +1,18 @@
-import { Routes } from "react-router-dom";
-import { PublicRoutes } from "./PublicRoutes";
-import { PrivateRoutes } from "./PrivateRoutes";
-import { AdminRoutes } from "./AdminRoutes";
+import { Route, Routes } from "react-router-dom";
+import { PublicRoutes, PrivateRoutes, AdminRoutes } from "./";
+import { AppLayout } from "../layout/AppLayout";
+import { AdminGuard, PrivateGuard } from "../guards";
 
 export const AppRouter = () => {
     return (
         <Routes>
-            {/* Public Routes */}
-            {PublicRoutes}
+            <Route path="/" element={<AppLayout />}>
+                {PublicRoutes}
 
-            {/* Private Routes */}
-            {PrivateRoutes}
+                <Route element={<PrivateGuard />}>{PrivateRoutes}</Route>
 
-            {/* Admin Routes */}
-            {AdminRoutes}
+                <Route element={<AdminGuard />}>{AdminRoutes}</Route>
+            </Route>
         </Routes>
     );
 };

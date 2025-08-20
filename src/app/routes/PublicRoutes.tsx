@@ -1,5 +1,4 @@
 import { Route } from "react-router-dom";
-import { PublicLayout } from "../../layouts/PublicLayout";
 
 import {
     HomePage,
@@ -16,7 +15,7 @@ import {
 } from "../../features/auth/pages";
 
 export const PublicRoutes = (
-    <Route path="/" element={<PublicLayout />}>
+    <>
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
@@ -25,5 +24,5 @@ export const PublicRoutes = (
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<NotFound />} />
-    </Route>
+    </>
 );
