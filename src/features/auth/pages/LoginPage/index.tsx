@@ -23,7 +23,7 @@ export const LoginPage = () => {
     });
 
     useEffect(() => {
-        if (!loading && user) navigate("/user");
+        if (!loading && user) navigate("/");
     }, [loading, user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {

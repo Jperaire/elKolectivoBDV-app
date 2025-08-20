@@ -3,17 +3,15 @@ import styles from "./Navbar.module.css";
 import logo from "../../../assets/images/logos/main-logo.png";
 import { LinkButton, HamburgerMenu } from "../";
 
-type Variant = "public" | "private" | "admin";
 type LinkItem = { label: string; path: string };
 
 interface NavbarProps {
-    variant: Variant;
     links: ReadonlyArray<LinkItem>;
 }
 
-export const Navbar = ({ variant, links }: NavbarProps) => {
+export const Navbar = ({ links }: NavbarProps) => {
     return (
-        <nav className={`${styles.navbar} ${styles[variant]}`}>
+        <nav className={styles.navbar}>
             <div className={styles.navbarContent}>
                 <Link to="/" className={styles.logoWrapper}>
                     <img

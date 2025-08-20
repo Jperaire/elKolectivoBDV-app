@@ -3,16 +3,19 @@ import { Navbar, Footer } from "../../shared/components";
 import { navLinks } from "../../shared/config/nav";
 import { useAuth } from "../../features/auth/hooks/useAuth";
 
-type Variant = "public" | "private" | "admin";
-
 export const AppLayout = () => {
     const { user, userData } = useAuth();
 
-    const variant: Variant =
-        userData?.role === "admin" ? "admin" : user ? "private" : "public";
+    const links =
+        userData?.role === "admin"
+            ? navLinks.admin
+            : user
+            ? navLinks.user
+            : navLinks.public;
+
     return (
         <>
-            <Navbar variant={variant} links={navLinks.public} />
+            <Navbar links={links} />
 
             <main>
                 <Outlet />

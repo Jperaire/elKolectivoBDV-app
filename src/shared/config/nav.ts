@@ -2,12 +2,15 @@ export const navLinks = {
     public: [
         { label: "Calendari", path: "/calendar" },
         { label: "Notícies", path: "/news" },
-        { label: "Contacte", path: "/contact" },
+        { label: "Merchan", path: "/merchan" },
     ],
-    private: [
-        { label: "El meu perfil", path: "/user/profile" },
+    user: [
+        { label: "Calendari", path: "/calendar" },
+        { label: "Notícies", path: "/news" },
+        { label: "El meu perfil", path: "/user" },
         { label: "Donacions", path: "/user/donations" },
-        { label: "Tanca sessió", path: "/user/test" },
+        { label: "Merchan", path: "/merchan" },
+        { label: "Test", path: "/user/test" },
     ],
     admin: [
         { label: "Panell", path: "/admin" },
