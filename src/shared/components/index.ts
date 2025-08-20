@@ -7,4 +7,3 @@ export { HamburgerMenu } from "./HamburgerMenu";
 export { LinkButton } from "./LinkButton";
 export { Navbar } from "./Navbar";
 export { Button } from "./Button";
-export { ThemeSwitcher } from "./ThemeSwitcher";

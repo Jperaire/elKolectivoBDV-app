@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { resetPassword } from "../../../features/auth/firebase/methods";
-import { useForm } from "../../../shared/hooks/useForm";
+import { resetPassword } from "../../firebase/methods";
+import { useForm } from "../../../../shared/hooks/useForm";
 
 type ResetForm = { email: string };
 

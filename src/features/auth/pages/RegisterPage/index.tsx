@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-
-import { registerWithEmail } from "../../../features/auth/firebase/methods";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../features/auth/context/AuthContext";
-import { useForm } from "../../../shared/hooks/useForm";
-import { Button } from "../../../shared/components";
-import { validateRegister } from "../../../shared/utils";
+
+import { AuthContext } from "../../context/AuthContext";
+import { useForm } from "../../../../shared/hooks/useForm";
+import { validateRegister } from "../../../../shared/utils";
+import { registerWithEmail } from "../../firebase/methods";
+import { Button } from "../../../../shared/components";
 
 import styles from "./RegisterPage.module.css";
 

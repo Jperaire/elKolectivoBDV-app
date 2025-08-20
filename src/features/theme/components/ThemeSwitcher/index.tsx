@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../context/Theme/ThemeContext";
 
 import styles from "./ThemeSwitcher.module.css";
 import { Pallete } from "./Pallete";
+import { ThemeContext } from "../../context/ThemeContext";
 
 export const ThemeSwitcher = () => {
     const ctx = useContext(ThemeContext);

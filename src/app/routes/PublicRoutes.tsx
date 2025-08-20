@@ -1,15 +1,19 @@
 import { Route } from "react-router-dom";
 import { PublicLayout } from "../../layouts/PublicLayout";
+
 import {
     HomePage,
-    LoginPage,
-    RegisterPage,
     CalendarPage,
     NewsPage,
     Unauthorized,
-    ResetPasswordPage,
     NotFound,
-} from "../pages";
+} from "../../pages/public";
+
+import {
+    LoginPage,
+    RegisterPage,
+    ResetPasswordPage,
+} from "../../features/auth/pages";
 
 export const PublicRoutes = (
     <Route path="/" element={<PublicLayout />}>

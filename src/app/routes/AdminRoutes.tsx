@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { AdminGuard } from "../../routes/guards";
+import { AdminGuard } from "../guards";
 
 import { AdminLayout } from "../../layouts/AdminLayout";
 import {
@@ -11,7 +11,7 @@ import {
     ResourcesPage,
     NewsManagerPage,
     MembershipFormTogglePage,
-} from "../pages";
+} from "../../pages/admin";
 
 export const AdminRoutes = (
     <Route path="/admin" element={<AdminGuard />}>

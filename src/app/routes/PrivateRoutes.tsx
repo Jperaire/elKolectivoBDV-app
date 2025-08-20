@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { PrivateGuard } from "../../routes/guards";
+import { PrivateGuard } from "../guards";
 
 import { PrivateLayout } from "../../layouts/PrivateLayout";
 import {
@@ -8,7 +8,7 @@ import {
     MembershipFormPage,
     ProfilePage,
     ActivitySignupPage,
-} from "../pages";
+} from "../../pages/user";
 
 export const PrivateRoutes = (
     <Route path="/user" element={<PrivateGuard />}>

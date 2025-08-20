@@ -7,10 +7,10 @@ import {
     Card,
     Contact,
 } from "../../../shared/components";
+import { Banner } from "../components/Banner";
 import { allColors } from "../../../shared/utils/colors";
-
 import { getRandomColor } from "../../../shared/utils/getRandomColor";
-import { Banner } from "../../components/Banner";
+
 import styles from "./HomePage.module.css";
 import { sections, description, whatWeDo, values, faqs } from "./homeData";
 

@@ -1,5 +1,5 @@
 import styles from "./ThemeSwitcher.module.css";
-import { themeVariables } from "../../utils/colors";
+import { themeVariables } from "../../../../shared/utils";
 
 export const Pallete = () => {
     return (

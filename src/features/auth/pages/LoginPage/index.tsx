@@ -1,16 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { AuthContext } from "../../../features/auth/context/AuthContext";
-import {
-    loginWithEmail,
-    loginWithGoogle,
-} from "../../../features/auth/firebase/methods";
-import { useForm } from "../../../shared/hooks/useForm";
-import { Button } from "../../../shared/components";
-import { validateLogin } from "../../../shared/utils";
-
 import styles from "./LoginPage.module.css";
+import { AuthContext } from "../../context/AuthContext";
+import { useForm } from "../../../../shared/hooks/useForm";
+import { validateLogin } from "../../../../shared/utils";
+import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
+import { Button } from "../../../../shared/components";
 
 type LoginForm = { email: string; password: string };
 

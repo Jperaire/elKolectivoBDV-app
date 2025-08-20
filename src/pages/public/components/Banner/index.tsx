@@ -1,6 +1,6 @@
 import styles from "./Banner.module.css";
-import { LinkButton } from "../../../shared/components/LinkButton";
-import { ThemeSwitcher } from "../../../shared/components";
+import { LinkButton } from "../../../../shared/components/LinkButton";
+import { ThemeSwitcher } from "../../../../features/theme/components/ThemeSwitcher";
 
 export const Banner = () => {
     return (

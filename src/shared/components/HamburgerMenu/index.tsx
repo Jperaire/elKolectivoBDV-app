@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images";
-import { Button, LinkButton, ThemeSwitcher } from "../";
+import { Button, LinkButton } from "../";
 import { AuthContext } from "../../../features/auth/context/AuthContext";
 import { signOutUser } from "../../../features/auth/firebase/methods";
+import { ThemeSwitcher } from "../../../features/theme/components/ThemeSwitcher";
 
 type LinkItem = { label: string; path: string };
 interface HamburgerMenuProps {
