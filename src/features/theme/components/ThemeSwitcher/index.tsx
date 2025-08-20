@@ -1,13 +1,8 @@
-import { useContext } from "react";
+import { useTheme } from "../../hooks/useTheme";
 import styles from "./ThemeSwitcher.module.css";
-import { ThemeContext } from "../../context/ThemeContext";
 
 export const ThemeSwitcher = () => {
-    const ctx = useContext(ThemeContext);
-    if (!ctx)
-        throw new Error("ThemeSwitcher must be used within ThemeProvider");
-
-    const { theme, setTheme } = ctx;
+    const { theme, setTheme } = useTheme();
 
     return (
         <div className={styles.segment} role="group" aria-label="Theme">

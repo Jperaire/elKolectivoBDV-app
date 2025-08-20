@@ -1,37 +1,33 @@
 .segment {
     display: inline-flex;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 999px;
+    border-radius: 90px;
     padding: 2px;
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) inset;
+    background-color: rgb(253, 243, 224);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .segmentBtn {
-    appearance: none;
     border: 0;
     background: transparent;
     padding: 6px 12px;
-    border-radius: 999px;
-    font: inherit;
+    border-radius: 50%;
+    font-size: var(--fs-xl);
     cursor: pointer;
     transition: background 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .segmentBtn:hover {
     opacity: 1;
 }
 
-/* Estado activo */
 .segmentBtn[aria-pressed="true"] {
-    background: var(--variable-green);
+    background: var(--energetic-green);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     opacity: 1;
 }
 
-/* Mejoras de accesibilidad */
 .segmentBtn:focus-visible {
     outline: 2px solid var(--variable-blue);
-    outline-offset: 2px;
 }
