@@ -6,6 +6,7 @@ import {
     NewsPage,
     Unauthorized,
     NotFound,
+    MerchPage,
 } from "../../pages/public";
 
 import {
@@ -19,6 +20,7 @@ export const PublicRoutes = (
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="merch" element={<MerchPage />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />

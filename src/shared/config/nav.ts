@@ -2,7 +2,7 @@ export const navLinks = {
     public: [
         { label: "Calendari", path: "/calendar" },
         { label: "Notícies", path: "/news" },
-        { label: "Merchan", path: "/merchan" },
+        { label: "Merchan", path: "/merch" },
     ],
     user: [
         { label: "Calendari", path: "/calendar" },
