@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 1rem;
     width: 100%;
     height: var(--nav-h);
     background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
@@ -22,7 +22,7 @@
 .navLinks {
     display: none;
     align-items: center;
-    gap: var(--space-lg);
+    gap: 0.5rem;
 }
 
 .navLinks li:not(.cta) > a {

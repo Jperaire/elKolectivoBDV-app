@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 2.5rem;
     position: relative;
-    padding-top: calc(var(--nav-h) - 3px);
+    padding-top: calc(var(--nav-h) - 5px);
 }
 
 .bannerInfo {
@@ -25,13 +25,13 @@
     letter-spacing: var(--space-xs);
     color: rgb(252, 242, 222);
     font-weight: 500;
-    font-size: clamp(1rem, 2vw, 4rem);
+    font-size: clamp(1rem, 1.6vw, 1.8rem);
 }
 
 .bannerLogo {
     font-weight: 700;
     color: wheat;
-    font-size: clamp(2rem, 11vw, 12rem);
+    font-size: clamp(2rem, 11vw, 6rem);
     text-transform: uppercase;
     user-select: none;
 }
@@ -52,11 +52,6 @@
         position: absolute;
         right: 20px;
         bottom: 20px;
-    }
-
-    .banner {
-        gap: 2.5rem;
-        height: 600px;
     }
 
     .bannerInfo {

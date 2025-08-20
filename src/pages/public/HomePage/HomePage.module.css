@@ -1,17 +1,15 @@
 /* ===== General HomePage ===== */
 .home {
-    padding-bottom: var(--space-xxl);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
 }
 
 .homeInner {
-    margin: auto;
+    margin: 30px auto;
     width: 95%;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: 1rem;
 }
 
 /* Headings */
