@@ -5,9 +5,8 @@ import { PrivateLayout } from "../../layouts/PrivateLayout";
 import {
     MerchPage,
     DonationsPage,
-    MembershipFormPage,
+    MembershipTestPage,
     ProfilePage,
-    ActivitySignupPage,
 } from "../../pages/user";
 
 export const PrivateRoutes = (
@@ -16,8 +15,7 @@ export const PrivateRoutes = (
             <Route index element={<ProfilePage />} />
             <Route path="merch" element={<MerchPage />} />
             <Route path="donations" element={<DonationsPage />} />
-            <Route path="membership-form" element={<MembershipFormPage />} />
-            <Route path="signup" element={<ActivitySignupPage />} />
+            <Route path="test" element={<MembershipTestPage />} />
         </Route>
     </Route>
 );

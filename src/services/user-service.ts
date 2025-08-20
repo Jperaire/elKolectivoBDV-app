@@ -6,7 +6,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
-import { AppUserData } from "../features/auth/types";
+import { AppUserData, MembershipAnswers } from "../features/auth/types";
 import { updateProfile } from "firebase/auth";
 
 import { db } from "../firebase/firestore";
@@ -56,5 +56,19 @@ export async function updateUserProfile(
     await updateDoc(doc(db, "users", uid), {
         displayName,
         photoURL: photoURL ?? null,
+    });
+}
+
+export async function saveMembershipTest(
+    uid: string,
+    answers: MembershipAnswers
+) {
+    const ref = doc(db, "users", uid);
+    await updateDoc(ref, {
+        membershipTest: {
+            answers,
+            status: "pending",
+            submittedAt: serverTimestamp(),
+        },
     });
 }
