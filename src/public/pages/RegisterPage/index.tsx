@@ -65,7 +65,7 @@ export const RegisterPage = () => {
             await registerWithEmail(userName, email, password);
             onResetForm();
             setSuccess("T'has registrat correctament 🎉");
-            navigate("/user");
+            navigate("/");
         } catch (err: unknown) {
             if (err) {
                 setError("Error en el registre. Torna-ho a intentar.");

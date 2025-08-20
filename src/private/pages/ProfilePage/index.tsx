@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../../features/auth/context/AuthContext";
-import { updateUserProfile } from "../../services/user-service";
+import { AuthContext } from "../../../features/auth/context/AuthContext";
+import { updateUserProfile } from "../../../services/user-service";
 import {
     deleteAccount,
     signOutUser,
-} from "../../features/auth/firebase/methods";
+} from "../../../features/auth/firebase/methods";
 
 export const ProfilePage = () => {
     const { user, userData } = useContext(AuthContext);

@@ -1,8 +1,11 @@
 .contactContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: var(--space-xl);
     margin-top: var(--space-xl);
+    width: 100%;
 }
 
 .firstCol {

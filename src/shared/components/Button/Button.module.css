@@ -24,11 +24,11 @@
 
 /* ===== Variants ===== */
 .primary {
-    background-color: var(--energetic-purple);
+    background-color: var(--variable-purple);
     color: rgb(247, 243, 235);
 }
 .primary:hover {
-    background-color: var(--energetic-yellow);
+    background-color: transparent;
     color: #fff;
 }
 

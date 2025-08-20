@@ -118,9 +118,8 @@ export const HomePage = () => {
                                 Contacta’ns a través de les nostres xarxes
                                 socials o mitjançant el formulari de sota!
                             </p>
-                            <div>
-                                <Contact />
-                            </div>
+
+                            <Contact />
                         </div>
                     </Card>
                 </section>

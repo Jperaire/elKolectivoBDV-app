@@ -46,7 +46,7 @@ export const LoginPage = () => {
             setSubmitting(true);
             await loginWithEmail(email, password);
             onResetForm();
-            navigate("/user");
+            navigate("/");
         } catch (err: unknown) {
             if (err) {
                 setError("Email o contrasenya incorrectes.");
@@ -65,7 +65,7 @@ export const LoginPage = () => {
         try {
             setSubmitting(true);
             await loginWithGoogle();
-            navigate("/user");
+            navigate("/");
         } catch {
             setError("No s'ha pogut iniciar sessió amb Google.");
         } finally {
