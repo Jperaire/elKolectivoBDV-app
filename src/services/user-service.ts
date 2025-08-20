@@ -72,3 +72,18 @@ export async function saveMembershipTest(
         },
     });
 }
+
+export async function approveMembership(uid: string) {
+    const ref = doc(db, "users", uid);
+    await updateDoc(ref, {
+        role: "member",
+        "membershipTest.status": "approved",
+    });
+}
+
+export async function rejectMembership(uid: string) {
+    const ref = doc(db, "users", uid);
+    await updateDoc(ref, {
+        "membershipTest.status": "rejected",
+    });
+}

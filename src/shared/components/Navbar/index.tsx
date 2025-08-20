@@ -25,7 +25,7 @@ export const Navbar = ({ variant, links }: NavbarProps) => {
                     </li>
                 ))}
                 <li className={styles.cta}>
-                    <LinkButton to="/login" size="small" variant="third">
+                    <LinkButton to="/login" size="small" variant="button--pink">
                         Inicia sessió
                     </LinkButton>
                 </li>

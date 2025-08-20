@@ -1,6 +1,6 @@
 import styles from "./Button.module.css";
 
-type Variant = "primary" | "secondary" | "third";
+type Variant = "button--purple" | "button--red" | "button--pink";
 type Size = "small" | "medium" | "large";
 
 type ButtonProps = {
@@ -23,7 +23,7 @@ export const Button = ({
     type = "submit",
     isLoading = false,
     loadingText,
-    variant = "primary",
+    variant = "button--purple",
     size = "medium",
 }: ButtonProps) => {
     return (

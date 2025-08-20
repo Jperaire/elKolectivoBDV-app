@@ -1,5 +1,6 @@
 import styles from "./NotFound.module.css";
 import { LinkButton } from "../../../shared/components";
+import { notFoundGif } from "../../../assets/gifs";
 
 export const NotFound = () => {
     return (
@@ -8,12 +9,12 @@ export const NotFound = () => {
             <p>Sembla que t'has perdut...</p>
 
             <img
-                src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif"
+                src={notFoundGif}
                 alt="Gat programador"
                 className={styles.gif}
             />
 
-            <LinkButton to="/" variant="third">
+            <LinkButton to="/" variant="button--pink">
                 🏠 Torna a l'inici
             </LinkButton>
         </div>

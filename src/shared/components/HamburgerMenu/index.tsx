@@ -60,7 +60,11 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
 
                 {!loading && !user && (
                     <li onClick={() => setOpen(false)}>
-                        <LinkButton to="/login" size="large" variant="third">
+                        <LinkButton
+                            to="/login"
+                            size="large"
+                            variant="button--pink"
+                        >
                             Inicia sessió
                         </LinkButton>
                     </li>
@@ -73,7 +77,7 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                             onClick={handleLogout}
                             isLoading={signingOut}
                             loadingText="Tancant..."
-                            variant="third"
+                            variant="button--pink"
                             size="large"
                         >
                             Tanca la sessió

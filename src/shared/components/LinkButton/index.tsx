@@ -4,7 +4,7 @@ import styles from "./LinkButton.module.css";
 type LinkButtonProps = {
     to: string;
     children: React.ReactNode;
-    variant?: "primary" | "secondary" | "third";
+    variant?: "button--purple" | "button--red" | "button--pink";
     size?: "small" | "medium" | "large";
     className?: string;
 };
@@ -12,7 +12,7 @@ type LinkButtonProps = {
 export const LinkButton = ({
     to,
     children,
-    variant = "primary",
+    variant = "button--purple",
     size = "medium",
     className = "",
 }: LinkButtonProps) => {

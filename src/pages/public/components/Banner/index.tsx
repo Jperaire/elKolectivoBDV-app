@@ -21,7 +21,7 @@ export const Banner = () => {
             </div>
             <LinkButton
                 to="/calendar"
-                variant="primary"
+                variant="button--purple"
                 size="large"
                 className="animate__animated animate__pulse animate__infinite"
             >

@@ -7,6 +7,7 @@ export interface MembershipAnswers {
 }
 
 export interface AppUserData {
+    uid: string;
     email: string | null;
     role: Role;
     displayName?: string | null;
