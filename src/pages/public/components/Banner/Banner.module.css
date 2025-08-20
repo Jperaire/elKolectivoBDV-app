@@ -46,14 +46,13 @@
 
 .themeSwitcher {
     display: none;
+    width: 80%;
 }
 
 @media (min-width: 768px) {
     .themeSwitcher {
-        display: block;
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
+        display: flex;
+        justify-content: end;
     }
 
     .bannerInfo {

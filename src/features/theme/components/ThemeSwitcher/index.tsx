@@ -1,7 +1,5 @@
 import { useContext } from "react";
-
 import styles from "./ThemeSwitcher.module.css";
-import { Pallete } from "./Pallete";
 import { ThemeContext } from "../../context/ThemeContext";
 
 export const ThemeSwitcher = () => {
@@ -9,28 +7,26 @@ export const ThemeSwitcher = () => {
     if (!ctx)
         throw new Error("ThemeSwitcher must be used within ThemeProvider");
 
-    const { theme, toggleTheme } = ctx;
-    const isEnergetic = theme === "energetic";
+    const { theme, setTheme } = ctx;
 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.segment} role="group" aria-label="Theme">
             <button
                 type="button"
-                className={styles.toggle}
-                aria-pressed={isEnergetic}
-                aria-label={`Canviar tema a ${
-                    isEnergetic ? "pastel" : "energètic"
-                }`}
-                onClick={toggleTheme}
+                className={styles.segmentBtn}
+                aria-pressed={theme === "pastel"}
+                onClick={() => setTheme("pastel")}
             >
-                <span className={styles.thumb}>
-                    {isEnergetic ? "⚡" : "🧁"}
-                </span>
+                🧁
             </button>
-
-            <Pallete />
+            <button
+                type="button"
+                className={styles.segmentBtn}
+                aria-pressed={theme === "energetic"}
+                onClick={() => setTheme("energetic")}
+            >
+                ⚡
+            </button>
         </div>
     );
 };
-
-//

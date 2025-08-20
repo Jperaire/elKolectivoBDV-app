@@ -27,6 +27,7 @@ export const Banner = () => {
             >
                 Properes activitats
             </LinkButton>
+
             <div className={styles.themeSwitcher}>
                 <ThemeSwitcher />
             </div>

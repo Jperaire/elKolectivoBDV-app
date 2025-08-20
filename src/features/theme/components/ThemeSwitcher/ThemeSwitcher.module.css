@@ -1,59 +1,37 @@
-.wrapper {
+.segment {
     display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.toggle {
-    --h: 30px;
-    --w: 60px;
-
-    position: relative;
-    width: var(--w);
-    height: var(--h);
-    border-radius: var(--h);
-    background: var(--variable-blue);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.thumb {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: calc(var(--h) - 4px);
-    height: calc(var(--h) - 4px);
-    border-radius: 50%;
-    background: var(--text-on-accent, #fff);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-}
-
-.toggle[aria-pressed="true"] {
-    background: var(--variable-purple);
-}
-
-.toggle[aria-pressed="true"] .thumb {
-    transform: translateX(calc(var(--w) - var(--h)));
-}
-
-/* Pallete */
-.palette {
-    display: flex;
-    gap: 4px;
-    margin-top: 6px;
-    justify-content: center;
-}
-
-.swatch {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    transition: background-color 0.3s ease;
+    border-radius: 999px;
+    padding: 2px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) inset;
+}
+
+.segmentBtn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    opacity: 0.8;
+}
+
+.segmentBtn:hover {
+    opacity: 1;
+}
+
+/* Estado activo */
+.segmentBtn[aria-pressed="true"] {
+    background: var(--variable-green);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    opacity: 1;
+}
+
+/* Mejoras de accesibilidad */
+.segmentBtn:focus-visible {
+    outline: 2px solid var(--variable-blue);
+    outline-offset: 2px;
 }
