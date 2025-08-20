@@ -1,18 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import styles from "./LoginPage.module.css";
-import { AuthContext } from "../../context/AuthContext";
 import { useForm } from "../../../../shared/hooks/useForm";
 import { validateLogin } from "../../../../shared/utils";
 import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
 import { Button } from "../../../../shared/components";
+import { useAuth } from "../../hooks/useAuth";
 
 type LoginForm = { email: string; password: string };
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
 
     const [error, setError] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);

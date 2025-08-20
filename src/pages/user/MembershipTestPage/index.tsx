@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useContext } from "react";
-import { AuthContext } from "../../../features/auth/context/AuthContext";
+
 import { saveMembershipTest } from "../../../services/user-service";
+import { useAuth } from "../../../features/auth/hooks/useAuth";
 
 export const MembershipTestPage = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const [answers, setAnswers] = useState({ q1: "", q2: "" });
     const [submitted, setSubmitted] = useState(false);
 

@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../../features/auth/context/AuthContext";
+import { useAuth } from "../../features/auth/hooks/useAuth";
 
 export const PrivateGuard = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
 
     if (loading) return <p>Loading...</p>;
 

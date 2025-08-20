@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../features/auth/context/AuthContext";
+import { useState } from "react";
+
 import { updateUserProfile } from "../../../services/user-service";
 import {
     deleteAccount,
     signOutUser,
 } from "../../../features/auth/firebase/methods";
+import { useAuth } from "../../../features/auth/hooks/useAuth";
 
 export const ProfilePage = () => {
-    const { user, userData } = useContext(AuthContext);
+    const { user, userData } = useAuth();
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
     const [photoURL, setPhotoURL] = useState(userData?.photoURL ?? "");
     const [password, setPassword] = useState("");

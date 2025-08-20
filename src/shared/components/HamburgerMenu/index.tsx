@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images";
 import { Button, LinkButton } from "../";
-import { AuthContext } from "../../../features/auth/context/AuthContext";
+
 import { signOutUser } from "../../../features/auth/firebase/methods";
 import { ThemeSwitcher } from "../../../features/theme/components/ThemeSwitcher";
+import { useAuth } from "../../../features/auth/hooks/useAuth";
 
 type LinkItem = { label: string; path: string };
 interface HamburgerMenuProps {
@@ -14,7 +15,7 @@ interface HamburgerMenuProps {
 
 export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
     const [open, setOpen] = useState(false);
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const [signingOut, setSigningOut] = useState(false);
     const navigate = useNavigate();
 

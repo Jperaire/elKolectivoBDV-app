@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../../../shared/hooks/useForm";
 import { validateRegister } from "../../../../shared/utils";
 import { registerWithEmail } from "../../firebase/methods";
@@ -17,7 +17,7 @@ type RegisterForm = {
 };
 
 export const RegisterPage = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const navigate = useNavigate();
 
     const [error, setError] = useState<string | null>(null);
