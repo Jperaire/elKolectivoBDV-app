@@ -1,24 +1,34 @@
+import {
+    CalendarImg,
+    InfoImg,
+    MembersImg,
+    NewsImg,
+} from "../../../assets/images";
+
 export const adminActionsData = [
     {
-        title: "Gestionar Membres",
+        title: "Membres",
         description:
             "Visualitza els membres de la comunitat i aprova les noves sol·licituds.",
         link: "/admin/members",
+        img: MembersImg,
     },
     {
-        title: "Gestionar Activitats",
+        title: "Activitats",
         description: "Crea, edita i elimina activitats.",
         link: "/admin/activities",
+        img: CalendarImg,
     },
     {
-        title: "Gestionar Notícies",
+        title: "Notícies",
         description: "Publica i edita les notícies de la comunitat.",
         link: "/admin/news",
+        img: NewsImg,
     },
     {
-        title: "Recursos i Enllaços d'Interès",
-        description:
-            "Accedeix al NIF de l’entitat, adreça, calendari, Drive, Canva i altres recursos útils.",
+        title: "Recursos",
+        description: "Informació útil i links d'interès",
         link: "/admin/resources",
+        img: InfoImg,
     },
 ];

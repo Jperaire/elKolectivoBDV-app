@@ -1,0 +1,14 @@
+.pageTitle {
+    background: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
+    width: fit-content;
+}
+
+.pageTitle h1 {
+    color: rgb(252, 246, 235);
+}
+
+.subtitle {
+    color: var(--color-text);
+    font-size: var(--fs-md);
+    line-height: 1.4;
+}

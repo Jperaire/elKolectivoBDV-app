@@ -18,12 +18,14 @@ h1 {
     line-height: 1.1;
     text-transform: uppercase;
     text-align: center;
+    letter-spacing: 0.1rem;
 }
 
 h2 {
     font-size: var(--fs-xl);
     line-height: 1.2;
     text-transform: uppercase;
+    letter-spacing: 0.2rem;
 }
 
 h3 {

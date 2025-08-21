@@ -1,22 +1,36 @@
-import { Card, Button } from "../../../shared/components";
-import { adminActionsData } from "./AdminActionsData";
+import { Link } from "react-router-dom";
+import { adminActionsData } from "./adminActionsData";
 import styles from "./AdminDashboard.module.css";
+import { Card, PageTitle } from "../../../shared/components";
 
 export const AdminDashboard = () => {
     return (
         <div className={styles.dashboard}>
-            <h1>Admin Dashboard</h1>
-            <div className={styles.cards}>
-                {adminActionsData.map((action) => (
-                    <Card key={action.link} hoverEffect={false}>
-                        <h2>{action.title}</h2>
-                        <p>{action.description}</p>
-                        <Button to={action.link} variant="button--blue">
-                            Go
-                        </Button>
-                    </Card>
-                ))}
-            </div>
+            <PageTitle>Admin Dashboard</PageTitle>
+
+            <Card background="#f7f7f8">
+                <section className={styles.cards}>
+                    {adminActionsData.map((action) => (
+                        <Link
+                            key={action.link}
+                            to={action.link}
+                            className={styles.bubble}
+                            aria-label={action.title}
+                        >
+                            {action.img && (
+                                <img
+                                    src={action.img}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className={styles.icon}
+                                />
+                            )}
+                            <h2>{action.title}</h2>
+                            <p className={styles.desc}>{action.description}</p>
+                        </Link>
+                    ))}
+                </section>
+            </Card>
         </div>
     );
 };

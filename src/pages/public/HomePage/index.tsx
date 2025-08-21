@@ -25,7 +25,7 @@ export const HomePage = () => {
                     aria-labelledby={sections.whoWeAre.id}
                     className={styles.sectionWho}
                 >
-                    <Card hoverEffect={false}>
+                    <Card>
                         <h2 id={sections.whoWeAre.id}>
                             {sections.whoWeAre.title}
                         </h2>
@@ -46,7 +46,7 @@ export const HomePage = () => {
                     aria-labelledby={sections.whatWeDo.id}
                     className={styles.sectionWhat}
                 >
-                    <Card hoverEffect={false}>
+                    <Card>
                         <h2 id={sections.whatWeDo.id}>
                             {sections.whatWeDo.title}
                         </h2>
@@ -66,7 +66,7 @@ export const HomePage = () => {
                     aria-labelledby={sections.values.id}
                     className={styles.sectionValues}
                 >
-                    <Card hoverEffect={false}>
+                    <Card>
                         <h2 id={sections.values.id}>{sections.values.title}</h2>
                         <ul className={styles.chipList}>
                             {values.map((val, i) => (
@@ -90,7 +90,7 @@ export const HomePage = () => {
                     aria-labelledby={sections.faqs.id}
                     className={styles.sectionFaqs}
                 >
-                    <Card hoverEffect={false}>
+                    <Card>
                         <h2 id={sections.faqs.id}>{sections.faqs.title}</h2>
                         <Accordion>
                             {faqs.map((faq, i) => (
@@ -107,7 +107,7 @@ export const HomePage = () => {
                     aria-labelledby={sections.contact.id}
                     className={styles.sectionContact}
                 >
-                    <Card hoverEffect={false}>
+                    <Card>
                         <h2 id={sections.contact.id}>
                             {sections.contact.title}
                         </h2>

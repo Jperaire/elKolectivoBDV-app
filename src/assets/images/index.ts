@@ -12,3 +12,7 @@ export { default as MainLogo } from "./logos/main-logo.png";
 
 // photos
 export { default as FakeImg } from "./photos/image.png";
+export { default as CalendarImg } from "./photos/calendar.png";
+export { default as InfoImg } from "./photos/info.png";
+export { default as MembersImg } from "./photos/members.png";
+export { default as NewsImg } from "./photos/news.png";

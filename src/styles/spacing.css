@@ -26,14 +26,3 @@
         --space-xxl: 3.5rem;
     }
 }
-
-@media (min-width: 1024px) {
-    :root {
-        --space-xs: 0.35rem;
-        --space-sm: 0.75rem;
-        --space-md: 1.5rem;
-        --space-lg: 2.5rem;
-        --space-xl: 3rem;
-        --space-xxl: 4rem;
-    }
-}
