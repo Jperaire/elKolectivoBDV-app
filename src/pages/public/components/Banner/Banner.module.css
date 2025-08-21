@@ -7,10 +7,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: var(--space-xxl);
     position: relative;
     margin-bottom: 30px;
-    margin-top: calc(-1 * 30px);
+    margin-top: calc(-1 * 40px);
 }
 
 .bannerInfo {
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: var(--space-xl);
 }
 
 .bannerKicker,
@@ -33,7 +33,7 @@
 .bannerLogo {
     font-weight: 700;
     color: wheat;
-    font-size: clamp(2rem, 11vw, 6rem);
+    font-size: clamp(2rem, 11vw, 8rem);
     text-transform: uppercase;
     user-select: none;
 }
@@ -53,9 +53,5 @@
     .themeSwitcher {
         display: flex;
         justify-content: end;
-    }
-
-    .bannerInfo {
-        gap: 1rem;
     }
 }

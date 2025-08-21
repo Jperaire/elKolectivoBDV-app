@@ -23,3 +23,5 @@ export const PageTitle = ({
         </Card>
     );
 };
+
+// TODO: APLICAR EN: Inicia sessió, Formulari de registre, 🤯 Oops!, Membership Test, Mi perfil... Y YA QUE ESTOY EN TODO LO DEMÁS

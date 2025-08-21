@@ -16,13 +16,13 @@
     --nav-h: 80px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     :root {
-        --space-xs: 0.3rem;
-        --space-sm: 0.6rem;
-        --space-md: 1.25rem;
-        --space-lg: 2rem;
-        --space-xl: 2.5rem;
-        --space-xxl: 3.5rem;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 3rem;
+        --space-xxl: 4rem;
     }
 }
