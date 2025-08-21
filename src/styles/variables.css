@@ -3,6 +3,10 @@
     --color-text: #444444;
     --color-heading: #555555;
 
+    /* Backgrounds */
+    --energetic-bg: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
+    --pastel-bg: #f0f0f0;
+
     /* Colors - Pastel Mode */
     --pastel-purple: #caa8d9;
     --pastel-pink: #fac8c4;
@@ -32,7 +36,7 @@
     --variable-red: var(--pastel-red);
     --variable-orange: var(--pastel-orange);
 
-    --background-body: #f0f0f0;
+    --background-body: var(--pastel-bg);
 }
 
 /* Energetic theme */
@@ -45,11 +49,5 @@
     --variable-red: var(--energetic-red);
     --variable-orange: var(--energetic-orange);
 
-    --background-body: linear-gradient(
-        90deg,
-        #b77ccf,
-        #e9945b,
-        #f3d448,
-        #5ed1d6
-    );
+    --background-body: var(--energetic-bg);
 }

@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: space-between;
     width: 90%;
+    max-width: 1200px;
 }
 
 .logoWrapper {
