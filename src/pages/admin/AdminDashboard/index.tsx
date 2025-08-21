@@ -8,7 +8,7 @@ export const AdminDashboard = () => {
         <div className={styles.dashboard}>
             <PageTitle>Admin Dashboard</PageTitle>
 
-            <Card background="#f7f7f8">
+            <Card>
                 <section className={styles.cards}>
                     {adminActionsData.map((action) => (
                         <Link
