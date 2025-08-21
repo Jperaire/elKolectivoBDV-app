@@ -1,0 +1,34 @@
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.dashboard h1 {
+    font-size: var(--fs-xxl);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.cards h2 {
+    font-size: var(--fs-lg);
+    margin-bottom: 0.5rem;
+}
+
+.cards p {
+    font-size: var(--fs-sm);
+    margin-bottom: 1rem;
+    color: var(--text-secondary, #555);
+    line-height: 1.4;
+}
+
+.cards :global(.button--blue) {
+    width: 100%;
+    justify-content: center;
+}

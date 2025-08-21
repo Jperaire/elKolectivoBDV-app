@@ -2,9 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    margin: 50px auto;
-    width: 85%;
-    max-width: 450px;
+    margin: 0 auto;
 }
 
 .loginForm {
@@ -13,19 +11,25 @@
     gap: var(--space-md);
     margin: auto;
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
 }
 
 .login input {
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    border: 2px solid var(--pastel-orange);
-    font-size: var(--fs-md);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    border: 3px solid transparent;
+    font-size: var(--fs-sm);
 }
 
 .login input:focus {
     outline: none;
-    border-color: var(--energetic-orange);
+    border-color: var(--pastel-orange);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
 }
 
 .helperText {
@@ -34,14 +38,14 @@
 
 .registerLink {
     font-weight: 600;
+    color: var(--energetic-blue);
 }
 
 .error {
-    color: var(--energetic-orange);
-    font-weight: 400;
-    background: #fff0e6;
+    color: #fff;
+    font-weight: 600;
+    background: var(--pastel-red);
     padding: var(--space-sm);
     border-radius: var(--radius-sm);
     font-size: var(--fs-sm);
-    margin-top: var(--space-sm);
 }

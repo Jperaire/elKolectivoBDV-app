@@ -1,5 +1,5 @@
 import styles from "./NotFound.module.css";
-import { LinkButton } from "../../../shared/components";
+import { Button } from "../../../shared/components";
 import { notFoundGif } from "../../../assets/gifs";
 
 export const NotFound = () => {
@@ -14,9 +14,9 @@ export const NotFound = () => {
                 className={styles.gif}
             />
 
-            <LinkButton to="/" variant="button--pink">
+            <Button to="/" variant="button--pink">
                 🏠 Torna a l'inici
-            </LinkButton>
+            </Button>
         </div>
     );
 };

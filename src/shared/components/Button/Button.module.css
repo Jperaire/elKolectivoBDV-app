@@ -1,44 +1,46 @@
-/* Base */
 .button {
-    display: inline-block;
-    text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
-    border-radius: var(--radius-md);
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    letter-spacing: 0.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
     border: none;
+
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: background-color 0.25s ease, box-shadow 0.25s ease,
+        transform 0.1s ease;
+
+    text-transform: uppercase;
 }
 
 .button:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    box-shadow: none;
-}
+/* --- Variants --- */
 
-/* ===== Variants ===== */
-.button--purple {
+.button--main {
     background-color: var(--variable-purple);
-    color: #fff;
-}
-.button--purple:hover {
-    background-color: transparent;
-    color: var(--variable-purple);
-    border: 2px solid var(--variable-purple);
+    color: rgb(247, 243, 235);
+    border: 2px solid wheat;
+    letter-spacing: 1px;
 }
 
-.button--pink {
-    background-color: var(--variable-pink);
+.button--main:hover {
+    background-color: transparent;
     color: #fff;
 }
-.button--pink:hover {
+.button--blue {
     background-color: var(--variable-blue);
+    color: #fff;
+}
+.button--blue:hover {
+    background-color: var(--variable-green);
 }
 
 .button--red {
@@ -49,19 +51,42 @@
     background-color: var(--variable-orange);
 }
 
-/* ===== Sizes ===== */
-.small {
+.button--orange {
+    background-color: var(--variable-orange);
+    color: #fff;
+}
+.button--orange:hover {
+    background-color: var(--variable-yellow);
+}
+
+.button--pink {
+    background-color: var(--variable-pink);
+    color: #fff;
+}
+.button--pink:hover {
+    background-color: var(--variable-purple);
+}
+
+.button--purple {
+    background-color: var(--variable-purple);
+    color: #fff;
+}
+.button--purple:hover {
+    background-color: var(--variable-yellow);
+}
+
+/* --- Sizes --- */
+.button--small {
+    padding: 0.4rem 0.8rem;
     font-size: var(--fs-sm);
-    padding: var(--space-xs);
 }
 
-.medium {
+.button--medium {
+    padding: 0.6rem 1.2rem;
     font-size: var(--fs-md);
-    padding: var(--space-sm) var(--space-md);
 }
 
-.large {
-    font-size: var(--fs-md);
-    padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-lg);
+.button--large {
+    padding: 0.8rem 1.5rem;
+    font-size: var(--fs-lg);
 }

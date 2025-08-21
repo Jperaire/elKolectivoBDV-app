@@ -1,40 +1,38 @@
+import { Link } from "react-router-dom";
 import styles from "./Button.module.css";
 
-type Variant = "button--purple" | "button--red" | "button--pink";
-type Size = "small" | "medium" | "large";
-
-type ButtonProps = {
+type Props = {
     children: React.ReactNode;
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    disabled?: boolean;
+    to?: string;
+    onClick?: () => void;
+    variant?: string;
+    size?: string;
     className?: string;
-    type?: "button" | "submit";
-    isLoading?: boolean;
-    loadingText?: string;
-    variant?: Variant;
-    size?: Size;
+    type?: "button" | "submit" | "reset";
 };
 
 export const Button = ({
     children,
+    to,
     onClick,
-    disabled,
+    variant = "button--blue",
+    size = "button--medium",
     className = "",
-    type = "submit",
-    isLoading = false,
-    loadingText,
-    variant = "button--purple",
-    size = "medium",
-}: ButtonProps) => {
+    type = "button",
+}: Props) => {
+    const classNames = `${styles.button} ${styles[variant]} ${styles[size]} ${className}`;
+
+    if (to) {
+        return (
+            <Link to={to} className={classNames}>
+                {children}
+            </Link>
+        );
+    }
+
     return (
-        <button
-            type={type}
-            onClick={onClick}
-            disabled={disabled || isLoading}
-            className={`${styles.button} ${styles[variant]} ${styles[size]} ${className}`}
-            aria-busy={isLoading}
-        >
-            {isLoading ? loadingText || "..." : children}
+        <button type={type} onClick={onClick} className={classNames}>
+            {children}
         </button>
     );
 };

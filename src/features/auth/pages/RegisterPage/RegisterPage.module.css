@@ -3,8 +3,6 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-md);
-    width: 90%;
-    margin: 50px auto;
 }
 
 .registerForm {
@@ -12,19 +10,19 @@
     flex-direction: column;
     gap: var(--space-md);
     width: 90%;
-    max-width: 450px;
+    max-width: 400px;
 }
 
 .registerForm input {
-    padding: 1rem;
+    padding: var(--space-sm);
     border-radius: var(--radius-sm);
-    border: 2px solid var(--pastel-orange);
+    border: 2px solid transparent;
     font-size: var(--fs-md);
 }
 
 .registerForm input:focus {
     outline: none;
-    border-color: var(--energetic-orange);
+    border-color: var(--energetic-blue);
 }
 
 .error {

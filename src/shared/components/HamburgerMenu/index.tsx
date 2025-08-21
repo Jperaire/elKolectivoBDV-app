@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images";
-import { Button, LinkButton } from "../";
+import { Button } from "../";
 
 import { signOutUser } from "../../../features/auth/firebase/methods";
 import { ThemeSwitcher } from "../../../features/theme/components/ThemeSwitcher";
@@ -61,13 +61,9 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
 
                 {!loading && !user && (
                     <li onClick={() => setOpen(false)}>
-                        <LinkButton
-                            to="/login"
-                            size="large"
-                            variant="button--pink"
-                        >
+                        <Button to="/login" size="large" variant="button--pink">
                             Inicia sessió
-                        </LinkButton>
+                        </Button>
                     </li>
                 )}
 

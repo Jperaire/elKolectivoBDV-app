@@ -39,7 +39,7 @@ export const MerchPage = () => {
             <div className={styles.grid} aria-label="Catàleg de productes">
                 {mockItems.map((item) => (
                     <article key={item.id}>
-                        <Card hoverEffect>
+                        <Card hoverEffect={false}>
                             <img src={item.img || FakeImg} alt={item.title} />
 
                             <div className={styles.info}>

@@ -1,36 +1,19 @@
-import { Link } from "react-router-dom";
-import { Card } from "../../../shared/components";
+import { Card, Button } from "../../../shared/components";
+import { adminActionsData } from "./AdminActionsData";
 import styles from "./AdminDashboard.module.css";
 
 export const AdminDashboard = () => {
-    const adminActions = [
-        {
-            title: "Manage Members",
-            description: "Review and approve membership requests.",
-            link: "/admin/membership-requests",
-        },
-        {
-            title: "Manage Activities",
-            description: "Create, edit and remove activities.",
-            link: "/admin/activities",
-        },
-        {
-            title: "Manage News",
-            description: "Publish and edit community news.",
-            link: "/admin/news",
-        },
-        // ...añades más
-    ];
-
     return (
         <div className={styles.dashboard}>
             <h1>Admin Dashboard</h1>
             <div className={styles.cards}>
-                {adminActions.map((action) => (
-                    <Card key={action.link} hoverEffect>
+                {adminActionsData.map((action) => (
+                    <Card key={action.link} hoverEffect={false}>
                         <h2>{action.title}</h2>
                         <p>{action.description}</p>
-                        <Link to={action.link}>Go</Link>
+                        <Button to={action.link} variant="button--blue">
+                            Go
+                        </Button>
                     </Card>
                 ))}
             </div>

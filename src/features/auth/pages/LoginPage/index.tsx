@@ -102,18 +102,24 @@ export const LoginPage = () => {
                     autoComplete="current-password"
                 />
 
-                <Button isLoading={submitting} loadingText="Iniciant sessió...">
-                    Inicia sessió
-                </Button>
-
-                <Button
-                    type="button"
-                    onClick={handleGoogleLogin}
-                    isLoading={submitting}
-                    loadingText="Connectant..."
-                >
-                    Continua amb Google
-                </Button>
+                <div className={styles.buttons}>
+                    <Button
+                        isLoading={submitting}
+                        loadingText="Iniciant sessió..."
+                        variant="button--orange"
+                    >
+                        Inicia sessió
+                    </Button>
+                    <Button
+                        type="button"
+                        onClick={handleGoogleLogin}
+                        isLoading={submitting}
+                        loadingText="Connectant..."
+                        variant="button--orange"
+                    >
+                        Continua amb Google
+                    </Button>
+                </div>
             </form>
 
             <p className={styles.helperText}>

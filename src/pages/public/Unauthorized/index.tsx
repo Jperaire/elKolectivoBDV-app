@@ -1,5 +1,5 @@
 import styles from "./Unauthorized.module.css";
-import { LinkButton } from "../../../shared/components";
+import { Button } from "../../../shared/components";
 import { unauthorizedGif } from "../../../assets/gifs";
 
 export const Unauthorized = () => (
@@ -9,8 +9,8 @@ export const Unauthorized = () => (
             No tens permisos per visualitzar aquesta secció.
         </p>
         <img src={unauthorizedGif} className={styles.gif} />
-        <LinkButton to="/" variant="button--red">
+        <Button to="/" variant="button--red">
             Torna a l'inici
-        </LinkButton>
+        </Button>
     </div>
 );

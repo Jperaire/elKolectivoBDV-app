@@ -130,8 +130,16 @@ export const RegisterPage = () => {
                     autoComplete="new-password"
                 />
 
-                <Button isLoading={submitting} loadingText="Creant compte...">
+                <Button
+                    isLoading={submitting}
+                    loadingText="Creant compte..."
+                    variant="button--blue"
+                >
                     Registrar-se
+                </Button>
+                <Button to="/login" variant="button--blue">
+                    {" "}
+                    INICIA SESSIÓ{" "}
                 </Button>
             </form>
 

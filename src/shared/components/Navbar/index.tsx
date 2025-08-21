@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../../assets/images/logos/main-logo.png";
-import { LinkButton, HamburgerMenu } from "../";
+import { Button, HamburgerMenu } from "../";
 
 type LinkItem = { label: string; path: string };
 
@@ -27,13 +27,9 @@ export const Navbar = ({ links }: NavbarProps) => {
                         </li>
                     ))}
                     <li className={styles.cta}>
-                        <LinkButton
-                            to="/login"
-                            size="small"
-                            variant="button--pink"
-                        >
+                        <Button to="/login" size="small" variant="button--pink">
                             Inicia sessió
-                        </LinkButton>
+                        </Button>
                     </li>
                 </ul>
                 <HamburgerMenu links={links} />
