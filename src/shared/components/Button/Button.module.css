@@ -29,6 +29,8 @@
     color: rgb(247, 243, 235);
     border: 2px solid wheat;
     letter-spacing: 1px;
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--fs-lg);
 }
 
 .button--main:hover {
