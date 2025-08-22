@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../../../shared/hooks/useForm";
+import { useAuth, useSubmitState } from "../../hooks/";
 import { validateRegister } from "../../../../shared/utils";
 import { registerWithEmail } from "../../firebase/methods";
 import { Button } from "../../../../shared/components";
@@ -17,12 +14,10 @@ type RegisterForm = {
 };
 
 export const RegisterPage = () => {
-    const { user, loading } = useAuth();
-    const navigate = useNavigate();
+    const { loading } = useAuth();
 
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
-    const [submitting, setSubmitting] = useState(false);
+    const { error, success, submitting, start, stop, fail, ok } =
+        useSubmitState();
 
     const {
         userName,
@@ -38,16 +33,9 @@ export const RegisterPage = () => {
         confirmPassword: "",
     });
 
-    useEffect(() => {
-        if (!loading && user) navigate("/user");
-    }, [loading, user, navigate]);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (submitting) return;
-
-        setError(null);
-        setSuccess(null);
 
         const msg = validateRegister({
             userName,
@@ -56,24 +44,25 @@ export const RegisterPage = () => {
             confirmPassword,
         });
         if (msg) {
-            setError(msg);
+            fail({ code: "", message: msg } as unknown);
             return;
         }
 
         try {
-            setSubmitting(true);
-            await registerWithEmail(userName, email, password);
+            start();
+            await registerWithEmail(
+                userName,
+                email.trim().toLowerCase(),
+                password
+            );
             onResetForm();
-            setSuccess("T'has registrat correctament 🎉");
-            navigate("/");
+            ok(
+                "T'has registrat correctament 🎉. Revisa la teva bústia per verificar el teu email. Si no el trobes, revisa Spam o Promocions"
+            );
         } catch (err: unknown) {
-            if (err) {
-                setError("Error en el registre. Torna-ho a intentar.");
-            } else {
-                setError("Registration failed");
-            }
+            fail(err);
         } finally {
-            setSubmitting(false);
+            stop();
         }
     };
 
@@ -88,59 +77,63 @@ export const RegisterPage = () => {
                 className={styles.registerForm}
                 noValidate
             >
-                <input
-                    type="text"
-                    name="userName"
-                    placeholder="Escriu el teu nom"
-                    value={userName}
-                    onChange={onInputChange}
-                    required
-                    autoComplete="name"
-                />
+                {success ? (
+                    <Button to="/" variant="button--blue">
+                        Ves a l'inici
+                    </Button>
+                ) : (
+                    <>
+                        <input
+                            type="text"
+                            name="userName"
+                            placeholder="Escriu el teu nom"
+                            value={userName}
+                            onChange={onInputChange}
+                            required
+                            autoComplete="name"
+                        />
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Escriu la teva adreça electrònica"
-                    value={email}
-                    onChange={onInputChange}
-                    required
-                    inputMode="email"
-                    autoComplete="email"
-                />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Escriu la teva adreça electrònica"
+                            value={email}
+                            onChange={onInputChange}
+                            required
+                            inputMode="email"
+                            autoComplete="email"
+                        />
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Contrasenya"
-                    value={password}
-                    onChange={onInputChange}
-                    required
-                    minLength={6}
-                    autoComplete="new-password"
-                />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Contrasenya"
+                            value={password}
+                            onChange={onInputChange}
+                            required
+                            minLength={6}
+                            autoComplete="new-password"
+                        />
 
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirma la contrasenya"
-                    value={confirmPassword}
-                    onChange={onInputChange}
-                    required
-                    autoComplete="new-password"
-                />
-
-                <Button
-                    isLoading={submitting}
-                    loadingText="Creant compte..."
-                    variant="button--blue"
-                >
-                    Registrar-se
-                </Button>
-                <Button to="/login" variant="button--blue">
-                    {" "}
-                    INICIA SESSIÓ{" "}
-                </Button>
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirma la contrasenya"
+                            value={confirmPassword}
+                            onChange={onInputChange}
+                            required
+                            autoComplete="new-password"
+                        />
+                        <Button
+                            isLoading={submitting}
+                            loadingText="Creant compte..."
+                            variant="button--blue"
+                            type="submit"
+                        >
+                            Registrar-se
+                        </Button>
+                    </>
+                )}
             </form>
 
             <div aria-live="polite" aria-atomic="true">

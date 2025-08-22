@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-import { updateUserProfile } from "../../../services/user-service";
+import { updateUser } from "../../../services/user-service";
+import { updateProfile } from "firebase/auth";
 import {
     deleteAccount,
     signOutUser,
@@ -18,7 +18,14 @@ export const ProfilePage = () => {
 
     const handleUpdate = async () => {
         try {
-            await updateUserProfile(user.uid, displayName, photoURL || null);
+            const next = {
+                displayName: displayName.trim(),
+                photoURL: photoURL || null,
+            };
+
+            await updateProfile(user, next);
+            await updateUser(user.uid, next);
+
             setStatus("Perfil actualizado");
         } catch (err) {
             console.error(err);

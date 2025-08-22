@@ -1,29 +1,34 @@
-import { useState } from "react";
-import { resetPassword } from "../../firebase/methods";
 import { useForm } from "../../../../shared/hooks/useForm";
+import { useSubmitState } from "../../hooks/";
+import { resetPassword } from "../../firebase/methods";
 
 type ResetForm = { email: string };
 
 export const ResetPasswordPage = () => {
-    const [msg, setMsg] = useState("");
-
     const { email, onInputChange, onResetForm } = useForm<ResetForm>({
         email: "",
     });
+    const { error, success, submitting, start, stop, fail, ok } =
+        useSubmitState();
 
     const handleReset = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (submitting) return;
+
         try {
-            await resetPassword(email.trim());
-            setMsg("Email de recuperación enviado");
+            start();
+            await resetPassword(email.trim().toLowerCase());
+            ok("Email de recuperación enviado");
             onResetForm();
-        } catch {
-            setMsg("Error al enviar email");
+        } catch (err: unknown) {
+            fail(err);
+        } finally {
+            stop();
         }
     };
 
     return (
-        <form onSubmit={handleReset}>
+        <form onSubmit={handleReset} noValidate>
             <input
                 type="email"
                 name="email"
@@ -31,9 +36,17 @@ export const ResetPasswordPage = () => {
                 value={email}
                 onChange={onInputChange}
                 required
+                inputMode="email"
+                autoComplete="email"
             />
-            <button>Reset contraseña</button>
-            {msg && <p>{msg}</p>}
+            <button disabled={submitting}>
+                {submitting ? "Enviando..." : "Reset contraseña"}
+            </button>
+
+            <div aria-live="polite" aria-atomic="true">
+                {error && <p>⚠️ {error}</p>}
+                {success && <p>{success}</p>}
+            </div>
         </form>
     );
 };

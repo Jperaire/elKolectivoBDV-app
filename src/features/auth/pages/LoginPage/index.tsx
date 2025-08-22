@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import styles from "./LoginPage.module.css";
 import { useForm } from "../../../../shared/hooks/useForm";
+import { useSubmitState } from "../../hooks";
 import { validateLogin } from "../../../../shared/utils";
 import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
 import { Button } from "../../../../shared/components";
@@ -14,8 +15,8 @@ export const LoginPage = () => {
     const navigate = useNavigate();
     const { user, loading } = useAuth();
 
-    const [error, setError] = useState<string | null>(null);
-    const [submitting, setSubmitting] = useState(false);
+    const { error, success, submitting, start, stop, fail, ok } =
+        useSubmitState();
 
     const { email, password, onInputChange, onResetForm } = useForm<LoginForm>({
         email: "",
@@ -30,42 +31,34 @@ export const LoginPage = () => {
         e.preventDefault();
         if (submitting) return;
 
-        setError(null);
-
         const msg = validateLogin({ email, password });
         if (msg) {
-            setError(msg);
+            fail({ code: "", message: msg } as unknown);
             return;
         }
 
         try {
-            setSubmitting(true);
-            await loginWithEmail(email, password);
+            start();
+            await loginWithEmail(email.trim().toLowerCase(), password);
             onResetForm();
-            navigate("/");
+            ok("Sessió iniciada correctament 🎉");
         } catch (err: unknown) {
-            if (err) {
-                setError("Email o contrasenya incorrectes.");
-            } else {
-                setError("No s'ha pogut iniciar sessió. Torna-ho a intentar.");
-            }
+            fail(err);
         } finally {
-            setSubmitting(false);
+            stop();
         }
     };
 
     const handleGoogleLogin = async () => {
         if (submitting) return;
-        setError(null);
-
         try {
-            setSubmitting(true);
+            start();
             await loginWithGoogle();
-            navigate("/");
-        } catch {
-            setError("No s'ha pogut iniciar sessió amb Google.");
+            ok("Sessió iniciada amb Google");
+        } catch (err: unknown) {
+            fail(err);
         } finally {
-            setSubmitting(false);
+            stop();
         }
     };
 
@@ -107,9 +100,11 @@ export const LoginPage = () => {
                         isLoading={submitting}
                         loadingText="Iniciant sessió..."
                         variant="button--orange"
+                        type="submit"
                     >
                         Inicia sessió
                     </Button>
+
                     <Button
                         type="button"
                         onClick={handleGoogleLogin}
@@ -125,13 +120,13 @@ export const LoginPage = () => {
             <p className={styles.helperText}>
                 Encara no tens usuari? Registra't
                 <Link to="/register" className={styles.registerLink}>
-                    {" "}
                     aquí
                 </Link>
             </p>
 
             <div aria-live="polite" aria-atomic="true">
                 {error && <p className={styles.error}>⚠️ {error}</p>}
+                {success && <p className={styles.success}>{success}</p>}
             </div>
         </div>
     );

@@ -1,6 +1,11 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    updateProfile,
+    sendEmailVerification,
+    signOut,
+} from "firebase/auth";
 import { auth } from "../auth";
-import { createUserInFirestore } from "../../../../services/user-service";
+import { createUser } from "../../../../services/user-service";
 
 export const registerWithEmail = async (
     name: string,
@@ -14,12 +19,14 @@ export const registerWithEmail = async (
     );
 
     await updateProfile(user, { displayName: name });
+    await sendEmailVerification(user);
 
-    await createUserInFirestore(user.uid, {
+    await createUser(user.uid, {
         email: user.email ?? email,
         role: "user",
         displayName: name,
         photoURL: user.photoURL ?? null,
     });
-    return user;
+
+    await signOut(auth);
 };

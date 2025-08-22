@@ -1,4 +1,4 @@
-import type { Timestamp } from "firebase/firestore";
+import type { FieldValue, Timestamp } from "firebase/firestore";
 
 export type Role = "user" | "admin";
 
@@ -16,6 +16,6 @@ export interface AppUserData {
     membershipTest?: {
         answers: MembershipAnswers;
         status: "pending" | "approved" | "rejected";
-        submittedAt: Timestamp;
+        submittedAt?: Timestamp | FieldValue;
     };
 }

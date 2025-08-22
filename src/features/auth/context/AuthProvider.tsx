@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../firebase/auth";
-import { getUserFromFirestore } from "../../../services/user-service";
-
+import { getUser } from "../../../services/user-service";
 import { AuthContext } from "./AuthContext";
-
 import { AppUserData } from "../types";
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -14,25 +11,39 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let cancelled = false;
+
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            setLoading(true);
             setUser(firebaseUser);
 
-            if (firebaseUser) {
-                try {
-                    const data = await getUserFromFirestore(firebaseUser.uid);
-                    setUserData(data);
-                } catch (e) {
-                    console.error("Error loading userData:", e);
+            if (!firebaseUser) {
+                if (!cancelled) {
                     setUserData(null);
+                    setLoading(false);
                 }
-            } else {
-                setUserData(null);
+                return;
             }
 
-            setLoading(false);
+            try {
+                const data = await getUser(firebaseUser.uid);
+                if (!cancelled) {
+                    setUserData(data);
+                    setLoading(false);
+                }
+            } catch (e) {
+                console.error("Error loading userData:", e);
+                if (!cancelled) {
+                    setUserData(null);
+                    setLoading(false);
+                }
+            }
         });
 
-        return () => unsubscribe();
+        return () => {
+            cancelled = true;
+            unsubscribe();
+        };
     }, []);
 
     return (

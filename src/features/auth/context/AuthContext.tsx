@@ -9,8 +9,6 @@ interface AuthContextType {
     userData: AppUserData | null;
 }
 
-export const AuthContext = createContext<AuthContextType>({
-    user: null,
-    loading: true,
-    userData: null,
-});
+export const AuthContext = createContext<AuthContextType | undefined>(
+    undefined
+);

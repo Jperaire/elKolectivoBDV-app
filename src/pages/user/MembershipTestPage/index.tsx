@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-import { saveMembershipTest } from "../../../services/user-service";
+import { serverTimestamp } from "firebase/firestore";
+import { updateUser } from "../../../services/user-service";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 
 export const MembershipTestPage = () => {
@@ -17,38 +17,48 @@ export const MembershipTestPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user) return;
-        await saveMembershipTest(user.uid, answers);
+
+        await updateUser(user.uid, {
+            membershipTest: {
+                answers,
+                status: "pending",
+                submittedAt: serverTimestamp(),
+            },
+        });
+
         setSubmitted(true);
     };
 
     if (submitted) {
-        return <p>✅ Thanks! An admin will review your test soon.</p>;
+        return <p>✅ Gràcies! Un/a admin revisarà el teu test ben aviat.</p>;
     }
 
     return (
         <div>
-            <h1>Membership Test</h1>
+            <h1>Prova de membresia</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Why do you want to join?
+                    Per què vols unir-te?
                     <textarea
                         name="q1"
                         value={answers.q1}
                         onChange={handleChange}
                         required
+                        placeholder="Explica'ns els teus motius…"
                     />
                 </label>
 
                 <label>
-                    Which activities interest you most?
+                    Quines activitats t’interessen més?
                     <input
                         name="q2"
                         value={answers.q2}
                         onChange={handleChange}
+                        placeholder="Tallers, assemblees, sortides, etc."
                     />
                 </label>
 
-                <button type="submit">Submit</button>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     );
