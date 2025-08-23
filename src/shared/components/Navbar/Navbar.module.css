@@ -47,7 +47,64 @@
     border-bottom-color: rgb(249, 245, 236);
 }
 
-@media (min-width: 768px) {
+.userMenu details {
+    position: relative;
+}
+
+.userMenu summary {
+    list-style: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #fff;
+}
+
+.userMenu summary:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.userMenu ul {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    min-width: 160px;
+    padding: 8px;
+    display: grid;
+    gap: 6px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    z-index: 1003;
+}
+
+.navLinks li.userMenu ul a,
+.navLinks li.userMenu ul button {
+    font: inherit;
+    color: #333 !important;
+    text-transform: none;
+    background: transparent;
+    padding: 8px 10px;
+    border: 0;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.navLinks li.userMenu ul a:hover,
+.navLinks li.userMenu ul button:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.userIcon {
+    transition: transform 0.2s ease;
+}
+
+.userIcon:hover {
+    transform: scale(1.05);
+}
+
+@media (min-width: 992px) {
     .navLinks {
         display: flex;
         align-items: center;

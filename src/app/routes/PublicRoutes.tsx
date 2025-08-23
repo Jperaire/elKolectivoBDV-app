@@ -7,6 +7,7 @@ import {
     Unauthorized,
     NotFound,
     MerchPage,
+    DonationsPage,
 } from "../../pages/public";
 
 import {
@@ -23,6 +24,7 @@ export const PublicRoutes = (
         <Route path="merch" element={<MerchPage />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="donations" element={<DonationsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<NotFound />} />

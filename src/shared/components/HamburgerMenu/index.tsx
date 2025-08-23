@@ -3,19 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./HamburgerMenu.module.css";
 import { CloseIcon, MenuIcon } from "../../../assets/images";
 import { Button } from "../";
-
 import { signOutUser } from "../../../features/auth/firebase/methods";
-import { ThemeSwitcher } from "../../../features/theme/components/ThemeSwitcher";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
+import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "../Navbar/navLinks";
 
-type LinkItem = { label: string; path: string };
-interface HamburgerMenuProps {
-    links: ReadonlyArray<LinkItem>;
-}
-
-export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
+export const HamburgerMenu = () => {
     const [open, setOpen] = useState(false);
-    const { user, loading } = useAuth();
+    const { user, userData, loading } = useAuth();
     const [signingOut, setSigningOut] = useState(false);
     const navigate = useNavigate();
 
@@ -30,6 +24,12 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
         }
     };
 
+    const links = [
+        ...BASE_LINKS,
+        ...(userData?.role === "user" ? USER_LINKS : []),
+        ...(userData?.role === "admin" ? ADMIN_LINKS : []),
+    ];
+
     return (
         <div className={styles.hamburgerMenu}>
             {!open && (
@@ -37,12 +37,20 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                     className={styles.burger}
                     onClick={() => setOpen(true)}
                     aria-label="Abrir menú"
+                    aria-expanded={open}
+                    aria-controls="mobile-menu"
                 >
                     <img src={MenuIcon} alt="" />
                 </button>
             )}
 
-            <ul className={`${styles.menuLinks} ${open ? styles.open : ""} `}>
+            <ul
+                id="mobile-menu"
+                className={`${styles.menuLinks} ${open ? styles.open : ""}`}
+                role="dialog"
+                aria-modal="true"
+                aria-hidden={!open}
+            >
                 {open && (
                     <button
                         className={styles.closeButton}
@@ -70,21 +78,22 @@ export const HamburgerMenu = ({ links }: HamburgerMenuProps) => {
                 {!loading && user && (
                     <li>
                         <Button
-                            type="button"
-                            onClick={handleLogout}
-                            isLoading={signingOut}
-                            loadingText="Tancant..."
-                            variant="button--pink"
                             size="large"
+                            variant="button--red"
+                            onClick={handleLogout}
                         >
-                            Tanca la sessió
+                            {signingOut ? "Tancant..." : "Tanca sessió"}
                         </Button>
                     </li>
                 )}
 
-                <li>
-                    <ThemeSwitcher />
-                </li>
+                {userData?.role === "admin" && (
+                    <li>
+                        <Button to="/admin" size="large" variant="button--blue">
+                            Zona Admin
+                        </Button>
+                    </li>
+                )}
             </ul>
         </div>
     );

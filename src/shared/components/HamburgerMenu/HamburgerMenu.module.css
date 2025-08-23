@@ -28,13 +28,12 @@
 .menuLinks {
     display: none;
     flex-direction: column;
-    gap: var(--space-xxl);
+    gap: var(--space-xl);
     align-items: center;
     justify-content: center;
     position: fixed;
     inset: 0;
     background: var(--energetic-bg);
-    font-weight: 500;
     z-index: 1002;
 }
 
@@ -44,10 +43,10 @@
 
 .menuLinks a {
     color: white;
-    text-decoration: none;
+    font-weight: 400;
     transition: color 0.2s ease;
     text-transform: uppercase;
-    letter-spacing: var(--space-xs);
+    letter-spacing: 0.1rem;
 }
 
 .menuLinks a:hover,
@@ -71,7 +70,7 @@
 }
 
 /* Hamburger menu only visible in mobile */
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .hamburgerMenu {
         display: none;
     }
