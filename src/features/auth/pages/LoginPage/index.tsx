@@ -124,6 +124,10 @@ export const LoginPage = () => {
                 </Link>
             </p>
 
+            <p className={styles.forgot}>
+                <Link to="/reset-password">No recordes la contrasenya?</Link>
+            </p>
+
             <div aria-live="polite" aria-atomic="true">
                 {error && <p className={styles.error}>⚠️ {error}</p>}
                 {success && <p className={styles.success}>{success}</p>}
