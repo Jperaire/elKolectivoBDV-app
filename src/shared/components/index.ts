@@ -1,5 +1,3 @@
-export { PageTitle } from "./PageTitle";
-
 export { Accordion, AccordionItem } from "./Accordion";
 export { Animated } from "./Animated";
 export { Card } from "./Card";

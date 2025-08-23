@@ -6,7 +6,7 @@ import { useForm } from "../../../../shared/hooks/useForm";
 import { useSubmitState } from "../../hooks";
 import { validateLogin } from "../../../../shared/utils";
 import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
-import { Button } from "../../../../shared/components";
+import { Button, Card } from "../../../../shared/components";
 import { useAuth } from "../../hooks/useAuth";
 
 type LoginForm = { email: string; password: string };
@@ -65,73 +65,73 @@ export const LoginPage = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className={styles.login}>
+        <div className="page">
             <h1>Inicia sessió</h1>
 
-            <form
-                onSubmit={handleSubmit}
-                className={styles.loginForm}
-                noValidate
-            >
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Escriu la teva adreça electrònica"
-                    value={email}
-                    onChange={onInputChange}
-                    required
-                    inputMode="email"
-                    autoComplete="email"
-                />
-
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Escriu la teva contrasenya"
-                    value={password}
-                    onChange={onInputChange}
-                    required
-                    minLength={6}
-                    autoComplete="current-password"
-                />
-
-                <div className={styles.buttons}>
-                    <Button
-                        isLoading={submitting}
-                        loadingText="Iniciant sessió..."
-                        variant="button--orange"
-                        type="submit"
+            <Card>
+                <section className={styles.login}>
+                    <form
+                        onSubmit={handleSubmit}
+                        className={styles.loginForm}
+                        noValidate
                     >
-                        Inicia sessió
-                    </Button>
-
-                    <Button
-                        type="button"
-                        onClick={handleGoogleLogin}
-                        isLoading={submitting}
-                        loadingText="Connectant..."
-                        variant="button--orange"
-                    >
-                        Continua amb Google
-                    </Button>
-                </div>
-            </form>
-
-            <p className={styles.helperText}>
-                Encara no tens usuari? Registra't
-                <Link to="/register" className={styles.registerLink}>
-                    aquí
-                </Link>
-            </p>
-
-            <p className={styles.forgot}>
-                <Link to="/reset-password">No recordes la contrasenya?</Link>
-            </p>
-
-            <div aria-live="polite" aria-atomic="true">
-                {error && <p className={styles.error}>⚠️ {error}</p>}
-                {success && <p className={styles.success}>{success}</p>}
-            </div>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Escriu la teva adreça electrònica"
+                            value={email}
+                            onChange={onInputChange}
+                            required
+                            inputMode="email"
+                            autoComplete="email"
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Escriu la teva contrasenya"
+                            value={password}
+                            onChange={onInputChange}
+                            required
+                            minLength={6}
+                            autoComplete="current-password"
+                        />
+                        <div className={styles.buttons}>
+                            <Button
+                                isLoading={submitting}
+                                loadingText="Iniciant sessió..."
+                                variant="button--orange"
+                                type="submit"
+                            >
+                                Inicia sessió
+                            </Button>
+                            <Button
+                                type="button"
+                                onClick={handleGoogleLogin}
+                                isLoading={submitting}
+                                loadingText="Connectant..."
+                                variant="button--orange"
+                            >
+                                Continua amb Google
+                            </Button>
+                        </div>
+                    </form>
+                    <p className={styles.helperText}>
+                        Encara no tens usuari? Registra't{" "}
+                        <Link to="/register" className={styles.registerLink}>
+                            aquí
+                        </Link>
+                    </p>
+                    <p className={styles.forgot}>
+                        <Link to="/reset-password">
+                            No recordes la contrasenya?
+                        </Link>
+                    </p>
+                    <div aria-live="polite" aria-atomic="true">
+                        {error && <p className={styles.error}>⚠️ {error}</p>}
+                        {success && <p className={styles.success}>{success}</p>}
+                    </div>
+                </section>
+            </Card>
         </div>
     );
 };

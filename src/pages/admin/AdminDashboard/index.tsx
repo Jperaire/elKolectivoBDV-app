@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { adminActionsData } from "./adminActionsData";
 import styles from "./AdminDashboard.module.css";
-import { Card, PageTitle } from "../../../shared/components";
+import { Card } from "../../../shared/components";
 
 export const AdminDashboard = () => {
     return (
-        <div className={styles.dashboard}>
-            <PageTitle>Admin Dashboard</PageTitle>
+        <div className="page">
+            <h1>Admin Dashboard</h1>
 
             <Card>
                 <section className={styles.cards}>
