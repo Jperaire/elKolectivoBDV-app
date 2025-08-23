@@ -4,32 +4,6 @@
     box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-    height: 100%;
-}
-
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-body {
-    background: var(--background-body);
-    max-width: 1500px;
-    margin: auto;
-}
-
-main {
-    flex: 1;
-    padding-top: var(--nav-h);
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
-}
-
 a {
     text-decoration: none;
     color: inherit;

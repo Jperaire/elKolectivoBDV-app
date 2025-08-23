@@ -1,7 +1,7 @@
 Con css:
 
 ```bash
-find . -type f \( -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" -o -name "*.module.css" \) -exec cat {} \; > codigo_components.txt
+find . -type f \( -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" -o -name "*.module.css" -o -name "*.css" \) -exec cat {} \; > codigo_components.txt
 ```
 
 Sin css:

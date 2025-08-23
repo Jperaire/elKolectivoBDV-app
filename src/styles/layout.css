@@ -1,3 +1,29 @@
+html,
+body,
+#root {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    background: var(--background-body);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+main {
+    flex: 1;
+    padding-top: var(--nav-h);
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
 .page {
     display: flex;
     flex-direction: column;
