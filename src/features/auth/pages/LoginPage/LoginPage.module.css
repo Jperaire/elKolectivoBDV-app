@@ -1,26 +1,13 @@
-.loginForm {
+.login {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
-    margin: auto;
-}
-
-.login input {
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 3px solid transparent;
-    font-size: var(--fs-sm);
-}
-
-.login input:focus {
-    outline: none;
-    border-color: var(--pastel-orange);
+    gap: 1rem;
 }
 
 .buttons {
     display: flex;
     justify-content: center;
-    gap: var(--space-md);
+    gap: 1rem;
 }
 
 .helperText {
@@ -30,15 +17,6 @@
 .registerLink {
     font-weight: 600;
     color: var(--energetic-blue);
-    font-size: var(--fs-sm);
-}
-
-.error {
-    color: #fff;
-    font-weight: 600;
-    background: var(--pastel-red);
-    padding: var(--space-sm);
-    border-radius: var(--radius-sm);
     font-size: var(--fs-sm);
 }
 

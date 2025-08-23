@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { validateContact } from "../../utils";
 import { Button } from "../Button";
-import styles from "./ContactForm.module.css";
 
 export const ContactForm = () => {
     const { name, email, message, onInputChange, onResetForm } = useForm({
@@ -38,12 +37,8 @@ export const ContactForm = () => {
 
     return (
         <>
-            <form
-                onSubmit={handleSubmit}
-                className={styles.contactForm}
-                noValidate
-            >
-                <div className={styles.formGroup}>
+            <form onSubmit={handleSubmit} noValidate>
+                <div>
                     <label htmlFor="name">Nom</label>
                     <input
                         id="name"
@@ -56,7 +51,7 @@ export const ContactForm = () => {
                     />
                 </div>
 
-                <div className={styles.formGroup}>
+                <div>
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
@@ -70,7 +65,7 @@ export const ContactForm = () => {
                     />
                 </div>
 
-                <div className={styles.formGroup}>
+                <div>
                     <label htmlFor="message">Missatge</label>
                     <textarea
                         id="message"
@@ -88,8 +83,8 @@ export const ContactForm = () => {
             </form>
 
             <div aria-live="polite" aria-atomic="true">
-                {error && <p className={styles.error}>⚠️ {error}</p>}
-                {success && <p className={styles.success}>{success}</p>}
+                {error && <p className="error">⚠️ {error}</p>}
+                {success && <p className="success">{success}</p>}
             </div>
         </>
     );

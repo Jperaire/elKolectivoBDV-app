@@ -70,11 +70,7 @@ export const LoginPage = () => {
 
             <Card>
                 <section className={styles.login}>
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.loginForm}
-                        noValidate
-                    >
+                    <form onSubmit={handleSubmit} noValidate>
                         <input
                             type="email"
                             name="email"
@@ -126,9 +122,10 @@ export const LoginPage = () => {
                             No recordes la contrasenya?
                         </Link>
                     </p>
+
                     <div aria-live="polite" aria-atomic="true">
-                        {error && <p className={styles.error}>⚠️ {error}</p>}
-                        {success && <p className={styles.success}>{success}</p>}
+                        {error && <p className="error">⚠️ {error}</p>}
+                        {success && <p className="success">{success}</p>}
                     </div>
                 </section>
             </Card>

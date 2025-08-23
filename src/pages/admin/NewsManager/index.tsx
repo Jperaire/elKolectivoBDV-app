@@ -1,4 +1,3 @@
-import styles from "./NewsManager.module.css";
 import { Card, Button } from "../../../shared/components";
 import { useForm } from "../../../shared/hooks/useForm";
 
@@ -25,12 +24,8 @@ export const NewsManager = () => {
             <h1>Notícies</h1>
 
             <Card>
-                <section className={styles.section}>
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.form}
-                        noValidate
-                    >
+                <section>
+                    <form onSubmit={handleSubmit} noValidate>
                         <input
                             name="title"
                             placeholder="Títol"

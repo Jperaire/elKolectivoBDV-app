@@ -47,11 +47,7 @@ export const ActivitiesManager = () => {
 
             <Card>
                 <section className={styles.section}>
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.form}
-                        noValidate
-                    >
+                    <form onSubmit={handleSubmit} noValidate>
                         <input
                             name="title"
                             placeholder="Títol"
@@ -59,6 +55,7 @@ export const ActivitiesManager = () => {
                             onChange={onInputChange}
                             required
                         />
+
                         <div className={styles.row}>
                             <input
                                 type="date"
@@ -75,6 +72,7 @@ export const ActivitiesManager = () => {
                                 required
                             />
                         </div>
+
                         <input
                             name="location"
                             placeholder="Ubicació"
@@ -82,6 +80,7 @@ export const ActivitiesManager = () => {
                             onChange={onInputChange}
                             required
                         />
+
                         <textarea
                             name="description"
                             placeholder="Descripció (opcional)"
@@ -89,6 +88,7 @@ export const ActivitiesManager = () => {
                             value={description}
                             onChange={onInputChange}
                         />
+
                         <Button type="submit" variant="button--blue">
                             Crear activitat
                         </Button>
