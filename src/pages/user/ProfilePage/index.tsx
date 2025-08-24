@@ -6,90 +6,169 @@ import {
     signOutUser,
 } from "../../../features/auth/firebase/methods";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
+import { Card, Button } from "../../../shared/components";
+import styles from "./ProfilePage.module.css";
+import { ThemeSwitcher, Pallete } from "../../../features/theme/components/";
 
 export const ProfilePage = () => {
-    const { user, userData } = useAuth();
+    const { user, userData, loading } = useAuth();
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
-    const [photoURL, setPhotoURL] = useState(userData?.photoURL ?? "");
     const [password, setPassword] = useState("");
-    const [status, setStatus] = useState("");
+    const [busy, setBusy] = useState(false);
+    const [status, setStatus] = useState<string>("");
 
-    if (!user) return <p>No estás logueado</p>;
+    if (loading) return <p>Carregant…</p>;
+    if (!user) return <p>No has iniciat sessió.</p>;
 
-    const handleUpdate = async () => {
+    const run = async (fn: () => Promise<void>) => {
+        setStatus("");
+        setBusy(true);
         try {
-            const next = {
-                displayName: displayName.trim(),
-                photoURL: photoURL || null,
-            };
+            await fn();
+        } catch (err) {
+            console.error(err);
+            setStatus("❌ S'ha produït un error.");
+        } finally {
+            setBusy(false);
+        }
+    };
 
+    const onSubmitUpdate: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+        run(async () => {
+            const next = { displayName: displayName.trim() };
             await updateProfile(user, next);
             await updateUser(user.uid, next);
-
-            setStatus("Perfil actualizado");
-        } catch (err) {
-            console.error(err);
-            setStatus("Error al actualizar");
-        }
+            setStatus("✅ Perfil actualitzat.");
+        });
     };
 
-    const handleDelete = async () => {
-        if (!window.confirm("¿Seguro que quieres borrar tu cuenta?")) return;
-        try {
+    const onDelete = () => {
+        if (!window.confirm("Segur que vols esborrar el compte?")) return;
+        run(async () => {
             await deleteAccount(password);
-            setStatus("Cuenta eliminada");
-        } catch (err) {
-            console.error(err);
-            setStatus("Error al eliminar cuenta");
-        }
+            setStatus("🗑️ Compte esborrat.");
+        });
     };
 
-    const handleClose = async () => {
-        if (!window.confirm("¿Segur que vols tancar la sessió?")) return;
-        try {
+    const onSignOut = () => {
+        if (!window.confirm("Segur que vols tancar la sessió?")) return;
+        run(async () => {
             await signOutUser();
-            setStatus("Sessió tancada");
-        } catch (err) {
-            console.error(err);
-            setStatus("Error al tancar la sessió");
-        }
+            setStatus("👋 Sessió tancada.");
+        });
     };
 
     return (
-        <main style={{ padding: 20 }}>
-            <h1>Mi perfil</h1>
-            <div>
-                <label>Nombre</label>
-                <input
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                />
-            </div>
-            <div>
-                <label>Foto (URL)</label>
-                <input
-                    value={photoURL}
-                    onChange={(e) => setPhotoURL(e.target.value)}
-                />
-            </div>
-            <button onClick={handleUpdate}>Actualizar perfil</button>
+        <div className="page">
+            <h1>El meu perfil</h1>
 
-            <hr />
-            <h2>Borrar cuenta</h2>
-            <p>Introduce tu contraseña para confirmar</p>
-            <input
-                type="password"
-                placeholder="Contraseña actual"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleDelete}>Eliminar cuenta</button>
+            <section className={styles.section}>
+                {/* Feedback d'estat global */}
+                <p role="status" aria-live="polite">
+                    {status}
+                </p>
 
-            <hr />
-            <h2>Cerrar sesión</h2>
-            <button onClick={handleClose}>Cerrar sesión</button>
+                <Card>
+                    <article
+                        aria-labelledby="update-title"
+                        className={styles.article}
+                    >
+                        <h2 id="update-title">Actualitza el perfil</h2>
+                        <form onSubmit={onSubmitUpdate}>
+                            <div>
+                                <label htmlFor="displayName">Nom visible</label>
+                                <input
+                                    id="displayName"
+                                    name="displayName"
+                                    value={displayName}
+                                    onChange={(e) =>
+                                        setDisplayName(e.target.value)
+                                    }
+                                    autoComplete="name"
+                                    required
+                                />
+                            </div>
+                            <Button
+                                type="submit"
+                                size="large"
+                                variant="button--red"
+                                disabled={busy}
+                            >
+                                {busy ? "Guardant…" : "Desa canvis"}
+                            </Button>
+                        </form>
+                    </article>
+                </Card>
 
-            {status && <p>{status}</p>}
-        </main>
+                {/* Canviar tema */}
+                <Card>
+                    <article
+                        aria-labelledby="change-theme"
+                        className={styles.article}
+                    >
+                        <h2 id="signout-title">Canviar tema</h2>
+                        <div className={styles.switcherWrapper}>
+                            <ThemeSwitcher />
+                            <Pallete />
+                        </div>
+                    </article>
+                </Card>
+
+                {/* Esborrar compte */}
+                <Card>
+                    <article
+                        aria-labelledby="delete-title"
+                        className={styles.article}
+                    >
+                        <h2 id="delete-title">Esborra el compte</h2>
+                        <p>Introdueix la teva contrasenya per confirmar.</p>
+                        <div>
+                            <label htmlFor="currentPassword">
+                                Contrasenya actual
+                            </label>
+                            <input
+                                id="currentPassword"
+                                name="currentPassword"
+                                type="password"
+                                placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete="current-password"
+                                required
+                            />
+                        </div>
+                        <Button
+                            type="button"
+                            size="large"
+                            variant="button--red"
+                            onClick={onDelete}
+                            disabled={busy}
+                        >
+                            {busy ? "Esborrant…" : "Esborra el compte"}
+                        </Button>
+                    </article>
+                </Card>
+
+                {/* Tancar sessió */}
+                <Card>
+                    <article
+                        aria-labelledby="signout-title"
+                        className={styles.article}
+                    >
+                        <h2 id="signout-title">Tanca la sessió</h2>
+                        <Button
+                            type="button"
+                            size="large"
+                            variant="button--red"
+                            onClick={onSignOut}
+                            disabled={busy}
+                        >
+                            {busy ? "Tancant…" : "Tanca sessió"}
+                        </Button>
+                    </article>
+                </Card>
+            </section>
+        </div>
     );
 };

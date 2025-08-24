@@ -11,7 +11,6 @@ export interface AppUserData {
     email: string | null;
     role: Role;
     displayName?: string | null;
-    photoURL?: string | null;
     createdAt?: Timestamp;
     membershipTest?: {
         answers: MembershipAnswers;

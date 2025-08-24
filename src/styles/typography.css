@@ -1,10 +1,10 @@
 :root {
     --fs-xs: 0.75rem; /* 12px */
     --fs-sm: 0.875rem; /* 14px */
-    --fs-md: 1rem; /* 16px - base */
-    --fs-lg: 1.125rem; /* 18px */
-    --fs-xl: 1.5rem; /* 24px */
-    --fs-xxl: 2.25rem; /* 32px */
+    --fs-md: 0.9rem; /* ~13px  */
+    --fs-lg: 1rem; /* 18px */
+    --fs-xl: 1.2rem; /* 24px */
+    --fs-xxl: 1.7rem; /* ~27px */
 }
 
 body {
@@ -14,18 +14,14 @@ body {
 }
 
 h1 {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-xxl);
     line-height: 1.1;
-    text-transform: uppercase;
     text-align: center;
-    letter-spacing: 0.1rem;
 }
 
 h2 {
     font-size: var(--fs-xl);
     line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
 }
 
 h3 {
@@ -46,11 +42,14 @@ h5,
 h6 {
     font-family: "Oswald", sans-serif;
     color: var(--color-heading);
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
 }
 
 p {
     font-size: var(--fs-md);
     line-height: 1.6;
+    color: var(--color-text);
 }
 
 p,

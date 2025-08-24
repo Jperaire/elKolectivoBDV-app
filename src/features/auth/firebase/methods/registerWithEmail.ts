@@ -25,7 +25,6 @@ export const registerWithEmail = async (
         email: user.email ?? email,
         role: "user",
         displayName: name,
-        photoURL: user.photoURL ?? null,
     });
 
     await signOut(auth);

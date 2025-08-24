@@ -4,7 +4,7 @@ import { notFoundGif } from "../../../assets/gifs";
 
 export const NotFound = () => {
     return (
-        <div className={styles.container}>
+        <div className="page">
             <h1>🤔 ¡Oops!</h1>
             <p>Sembla que t'has perdut...</p>
 

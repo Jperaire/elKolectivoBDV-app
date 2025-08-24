@@ -30,11 +30,9 @@ export const MerchPage = () => {
     };
 
     return (
-        <section className={styles.merch} aria-labelledby="merch-title">
-            <h1 id="merch-title">Merchan</h1>
-            <p className={styles.subtitle}>
-                Suporta el col·lectiu amb productes xulos ✨
-            </p>
+        <section className="page">
+            <h1>Merchan</h1>
+            <p>Suporta el col·lectiu amb productes xulos ✨</p>
 
             <div className={styles.grid} aria-label="Catàleg de productes">
                 {mockItems.map((item) => (
@@ -42,23 +40,23 @@ export const MerchPage = () => {
                         <Card>
                             <img src={item.img || FakeImg} alt={item.title} />
 
-                            <div className={styles.info}>
+                            <div className={styles.row}>
                                 <h2 className={styles.title}>{item.title}</h2>
-                                <p className={styles.price}>
-                                    {fmt.format(item.price)}
-                                </p>
-                            </div>
 
-                            <div className={styles.actions}>
-                                <Button
-                                    type="button"
-                                    variant="button--pink"
-                                    size="large"
-                                    onClick={() => handleAdd(item)}
-                                    aria-label={`Afegir ${item.title} a la cistella`}
-                                >
-                                    La vull
-                                </Button>
+                                <div className={styles.right}>
+                                    <p className={styles.price}>
+                                        {fmt.format(item.price)}
+                                    </p>
+                                    <Button
+                                        type="button"
+                                        variant="button--pink"
+                                        size="large"
+                                        onClick={() => handleAdd(item)}
+                                        aria-label={`Afegir ${item.title} a la cistella`}
+                                    >
+                                        La vull
+                                    </Button>
+                                </div>
                             </div>
                         </Card>
                     </article>
@@ -67,5 +65,3 @@ export const MerchPage = () => {
         </section>
     );
 };
-
-// TODO: DECIDIR QUE HACER CUANDO LE DAN A "LA VULL", CREAR BASE DE DATOS, FEATURE MERCHAN, H1 Y SUBTITTULO COMUN?(NUEVO COMPONENTE), ETC

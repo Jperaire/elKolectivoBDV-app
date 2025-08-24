@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
+import React from "react";
 import styles from "./Button.module.css";
 
 type Props = {
     children: React.ReactNode;
     to?: string;
-    onClick?: () => void;
+    onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
     variant?: string;
     size?: string;
     className?: string;
     type?: "button" | "submit" | "reset";
     isLoading?: boolean;
     loadingText?: string;
+    disabled?: boolean;
 };
 
 export const Button = ({
@@ -23,24 +25,64 @@ export const Button = ({
     type = "button",
     isLoading = false,
     loadingText = "Loading...",
+    disabled = false,
 }: Props) => {
-    const classNames = `${styles.button} ${styles[variant]} ${styles[size]} ${className}`;
+    const isDisabled = isLoading || disabled;
+
+    const classNames = [
+        styles.button,
+        styles[variant],
+        styles[size],
+        className,
+        isDisabled ? styles["is-disabled"] : "",
+    ]
+        .filter(Boolean)
+        .join(" ");
+
     const content = isLoading ? loadingText : children;
 
     if (to) {
+        const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+            if (isDisabled) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+            onClick?.(e);
+        };
+
         return (
-            <Link to={to} className={classNames} aria-disabled={isLoading}>
+            <Link
+                to={isDisabled ? "#" : to}
+                className={classNames}
+                aria-disabled={isDisabled}
+                tabIndex={isDisabled ? -1 : 0}
+                role="button"
+                onClick={handleClick}
+            >
                 {content}
             </Link>
         );
     }
 
+    const handleButtonClick: React.MouseEventHandler<HTMLButtonElement> = (
+        e
+    ) => {
+        if (isDisabled) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        onClick?.(e);
+    };
+
     return (
         <button
             type={type}
-            onClick={onClick}
+            onClick={handleButtonClick}
             className={classNames}
-            disabled={isLoading}
+            disabled={isDisabled}
+            aria-disabled={isDisabled}
         >
             {content}
         </button>

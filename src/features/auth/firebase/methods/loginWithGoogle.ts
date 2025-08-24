@@ -8,7 +8,6 @@ export const loginWithGoogle = async () => {
     await ensureUser(cred.user.uid, {
         email: cred.user.email,
         displayName: cred.user.displayName ?? null,
-        photoURL: cred.user.photoURL ?? null,
     });
     return cred;
 };
