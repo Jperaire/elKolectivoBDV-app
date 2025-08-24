@@ -9,12 +9,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { Item } from "../../types";
 import { db } from "../../../../firebase/firestore";
 import { merchanItems } from "../../data/items";
-
-const fmt = new Intl.NumberFormat("ca-ES", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 2,
-});
+import { fmtEUR } from "../../../../shared/utils";
 
 export const MerchPage = () => {
     const { user } = useAuth();
@@ -87,7 +82,7 @@ export const MerchPage = () => {
 
                                 <div className={styles.right}>
                                     <p className={styles.price}>
-                                        {fmt.format(item.price)}
+                                        {fmtEUR.format(item.price)}
                                     </p>
                                     <Button
                                         type="button"
