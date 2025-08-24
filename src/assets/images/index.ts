@@ -17,3 +17,4 @@ export { default as CalendarImg } from "./photos/calendar.png";
 export { default as InfoImg } from "./photos/info.png";
 export { default as MembersImg } from "./photos/members.png";
 export { default as NewsImg } from "./photos/news.png";
+export { default as MerchImg } from "./photos/merchan.png";

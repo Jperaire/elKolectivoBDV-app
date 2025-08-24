@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    word-break: break-word;
+}
+
+table th,
+table td {
+    padding: var(--space-md);
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--energetic-purple);
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+table tr:nth-child(even) {
+    background-color: var(--pastel-green);
+}
+
+table tr:nth-child(odd) {
+    background-color: rgb(252, 247, 238);
+}

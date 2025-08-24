@@ -60,6 +60,7 @@ li,
 label,
 input,
 textarea,
-button {
+button,
+table {
     font-family: "Montserrat", sans-serif;
 }

@@ -6,6 +6,7 @@ import {
     MembersManager,
     Resources,
     NewsManager,
+    Waitlist,
 } from "../../pages/admin";
 
 export const AdminRoutes = (
@@ -15,5 +16,6 @@ export const AdminRoutes = (
         <Route path="members" element={<MembersManager />} />
         <Route path="resources" element={<Resources />} />
         <Route path="news" element={<NewsManager />} />
+        <Route path="waitlist" element={<Waitlist />} />
     </Route>
 );

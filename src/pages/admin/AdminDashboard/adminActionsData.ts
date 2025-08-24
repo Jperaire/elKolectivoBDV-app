@@ -3,6 +3,7 @@ import {
     InfoImg,
     MembersImg,
     NewsImg,
+    MerchImg,
 } from "../../../assets/images";
 
 export const adminActionsData = [
@@ -30,5 +31,11 @@ export const adminActionsData = [
         description: "Informació útil i links d'interès",
         link: "/admin/resources",
         img: InfoImg,
+    },
+    {
+        title: "Merchan",
+        description: "Consulta la llista d’espera.",
+        link: "/admin/waitlist",
+        img: MerchImg,
     },
 ];

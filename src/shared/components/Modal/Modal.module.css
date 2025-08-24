@@ -10,10 +10,11 @@
 }
 
 .modal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
     background: #fff;
-    color: var(--color-text);
     width: min(520px, 100%);
     border-radius: 16px;
     padding: var(--space-lg);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }

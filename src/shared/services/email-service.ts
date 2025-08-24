@@ -6,15 +6,19 @@ export type EmailData = {
     message: string;
 };
 
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 export const sendEmail = async (data: EmailData) => {
     return emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        SERVICE_ID,
+        TEMPLATE_ID,
         {
             name: data.name,
             email: data.email,
             message: data.message,
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        PUBLIC_KEY
     );
 };
