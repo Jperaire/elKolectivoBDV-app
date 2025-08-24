@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllWaitlist, WaitlistEntry } from "../../../shared/services";
+
+import { getAllWaitlist } from "../../services/waitlist-service";
+import { WaitlistEntry } from "../../types";
+
 import styles from "./WaitList.module.css";
 
 export const Waitlist = () => {

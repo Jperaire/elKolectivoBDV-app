@@ -5,7 +5,7 @@ import {
     signOut,
 } from "firebase/auth";
 import { auth } from "../auth";
-import { createUser } from "../../../../services/user-service";
+import { createUser } from "../../../../shared/services/";
 
 export const registerWithEmail = async (
     name: string,

@@ -6,7 +6,6 @@ import {
     NewsPage,
     Unauthorized,
     NotFound,
-    MerchPage,
     DonationsPage,
 } from "../../pages/public";
 
@@ -15,6 +14,8 @@ import {
     RegisterPage,
     ResetPasswordPage,
 } from "../../features/auth/pages";
+
+import { MerchPage } from "../../features/merch/pages";
 
 export const PublicRoutes = (
     <>

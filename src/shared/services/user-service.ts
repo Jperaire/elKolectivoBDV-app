@@ -5,8 +5,8 @@ import {
     updateDoc,
     serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../firebase/firestore";
-import type { AppUserData } from "../features/auth/types";
+import { db } from "../../firebase/firestore";
+import type { AppUserData } from "../../features/auth/types";
 
 export async function getUser(uid: string): Promise<AppUserData | null> {
     const snap = await getDoc(doc(db, "users", uid));

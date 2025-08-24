@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { serverTimestamp } from "firebase/firestore";
-import { updateUser } from "../../../services/user-service";
+import { updateUser } from "../../../shared/services/";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 
 export const MembershipTestPage = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateUser } from "../../../services/user-service";
+import { updateUser } from "../../../shared/services/";
 import { updateProfile } from "firebase/auth";
 import {
     deleteAccount,

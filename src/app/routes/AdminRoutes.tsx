@@ -6,8 +6,8 @@ import {
     MembersManager,
     Resources,
     NewsManager,
-    Waitlist,
 } from "../../pages/admin";
+import { Waitlist } from "../../features/merch/pages";
 
 export const AdminRoutes = (
     <Route path="admin">

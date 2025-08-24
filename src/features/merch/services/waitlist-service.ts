@@ -6,23 +6,8 @@ import {
     getDocs,
     deleteDoc,
 } from "firebase/firestore";
-import { db } from "../../firebase/firestore";
-
-export type WaitlistItem = {
-    id: string;
-    title: string;
-    price: number;
-};
-
-export type WaitlistEntry = {
-    uid: string;
-    email: string;
-    name: string;
-    itemId: string;
-    itemTitle: string;
-    price: number;
-    createdAt?: Date;
-};
+import { db } from "../../../firebase/firestore";
+import { WaitlistEntry, WaitlistItem } from "../types";
 
 // 👉 apuntar un usuari
 export const joinWaitlist = async (
