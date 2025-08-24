@@ -1,8 +1,4 @@
 :root {
-    /* Text Colors*/
-    --color-text: #444444;
-    --color-heading: #555555;
-
     /* Backgrounds */
     --energetic-bg: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
     --pastel-bg: #f0f0f0;

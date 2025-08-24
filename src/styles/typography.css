@@ -17,6 +17,7 @@ h1 {
     font-size: var(--fs-xxl);
     line-height: 1.1;
     text-align: center;
+    color: rgb(249, 238, 218);
 }
 
 h2 {
@@ -41,7 +42,17 @@ h4,
 h5,
 h6 {
     font-family: "Oswald", sans-serif;
-    color: var(--color-heading);
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Oswald", sans-serif;
+    color: #555;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
 }
