@@ -123,9 +123,9 @@ export const ProfilePage = () => {
                     >
                         <h2 id="delete-title">Esborra el compte</h2>
                         <p>Introdueix la teva contrasenya per confirmar.</p>
-                        <div>
+                        <div className={styles.password}>
                             <label htmlFor="currentPassword">
-                                Contrasenya actual
+                                Contrasenya actual:
                             </label>
                             <input
                                 id="currentPassword"

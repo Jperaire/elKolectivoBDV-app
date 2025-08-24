@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react";
-import styles from "./Accordion.module.css";
 import { ArrowIcon } from "../../../assets/images";
+import styles from "./Accordion.module.css";
 
 interface AccordionItemProps {
     title: string;

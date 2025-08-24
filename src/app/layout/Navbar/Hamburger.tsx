@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./HamburgerMenu.module.css";
+
 import { CloseIcon, MenuIcon } from "../../../assets/images";
-import { Button } from "../";
+import { Button } from "../../../shared/components";
 import { signOutUser } from "../../../features/auth/firebase/methods";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
-import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "../Navbar/navLinks";
+import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "./navLinks";
 
-export const HamburgerMenu = () => {
+import styles from "./Hamburger.module.css";
+
+export const Hamburger = () => {
     const [open, setOpen] = useState(false);
     const { user, userData, loading } = useAuth();
     const [signingOut, setSigningOut] = useState(false);

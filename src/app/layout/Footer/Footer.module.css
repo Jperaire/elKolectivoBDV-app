@@ -45,6 +45,7 @@
 
 .copy {
     font-size: 0.6rem;
+    color: #fff;
 }
 
 @media (min-width: 768px) {

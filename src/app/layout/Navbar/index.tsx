@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import styles from "./Navbar.module.css";
-import logo from "../../../assets/images/logos/main-logo.png";
-import { Button, HamburgerMenu } from "../";
+
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { signOutUser } from "../../../features/auth/firebase/methods";
-import { UserIcon } from "../../../assets/images";
+
 import { BASE_LINKS } from "./navLinks";
-import { useState } from "react";
+
+import { UserIcon } from "../../../assets/images";
+import { MainLogo } from "../../../assets/images/index";
+import { Button } from "../../../shared/components";
+import { Hamburger } from "./Hamburger";
+
+import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
     const { user, userData, loading } = useAuth();
@@ -26,7 +31,7 @@ export const Navbar = () => {
             <div className={styles.navbarContent}>
                 <Link to="/" className={styles.logoWrapper}>
                     <img
-                        src={logo}
+                        src={MainLogo}
                         alt="Kolectivo BDV"
                         className={styles.logo}
                     />
@@ -99,7 +104,7 @@ export const Navbar = () => {
                 </ul>
 
                 {/* Mobile */}
-                <HamburgerMenu />
+                <Hamburger />
             </div>
         </nav>
     );
