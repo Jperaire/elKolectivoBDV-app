@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { validateContact } from "../../utils";
 import { Button } from "../Button";
+import { sendEmail } from "../../services";
+import type { EmailJSResponseStatus } from "@emailjs/browser";
 
 export const ContactForm = () => {
     const { name, email, message, onInputChange, onResetForm } = useForm({
@@ -26,17 +28,31 @@ export const ContactForm = () => {
 
         try {
             setSubmitting(true);
-            // TODO: enviar mail
-            console.log({ name, email, message });
+            await sendEmail({ name, email, message });
             onResetForm();
             setSuccess("Missatge enviat! 🎉");
+        } catch (error: unknown) {
+            console.error(error);
+
+            if (
+                typeof error === "object" &&
+                error !== null &&
+                "text" in error
+            ) {
+                const err = error as EmailJSResponseStatus;
+                setError(`❌ ${err.text}`);
+            } else if (error instanceof Error) {
+                setError(`❌ ${error.message}`);
+            } else {
+                setError("❌ Error desconegut en enviar el missatge.");
+            }
         } finally {
             setSubmitting(false);
         }
     };
 
     return (
-        <>
+        <div className="page">
             <form onSubmit={handleSubmit} noValidate>
                 <div>
                     <label htmlFor="name">Nom</label>
@@ -77,7 +93,11 @@ export const ContactForm = () => {
                     />
                 </div>
 
-                <Button isLoading={submitting} loadingText="Enviant...">
+                <Button
+                    type="submit"
+                    isLoading={submitting}
+                    loadingText="Enviant..."
+                >
                     Enviar
                 </Button>
             </form>
@@ -86,6 +106,6 @@ export const ContactForm = () => {
                 {error && <p className="error">⚠️ {error}</p>}
                 {success && <p className="success">{success}</p>}
             </div>
-        </>
+        </div>
     );
 };
