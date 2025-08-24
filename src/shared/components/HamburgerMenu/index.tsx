@@ -76,19 +76,21 @@ export const HamburgerMenu = () => {
                 )}
 
                 {!loading && user && (
-                    <li>
+                    <li onClick={() => setOpen(false)}>
                         <Button
                             size="large"
                             variant="button--red"
                             onClick={handleLogout}
+                            isLoading={signingOut}
+                            loadingText="Tancant…"
                         >
-                            {signingOut ? "Tancant..." : "Tanca sessió"}
+                            Tanca sessió
                         </Button>
                     </li>
                 )}
 
                 {userData?.role === "admin" && (
-                    <li>
+                    <li onClick={() => setOpen(false)}>
                         <Button to="/admin" size="large" variant="button--blue">
                             Zona Admin
                         </Button>

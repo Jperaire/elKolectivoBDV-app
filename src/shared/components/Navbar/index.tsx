@@ -6,12 +6,19 @@ import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { signOutUser } from "../../../features/auth/firebase/methods";
 import { UserIcon } from "../../../assets/images";
 import { BASE_LINKS } from "./navLinks";
+import { useState } from "react";
 
 export const Navbar = () => {
     const { user, userData, loading } = useAuth();
+    const [signingOut, setSigningOut] = useState(false);
 
     const handleLogout = async () => {
-        await signOutUser();
+        try {
+            setSigningOut(true);
+            await signOutUser();
+        } finally {
+            setSigningOut(false);
+        }
     };
 
     return (
@@ -77,12 +84,13 @@ export const Navbar = () => {
                                         </li>
                                     )}
                                     <li>
-                                        <button
-                                            type="button"
+                                        <Button
                                             onClick={handleLogout}
+                                            isLoading={signingOut}
+                                            loadingText="Tancant…"
                                         >
                                             Tanca sessió
-                                        </button>
+                                        </Button>
                                     </li>
                                 </ul>
                             </details>

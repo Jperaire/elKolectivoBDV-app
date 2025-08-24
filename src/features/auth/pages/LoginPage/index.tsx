@@ -62,7 +62,7 @@ export const LoginPage = () => {
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p>Carregant...</p>;
 
     return (
         <div className="page">
