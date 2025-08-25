@@ -1,14 +1,7 @@
 import styles from "./ActivitiesManager.module.css";
-import { Card, Button } from "../../../shared/components";
-import { useForm } from "../../../shared/hooks/useForm";
-
-type ActivityForm = {
-    title: string;
-    date: string; // ISO yyyy-mm-dd
-    time: string; // hh:mm
-    location: string;
-    description: string;
-};
+import { Card, Button } from "../../../../shared/components";
+import { useForm } from "../../../../shared/hooks/useForm";
+import { ActivityForm } from "../../types";
 
 export const ActivitiesManager = () => {
     const {

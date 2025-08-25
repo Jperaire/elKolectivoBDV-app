@@ -1,8 +1,9 @@
-import { Card } from "../../../shared/components";
-export const NewsPage = () => {
+import { Card } from "../../../../shared/components";
+
+export const CalendarPage = () => {
     return (
         <div className="page">
-            <h1>Noticies</h1>
+            <h1>Calendari d'activitats</h1>
 
             <Card>
                 <section></section>

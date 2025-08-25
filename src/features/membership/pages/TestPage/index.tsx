@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { serverTimestamp } from "firebase/firestore";
-import { updateUser } from "../../../shared/services/";
-import { useAuth } from "../../../features/auth/hooks/useAuth";
+import { updateUser } from "../../../../shared/services";
+import { useAuth } from "../../../auth/hooks/useAuth";
 
-export const MembershipTestPage = () => {
+export const TestPage = () => {
     const { user } = useAuth();
     const [answers, setAnswers] = useState({ q1: "", q2: "" });
     const [submitted, setSubmitted] = useState(false);

@@ -1,13 +1,6 @@
 import { Route } from "react-router-dom";
 
-import {
-    HomePage,
-    CalendarPage,
-    NewsPage,
-    Unauthorized,
-    NotFound,
-    DonationsPage,
-} from "../../pages/public";
+import { HomePage, Unauthorized, NotFound } from "../../pages/public";
 
 import {
     LoginPage,
@@ -16,6 +9,8 @@ import {
 } from "../../features/auth/pages";
 
 import { MerchPage } from "../../features/merch/pages";
+import { NewsPage } from "../../features/news/pages";
+import { CalendarPage } from "../../features/activities/pages";
 
 export const PublicRoutes = (
     <>
@@ -25,7 +20,6 @@ export const PublicRoutes = (
         <Route path="merch" element={<MerchPage />} />
         <Route path="calendar" element={<CalendarPage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="donations" element={<DonationsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<NotFound />} />

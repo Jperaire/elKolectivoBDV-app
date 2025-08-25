@@ -4,7 +4,6 @@ export const BASE_LINKS: NavLink[] = [
     { label: "Calendari", path: "/calendar" },
     { label: "Notícies", path: "/news" },
     { label: "Merchan", path: "/merch" },
-    { label: "Donacions", path: "/donations" },
 ];
 
 export const USER_LINKS: NavLink[] = [

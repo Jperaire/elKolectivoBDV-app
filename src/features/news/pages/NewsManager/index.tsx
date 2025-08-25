@@ -1,11 +1,6 @@
-import { Card, Button } from "../../../shared/components";
-import { useForm } from "../../../shared/hooks/useForm";
-
-type NewsForm = {
-    title: string;
-    imageUrl: string;
-    body: string;
-};
+import { Button, Card } from "../../../../shared/components";
+import { useForm } from "../../../../shared/hooks/useForm";
+import { NewsForm } from "../../types";
 
 export const NewsManager = () => {
     const { title, imageUrl, body, onInputChange, onResetForm } =
