@@ -5,9 +5,8 @@ import {
     AccordionItem,
     Animated,
     Card,
-    Contact,
 } from "../../../shared/components";
-import { Banner } from "../components/Banner";
+import { Banner, Contact } from "./components";
 import { allColors } from "../../../shared/utils/colors";
 import { getRandomColor } from "../../../shared/utils/getRandomColor";
 

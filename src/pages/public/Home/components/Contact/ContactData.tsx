@@ -1,5 +1,9 @@
 import styles from "./ContactData.module.css";
-import { InstagramIcon, EmailIcon, PodcastIcon } from "../../../assets/images";
+import {
+    EmailIcon,
+    InstagramIcon,
+    PodcastIcon,
+} from "../../../../../assets/images";
 
 export const ContactData = () => {
     return (
