@@ -11,7 +11,7 @@ body,
 }
 
 body {
-    background: var(--background-body);
+    background: var(--variable-bg);
     max-width: 1500px;
     margin: 0 auto;
 }

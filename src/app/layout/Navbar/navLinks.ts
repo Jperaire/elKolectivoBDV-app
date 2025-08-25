@@ -1,7 +1,7 @@
 export type NavLink = { label: string; path: string };
 
 export const BASE_LINKS: NavLink[] = [
-    { label: "Calendari", path: "/calendar" },
+    { label: "Activitats", path: "/activities" },
     { label: "Notícies", path: "/news" },
     { label: "Merchan", path: "/merch" },
 ];

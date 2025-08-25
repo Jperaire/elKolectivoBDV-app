@@ -1,2 +1,2 @@
+export { ActivitiesPage } from "./ActivitiesPage";
 export { ActivitiesManager } from "./ActivitiesManager";
-export { CalendarPage } from "./CalendarPage";

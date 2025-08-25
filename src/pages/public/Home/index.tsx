@@ -11,10 +11,10 @@ import { Banner } from "../components/Banner";
 import { allColors } from "../../../shared/utils/colors";
 import { getRandomColor } from "../../../shared/utils/getRandomColor";
 
-import styles from "./HomePage.module.css";
+import styles from "./Home.module.css";
 import { sections, description, whatWeDo, values, faqs } from "./homeData";
 
-export const HomePage = () => {
+export const Home = () => {
     return (
         <div className={styles.home}>
             <Banner />

@@ -20,7 +20,7 @@ export const Banner = () => {
                 </p>
             </div>
             <Button
-                to="/calendar"
+                to="/activities"
                 variant="button--main"
                 className="animate__animated animate__pulse animate__infinite"
             >

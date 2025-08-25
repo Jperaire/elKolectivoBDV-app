@@ -7,10 +7,10 @@ import {
 } from "../../../features/auth/firebase/methods";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { Card, Button } from "../../../shared/components";
-import styles from "./ProfilePage.module.css";
+import styles from "./UserProfile.module.css";
 import { ThemeSwitcher, Pallete } from "../../../features/theme/components/";
 
-export const ProfilePage = () => {
+export const UserProfile = () => {
     const { user, userData, loading } = useAuth();
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
     const [password, setPassword] = useState("");

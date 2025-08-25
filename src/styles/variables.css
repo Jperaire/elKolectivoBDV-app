@@ -33,7 +33,7 @@
     --variable-red: var(--pastel-red);
     --variable-orange: var(--pastel-orange);
 
-    --background-body: var(--pastel-bg);
+    --variable-bg: var(--pastel-bg);
 }
 
 /* Energetic theme */
@@ -46,5 +46,5 @@
     --variable-red: var(--energetic-red);
     --variable-orange: var(--energetic-orange);
 
-    --background-body: var(--energetic-bg);
+    --variable-bg: var(--energetic-bg);
 }

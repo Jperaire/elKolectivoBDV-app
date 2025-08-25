@@ -3,7 +3,7 @@
     margin-left: calc(50% - 50vw);
     padding: 15vh 0;
 
-    background: var(--energetic-bg);
+    background: var(--variable-bg);
     display: flex;
     align-items: center;
     justify-content: center;
