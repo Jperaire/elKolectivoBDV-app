@@ -20,6 +20,12 @@ h1 {
     color: rgb(249, 238, 218);
 }
 
+.subtitle {
+    text-align: center;
+    color: #444141;
+    max-width: 550px;
+}
+
 h2 {
     font-size: var(--fs-xl);
     line-height: 1.2;
@@ -52,7 +58,7 @@ h4,
 h5,
 h6 {
     font-family: "Oswald", sans-serif;
-    color: #555;
+    color: #918282;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
 }

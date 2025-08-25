@@ -91,7 +91,6 @@ export const ProfilePage = () => {
                             </div>
                             <Button
                                 type="submit"
-                                size="large"
                                 variant="button--red"
                                 disabled={busy}
                             >
@@ -140,7 +139,6 @@ export const ProfilePage = () => {
                         </div>
                         <Button
                             type="button"
-                            size="large"
                             variant="button--red"
                             onClick={onDelete}
                             disabled={busy}
@@ -159,7 +157,6 @@ export const ProfilePage = () => {
                         <h2 id="signout-title">Tanca la sessió</h2>
                         <Button
                             type="button"
-                            size="large"
                             variant="button--red"
                             onClick={onSignOut}
                             disabled={busy}

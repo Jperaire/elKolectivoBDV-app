@@ -47,11 +47,7 @@ export const Navbar = () => {
 
                     {userData?.role === "admin" && (
                         <li>
-                            <Button
-                                to="/admin"
-                                size="small"
-                                variant="button--blue"
-                            >
+                            <Button to="/admin" variant="button--blue">
                                 Zona Admin
                             </Button>
                         </li>
@@ -59,11 +55,7 @@ export const Navbar = () => {
 
                     {!loading && !user && (
                         <li className={styles.cta}>
-                            <Button
-                                to="/login"
-                                size="small"
-                                variant="button--pink"
-                            >
+                            <Button to="/login" variant="button--pink">
                                 Inicia sessió
                             </Button>
                         </li>

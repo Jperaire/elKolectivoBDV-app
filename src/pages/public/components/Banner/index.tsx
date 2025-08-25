@@ -22,7 +22,6 @@ export const Banner = () => {
             <Button
                 to="/calendar"
                 variant="button--main"
-                size="large"
                 className="animate__animated animate__pulse animate__infinite"
             >
                 Properes activitats

@@ -71,7 +71,7 @@ export const Hamburger = () => {
 
                 {!loading && !user && (
                     <li onClick={() => setOpen(false)}>
-                        <Button to="/login" size="large" variant="button--pink">
+                        <Button to="/login" variant="button--pink">
                             Inicia sessió
                         </Button>
                     </li>
@@ -80,7 +80,6 @@ export const Hamburger = () => {
                 {!loading && user && (
                     <li onClick={() => setOpen(false)}>
                         <Button
-                            size="large"
                             variant="button--red"
                             onClick={handleLogout}
                             isLoading={signingOut}
@@ -93,7 +92,7 @@ export const Hamburger = () => {
 
                 {userData?.role === "admin" && (
                     <li onClick={() => setOpen(false)}>
-                        <Button to="/admin" size="large" variant="button--blue">
+                        <Button to="/admin" variant="button--blue">
                             Zona Admin
                         </Button>
                     </li>

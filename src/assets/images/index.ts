@@ -7,6 +7,7 @@ export { default as EmailIcon } from "./icons/email-icon.png";
 export { default as PodcastIcon } from "./icons/podcast-icon.png";
 export { default as CheckIcon } from "./icons/check-icon.png";
 export { default as UserIcon } from "./icons/user-icon.svg";
+export { default as BackIcon } from "./icons/back-icon.svg";
 
 // logos
 export { default as MainLogo } from "./logos/main-logo.png";

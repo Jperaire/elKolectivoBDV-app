@@ -65,7 +65,7 @@ export const MerchPage = () => {
     return (
         <section className="page">
             <h1>Merchan</h1>
-            <p className={styles.subtitle}>
+            <p className="subtitle">
                 Fem comandes periòdiques. Si t’interessa algun producte,
                 apunta’t a la llista d’espera i t’avisarem per correu quan obrim
                 comanda i t'informarem de com fer el pagament.
@@ -87,7 +87,6 @@ export const MerchPage = () => {
                                     <Button
                                         type="button"
                                         variant="button--pink"
-                                        size="large"
                                         onClick={() => handleAdd(item)}
                                     >
                                         {waitlist[item.id]
@@ -119,17 +118,12 @@ export const MerchPage = () => {
                         justifyContent: "flex-end",
                     }}
                 >
-                    <Button
-                        to="/login"
-                        variant="button--blue"
-                        size="button--medium"
-                    >
+                    <Button to="/login" variant="button--blue">
                         Inicia sessió
                     </Button>
                     <Button
                         type="button"
                         variant="button--gray"
-                        size="button--medium"
                         onClick={() => setShowModal(false)}
                     >
                         Cancel·la

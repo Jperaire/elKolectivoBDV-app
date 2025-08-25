@@ -1,7 +1,3 @@
-.subtitle {
-    text-align: center;
-}
-
 .grid {
     display: grid;
     gap: var(--space-md);

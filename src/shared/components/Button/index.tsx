@@ -7,7 +7,6 @@ type Props = {
     to?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
     variant?: string;
-    size?: string;
     className?: string;
     type?: "button" | "submit" | "reset";
     isLoading?: boolean;
@@ -20,7 +19,6 @@ export const Button = ({
     to,
     onClick,
     variant = "button--blue",
-    size = "button--medium",
     className = "",
     type = "button",
     isLoading = false,
@@ -32,7 +30,6 @@ export const Button = ({
     const classNames = [
         styles.button,
         styles[variant],
-        styles[size],
         className,
         isDisabled ? styles["is-disabled"] : "",
     ]

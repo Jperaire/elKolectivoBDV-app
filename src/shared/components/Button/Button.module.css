@@ -47,11 +47,11 @@
     color: #fff;
 }
 .button--blue {
-    background-color: var(--variable-blue);
+    background-color: var(--energetic-blue);
     color: #fff;
 }
 .button--blue:hover {
-    background-color: var(--variable-green);
+    background-color: var(--pastel-green);
 }
 
 .button--red {
@@ -84,20 +84,4 @@
 }
 .button--purple:hover {
     background-color: var(--variable-yellow);
-}
-
-/* --- Sizes --- */
-.button--small {
-    padding: 0.4rem 0.8rem;
-    font-size: var(--fs-sm);
-}
-
-.button--medium {
-    padding: 0.6rem 1.2rem;
-    font-size: var(--fs-md);
-}
-
-.button--large {
-    padding: 0.8rem 1.5rem;
-    font-size: var(--fs-lg);
 }
