@@ -8,9 +8,16 @@ export { default as PodcastIcon } from "./icons/podcast-icon.png";
 export { default as CheckIcon } from "./icons/check-icon.png";
 export { default as UserIcon } from "./icons/user-icon.svg";
 export { default as BackIcon } from "./icons/back-icon.svg";
+export { default as CopyIcon } from "./icons/copy-icon.svg";
+export { default as QrIcon } from "./icons/qr-icon.svg";
 
 // logos
 export { default as MainLogo } from "./logos/main-logo.png";
+export { default as WhatsAppLogo } from "./logos/whatsapp.png";
+export { default as DriveLogo } from "./logos/google-drive.png";
+export { default as CanvaLogo } from "./logos/canva.png";
+export { default as CalendarLogo } from "./logos/google-calendar.png";
+export { default as MeetLogo } from "./logos/meet-logo.png";
 
 // photos
 export { default as FakeImg } from "./photos/image.png";

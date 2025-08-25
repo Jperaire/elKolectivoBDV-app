@@ -10,7 +10,6 @@
 .home h2 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: var(--space-xl);
-    text-align: center;
 }
 
 /* General Sections */

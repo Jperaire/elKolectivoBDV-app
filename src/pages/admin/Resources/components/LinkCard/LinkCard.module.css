@@ -1,0 +1,47 @@
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.imgLink {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.imgLink img {
+    transition: transform 0.2s ease;
+}
+
+.imgLink img:hover {
+    transform: scale(1.1);
+}
+
+.copyWrapper {
+    display: flex;
+    justify-content: end;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.copyItem {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.copyLabel {
+    font-weight: 600;
+    color: red;
+    font-size: 0.5rem;
+}

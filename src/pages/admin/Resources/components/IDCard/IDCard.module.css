@@ -1,0 +1,33 @@
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.entityTable {
+    font-size: var(--fs-xs);
+}
+
+.entityTable td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 10px;
+}
+
+.entityTable th {
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.entityTable tr:nth-child(even),
+.entityTable tr:nth-child(odd) {
+    background-color: transparent !important;
+}
+
+@media (min-width: 768px) {
+    .entityTable {
+        width: 400px;
+    }
+}

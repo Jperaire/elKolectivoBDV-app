@@ -1,0 +1,19 @@
+.copyIcon {
+    border: 0;
+    cursor: pointer;
+}
+
+.copyIcon img {
+    min-width: 20px;
+    max-width: 20px;
+    opacity: 0.4;
+}
+
+.copyIcon img:hover {
+    opacity: 1;
+}
+
+.copied {
+    color: var(--energetic-green);
+    font-size: var(--fs-xs);
+}

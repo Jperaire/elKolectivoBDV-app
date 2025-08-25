@@ -16,7 +16,6 @@
     align-items: center;
     justify-items: center;
     gap: var(--space-md);
-    text-align: center;
     width: 280px;
 
     border: 1px solid rgba(0, 0, 0, 0.06);
