@@ -78,7 +78,6 @@ label,
 input,
 textarea,
 button,
-table,
-span {
+table {
     font-family: "Montserrat", sans-serif;
 }

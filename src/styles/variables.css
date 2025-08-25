@@ -1,7 +1,8 @@
 :root {
     /* Backgrounds */
     --energetic-bg: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
-    --pastel-bg: #f0f0f0;
+    --pastel-bg: linear-gradient(90deg, #c69cd8, #eea76e, #f6de6c, #86d9db);
+    --plane-bg: #f0f0f0;
 
     /* Colors - Pastel Mode */
     --pastel-purple: #caa8d9;

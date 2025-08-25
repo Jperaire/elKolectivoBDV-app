@@ -29,7 +29,7 @@ export const LinkCard = ({ resource }: LinkCardProps) => {
 
                     {resource.linksExtra?.ical && (
                         <div className={styles.copyItem}>
-                            <span className={styles.copyLabel}>Apple:</span>
+                            <p className={styles.copyLabel}>Apple:</p>
                             <Copy value={resource.linksExtra.ical} />
                         </div>
                     )}

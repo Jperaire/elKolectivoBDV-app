@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { CloseIcon, MenuIcon } from "../../../assets/images";
 import { Button } from "../../../shared/components";
+import { ThemeSwitcher } from "../../../features/theme/components";
 import { signOutUser } from "../../../features/auth/firebase/methods";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "./navLinks";
@@ -97,6 +98,10 @@ export const Hamburger = () => {
                         </Button>
                     </li>
                 )}
+
+                <li>
+                    <ThemeSwitcher />
+                </li>
             </ul>
         </div>
     );
