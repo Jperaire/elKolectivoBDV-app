@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { PublicRoutes, PrivateRoutes, AdminRoutes } from "./";
+
 import { AppLayout } from "../layout/AppLayout";
 import { AdminGuard, PrivateGuard } from "../guards";
+import { PublicRoutes, PrivateRoutes, AdminRoutes } from "./";
 
 export const AppRouter = () => {
     return (

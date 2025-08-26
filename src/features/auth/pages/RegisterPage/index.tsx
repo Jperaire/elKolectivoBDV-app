@@ -1,15 +1,10 @@
 import { useForm } from "@/shared/hooks/useForm";
-import { useAuth, useSubmitState } from "../../hooks/";
 import { validateRegister } from "@/shared/utils";
-import { registerWithEmail } from "../../firebase/methods";
 import { Button, Card } from "@/shared/components";
 
-type RegisterForm = {
-    userName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-};
+import { useAuth, useSubmitState } from "../../hooks/";
+import { registerWithEmail } from "../../firebase/methods";
+import { RegisterForm } from "../../types";
 
 export const RegisterPage = () => {
     const { loading } = useAuth();

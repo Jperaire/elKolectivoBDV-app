@@ -1,6 +1,6 @@
-import styles from "./Unauthorized.module.css";
 import { Button } from "@/shared/components";
 import { unauthorizedGif } from "@/assets/gifs";
+import styles from "./Unauthorized.module.css";
 
 export const Unauthorized = () => (
     <div className="page">

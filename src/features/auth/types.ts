@@ -18,3 +18,10 @@ export interface AppUserData {
         submittedAt?: Timestamp | FieldValue;
     };
 }
+
+export type RegisterForm = {
+    userName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+};

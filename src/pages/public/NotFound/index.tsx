@@ -1,6 +1,6 @@
-import styles from "./NotFound.module.css";
 import { Button } from "@/shared/components";
 import { notFoundGif } from "@/assets/gifs";
+import styles from "./NotFound.module.css";
 
 export const NotFound = () => {
     return (

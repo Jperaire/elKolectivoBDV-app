@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { updateUser } from "@/shared/services/";
 import { updateProfile } from "firebase/auth";
-import { deleteAccount, signOutUser } from "@/features/auth/firebase/methods";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+
 import { Card, Button } from "@/shared/components";
-import styles from "./UserProfile.module.css";
+import { deleteAccount, signOutUser } from "@/features/auth/firebase/methods";
 import { ThemeSwitcher, Pallete } from "@/features/theme/components/";
+import { updateUser } from "@/shared/services/";
+import { useAuth } from "@/features/auth/hooks/useAuth";
+
+import styles from "./UserProfile.module.css";
 
 export const UserProfile = () => {
     const { user, userData, loading } = useAuth();

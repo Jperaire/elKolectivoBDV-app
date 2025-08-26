@@ -1,6 +1,6 @@
 import { IDCard, LinkCard } from "./components";
-import styles from "./Resources.module.css";
 import { LINKS } from "./utils/data";
+import styles from "./Resources.module.css";
 
 export const Resources = () => {
     return (

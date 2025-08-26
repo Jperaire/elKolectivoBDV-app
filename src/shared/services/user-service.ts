@@ -5,7 +5,7 @@ import {
     updateDoc,
     serverTimestamp,
 } from "firebase/firestore";
-import { db } from "@/firebase/firestore";
+import { db } from "@/lib/firebase/firestore";
 import type { AppUserData } from "@/features/auth/types";
 
 export async function getUser(uid: string): Promise<AppUserData | null> {

@@ -1,6 +1,6 @@
-export { signOutUser } from "./signOutUser";
+export { deleteAccount } from "./deleteAccount";
 export { loginWithEmail } from "./loginWithEmail";
 export { loginWithGoogle } from "./loginWithGoogle";
 export { registerWithEmail } from "./registerWithEmail";
 export { resetPassword } from "./resetPassword";
-export { deleteAccount } from "./deleteAccount";
+export { signOutUser } from "./signOutUser";

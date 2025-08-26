@@ -1,8 +1,7 @@
 import { ContactData } from "./ContactData";
 import { ContactForm } from "./ContactForm";
-
-import styles from "./Contact.module.css";
 import { Map } from "../Map";
+import styles from "./Contact.module.css";
 
 export const Contact = () => {
     return (

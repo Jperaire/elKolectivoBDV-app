@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+
+import { Card } from "@/shared/components";
 import { adminActionsData } from "./adminActionsData";
 import styles from "./AdminDashboard.module.css";
-import { Card } from "@/shared/components";
 
 export const AdminDashboard = () => {
     return (

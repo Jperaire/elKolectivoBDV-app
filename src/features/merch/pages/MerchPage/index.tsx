@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import styles from "./MerchPage.module.css";
-import { Card, Button, Modal } from "@/shared/components";
-import { FakeImg } from "@/assets/images";
-import { useAuth } from "@/features/auth/hooks";
-import { joinWaitlist, leaveWaitlist } from "../../services/waitlist-service";
 import { doc, getDoc } from "firebase/firestore";
 
-import { Item } from "../../types";
-import { db } from "@/firebase/firestore";
-import { merchanItems } from "../../data/items";
+import { Card, Button, Modal } from "@/shared/components";
+import { db } from "@/lib/firebase/firestore";
+import { FakeImg } from "@/assets/images";
 import { fmtEUR } from "@/shared/utils";
+import { useAuth } from "@/features/auth/hooks";
+
+import { Item } from "../../types";
+import { joinWaitlist, leaveWaitlist } from "../../services/waitlist-service";
+import { merchanItems } from "../../data/items";
+
+import styles from "./MerchPage.module.css";
 
 export const MerchPage = () => {
     const { user } = useAuth();

@@ -1,12 +1,12 @@
-import { CheckIcon, FakeImg } from "@/assets/images";
-
 import { Accordion, AccordionItem, Animated, Card } from "@/shared/components";
-import { Banner, Contact } from "./components";
 import { allColors } from "@/shared/utils/colors";
+import { CheckIcon, FakeImg } from "@/assets/images";
 import { getRandomColor } from "@/shared/utils/getRandomColor";
 
-import styles from "./Home.module.css";
+import { Banner, Contact } from "./components";
 import { sections, description, whatWeDo, values, faqs } from "./homeData";
+
+import styles from "./Home.module.css";
 
 export const Home = () => {
     return (
