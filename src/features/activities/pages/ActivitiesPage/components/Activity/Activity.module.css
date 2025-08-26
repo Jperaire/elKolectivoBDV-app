@@ -1,6 +1,6 @@
 .card {
     padding: 2rem 1rem;
-    max-width: 500px;
+    width: 500px;
 }
 
 .activity {
@@ -42,6 +42,21 @@
 
 .type::before {
     content: "🏷️ ";
+}
+
+.signupReq {
+    display: inline-block;
+
+    font-size: 0.9rem;
+    color: #2c2c2c;
+}
+
+.signupReq::before {
+    content: "📝 ";
+}
+
+.past {
+    opacity: 0.75;
 }
 
 /* Buttons */
