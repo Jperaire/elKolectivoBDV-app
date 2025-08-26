@@ -12,12 +12,9 @@ export const Activity = ({
     description = "",
     date,
     location,
-    type = "",
     capacity,
     attendeesCount = 0,
     requiresSignup = false,
-    className = "",
-    isRegistered,
 }: ActivityProps) => {
     const navigate = useNavigate();
 
@@ -47,9 +44,7 @@ export const Activity = ({
         : undefined;
 
     return (
-        <Card
-            className={`${styles.card} ${past ? styles.past : ""} ${className}`}
-        >
+        <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
                 <p className={styles.datePill}>{dateLabel}</p>
                 <h2>{title}</h2>
@@ -67,7 +62,6 @@ export const Activity = ({
                             {location}
                         </a>
                     )}
-                    {type && <span className={styles.type}>{type}</span>}
                     <CapacityBadge
                         capacity={capacity}
                         attendeesCount={attendeesCount}
@@ -75,7 +69,7 @@ export const Activity = ({
                     {!requiresSignup && (
                         <span
                             className={styles.signupReq}
-                            aria-label="Aquesta activitat requereix inscripció"
+                            aria-label="Aquesta activitat no requereix inscripció"
                         >
                             No requereix inscripció
                         </span>
@@ -83,7 +77,7 @@ export const Activity = ({
                 </div>
 
                 <div className={styles.actions}>
-                    {requiresSignup && !past && !isRegistered && (
+                    {requiresSignup && !past && (
                         <Button
                             className={styles.primary}
                             disabled={isFull}

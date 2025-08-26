@@ -3,3 +3,29 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-md);
 }
+
+.controlsRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.checkbox,
+.capacity {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.capacity {
+    display: flex;
+    justify-content: center;
+}
+
+.capacity input {
+    width: 45px;
+    height: 30px;
+    padding: 2px;
+}

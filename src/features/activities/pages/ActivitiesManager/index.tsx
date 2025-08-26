@@ -3,6 +3,7 @@ import { Card, Button } from "../../../../shared/components";
 import { useForm } from "../../../../shared/hooks/useForm";
 import { ActivityForm } from "../../types";
 import { createActivity } from "../../firebase/methods";
+import { useState } from "react";
 
 export const ActivitiesManager = () => {
     const {
@@ -11,6 +12,9 @@ export const ActivitiesManager = () => {
         time,
         location,
         description,
+        requiresSignup,
+        hasCapacity,
+        capacity,
         onInputChange,
         onResetForm,
     } = useForm<ActivityForm>({
@@ -19,17 +23,43 @@ export const ActivitiesManager = () => {
         time: "",
         location: "",
         description: "",
+        requiresSignup: false,
+        hasCapacity: false,
+        capacity: "",
     });
+
+    const [saving, setSaving] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!date || !time) {
+            alert("Falta data i hora.");
+            return;
+        }
+
         try {
-            await createActivity({ title, date, time, location, description });
+            setSaving(true);
+            const capNum =
+                hasCapacity && capacity !== "" ? Number(capacity) : undefined;
+
+            await createActivity({
+                title,
+                date,
+                time,
+                location,
+                description,
+                requiresSignup,
+                capacity: Number.isFinite(capNum) ? capNum : undefined,
+            });
+
             onResetForm();
             alert("✅ Activitat creada.");
         } catch (err) {
             console.error(err);
             alert("❌ No s'ha pogut crear l'activitat.");
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -75,14 +105,56 @@ export const ActivitiesManager = () => {
 
                         <textarea
                             name="description"
-                            placeholder="Descripció (opcional)"
+                            placeholder="Descripció"
                             rows={4}
                             value={description}
                             onChange={onInputChange}
                         />
 
-                        <Button type="submit" variant="button--blue">
-                            Crear activitat
+                        <div className={styles.controlsRow}>
+                            <label className={styles.checkbox}>
+                                <input
+                                    type="checkbox"
+                                    name="requiresSignup"
+                                    checked={requiresSignup}
+                                    onChange={onInputChange}
+                                />
+                                <span>Requereix inscripció</span>
+                            </label>
+
+                            <label className={styles.checkbox}>
+                                <input
+                                    type="checkbox"
+                                    name="hasCapacity"
+                                    checked={hasCapacity}
+                                    onChange={onInputChange}
+                                />
+                                <span>Té aforament</span>
+                            </label>
+
+                            {hasCapacity && (
+                                <label className={styles.capacity}>
+                                    <span>Aforament:</span>
+                                    <input
+                                        id="capacity"
+                                        type="number"
+                                        name="capacity"
+                                        min={0}
+                                        inputMode="numeric"
+                                        value={capacity}
+                                        onChange={onInputChange}
+                                        placeholder="0"
+                                    />
+                                </label>
+                            )}
+                        </div>
+
+                        <Button
+                            type="submit"
+                            variant="button--blue"
+                            disabled={saving}
+                        >
+                            {saving ? "Guardant…" : "Crear activitat"}
                         </Button>
                     </form>
                 </section>
