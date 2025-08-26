@@ -18,6 +18,8 @@ export const Activity = () => {
     const attendeesCount = 28;
     const isFull = Number.isFinite(capacity) && attendeesCount >= capacity;
 
+    const requiresSignup = true;
+
     return (
         <Card className={styles.card}>
             <article className={styles.activity}>
@@ -46,13 +48,15 @@ export const Activity = () => {
                 </div>
 
                 <div className={styles.actions}>
-                    <Button
-                        className={styles.primary}
-                        disabled={isFull}
-                        title={isFull ? "Aforament complet" : undefined}
-                    >
-                        Inscriu-t’hi
-                    </Button>
+                    {requiresSignup && (
+                        <Button
+                            className={styles.primary}
+                            disabled={isFull}
+                            title={isFull ? "Aforament complet" : undefined}
+                        >
+                            Inscriu-t’hi
+                        </Button>
+                    )}
                     <Button className={styles.ghost}>Google Calendar</Button>
                     <Button className={styles.secondary}>ICS</Button>
                 </div>
