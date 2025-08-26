@@ -1,11 +1,9 @@
 @font-face {
     font-family: "Oswald";
-    src: url("../assets/fonts/Oswald//Oswald-VariableFont_wght.ttf")
-        format("truetype");
+    src: url("../assets/fonts/Oswald/Oswald.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url(../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf)
-        format("truetype");
+    src: url(../assets/fonts/Montserrat/Montserrat.ttf) format("truetype");
 }
