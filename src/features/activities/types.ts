@@ -5,3 +5,9 @@ export type ActivityForm = {
     location: string;
     description: string;
 };
+
+export type CapacityBadgeProps = {
+    capacity?: number;
+    attendeesCount?: number;
+    className?: string;
+};

@@ -6,7 +6,7 @@
 .activity {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-md);
 }
 
 .datePill {
@@ -17,13 +17,31 @@
     font-size: 0.8rem;
 }
 
+.meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
 .locationLink {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--energetic-blue);
 }
 
 .locationLink:hover {
     text-decoration: underline;
+}
+
+.locationLink::before {
+    content: "📍 ";
+}
+
+.type::before {
+    content: "🏷️ ";
 }
 
 /* Buttons */

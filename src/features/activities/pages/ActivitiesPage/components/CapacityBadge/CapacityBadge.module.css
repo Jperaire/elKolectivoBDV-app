@@ -1,0 +1,12 @@
+.badge {
+    display: inline-block;
+}
+
+.full {
+    background: var(--energetic-red);
+    color: #fff;
+}
+
+.badge::before {
+    content: "👥 ";
+}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.css";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
     isLoading?: boolean;
     loadingText?: string;
     disabled?: boolean;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
     children,
