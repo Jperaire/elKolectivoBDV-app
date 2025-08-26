@@ -1,0 +1,77 @@
+.card {
+    padding: 2rem 1rem;
+    max-width: 500px;
+}
+
+.activity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.datePill {
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--pastel-blue);
+    font-size: 0.8rem;
+}
+
+.meta {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    color: #555;
+}
+
+.location::before {
+    content: "📍 ";
+}
+.type::before {
+    content: "🏷️ ";
+}
+
+/* Buttons */
+
+.actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.primary,
+.secondary,
+.ghost {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.primary {
+    background: var(--energetic-blue);
+}
+
+.secondary {
+    background: var(--pastel-yellow);
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+.ghost {
+    background: transparent;
+    color: var(--color-text, #444);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+    .datePill {
+        grid-column: 1;
+    }
+    .title,
+    .desc,
+    .meta,
+    .actions {
+        grid-column: 2;
+    }
+}
