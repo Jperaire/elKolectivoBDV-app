@@ -1,9 +1,11 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Card } from "../../../../../../shared/components";
 import { formatDateLabel, isPast } from "../../../../../../shared/utils";
 import { ActivityProps } from "../../../../types";
 import { CapacityBadge } from "../CapacityBadge";
 
 import styles from "./Activity.module.css";
+import { useAuth } from "../../../../../auth/hooks";
 
 export const Activity = ({
     title,
@@ -16,6 +18,19 @@ export const Activity = ({
     requiresSignup = false,
     className = "",
 }: ActivityProps) => {
+    const navigate = useNavigate();
+    const loc = useLocation();
+    const { user } = useAuth();
+
+    const handleSignupClick = () => {
+        if (!user) {
+            const redirect = `${loc.pathname}${loc.search}${loc.hash}`;
+            navigate(`/login?redirect=${encodeURIComponent(redirect)}`);
+            return;
+        }
+        // TODO: implementar inscripción real (cuando toque)
+    };
+
     const start = typeof date === "string" ? new Date(date) : date;
     const dateLabel = formatDateLabel(start);
     const past = isPast(start);
@@ -73,6 +88,7 @@ export const Activity = ({
                             className={styles.primary}
                             disabled={isFull}
                             title={isFull ? "Aforament complet" : undefined}
+                            onClick={handleSignupClick}
                         >
                             Inscriu-t’hi
                         </Button>
