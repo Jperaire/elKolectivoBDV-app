@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import styles from "./LoginPage.module.css";
-import { useForm } from "../../../../shared/hooks/useForm";
+import { useForm } from "@/shared/hooks/useForm";
 import { useSubmitState } from "../../hooks";
-import { validateLogin } from "../../../../shared/utils";
+import { validateLogin } from "@/shared/utils";
 import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
-import { Button, Card } from "../../../../shared/components";
+import { Button, Card } from "@/shared/components";
 import { useAuth } from "../../hooks/useAuth";
 
 type LoginForm = { email: string; password: string };

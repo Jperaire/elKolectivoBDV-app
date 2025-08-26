@@ -1,4 +1,4 @@
-import { FakeImg } from "../../../assets/images";
+import { FakeImg } from "@/assets/images";
 import { Item } from "../types";
 
 export const merchanItems: Item[] = [

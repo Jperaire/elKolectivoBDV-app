@@ -4,7 +4,7 @@ import {
     MembersImg,
     NewsImg,
     MerchImg,
-} from "../../../assets/images";
+} from "@/assets/images";
 
 export const adminActionsData = [
     {

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { useAuth } from "../../../features/auth/hooks/useAuth";
-import { signOutUser } from "../../../features/auth/firebase/methods";
+import { useAuth } from "@/features/auth/hooks/useAuth";
+import { signOutUser } from "@/features/auth/firebase/methods";
 
 import { BASE_LINKS } from "./navLinks";
 
-import { UserIcon } from "../../../assets/images";
-import { MainLogo } from "../../../assets/images/index";
-import { Button } from "../../../shared/components";
+import { UserIcon } from "@/assets/images";
+import { MainLogo } from "@/assets/images/index";
+import { Button } from "@/shared/components";
 import { Hamburger } from "./Hamburger";
 
 import styles from "./Navbar.module.css";

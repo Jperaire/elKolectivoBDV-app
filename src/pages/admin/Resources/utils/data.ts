@@ -4,7 +4,7 @@ import {
     DriveLogo,
     MeetLogo,
     WhatsAppLogo,
-} from "../../../../assets/images";
+} from "@/assets/images";
 
 import { LinkItem, EntityInfo } from "./types";
 

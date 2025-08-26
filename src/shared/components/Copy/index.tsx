@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CopyIcon } from "../../../assets/images";
+import { CopyIcon } from "@/assets/images";
 import styles from "./Copy.module.css";
 
 type Props = {

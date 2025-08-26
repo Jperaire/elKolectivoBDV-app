@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { serverTimestamp } from "firebase/firestore";
-import { updateUser } from "../../../../shared/services";
-import { useAuth } from "../../../auth/hooks/useAuth";
+import { serverTimestamp } from "firebase/database";
+import { updateUser } from "@/shared/services";
+import { useAuth } from "@/features/auth/hooks";
 
 export const TestPage = () => {
     const { user } = useAuth();

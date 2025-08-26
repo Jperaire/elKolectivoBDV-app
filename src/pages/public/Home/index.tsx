@@ -1,14 +1,9 @@
-import { CheckIcon, FakeImg } from "../../../assets/images";
+import { CheckIcon, FakeImg } from "@/assets/images";
 
-import {
-    Accordion,
-    AccordionItem,
-    Animated,
-    Card,
-} from "../../../shared/components";
+import { Accordion, AccordionItem, Animated, Card } from "@/shared/components";
 import { Banner, Contact } from "./components";
-import { allColors } from "../../../shared/utils/colors";
-import { getRandomColor } from "../../../shared/utils/getRandomColor";
+import { allColors } from "@/shared/utils/colors";
+import { getRandomColor } from "@/shared/utils/getRandomColor";
 
 import styles from "./Home.module.css";
 import { sections, description, whatWeDo, values, faqs } from "./homeData";

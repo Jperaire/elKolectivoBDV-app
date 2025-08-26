@@ -1,6 +1,6 @@
 import styles from "./ActivitiesManager.module.css";
-import { Card, Button } from "../../../../shared/components";
-import { useForm } from "../../../../shared/hooks/useForm";
+import { Card, Button } from "@/shared/components";
+import { useForm } from "@/shared/hooks/useForm";
 import { ActivityForm } from "../../types";
 import { createActivity } from "../../firebase/methods";
 import { useState } from "react";

@@ -1,5 +1,5 @@
-import { Button, Card } from "../../../../shared/components";
-import { useForm } from "../../../../shared/hooks/useForm";
+import { Button, Card } from "@/shared/components";
+import { useForm } from "@/shared/hooks/useForm";
 import { NewsForm } from "../../types";
 
 export const NewsManager = () => {

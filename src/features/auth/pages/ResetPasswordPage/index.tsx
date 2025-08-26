@@ -1,8 +1,8 @@
 import styles from "./ResetPasswordPage.module.css";
-import { useForm } from "../../../../shared/hooks/useForm";
+import { useForm } from "@/shared/hooks/useForm";
 import { useSubmitState } from "../../hooks/";
 import { resetPassword } from "../../firebase/methods";
-import { Button, Card } from "../../../../shared/components";
+import { Button, Card } from "@/shared/components";
 
 const isEmail = (v: string) => /^\S+@\S+\.\S+$/.test(v);
 

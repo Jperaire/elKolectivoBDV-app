@@ -1,4 +1,4 @@
-import { Card } from "../../../../shared/components";
+import { Card } from "@/shared/components";
 
 export const NewsPage = () => {
     return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Copy, Button } from "../../../../../shared/components";
+import { Button, Card, Copy } from "@/shared/components";
 import { ENTITY } from "../../utils/data";
 
 import styles from "./IDCard.module.css";

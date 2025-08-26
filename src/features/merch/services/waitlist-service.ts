@@ -6,7 +6,7 @@ import {
     getDocs,
     deleteDoc,
 } from "firebase/firestore";
-import { db } from "../../../firebase/firestore";
+import { db } from "@/firebase/firestore";
 import { WaitlistEntry, WaitlistItem } from "../types";
 
 // 👉 apuntar un usuari

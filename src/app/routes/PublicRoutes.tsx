@@ -1,16 +1,16 @@
 import { Route } from "react-router-dom";
 
-import { Home, Unauthorized, NotFound } from "../../pages/public";
+import { Home, Unauthorized, NotFound } from "@/pages/public";
 
 import {
     LoginPage,
     RegisterPage,
     ResetPasswordPage,
-} from "../../features/auth/pages";
+} from "@/features/auth/pages";
 
-import { MerchPage } from "../../features/merch/pages";
-import { NewsPage } from "../../features/news/pages";
-import { ActivitiesPage } from "../../features/activities/pages";
+import { MerchPage } from "@/features/merch/pages";
+import { NewsPage } from "@/features/news/pages";
+import { ActivitiesPage } from "@/features/activities/pages";
 
 export const PublicRoutes = (
     <>

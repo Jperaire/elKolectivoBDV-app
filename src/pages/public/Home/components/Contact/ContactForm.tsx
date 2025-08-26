@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useForm } from "../../../../../shared/hooks/useForm";
-import { validateContact } from "../../../../../shared/utils";
-import { Button } from "../../../../../shared/components";
-import { sendEmail } from "../../../../../shared/services";
+
 import type { EmailJSResponseStatus } from "@emailjs/browser";
+
+import { validateContact } from "@/shared/utils";
+import { sendEmail } from "@/shared/services";
+import { Button } from "@/shared/components";
+import { useForm } from "@/shared/hooks/useForm";
 
 export const ContactForm = () => {
     const { name, email, message, onInputChange, onResetForm } = useForm({

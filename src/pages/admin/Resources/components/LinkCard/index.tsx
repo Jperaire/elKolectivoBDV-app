@@ -1,5 +1,6 @@
+import { Card, Copy } from "@/shared/components";
 import type { LinkCardProps } from "../../utils/types";
-import { Card, Copy } from "../../../../../shared/components";
+
 import styles from "./LinkCard.module.css";
 
 export const LinkCard = ({ resource }: LinkCardProps) => {

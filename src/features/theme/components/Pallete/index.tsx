@@ -1,5 +1,5 @@
 import styles from "./Pallete.module.css";
-import { themeVariables } from "../../../../shared/utils";
+import { themeVariables } from "@/shared/utils";
 
 export const Pallete = () => {
     return (

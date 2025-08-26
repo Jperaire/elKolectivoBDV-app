@@ -1,8 +1,8 @@
-import { useForm } from "../../../../shared/hooks/useForm";
+import { useForm } from "@/shared/hooks/useForm";
 import { useAuth, useSubmitState } from "../../hooks/";
-import { validateRegister } from "../../../../shared/utils";
+import { validateRegister } from "@/shared/utils";
 import { registerWithEmail } from "../../firebase/methods";
-import { Button, Card } from "../../../../shared/components";
+import { Button, Card } from "@/shared/components";
 
 type RegisterForm = {
     userName: string;

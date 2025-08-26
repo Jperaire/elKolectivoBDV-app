@@ -7,7 +7,7 @@ import {
     getDocs,
     serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../../../firebase/firestore";
+import { db } from "@/firebase/firestore";
 import { ActivityProps } from "../types";
 
 // Une "YYYY-MM-DD" + "HH:mm" en un Date

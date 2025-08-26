@@ -4,8 +4,8 @@ import { getAllWaitlist } from "../../services/waitlist-service";
 import { WaitlistEntry } from "../../types";
 
 import styles from "./WaitList.module.css";
-import { Button } from "../../../../shared/components";
-import { BackIcon } from "../../../../assets/images";
+import { Button } from "@/shared/components";
+import { BackIcon } from "@/assets/images";
 
 export const Waitlist = () => {
     const [entries, setEntries] = useState<WaitlistEntry[]>([]);

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Card } from "../../../../../../shared/components";
-import { formatDateLabel, isPast } from "../../../../../../shared/utils";
-import { ActivityProps } from "../../../../types";
+import { Button, Card } from "@/shared/components";
+import { formatDateLabel, isPast } from "@/shared/utils";
+import { ActivityProps } from "@/features/activities/types";
 import { CapacityBadge } from "../CapacityBadge";
 
 import styles from "./Activity.module.css";
-import { useAuth } from "../../../../../auth/hooks";
+import { useAuth } from "@/features/auth/hooks";
 
 export const Activity = ({
     title,
