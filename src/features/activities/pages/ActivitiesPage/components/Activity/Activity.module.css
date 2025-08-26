@@ -17,18 +17,13 @@
     font-size: 0.8rem;
 }
 
-.meta {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-    color: #555;
+.locationLink {
+    font-size: 0.7rem;
+    color: var(--energetic-blue);
 }
 
-.location::before {
-    content: "📍 ";
-}
-.type::before {
-    content: "🏷️ ";
+.locationLink:hover {
+    text-decoration: underline;
 }
 
 /* Buttons */
@@ -62,16 +57,4 @@
     background: transparent;
     color: var(--color-text, #444);
     border-color: rgba(0, 0, 0, 0.12);
-}
-
-@media (min-width: 768px) {
-    .datePill {
-        grid-column: 1;
-    }
-    .title,
-    .desc,
-    .meta,
-    .actions {
-        grid-column: 2;
-    }
 }
