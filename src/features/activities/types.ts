@@ -23,4 +23,5 @@ export type ActivityProps = {
     attendeesCount?: number;
     requiresSignup?: boolean;
     className?: string;
+    isRegistered?: boolean;
 };

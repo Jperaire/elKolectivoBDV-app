@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Card } from "../../../../../../shared/components";
 import { formatDateLabel, isPast } from "../../../../../../shared/utils";
 import { ActivityProps } from "../../../../types";
@@ -17,15 +17,15 @@ export const Activity = ({
     attendeesCount = 0,
     requiresSignup = false,
     className = "",
+    isRegistered,
 }: ActivityProps) => {
     const navigate = useNavigate();
-    const loc = useLocation();
+
     const { user } = useAuth();
 
     const handleSignupClick = () => {
         if (!user) {
-            const redirect = `${loc.pathname}${loc.search}${loc.hash}`;
-            navigate(`/login?redirect=${encodeURIComponent(redirect)}`);
+            navigate(`/login`);
             return;
         }
         // TODO: implementar inscripción real (cuando toque)
@@ -83,7 +83,7 @@ export const Activity = ({
                 </div>
 
                 <div className={styles.actions}>
-                    {requiresSignup && !past && (
+                    {requiresSignup && !past && !isRegistered && (
                         <Button
                             className={styles.primary}
                             disabled={isFull}

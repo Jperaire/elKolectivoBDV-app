@@ -2,6 +2,7 @@ import styles from "./ActivitiesManager.module.css";
 import { Card, Button } from "../../../../shared/components";
 import { useForm } from "../../../../shared/hooks/useForm";
 import { ActivityForm } from "../../types";
+import { createActivity } from "../../firebase/methods";
 
 export const ActivitiesManager = () => {
     const {
@@ -20,18 +21,16 @@ export const ActivitiesManager = () => {
         description: "",
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // TODO: guardar en Firestore
-        console.log("createActivity →", {
-            title,
-            date,
-            time,
-            location,
-            description,
-        });
-        onResetForm();
-        alert("✅ Activitat creada.");
+        try {
+            await createActivity({ title, date, time, location, description });
+            onResetForm();
+            alert("✅ Activitat creada.");
+        } catch (err) {
+            console.error(err);
+            alert("❌ No s'ha pogut crear l'activitat.");
+        }
     };
 
     return (
