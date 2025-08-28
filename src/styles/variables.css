@@ -25,26 +25,10 @@
 
 /* Pastel theme */
 [data-theme="pastel"] {
-    --variable-purple: var(--pastel-purple);
-    --variable-pink: var(--pastel-pink);
-    --variable-yellow: var(--pastel-yellow);
-    --variable-blue: var(--pastel-blue);
-    --variable-green: var(--pastel-green);
-    --variable-red: var(--pastel-red);
-    --variable-orange: var(--pastel-orange);
-
     --variable-bg: var(--pastel-bg);
 }
 
 /* Energetic theme */
 [data-theme="energetic"] {
-    --variable-purple: var(--energetic-purple);
-    --variable-pink: var(--energetic-pink);
-    --variable-yellow: var(--energetic-yellow);
-    --variable-blue: var(--energetic-blue);
-    --variable-green: var(--energetic-green);
-    --variable-red: var(--energetic-red);
-    --variable-orange: var(--energetic-orange);
-
     --variable-bg: var(--energetic-bg);
 }

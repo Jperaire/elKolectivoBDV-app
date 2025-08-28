@@ -17,7 +17,8 @@
 
 .loading span {
     font-family: "Montserrat";
-    color: #333;
+    color: #fff;
+    font-weight: 400;
 }
 
 @keyframes spin {

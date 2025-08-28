@@ -1,10 +1,4 @@
-import {
-    Accordion,
-    AccordionItem,
-    Animated,
-    Card,
-    Loading,
-} from "@/shared/components";
+import { Accordion, AccordionItem, Animated, Card } from "@/shared/components";
 import { allColors } from "@/shared/utils/colors";
 import { CheckIcon, FakeImg } from "@/assets/images";
 import { getRandomColor } from "@/shared/utils/getRandomColor";

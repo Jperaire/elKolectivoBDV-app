@@ -30,5 +30,5 @@
 }
 
 .segmentBtn:focus-visible {
-    outline: 2px solid var(--variable-blue);
+    outline: 2px solid var(--energetic-blue);
 }

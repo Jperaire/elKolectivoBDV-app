@@ -13,7 +13,7 @@
     padding: var(--space-md) var(--space-lg);
     color: #fff;
     font-size: 0.9rem;
-    background-color: var(--variable-purple);
+    background-color: var(--energetic-purple);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -22,7 +22,7 @@
 }
 
 .header:hover {
-    background-color: var(--variable-yellow);
+    background-color: var(--energetic-yellow);
 }
 
 .icon {

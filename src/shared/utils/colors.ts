@@ -1,11 +1,11 @@
 export const themeVariables = [
-    "var(--variable-purple)",
-    "var(--variable-pink)",
-    "var(--variable-blue)",
-    "var(--variable-green)",
-    "var(--variable-orange)",
-    "var(--variable-yellow)",
-    "var(--variable-red)",
+    "var(--energetic-purple)",
+    "var(--energetic-pink)",
+    "var(--energetic-blue)",
+    "var(--energetic-green)",
+    "var(--energetic-orange)",
+    "var(--energetic-yellow)",
+    "var(--energetic-red)",
 ];
 
 export const pastelColors = [
