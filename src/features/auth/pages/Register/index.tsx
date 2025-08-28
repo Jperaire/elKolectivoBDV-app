@@ -1,12 +1,12 @@
 import { useForm } from "@/shared/hooks/useForm";
 import { validateRegister } from "@/shared/utils";
-import { Button, Card } from "@/shared/components";
+import { Button, Card, Loading } from "@/shared/components";
 
-import { useAuth, useSubmitState } from "../../hooks/";
+import { useAuth, useSubmitState } from "../../hooks";
 import { registerWithEmail } from "../../firebase/methods";
 import { RegisterForm } from "../../types";
 
-export const RegisterPage = () => {
+export const Register = () => {
     const { loading } = useAuth();
 
     const { error, success, submitting, start, stop, fail, ok } =
@@ -59,7 +59,7 @@ export const RegisterPage = () => {
         }
     };
 
-    if (loading) return <p>Carregant...</p>;
+    if (loading) return <Loading message="Comprovant sessió…" />;
 
     return (
         <div className="page">

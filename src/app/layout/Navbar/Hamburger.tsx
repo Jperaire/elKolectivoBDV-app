@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Button } from "@/shared/components";
+import { Button, Loading } from "@/shared/components";
 import { CloseIcon, MenuIcon } from "@/assets/images";
 import { signOutUser } from "@/features/auth/firebase/methods";
 import { ThemeSwitcher } from "@/features/theme/components";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 
 import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "./navLinks";
-
 import styles from "./Hamburger.module.css";
 
 export const Hamburger = () => {
@@ -48,12 +47,13 @@ export const Hamburger = () => {
                 </button>
             )}
 
-            <ul
-                id="mobile-menu"
-                className={`${styles.menuLinks} ${open ? styles.open : ""}`}
+            <div
                 role="dialog"
                 aria-modal="true"
-                aria-hidden={!open}
+                aria-label="Menú principal"
+                id="mobile-menu"
+                className={`${styles.menuLinks} ${open ? styles.open : ""}`}
+                hidden={!open}
             >
                 {open && (
                     <button
@@ -65,45 +65,54 @@ export const Hamburger = () => {
                     </button>
                 )}
 
-                {links.map((link) => (
-                    <li key={link.path} onClick={() => setOpen(false)}>
-                        <Link to={link.path}>{link.label}</Link>
-                    </li>
-                ))}
+                <ul>
+                    {links.map((link) => (
+                        <li key={link.path} onClick={() => setOpen(false)}>
+                            <Link to={link.path}>{link.label}</Link>
+                        </li>
+                    ))}
 
-                {!loading && !user && (
-                    <li onClick={() => setOpen(false)}>
-                        <Button to="/login" variant="button--pink">
-                            Inicia sessió
-                        </Button>
-                    </li>
-                )}
+                    {loading && (
+                        <li>
+                            <Loading message="Comprovant usuari…" />
+                        </li>
+                    )}
 
-                {!loading && user && (
-                    <li onClick={() => setOpen(false)}>
-                        <Button
-                            variant="button--red"
-                            onClick={handleLogout}
-                            isLoading={signingOut}
-                            loadingText="Tancant…"
-                        >
-                            Tanca sessió
-                        </Button>
-                    </li>
-                )}
+                    {!loading && !user && (
+                        <li onClick={() => setOpen(false)}>
+                            <Button to="/login" variant="button--pink">
+                                Inicia sessió
+                            </Button>
+                        </li>
+                    )}
 
-                {userData?.role === "admin" && (
-                    <li onClick={() => setOpen(false)}>
-                        <Button to="/admin" variant="button--blue">
-                            Zona Admin
-                        </Button>
-                    </li>
-                )}
+                    {!loading && user && (
+                        <li onClick={() => setOpen(false)}>
+                            <Button
+                                variant="button--red"
+                                onClick={handleLogout}
+                                isLoading={signingOut}
+                                loadingText="Tancant…"
+                                aria-busy={signingOut}
+                            >
+                                Tanca sessió
+                            </Button>
+                        </li>
+                    )}
 
-                <li>
-                    <ThemeSwitcher />
-                </li>
-            </ul>
+                    {userData?.role === "admin" && (
+                        <li onClick={() => setOpen(false)}>
+                            <Button to="/admin" variant="button--blue">
+                                Zona Admin
+                            </Button>
+                        </li>
+                    )}
+
+                    <li>
+                        <ThemeSwitcher />
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 };

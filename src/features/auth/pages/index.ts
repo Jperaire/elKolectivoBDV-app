@@ -1,3 +1,3 @@
-export { LoginPage } from "./LoginPage";
-export { RegisterPage } from "./RegisterPage";
-export { ResetPasswordPage } from "./ResetPasswordPage";
+export { Login } from "./Login";
+export { Register } from "./Register";
+export { ResetPassword } from "./ResetPassword";

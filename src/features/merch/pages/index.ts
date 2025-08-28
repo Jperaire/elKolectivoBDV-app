@@ -1,2 +1,2 @@
-export { MerchPage } from "./MerchPage";
+export { Merch } from "./Merch";
 export { Waitlist } from "./WaitList";

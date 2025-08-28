@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 
-import { Card, Button } from "@/shared/components";
+import { Card, Button, Loading } from "@/shared/components";
 import { deleteAccount, signOutUser } from "@/features/auth/firebase/methods";
 import { ThemeSwitcher, Pallete } from "@/features/theme/components/";
 import { updateUser } from "@/shared/services/";
@@ -16,7 +16,7 @@ export const UserProfile = () => {
     const [busy, setBusy] = useState(false);
     const [status, setStatus] = useState<string>("");
 
-    if (loading) return <p>Carregant…</p>;
+    if (loading) return <Loading message="Comprovant sessió…" />;
     if (!user) return <p>No has iniciat sessió.</p>;
 
     const run = async (fn: () => Promise<void>) => {

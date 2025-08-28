@@ -2,26 +2,22 @@ import { Route } from "react-router-dom";
 
 import { Home, Unauthorized, NotFound } from "@/pages/public";
 
-import {
-    LoginPage,
-    RegisterPage,
-    ResetPasswordPage,
-} from "@/features/auth/pages";
+import { Login, Register, ResetPassword } from "@/features/auth/pages";
 
-import { MerchPage } from "@/features/merch/pages";
+import { Merch } from "@/features/merch/pages";
 import { NewsPage } from "@/features/news/pages";
 import { ActivitiesPage } from "@/features/activities/pages";
 
 export const PublicRoutes = (
     <>
         <Route index element={<Home />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="merch" element={<MerchPage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="merch" element={<Merch />} />
         <Route path="activities" element={<ActivitiesPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-        <Route path="reset-password" element={<ResetPasswordPage />} />
+        <Route path="reset-password" element={<ResetPassword />} />
         <Route path="*" element={<NotFound />} />
     </>
 );

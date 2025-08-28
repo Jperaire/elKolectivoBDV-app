@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { Button } from "@/shared/components";
+import { Button, Loading } from "@/shared/components";
 import { MainLogo } from "@/assets/images/index";
 import { signOutUser } from "@/features/auth/firebase/methods";
 import { useAuth } from "@/features/auth/hooks/useAuth";
@@ -36,7 +36,6 @@ export const Navbar = () => {
                     />
                 </Link>
 
-                {/* Desktop links */}
                 <ul className={styles.navLinks}>
                     {BASE_LINKS.map((l) => (
                         <li key={l.path}>
@@ -44,11 +43,17 @@ export const Navbar = () => {
                         </li>
                     ))}
 
-                    {userData?.role === "admin" && (
+                    {!loading && userData?.role === "admin" && (
                         <li>
                             <Button to="/admin" variant="button--blue">
                                 Zona Admin
                             </Button>
+                        </li>
+                    )}
+
+                    {loading && (
+                        <li>
+                            <Loading message="Comprovant usuari…" />
                         </li>
                     )}
 
@@ -94,7 +99,6 @@ export const Navbar = () => {
                     )}
                 </ul>
 
-                {/* Mobile */}
                 <Hamburger />
             </div>
         </nav>

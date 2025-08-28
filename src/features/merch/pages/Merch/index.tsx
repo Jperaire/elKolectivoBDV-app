@@ -11,9 +11,9 @@ import { Item } from "../../types";
 import { joinWaitlist, leaveWaitlist } from "../../services/waitlist-service";
 import { merchanItems } from "../../data/items";
 
-import styles from "./MerchPage.module.css";
+import styles from "./Merch.module.css";
 
-export const MerchPage = () => {
+export const Merch = () => {
     const { user } = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [selected, setSelected] = useState<Item | null>(null);

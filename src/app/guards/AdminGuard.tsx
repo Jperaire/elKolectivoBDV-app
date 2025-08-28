@@ -1,11 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { Loading } from "@/shared/components";
 
 export const AdminGuard = () => {
     const { user, userData, loading } = useAuth();
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <Loading message="Comprovant usuari..." />;
     }
 
     const isAdmin = !!user && userData?.role === "admin";

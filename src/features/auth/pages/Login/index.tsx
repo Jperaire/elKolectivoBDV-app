@@ -3,17 +3,17 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { useForm } from "@/shared/hooks/useForm";
 import { validateLogin } from "@/shared/utils";
-import { Button, Card } from "@/shared/components";
+import { Button, Card, Loading } from "@/shared/components";
 
 import { useSubmitState } from "../../hooks";
 import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
 import { useAuth } from "../../hooks/useAuth";
 
-import styles from "./LoginPage.module.css";
+import styles from "./Login.module.css";
 
 type LoginForm = { email: string; password: string };
 
-export const LoginPage = () => {
+export const Login = () => {
     const navigate = useNavigate();
     const { user, loading } = useAuth();
 
@@ -64,7 +64,7 @@ export const LoginPage = () => {
         }
     };
 
-    if (loading) return <p>Carregant...</p>;
+    if (loading) return <Loading message="Comprovant sessió…" />;
 
     return (
         <div className="page">

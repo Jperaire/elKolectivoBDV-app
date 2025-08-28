@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Button } from "@/shared/components";
+import { Button, Loading } from "@/shared/components";
 import { BackIcon } from "@/assets/images";
 
 import { getAllWaitlist } from "../../services/waitlist-service";
@@ -24,7 +24,7 @@ export const Waitlist = () => {
         load();
     }, []);
 
-    if (loading) return <p>Carregant llista d’espera…</p>;
+    if (loading) return <Loading message="Carregant llista d’espera…" />;
 
     return (
         <div className="page">

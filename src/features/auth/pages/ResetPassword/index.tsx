@@ -4,13 +4,13 @@ import { Button, Card } from "@/shared/components";
 import { useSubmitState } from "../../hooks/";
 import { resetPassword } from "../../firebase/methods";
 
-import styles from "./ResetPasswordPage.module.css";
+import styles from "./ResetPassword.module.css";
 
 const isEmail = (v: string) => /^\S+@\S+\.\S+$/.test(v);
 
 type ResetForm = { email: string };
 
-export const ResetPasswordPage = () => {
+export const ResetPassword = () => {
     const { email, onInputChange, onResetForm } = useForm<ResetForm>({
         email: "",
     });
