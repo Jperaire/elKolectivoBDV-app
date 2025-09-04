@@ -26,8 +26,7 @@ export const AdminDashboard = () => {
                                     className={styles.icon}
                                 />
                             )}
-                            <h2>{action.title}</h2>
-                            <p className={styles.desc}>{action.description}</p>
+                            <h2 className={styles.title}>{action.title}</h2>
                         </Link>
                     ))}
                 </section>

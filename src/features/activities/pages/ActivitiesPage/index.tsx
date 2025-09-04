@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Loading } from "@/shared/components/Loading";
+
+import { Loading, FilterByYear } from "@/shared/components";
+
 import { Activity } from "./components/Activity";
 import { getActivitiesOnce } from "../../firebase/methods";
 import { ActivityProps } from "../../types";
@@ -10,6 +12,7 @@ export const ActivitiesPage = () => {
         Array<{ id: string; data: ActivityProps }>
     >([]);
     const [loading, setLoading] = useState(true);
+    const [year, setYear] = useState<number>(2025);
 
     useEffect(() => {
         (async () => {
@@ -22,15 +25,31 @@ export const ActivitiesPage = () => {
         })();
     }, []);
 
+    const filtered = items.filter(({ data }) => {
+        if (!data.date) return false;
+
+        if (typeof data.date === "string") {
+            return data.date.startsWith(year.toString());
+        }
+
+        if (data.date instanceof Date) {
+            return data.date.getFullYear() === year;
+        }
+
+        return false;
+    });
+
     return (
         <div className="page">
             <h1>Activitats</h1>
+
+            <FilterByYear selected={year} onSelect={setYear} />
 
             {loading && <Loading message="Carregant activitats…" />}
             {!loading && items.length === 0 && <p>No hi ha activitats.</p>}
 
             <section className={styles.section}>
-                {items.map(({ id, data }) => (
+                {filtered.map(({ id, data }) => (
                     <Activity key={id} {...data} />
                 ))}
             </section>

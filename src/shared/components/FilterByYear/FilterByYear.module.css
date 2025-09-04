@@ -1,0 +1,22 @@
+.filterByYear {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.filterByYear li {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background 0.2s;
+    border-radius: 10px;
+    font-weight: 700;
+    color: rgb(251, 239, 218);
+}
+
+.filterByYear li:hover {
+    background: var(--energetic-pink);
+}
+
+.active {
+    background: var(--energetic-pink);
+    color: white;
+}

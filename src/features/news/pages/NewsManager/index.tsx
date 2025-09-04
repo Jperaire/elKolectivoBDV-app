@@ -17,6 +17,9 @@ export const NewsManager = () => {
     return (
         <div className="page">
             <h1>Notícies</h1>
+            <p className="subtitle">
+                Publica i edita les notícies de la comunitat.
+            </p>
 
             <Card>
                 <section>
