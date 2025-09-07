@@ -7,6 +7,8 @@ export type ActivityForm = {
     requiresSignup: boolean;
     capacity: string;
     hasCapacity: boolean;
+    instagramUrl: string;
+    posterFile: File | null;
 };
 
 export type CapacityBadgeProps = {
@@ -23,4 +25,6 @@ export type ActivityProps = {
     capacity?: number;
     attendeesCount?: number;
     requiresSignup?: boolean;
+    posterUrl?: string;
+    instagramUrl?: string;
 };

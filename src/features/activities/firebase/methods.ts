@@ -8,17 +8,8 @@ import {
     serverTimestamp,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
+import { combineDateTime } from "@/shared/utils";
 import { ActivityProps } from "../types";
-
-// Une "YYYY-MM-DD" + "HH:mm" en un Date
-const combineDateTime = (isoDate: string, hhmm: string) => {
-    const [y, m, d] = (isoDate || "").split("-").map(Number);
-    const [h, min] = (hhmm || "").split(":").map(Number);
-    if (!y || !m || !d || Number.isNaN(h) || Number.isNaN(min)) {
-        return null;
-    }
-    return new Date(y, m - 1, d, h, min, 0, 0);
-};
 
 export const createActivity = async (input: {
     title: string;
@@ -28,11 +19,11 @@ export const createActivity = async (input: {
     description?: string;
     requiresSignup?: boolean;
     capacity?: number;
+    posterUrl?: string;
+    instagramUrl?: string;
 }) => {
     const startAt = combineDateTime(input.date, input.time);
-    if (!startAt) {
-        throw new Error("INVALID_DATETIME");
-    }
+    if (!startAt) throw new Error("INVALID_DATETIME");
 
     await addDoc(collection(db, "activities"), {
         title: input.title,
@@ -42,6 +33,8 @@ export const createActivity = async (input: {
         ...(typeof input.capacity === "number"
             ? { capacity: input.capacity }
             : {}),
+        posterUrl: input.posterUrl || null,
+        instagramUrl: input.instagramUrl || null,
         startAt: Timestamp.fromDate(startAt),
         createdAt: serverTimestamp(),
     });
@@ -54,7 +47,6 @@ export const getActivitiesOnce = async (): Promise<
     const snap = await getDocs(q);
 
     return snap.docs.map((d) => {
-        // Tipado inline, sin any
         const {
             title = "",
             description = "",
@@ -63,6 +55,8 @@ export const getActivitiesOnce = async (): Promise<
             attendeesCount = 0,
             requiresSignup = false,
             startAt,
+            posterUrl,
+            instagramUrl,
         } = d.data() as {
             title?: string;
             description?: string;
@@ -71,6 +65,8 @@ export const getActivitiesOnce = async (): Promise<
             attendeesCount?: number;
             requiresSignup?: boolean;
             startAt?: { toDate: () => Date };
+            posterUrl?: string | null;
+            instagramUrl?: string | null;
         };
 
         const props: ActivityProps = {
@@ -81,6 +77,8 @@ export const getActivitiesOnce = async (): Promise<
             capacity,
             attendeesCount,
             requiresSignup,
+            posterUrl: posterUrl ?? undefined,
+            instagramUrl: instagramUrl ?? undefined,
         };
 
         return { id: d.id, data: props };

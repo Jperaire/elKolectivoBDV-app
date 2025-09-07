@@ -1,3 +1,5 @@
+export { combineDateTime } from "./date";
+
 export { getRandomColor } from "./getRandomColor";
 
 export {
@@ -14,3 +16,5 @@ export {
 } from "./colors";
 
 export * from "./format";
+
+export { uploadToCloudinary } from "./uploadToCloudinary";

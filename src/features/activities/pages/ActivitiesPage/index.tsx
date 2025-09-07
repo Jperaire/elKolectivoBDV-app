@@ -5,6 +5,7 @@ import { Loading, FilterByYear } from "@/shared/components";
 import { Activity } from "./components/Activity";
 import { getActivitiesOnce } from "../../firebase/methods";
 import { ActivityProps } from "../../types";
+
 import styles from "./ActivitiesPage.module.css";
 
 export const ActivitiesPage = () => {
@@ -25,19 +26,14 @@ export const ActivitiesPage = () => {
         })();
     }, []);
 
-    const filtered = items.filter(({ data }) => {
-        if (!data.date) return false;
-
-        if (typeof data.date === "string") {
-            return data.date.startsWith(year.toString());
-        }
-
-        if (data.date instanceof Date) {
-            return data.date.getFullYear() === year;
-        }
-
-        return false;
-    });
+    const filtered = year
+        ? items.filter(({ data }) =>
+              typeof data.date === "string"
+                  ? data.date.startsWith(year.toString())
+                  : data.date instanceof Date &&
+                    data.date.getFullYear() === year
+          )
+        : items;
 
     return (
         <div className="page">

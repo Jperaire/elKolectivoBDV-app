@@ -1,9 +1,13 @@
-import styles from "./ActivitiesManager.module.css";
+import { useState } from "react";
+
 import { Card, Button } from "@/shared/components";
 import { useForm } from "@/shared/hooks/useForm";
+import { uploadToCloudinary } from "@/shared/utils";
+
 import { ActivityForm } from "../../types";
 import { createActivity } from "../../firebase/methods";
-import { useState } from "react";
+
+import styles from "./ActivitiesManager.module.css";
 
 export const ActivitiesManager = () => {
     const {
@@ -15,6 +19,9 @@ export const ActivitiesManager = () => {
         requiresSignup,
         hasCapacity,
         capacity,
+        instagramUrl,
+        posterFile,
+        fileKey,
         onInputChange,
         onResetForm,
     } = useForm<ActivityForm>({
@@ -26,6 +33,8 @@ export const ActivitiesManager = () => {
         requiresSignup: false,
         hasCapacity: false,
         capacity: "",
+        instagramUrl: "",
+        posterFile: null,
     });
 
     const [saving, setSaving] = useState(false);
@@ -40,6 +49,12 @@ export const ActivitiesManager = () => {
 
         try {
             setSaving(true);
+
+            let posterUrl: string | undefined;
+            if (posterFile) {
+                posterUrl = await uploadToCloudinary(posterFile);
+            }
+
             const capNum =
                 hasCapacity && capacity !== "" ? Number(capacity) : undefined;
 
@@ -51,6 +66,8 @@ export const ActivitiesManager = () => {
                 description,
                 requiresSignup,
                 capacity: Number.isFinite(capNum) ? capNum : undefined,
+                posterUrl: posterUrl || undefined,
+                instagramUrl: instagramUrl || undefined,
             });
 
             onResetForm();
@@ -109,6 +126,21 @@ export const ActivitiesManager = () => {
                             placeholder="Descripció"
                             rows={4}
                             value={description}
+                            onChange={onInputChange}
+                        />
+
+                        <input
+                            key={`poster-${fileKey}`}
+                            type="file"
+                            name="posterFile"
+                            accept="image/*,application/pdf"
+                            onChange={onInputChange}
+                        />
+
+                        <input
+                            name="instagramUrl"
+                            placeholder="Enllaç a Instagram"
+                            value={instagramUrl}
                             onChange={onInputChange}
                         />
 

@@ -9,6 +9,15 @@
     gap: var(--space-md);
 }
 
+.poster {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    display: block;
+}
+
 .datePill {
     width: fit-content;
     padding: 4px 10px;
@@ -69,7 +78,8 @@
 
 .primary,
 .secondary,
-.ghost {
+.ghost,
+.third {
     padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid transparent;

@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "@/features/auth/hooks";
 import { Button, Card } from "@/shared/components";
 import { formatDateLabel, isPast } from "@/shared/utils";
 import { ActivityProps } from "@/features/activities/types";
+
 import { CapacityBadge } from "../CapacityBadge";
 
 import styles from "./Activity.module.css";
-import { useAuth } from "@/features/auth/hooks";
 
 export const Activity = ({
     title,
@@ -15,6 +17,8 @@ export const Activity = ({
     capacity,
     attendeesCount = 0,
     requiresSignup = false,
+    posterUrl,
+    instagramUrl,
 }: ActivityProps) => {
     const navigate = useNavigate();
 
@@ -46,6 +50,15 @@ export const Activity = ({
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
+                {posterUrl && (
+                    <img
+                        src={posterUrl}
+                        alt={`Poster de l'activitat ${title}`}
+                        className={styles.poster}
+                        loading="lazy"
+                        decoding="async"
+                    />
+                )}
                 <p className={styles.datePill}>{dateLabel}</p>
                 <h2>{title}</h2>
                 {description && <p>{description}</p>}
@@ -89,6 +102,21 @@ export const Activity = ({
                     )}
                     <Button className={styles.ghost}>Google Calendar</Button>
                     <Button className={styles.secondary}>ICS</Button>
+                    {instagramUrl && (
+                        <Button
+                            className={styles.third}
+                            onClick={() =>
+                                window.open(
+                                    instagramUrl,
+                                    "_blank",
+                                    "noopener,noreferrer"
+                                )
+                            }
+                            aria-label="Obrir publicació a Instagram"
+                        >
+                            Saber més
+                        </Button>
+                    )}
                 </div>
             </article>
         </Card>
