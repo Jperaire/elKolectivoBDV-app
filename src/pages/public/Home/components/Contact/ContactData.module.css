@@ -1,7 +1,7 @@
 .social {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
 }
 
 .social a {
@@ -10,10 +10,6 @@
     justify-content: center;
     transition: transform 0.2s ease, opacity 0.2s ease;
     gap: var(--space-sm);
-}
-
-.social a p {
-    font-size: 0.8rem;
 }
 
 .social a img {

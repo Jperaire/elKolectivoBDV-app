@@ -57,7 +57,6 @@ export const ContactForm = () => {
         <div className="page">
             <form onSubmit={handleSubmit} noValidate>
                 <div>
-                    <label htmlFor="name">Nom</label>
                     <input
                         id="name"
                         name="name"
@@ -66,11 +65,11 @@ export const ContactForm = () => {
                         onChange={onInputChange}
                         required
                         autoComplete="name"
+                        placeholder="El teu nom"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="email">Email</label>
                     <input
                         id="email"
                         name="email"
@@ -80,11 +79,11 @@ export const ContactForm = () => {
                         required
                         autoComplete="email"
                         inputMode="email"
+                        placeholder="El teu email"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="message">Missatge</label>
                     <textarea
                         id="message"
                         name="message"
@@ -92,6 +91,7 @@ export const ContactForm = () => {
                         value={message}
                         onChange={onInputChange}
                         required
+                        placeholder="Escriu el teu missatge"
                     />
                 </div>
 
@@ -103,7 +103,6 @@ export const ContactForm = () => {
                     Enviar
                 </Button>
             </form>
-
             <div aria-live="polite" aria-atomic="true">
                 {error && <p className="error">⚠️ {error}</p>}
                 {success && <p className="success">{success}</p>}

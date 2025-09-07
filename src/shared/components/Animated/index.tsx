@@ -14,6 +14,8 @@ export const Animated = ({ children, animation }: AnimatedProps) => {
             className={active ? styles[animation] : ""}
             onMouseEnter={() => setActive(true)}
             onAnimationEnd={() => setActive(false)}
+            onTouchStart={() => setActive(true)}
+            onFocus={() => setActive(true)}
         >
             {children}
         </div>

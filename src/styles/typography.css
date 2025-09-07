@@ -28,10 +28,12 @@ h2 {
     font-size: var(--fs-xxl);
     line-height: var(--lh-snug);
 }
+
 h3 {
     font-size: var(--fs-xl);
     line-height: var(--lh-snug);
 }
+
 h4 {
     font-size: var(--fs-lg);
     line-height: var(--lh-snug);
@@ -62,6 +64,7 @@ p {
     color: var(--color-text);
 }
 
+div,
 p,
 a,
 ul,

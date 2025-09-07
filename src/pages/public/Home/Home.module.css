@@ -8,8 +8,8 @@
 
 /* Headings */
 .home h2 {
-    font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: var(--space-xl);
+    color: var(--energetic-purple);
 }
 
 /* General Sections */
@@ -18,14 +18,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    text-align: center;
     gap: var(--space-lg);
 }
 
 .sectionMedia {
-    max-width: 450px;
     width: 100%;
+    max-width: 450px;
     margin: 0 auto;
-    border-radius: var(--radius-xxl);
+    border-radius: 20px;
 }
 
 /* ===== WHAT WE DO ===== */
@@ -34,7 +35,7 @@
     flex-direction: column;
     width: fit-content;
     margin: auto;
-    gap: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .featureList li {
@@ -77,7 +78,7 @@
 
 /* ===== CONTACT ===== */
 
-.sectionContact .sectionBody p {
+.sectionContact {
     text-align: center;
 }
 
@@ -86,7 +87,7 @@
         flex-direction: row;
     }
 
-    .sectionWho .sectionMedia {
+    .sectionWho {
         flex: 0 0 60%;
         max-width: none;
     }

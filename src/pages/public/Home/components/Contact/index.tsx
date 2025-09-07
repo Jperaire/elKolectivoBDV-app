@@ -6,14 +6,14 @@ import styles from "./Contact.module.css";
 export const Contact = () => {
     return (
         <div className={styles.contactContainer}>
-            <div className={styles.firstCol}>
-                <ContactData />
-
-                <div className={styles.mapImg}>
-                    <Map />
-                </div>
+            <div className={styles.formCol}>
+                <ContactForm />
             </div>
-            <ContactForm />
+
+            <div className={styles.mapImg}>
+                <ContactData />
+                <Map />
+            </div>
         </div>
     );
 };

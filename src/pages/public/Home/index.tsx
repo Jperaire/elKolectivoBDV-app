@@ -1,6 +1,6 @@
 import { Accordion, AccordionItem, Animated, Card } from "@/shared/components";
 import { allColors } from "@/shared/utils/colors";
-import { CheckIcon, FakeImg } from "@/assets/images";
+import { CheckIcon, GroupalImg } from "@/assets/images";
 import { getRandomColor } from "@/shared/utils/getRandomColor";
 
 import { Banner, Contact } from "./components";
@@ -26,7 +26,7 @@ export const Home = () => {
                         <div className={styles.sectionBody}>
                             <Animated animation="swing">
                                 <img
-                                    src={FakeImg}
+                                    src={GroupalImg}
                                     className={styles.sectionMedia}
                                 />
                             </Animated>
@@ -46,10 +46,12 @@ export const Home = () => {
                         </h2>
                         <ul className={styles.featureList}>
                             {whatWeDo.map((item, i) => (
-                                <li key={i}>
-                                    <img src={CheckIcon} alt="check icon" />
-                                    {item}
-                                </li>
+                                <Animated animation="rise">
+                                    <li key={i}>
+                                        <img src={CheckIcon} alt="check icon" />
+                                        {item}
+                                    </li>
+                                </Animated>
                             ))}
                         </ul>
                     </Card>
@@ -105,16 +107,13 @@ export const Home = () => {
                         <h2 id={sections.contact.id}>
                             {sections.contact.title}
                         </h2>
-                        <div className={styles.sectionBody}>
-                            <p>
-                                Tens algun dubte o vols preguntar-nos alguna
-                                cosa? Ets una entitat i tens una proposta?
-                                Contacta’ns a través de les nostres xarxes
-                                socials o mitjançant el formulari de sota!
-                            </p>
-
-                            <Contact />
-                        </div>
+                        <p className="subtitle">
+                            Tens algun dubte o vols preguntar-nos alguna cosa?
+                            Ets una entitat i tens una proposta? Contacta’ns a
+                            través de les nostres xarxes socials o mitjançant el
+                            formulari de sota!
+                        </p>
+                        <Contact />
                     </Card>
                 </section>
             </div>
