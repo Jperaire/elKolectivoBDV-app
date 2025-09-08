@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "@/features/auth/hooks";
-import { Button, Card } from "@/shared/components";
-import { formatDateLabel, isPast } from "@/shared/utils";
+import { Button, Card, DatePill } from "@/shared/components";
+import { normalizeDate, isPast } from "@/shared/utils";
 import { ActivityProps } from "@/features/activities/types";
+import {
+    getMapHref,
+    isActivityFull,
+} from "@/features/activities/utils/activity";
 
 import { CapacityBadge } from "../CapacityBadge";
 
@@ -32,20 +36,10 @@ export const Activity = ({
         // TODO: implementar inscripción real (cuando toque)
     };
 
-    const start = typeof date === "string" ? new Date(date) : date;
-    const dateLabel = formatDateLabel(start);
+    const start = normalizeDate(date);
     const past = isPast(start);
-
-    const isFull =
-        Number.isFinite(capacity) && typeof capacity === "number"
-            ? attendeesCount >= capacity
-            : false;
-
-    const mapHref = location
-        ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              location
-          )}`
-        : undefined;
+    const isFull = isActivityFull(capacity, attendeesCount);
+    const mapHref = getMapHref(location);
 
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
@@ -59,7 +53,9 @@ export const Activity = ({
                         decoding="async"
                     />
                 )}
-                <p className={styles.datePill}>{dateLabel}</p>
+
+                <DatePill date={start} />
+
                 <h2>{title}</h2>
                 {description && <p>{description}</p>}
 

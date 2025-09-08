@@ -1,0 +1,7 @@
+.datePill {
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--pastel-blue);
+    font-size: 0.8rem;
+}

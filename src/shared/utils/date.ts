@@ -6,3 +6,6 @@ export const combineDateTime = (isoDate: string, hhmm: string) => {
     }
     return new Date(y, m - 1, d, h, min, 0, 0);
 };
+
+export const normalizeDate = (date: string | Date): Date =>
+    typeof date === "string" ? new Date(date) : date;

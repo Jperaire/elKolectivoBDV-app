@@ -1,4 +1,4 @@
-export { combineDateTime } from "./date";
+export { combineDateTime, normalizeDate } from "./date";
 
 export { getRandomColor } from "./getRandomColor";
 

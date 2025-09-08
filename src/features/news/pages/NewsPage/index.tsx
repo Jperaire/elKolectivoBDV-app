@@ -1,4 +1,5 @@
 import { Card } from "@/shared/components";
+import { New } from "../components/New";
 
 export const NewsPage = () => {
     return (
@@ -6,7 +7,9 @@ export const NewsPage = () => {
             <h1>Noticies</h1>
 
             <Card>
-                <section></section>
+                <section>
+                    <New />
+                </section>
             </Card>
         </div>
     );

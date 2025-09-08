@@ -18,7 +18,7 @@ export const formatDateLabel = (input: string | Date, locale = "ca-ES") => {
         hour: "2-digit",
         minute: "2-digit",
     }).format(d);
-    return `${datePart} · ${timePart}`;
+    return `${datePart} · ${timePart}h`;
 };
 
 export const isPast = (input: string | Date) =>

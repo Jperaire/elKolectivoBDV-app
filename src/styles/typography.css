@@ -1,11 +1,11 @@
 :root {
-    --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
-    --fs-sm: clamp(0.875rem, 0.83rem + 0.25vw, 0.95rem);
+    --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.9rem);
+    --fs-sm: clamp(0.875rem, 0.83rem + 0.25vw, 1rem);
     --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-    --fs-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.375rem);
-    --fs-xl: clamp(1.375rem, 1.2rem + 1vw, 1.75rem);
-    --fs-xxl: clamp(1.75rem, 1.4rem + 2vw, 2.5rem);
-    --fs-display: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+    --fs-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.5rem);
+    --fs-xl: clamp(1.375rem, 1.2rem + 1vw, 2.25rem);
+    --fs-xxl: clamp(1.75rem, 1.4rem + 2vw, 3rem);
+    --fs-display: clamp(2rem, 1.5rem + 3vw, 4rem);
 
     --lh-tight: 1.15;
     --lh-snug: 1.3;
