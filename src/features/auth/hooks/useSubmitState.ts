@@ -1,4 +1,3 @@
-// src/shared/hooks/useSubmitState.ts
 import { useState } from "react";
 import { authErrorMessage } from "../utils/authErrorMessage";
 

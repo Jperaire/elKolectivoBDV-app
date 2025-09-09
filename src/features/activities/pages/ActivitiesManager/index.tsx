@@ -1,197 +1,140 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Loading, Button } from "@/shared/components";
+import {
+    getActivitiesOnce,
+    deleteActivity,
+} from "@/features/activities/firebase/methods";
+import { ActivityProps } from "@/features/activities/types";
 
-import { Card, Button } from "@/shared/components";
-import { useForm } from "@/shared/hooks";
-import { uploadToCloudinary } from "@/shared/utils";
-
-import { ActivityForm } from "../../types";
-import { createActivity } from "../../firebase/methods";
+import { EditActivityModal, CreateActivityModal } from "./components/";
 
 import styles from "./ActivitiesManager.module.css";
+import { DeleteIcon, EditIcon } from "@/assets/images";
+
+type Row = { id: string; data: ActivityProps };
 
 export const ActivitiesManager = () => {
-    const {
-        title,
-        date,
-        time,
-        location,
-        description,
-        requiresSignup,
-        hasCapacity,
-        capacity,
-        instagramUrl,
-        posterFile,
-        fileKey,
-        onInputChange,
-        onResetForm,
-    } = useForm<ActivityForm>({
-        title: "",
-        date: "",
-        time: "",
-        location: "",
-        description: "",
-        requiresSignup: false,
-        hasCapacity: false,
-        capacity: "",
-        instagramUrl: "",
-        posterFile: null,
-    });
+    const [activities, setActivities] = useState<Row[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [editing, setEditing] = useState<Row | null>(null);
+    const [creating, setCreating] = useState(false);
 
-    const [saving, setSaving] = useState(false);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (!date || !time) {
-            alert("Falta data i hora.");
-            return;
-        }
-
-        try {
-            setSaving(true);
-
-            let posterUrl: string | undefined;
-            if (posterFile) {
-                posterUrl = await uploadToCloudinary(posterFile);
+    useEffect(() => {
+        const load = async () => {
+            try {
+                const rows = await getActivitiesOnce();
+                setActivities(rows);
+            } finally {
+                setLoading(false);
             }
+        };
+        load();
+    }, []);
 
-            const capNum =
-                hasCapacity && capacity !== "" ? Number(capacity) : undefined;
-
-            await createActivity({
-                title,
-                date,
-                time,
-                location,
-                description,
-                requiresSignup,
-                capacity: Number.isFinite(capNum) ? capNum : undefined,
-                posterUrl: posterUrl || undefined,
-                instagramUrl: instagramUrl || undefined,
-            });
-
-            onResetForm();
-            alert("✅ Activitat creada.");
+    const handleDelete = async (id: string) => {
+        if (!window.confirm("Segur que vols eliminar aquesta activitat?"))
+            return;
+        try {
+            await deleteActivity(id);
+            setActivities((prev) => prev.filter((a) => a.id !== id));
         } catch (err) {
-            console.error(err);
-            alert("❌ No s'ha pogut crear l'activitat.");
-        } finally {
-            setSaving(false);
+            console.error("Error eliminant activitat:", err);
+            alert("No s'ha pogut eliminar.");
         }
     };
+
+    const handleUpdated = (id: string, newData: ActivityProps) => {
+        setActivities((prev) =>
+            prev.map((a) => (a.id === id ? { id, data: newData } : a))
+        );
+    };
+
+    const handleCreated = (newRow: Row) => {
+        setActivities((prev) => [newRow, ...prev]);
+    };
+
+    if (loading) return <Loading message="Carregant activitats…" />;
 
     return (
         <div className="page">
             <h1>Activitats</h1>
             <p className="subtitle">Crea, edita i elimina activitats.</p>
+            <section className={styles.content}>
+                <Button
+                    onClick={() => setCreating(true)}
+                    className={styles.createActivityBtn}
+                >
+                    Crear nova activitat
+                </Button>
 
-            <Card>
-                <section className={styles.section}>
-                    <form onSubmit={handleSubmit} noValidate>
-                        <input
-                            name="title"
-                            placeholder="Títol"
-                            value={title}
-                            onChange={onInputChange}
-                            required
-                        />
+                {activities.length === 0 ? (
+                    <p>No hi ha activitats.</p>
+                ) : (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Títol</th>
+                                <th>Data</th>
+                                <th>Ubicació</th>
+                                <th>Accions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {activities.map(({ id, data }) => (
+                                <tr key={id}>
+                                    <td>{data.title}</td>
+                                    <td>
+                                        {data.date instanceof Date
+                                            ? data.date.toLocaleDateString(
+                                                  "ca-ES",
+                                                  {
+                                                      day: "2-digit",
+                                                      month: "2-digit",
+                                                      year: "numeric",
+                                                  }
+                                              )
+                                            : String(data.date)}
+                                    </td>
+                                    <td>{data.location}</td>
+                                    <td className={styles.actions}>
+                                        <button
+                                            className={styles.iconBtn}
+                                            onClick={() =>
+                                                setEditing({ id, data })
+                                            }
+                                            aria-label="Editar activitat"
+                                            type="button"
+                                        >
+                                            <img src={EditIcon} alt="" />
+                                        </button>
+                                        <button
+                                            className={styles.iconBtn}
+                                            onClick={() => handleDelete(id)}
+                                            aria-label="Eliminar activitat"
+                                            type="button"
+                                        >
+                                            <img src={DeleteIcon} alt="" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
 
-                        <div className={styles.row}>
-                            <input
-                                type="date"
-                                name="date"
-                                value={date}
-                                onChange={onInputChange}
-                                required
-                            />
-                            <input
-                                type="time"
-                                name="time"
-                                value={time}
-                                onChange={onInputChange}
-                                required
-                            />
-                        </div>
+                <EditActivityModal
+                    open={!!editing}
+                    activity={editing}
+                    onClose={() => setEditing(null)}
+                    onUpdated={handleUpdated}
+                />
 
-                        <input
-                            name="location"
-                            placeholder="Ubicació"
-                            value={location}
-                            onChange={onInputChange}
-                            required
-                        />
-
-                        <textarea
-                            name="description"
-                            placeholder="Descripció"
-                            rows={4}
-                            value={description}
-                            onChange={onInputChange}
-                        />
-
-                        <input
-                            key={`poster-${fileKey}`}
-                            type="file"
-                            name="posterFile"
-                            accept="image/*,application/pdf"
-                            onChange={onInputChange}
-                        />
-
-                        <input
-                            name="instagramUrl"
-                            placeholder="Enllaç a Instagram"
-                            value={instagramUrl}
-                            onChange={onInputChange}
-                        />
-
-                        <div className={styles.controlsRow}>
-                            <label className={styles.checkbox}>
-                                <input
-                                    type="checkbox"
-                                    name="requiresSignup"
-                                    checked={requiresSignup}
-                                    onChange={onInputChange}
-                                />
-                                <span>Requereix inscripció</span>
-                            </label>
-
-                            <label className={styles.checkbox}>
-                                <input
-                                    type="checkbox"
-                                    name="hasCapacity"
-                                    checked={hasCapacity}
-                                    onChange={onInputChange}
-                                />
-                                <span>Té aforament</span>
-                            </label>
-
-                            {hasCapacity && (
-                                <label className={styles.capacity}>
-                                    <span>Aforament:</span>
-                                    <input
-                                        id="capacity"
-                                        type="number"
-                                        name="capacity"
-                                        min={0}
-                                        inputMode="numeric"
-                                        value={capacity}
-                                        onChange={onInputChange}
-                                        placeholder="0"
-                                    />
-                                </label>
-                            )}
-                        </div>
-
-                        <Button
-                            type="submit"
-                            variant="button--blue"
-                            disabled={saving}
-                        >
-                            {saving ? "Guardant…" : "Crear activitat"}
-                        </Button>
-                    </form>
-                </section>
-            </Card>
+                <CreateActivityModal
+                    open={creating}
+                    onClose={() => setCreating(false)}
+                    onCreated={handleCreated}
+                />
+            </section>
         </div>
     );
 };

@@ -1,2 +1,2 @@
 export { useAuth } from "./useAuth";
-export { useSubmitState } from "./useSubmiteState";
+export { useSubmitState } from "./useSubmitState";

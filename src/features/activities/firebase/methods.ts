@@ -6,15 +6,19 @@ import {
     orderBy,
     getDocs,
     serverTimestamp,
+    deleteDoc,
+    doc,
+    setDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
 import { combineDateTime } from "@/shared/utils";
-import { ActivityProps } from "../types";
+import { ActivityProps, UpdateActivityInput } from "../types";
 
+// CREATE
 export const createActivity = async (input: {
     title: string;
-    date: string;
-    time: string;
+    date: string; // yyyy-mm-dd
+    time: string; // HH:mm
     location: string;
     description?: string;
     requiresSignup?: boolean;
@@ -25,7 +29,7 @@ export const createActivity = async (input: {
     const startAt = combineDateTime(input.date, input.time);
     if (!startAt) throw new Error("INVALID_DATETIME");
 
-    await addDoc(collection(db, "activities"), {
+    const docRef = await addDoc(collection(db, "activities"), {
         title: input.title,
         location: input.location,
         description: input.description || "",
@@ -38,8 +42,11 @@ export const createActivity = async (input: {
         startAt: Timestamp.fromDate(startAt),
         createdAt: serverTimestamp(),
     });
+
+    return docRef.id; // 🔹 devolvemos id para actualizar la UI
 };
 
+// READ
 export const getActivitiesOnce = async (): Promise<
     Array<{ id: string; data: ActivityProps }>
 > => {
@@ -57,22 +64,12 @@ export const getActivitiesOnce = async (): Promise<
             startAt,
             posterUrl,
             instagramUrl,
-        } = d.data() as {
-            title?: string;
-            description?: string;
-            location?: string;
-            capacity?: number;
-            attendeesCount?: number;
-            requiresSignup?: boolean;
-            startAt?: { toDate: () => Date };
-            posterUrl?: string | null;
-            instagramUrl?: string | null;
-        };
+        } = d.data() as any;
 
         const props: ActivityProps = {
             title,
             description,
-            date: startAt ? startAt.toDate() : new Date(),
+            date: startAt ? startAt.toDate() : new Date(), // 🔹 siempre Date
             location,
             capacity,
             attendeesCount,
@@ -83,4 +80,32 @@ export const getActivitiesOnce = async (): Promise<
 
         return { id: d.id, data: props };
     });
+};
+
+// UPDATE
+export const updateActivity = async (
+    id: string,
+    input: UpdateActivityInput
+) => {
+    const startAt =
+        input.date && input.time
+            ? combineDateTime(input.date, input.time)
+            : undefined;
+
+    const payload: Record<string, unknown> = {
+        ...input,
+        ...(startAt ? { startAt: Timestamp.fromDate(startAt) } : {}),
+    };
+
+    Object.keys(payload).forEach((k) => {
+        if (payload[k] === undefined) delete payload[k];
+    });
+
+    await setDoc(doc(db, "activities", id), payload, { merge: true });
+};
+
+// DELETE
+export const deleteActivity = async (id: string) => {
+    const docRef = doc(db, "activities", id);
+    await deleteDoc(docRef);
 };

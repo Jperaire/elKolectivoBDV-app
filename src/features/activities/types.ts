@@ -20,7 +20,7 @@ export type CapacityBadgeProps = {
 export type ActivityProps = {
     title: string;
     description?: string;
-    date: string | Date; // p.ej. "2025-10-06T18:30:00+02:00"
+    date: Date;
     location?: string;
     capacity?: number;
     attendeesCount?: number;
@@ -28,3 +28,22 @@ export type ActivityProps = {
     posterUrl?: string;
     instagramUrl?: string;
 };
+
+export interface EditActivityModalProps {
+    open: boolean;
+    activity: { id: string; data: ActivityProps } | null;
+    onClose: () => void;
+    onUpdated: (id: string, newData: ActivityProps) => void;
+}
+
+export type UpdateActivityInput = Partial<{
+    title: string;
+    date: string; // yyyy-mm-dd
+    time: string; // HH:mm
+    location: string;
+    description: string;
+    requiresSignup: boolean;
+    capacity: number | null;
+    posterUrl: string | null;
+    instagramUrl: string | null;
+}>;

@@ -9,6 +9,8 @@ export { default as InstagramIcon } from "./icons/instagram-icon.png";
 export { default as MenuIcon } from "./icons/menu-icon.svg";
 export { default as PodcastIcon } from "./icons/podcast-icon.png";
 export { default as UserIcon } from "./icons/user-icon.svg";
+export { default as DeleteIcon } from "./icons/delete-icon.png";
+export { default as EditIcon } from "./icons/edit-icon.png";
 
 // logos
 export { default as CalendarLogo } from "./logos/google-calendar.png";

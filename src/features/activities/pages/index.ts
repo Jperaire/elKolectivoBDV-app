@@ -1,2 +1,2 @@
-export { ActivitiesPage } from "./ActivitiesPage";
+export { Activities } from "./Activities";
 export { ActivitiesManager } from "./ActivitiesManager";

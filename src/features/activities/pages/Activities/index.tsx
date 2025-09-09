@@ -7,9 +7,9 @@ import { Activity } from "./components/Activity";
 import { getActivitiesOnce } from "../../firebase/methods";
 import { ActivityProps } from "../../types";
 
-import styles from "./ActivitiesPage.module.css";
+import styles from "./Activities.module.css";
 
-export const ActivitiesPage = () => {
+export const Activities = () => {
     const [items, setItems] = useState<
         Array<{ id: string; data: ActivityProps }>
     >([]);

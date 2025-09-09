@@ -1,4 +1,12 @@
 .newsImg {
-    max-width: 400px;
+    width: 400px;
     border-radius: 20px;
+    object-fit: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }

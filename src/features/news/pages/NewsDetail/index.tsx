@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
+
 import { db } from "@/lib/firebase/firestore";
-import { DatePill, Loading } from "@/shared/components";
+import { Card, DatePill, Loading } from "@/shared/components";
+
 import { NewsProps } from "../../types";
 
 import styles from "./NewsDetail.module.css";
@@ -42,22 +44,30 @@ export const NewsDetail = () => {
         fetchNews();
     }, [id]);
 
-    if (loading) return <Loading />;
+    if (loading) return <Loading message="Carregant noticia..." />;
     if (!news) return <p>Noticia no trobada.</p>;
 
     return (
-        <section className="page">
-            <h1>{news.title}</h1>
-            <DatePill date={news.date} />
-            {news.imageUrl && (
-                <img
-                    src={news.imageUrl}
-                    alt={news.title}
-                    style={{ width: "100%", margin: "1rem 0" }}
-                    className={styles.newsImg}
-                />
-            )}
-            <p>{news.description}</p>
-        </section>
+        <>
+            <section className="page">
+                <Card className={styles.content}>
+                    <h2>{news.title}</h2>
+                    <DatePill date={news.date} />
+
+                    {news.imageUrl && (
+                        <img
+                            src={news.imageUrl}
+                            alt={news.title}
+                            className={styles.newsImg}
+                            loading="lazy"
+                        />
+                    )}
+
+                    {news.description.split("\n\n").map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                    ))}
+                </Card>
+            </section>
+        </>
     );
 };
