@@ -99,6 +99,7 @@ export const ContactForm = () => {
                     type="submit"
                     isLoading={submitting}
                     loadingText="Enviant..."
+                    variant="button--orange"
                 >
                     Enviar
                 </Button>

@@ -11,10 +11,8 @@
     align-items: center;
     width: 100%;
     padding: var(--space-md) var(--space-lg);
-    color: #fff;
-    background-color: var(--pastel-orange);
+    color: rgb(49, 49, 49);
     border: none;
-    border-radius: 1rem;
     cursor: pointer;
     text-align: left;
     font-weight: 600;

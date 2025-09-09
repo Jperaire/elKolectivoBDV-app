@@ -24,19 +24,22 @@
 }
 
 .featureList {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    margin: auto;
-    gap: var(--space-xl);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+    width: 100%;
+    margin: var(--space-lg) 0 0;
 }
 
 .featureList li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-md);
+    line-height: 1.35;
 }
 
 .featureList img {
-    width: 35px;
+    width: 28px;
+    flex: 0 0 auto;
+    margin-top: 2px;
 }

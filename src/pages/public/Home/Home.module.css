@@ -8,10 +8,16 @@
 
 /* Headings */
 .home h2 {
-    margin-bottom: var(--space-xl);
-    color: var(--pastel-green);
+    color: rgb(247, 233, 208);
     letter-spacing: 0.5rem;
     font-size: 3rem;
+    background: var(--energetic-bg);
+    padding: 0.75rem 1.5rem;
+    font-weight: 800;
+    border-radius: 1rem;
+    width: fit-content;
+    max-width: 500px;
+    margin: 0 auto var(--space-xxl);
 }
 
 /* General Sections */
@@ -34,12 +40,12 @@
 }
 
 .chip {
-    padding: var(--space-sm);
-    border-radius: var(--radius-lg);
+    padding: 1rem;
+    border-radius: 1rem;
     color: white;
     font-weight: bold;
     text-align: center;
-    min-width: 100px;
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
     transition: box-shadow 0.3s ease, transform 0.3s ease,
         border-color 0.3s ease;
@@ -70,9 +76,5 @@
 
     .sectionWho .sectionBody p {
         flex: 0 0 40%;
-    }
-
-    .sectionValues .chip {
-        padding: var(--space-md);
     }
 }

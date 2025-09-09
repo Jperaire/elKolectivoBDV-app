@@ -1,7 +1,5 @@
 import { Accordion, AccordionItem, Card } from "@/shared/components";
 import { allColors } from "@/shared/utils/colors";
-import { getRandomColor } from "@/shared/utils/getRandomColor";
-
 import { Banner, Contact, QueerFlagsMarquee, WhatWeDo } from "./components";
 import { sections, description, values, faqs } from "./homeData";
 
@@ -47,7 +45,7 @@ export const Home = () => {
                                     className={styles.chip}
                                     style={{
                                         backgroundColor:
-                                            getRandomColor(allColors),
+                                            allColors[i % allColors.length],
                                     }}
                                 >
                                     {val}
