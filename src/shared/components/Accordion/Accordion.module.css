@@ -12,12 +12,12 @@
     width: 100%;
     padding: var(--space-md) var(--space-lg);
     color: #fff;
-    background-color: var(--energetic-purple);
+    background-color: var(--pastel-orange);
     border: none;
     border-radius: 1rem;
     cursor: pointer;
     text-align: left;
-    text-transform: uppercase;
+    font-weight: 600;
     letter-spacing: 0.1rem;
     transition: background-color 0.5s ease;
 }
@@ -29,7 +29,7 @@
 .icon {
     transition: transform 0.5s ease;
     width: 40px;
-    font-weight: 100;
+    height: 40px;
 }
 
 .icon.open {
@@ -37,8 +37,6 @@
 }
 
 .panel {
-    line-height: 1.5;
-
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -46,7 +44,7 @@
 }
 
 .panel.open {
-    padding: var(--space-md);
+    padding: var(--space-sm);
     max-height: 500px;
     opacity: 1;
 }

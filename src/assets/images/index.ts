@@ -28,3 +28,5 @@ export { default as MembersImg } from "./photos/members.png";
 export { default as MerchImg } from "./photos/merchan.png";
 export { default as NewsImg } from "./photos/news.png";
 export { default as GroupalImg } from "./photos/group.jpg";
+export { queerFlags } from "./photos/queerFlags";
+export { whatWeDoImages } from "./photos/whatWeDoImages";

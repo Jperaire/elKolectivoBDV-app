@@ -10,7 +10,7 @@ form textarea,
 form select {
     width: 100%;
     padding: 1rem;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-lg);
     border: 2px solid #ccc;
     border-radius: 6px;
     background: #fff;

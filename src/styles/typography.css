@@ -59,7 +59,7 @@ h6 {
 }
 
 p {
-    font-size: var(--fs-md);
+    font-size: var(--fs-lg);
     line-height: var(--lh-normal);
     color: var(--color-text);
 }
@@ -76,6 +76,7 @@ textarea,
 button,
 table {
     font-family: "Montserrat", sans-serif;
+    font-size: var(--fs-lg);
 }
 
 @media (max-width: 360px) {

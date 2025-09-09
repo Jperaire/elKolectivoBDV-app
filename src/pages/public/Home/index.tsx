@@ -1,10 +1,9 @@
-import { Accordion, AccordionItem, Animated, Card } from "@/shared/components";
+import { Accordion, AccordionItem, Card } from "@/shared/components";
 import { allColors } from "@/shared/utils/colors";
-import { CheckIcon, GroupalImg } from "@/assets/images";
 import { getRandomColor } from "@/shared/utils/getRandomColor";
 
-import { Banner, Contact } from "./components";
-import { sections, description, whatWeDo, values, faqs } from "./homeData";
+import { Banner, Contact, QueerFlagsMarquee, WhatWeDo } from "./components";
+import { sections, description, values, faqs } from "./homeData";
 
 import styles from "./Home.module.css";
 
@@ -24,38 +23,15 @@ export const Home = () => {
                             {sections.whoWeAre.title}
                         </h2>
                         <div className={styles.sectionBody}>
-                            <Animated animation="swing">
-                                <img
-                                    src={GroupalImg}
-                                    className={styles.sectionMedia}
-                                />
-                            </Animated>
                             <p>{description}</p>
+
+                            <QueerFlagsMarquee />
                         </div>
                     </Card>
                 </section>
 
                 {/* What we do */}
-                <section
-                    aria-labelledby={sections.whatWeDo.id}
-                    className={styles.sectionWhat}
-                >
-                    <Card>
-                        <h2 id={sections.whatWeDo.id}>
-                            {sections.whatWeDo.title}
-                        </h2>
-                        <ul className={styles.featureList}>
-                            {whatWeDo.map((item, i) => (
-                                <Animated animation="rise">
-                                    <li key={i}>
-                                        <img src={CheckIcon} alt="check icon" />
-                                        {item}
-                                    </li>
-                                </Animated>
-                            ))}
-                        </ul>
-                    </Card>
-                </section>
+                <WhatWeDo />
 
                 {/* Values */}
                 <section
