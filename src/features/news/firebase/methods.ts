@@ -5,21 +5,25 @@ import {
     orderBy,
     getDocs,
     serverTimestamp,
+    deleteDoc,
+    doc,
+    setDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
-import { NewsProps } from "../types";
+import { NewsProps, UpdateNewsInput } from "../types";
 
 export const createNews = async (input: {
     title: string;
     body: string;
     imageUrl?: string;
 }) => {
-    await addDoc(collection(db, "news"), {
+    const ref = await addDoc(collection(db, "news"), {
         title: input.title,
         body: input.body,
-        imageUrl: input.imageUrl || null,
+        imageUrl: input.imageUrl ?? null,
         createdAt: serverTimestamp(),
     });
+    return ref.id;
 };
 
 export const getNewsOnce = async (): Promise<
@@ -50,4 +54,16 @@ export const getNewsOnce = async (): Promise<
 
         return { id: d.id, data: props };
     });
+};
+
+export const updateNews = async (id: string, input: UpdateNewsInput) => {
+    const payload: Record<string, unknown> = { ...input };
+    Object.keys(payload).forEach(
+        (k) => payload[k] === undefined && delete payload[k]
+    );
+    await setDoc(doc(db, "news", id), payload, { merge: true });
+};
+
+export const deleteNews = async (id: string) => {
+    await deleteDoc(doc(db, "news", id));
 };

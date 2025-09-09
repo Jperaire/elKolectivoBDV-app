@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Loading, Button } from "@/shared/components";
+import { Loading, Button, BackButton } from "@/shared/components";
 import {
     getActivitiesOnce,
     deleteActivity,
@@ -60,17 +60,10 @@ export const ActivitiesManager = () => {
             <h1>Activitats</h1>
             <p className="subtitle">Crea, edita i elimina activitats.</p>
             <section className={styles.content}>
-                <Button
-                    onClick={() => setCreating(true)}
-                    className={styles.createActivityBtn}
-                >
-                    Crear nova activitat
-                </Button>
-
                 {activities.length === 0 ? (
                     <p>No hi ha activitats.</p>
                 ) : (
-                    <table>
+                    <table className={styles.table}>
                         <thead>
                             <tr>
                                 <th>Títol</th>
@@ -122,6 +115,13 @@ export const ActivitiesManager = () => {
                     </table>
                 )}
 
+                <Button
+                    onClick={() => setCreating(true)}
+                    variant="button--pink"
+                >
+                    + Crear nova activitat
+                </Button>
+
                 <EditActivityModal
                     open={!!editing}
                     activity={editing}
@@ -135,6 +135,8 @@ export const ActivitiesManager = () => {
                     onCreated={handleCreated}
                 />
             </section>
+
+            <BackButton to="/admin" />
         </div>
     );
 };

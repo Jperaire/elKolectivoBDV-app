@@ -1,46 +1,46 @@
-import { useState } from "react";
-import { Card, Button } from "@/shared/components";
-import { useForm } from "@/shared/hooks";
-import { uploadToCloudinary } from "@/shared/utils";
-import { NewsForm } from "../../types";
-import { createNews } from "../../firebase/methods";
+import { useEffect, useState } from "react";
+import { Button, Loading, BackButton } from "@/shared/components";
+import { CreateNewsModal, EditNewsModal } from "./components";
 import styles from "./NewsManager.module.css";
+import { EditIcon, DeleteIcon } from "@/assets/images";
+import { NewsProps } from "../../types";
+import { deleteNews, getNewsOnce } from "../../firebase/methods";
+
+type Row = { id: string; data: NewsProps };
 
 export const NewsManager = () => {
-    const { title, body, imageFile, fileKey, onInputChange, onResetForm } =
-        useForm<NewsForm>({
-            title: "",
-            body: "",
-            imageFile: null,
-        });
+    const [rows, setRows] = useState<Row[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [creating, setCreating] = useState(false);
+    const [editing, setEditing] = useState<Row | null>(null);
 
-    const [saving, setSaving] = useState(false);
+    useEffect(() => {
+        (async () => {
+            try {
+                setRows(await getNewsOnce());
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleCreated = (row: Row) => setRows((prev) => [row, ...prev]);
 
+    const handleUpdated = (id: string, data: NewsProps) =>
+        setRows((prev) => prev.map((r) => (r.id === id ? { id, data } : r)));
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Segur que vols eliminar aquesta notícia?")) return;
         try {
-            setSaving(true);
-
-            const imageUrl = imageFile
-                ? await uploadToCloudinary(imageFile)
-                : undefined;
-
-            await createNews({
-                title,
-                body,
-                imageUrl,
-            });
-
-            onResetForm();
-            alert("✅ Notícia publicada.");
-        } catch (err) {
-            console.error(err);
-            alert("❌ No s'ha pogut publicar la notícia.");
-        } finally {
-            setSaving(false);
+            await deleteNews(id);
+            setRows((prev) => prev.filter((r) => r.id !== id));
+        } catch (e) {
+            console.error("Error deleting:", e);
+            alert("No s'ha pogut eliminar.");
         }
     };
+
+    if (loading) return <Loading message="Carregant notícies…" />;
 
     return (
         <div className="page">
@@ -49,40 +49,87 @@ export const NewsManager = () => {
                 Crea i gestiona les notícies de la comunitat.
             </p>
 
-            <Card>
-                <form onSubmit={handleSubmit} className={styles.form}>
-                    <input
-                        name="title"
-                        placeholder="Títol"
-                        value={title}
-                        onChange={onInputChange}
-                        required
-                    />
-                    <textarea
-                        name="body"
-                        placeholder="Contingut"
-                        rows={6}
-                        value={body}
-                        onChange={onInputChange}
-                        required
-                    />
-                    <input
-                        key={`image-${fileKey}`}
-                        type="file"
-                        name="imageFile"
-                        accept="image/*"
-                        onChange={onInputChange}
-                    />
+            <section className={styles.content}>
+                {rows.length === 0 ? (
+                    <p>No hi ha notícies.</p>
+                ) : (
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th>Títol</th>
+                                <th>Data</th>
+                                <th>Accions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {rows.map(({ id, data }) => (
+                                <tr key={id}>
+                                    <td>{data.title}</td>
+                                    <td>
+                                        {data.date.toLocaleDateString("ca-ES", {
+                                            day: "2-digit",
+                                            month: "2-digit",
+                                            year: "numeric",
+                                        })}
+                                    </td>
+                                    <td className={styles.actions}>
+                                        <button
+                                            type="button"
+                                            className={styles.iconBtn}
+                                            title="Editar"
+                                            aria-label="Editar"
+                                            onClick={() =>
+                                                setEditing({ id, data })
+                                            }
+                                        >
+                                            <img
+                                                src={EditIcon}
+                                                alt=""
+                                                aria-hidden
+                                            />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className={styles.iconBtn}
+                                            title="Eliminar"
+                                            aria-label="Eliminar"
+                                            onClick={() => handleDelete(id)}
+                                        >
+                                            <img
+                                                src={DeleteIcon}
+                                                alt=""
+                                                aria-hidden
+                                            />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
 
-                    <Button
-                        type="submit"
-                        variant="button--blue"
-                        disabled={saving}
-                    >
-                        {saving ? "Guardant…" : "Publicar notícia"}
-                    </Button>
-                </form>
-            </Card>
+                <Button
+                    onClick={() => setCreating(true)}
+                    className={styles.createBtn}
+                    variant="button--pink"
+                >
+                    + Crear notícia
+                </Button>
+
+                <CreateNewsModal
+                    open={creating}
+                    onClose={() => setCreating(false)}
+                    onCreated={handleCreated}
+                />
+                <EditNewsModal
+                    open={!!editing}
+                    news={editing}
+                    onClose={() => setEditing(null)}
+                    onUpdated={handleUpdated}
+                />
+            </section>
+
+            <BackButton to="/admin" />
         </div>
     );
 };

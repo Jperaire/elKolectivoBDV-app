@@ -1,0 +1,44 @@
+.table {
+    word-break: normal;
+}
+
+.table td:nth-child(1) {
+    word-break: break-word;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    align-items: center;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.iconBtn img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.iconBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.iconBtn:active {
+    background-color: rgba(0, 0, 0, 0.15);
+}

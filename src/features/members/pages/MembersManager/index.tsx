@@ -1,4 +1,5 @@
 import styles from "./MembersManager.module.css";
+import { BackButton } from "@/shared/components";
 
 export const MembersManager = () => {
     return (
@@ -10,6 +11,8 @@ export const MembersManager = () => {
             </p>
 
             <section></section>
+
+            <BackButton to="/admin" />
         </div>
     );
 };

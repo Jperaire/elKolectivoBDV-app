@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Button, Loading } from "@/shared/components";
-import { BackIcon } from "@/assets/images";
+import { BackButton, Loading } from "@/shared/components";
 
 import { getAllWaitlist } from "../../services/waitlist-service";
 import { WaitlistEntry } from "../../types";
@@ -65,12 +64,7 @@ export const Waitlist = () => {
                     </table>
                 )}
 
-                <div className={styles.btnWrapper}>
-                    <Button to="/admin" variant="button--blue">
-                        <img src={BackIcon} className={styles.backIcon} />
-                        Torna enrere
-                    </Button>
-                </div>
+                <BackButton to="/admin" />
             </section>
         </div>
     );

@@ -1,1 +1,1 @@
-export { MembersManager } from "./MembersManager/MembersManager";
+export { MembersManager } from "./MembersManager";
