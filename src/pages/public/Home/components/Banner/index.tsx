@@ -17,7 +17,7 @@ export const Banner = () => {
                     OLECTIVO BDV
                 </h1>
                 <p className={styles.bannerSubtitle}>
-                    EL COLECTIU LGTBNBIQ+ DEL VALLÈS
+                    EL COL·LECTIU LGTBINBQ+ DEL VALLÈS
                 </p>
             </div>
             <Button

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { useForm } from "@/shared/hooks/useForm";
+import { useForm } from "@/shared/hooks";
 import { validateLogin } from "@/shared/utils";
 import { Button, Card, Loading } from "@/shared/components";
 

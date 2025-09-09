@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Loading, FilterByYear } from "@/shared/components";
+import { useYearFilter } from "@/shared/hooks";
 
 import { Activity } from "./components/Activity";
 import { getActivitiesOnce } from "../../firebase/methods";
@@ -13,7 +14,6 @@ export const ActivitiesPage = () => {
         Array<{ id: string; data: ActivityProps }>
     >([]);
     const [loading, setLoading] = useState(true);
-    const [year, setYear] = useState<number>(2025);
 
     useEffect(() => {
         (async () => {
@@ -26,14 +26,7 @@ export const ActivitiesPage = () => {
         })();
     }, []);
 
-    const filtered = year
-        ? items.filter(({ data }) =>
-              typeof data.date === "string"
-                  ? data.date.startsWith(year.toString())
-                  : data.date instanceof Date &&
-                    data.date.getFullYear() === year
-          )
-        : items;
+    const { year, setYear, filtered } = useYearFilter(items, 2025);
 
     return (
         <div className="page">

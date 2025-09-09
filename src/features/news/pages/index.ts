@@ -1,3 +1,3 @@
-export { NewsDetailPage } from "./NewsDetailPage";
-export { NewsPage } from "./NewsPage";
+export { NewsDetail } from "./NewsDetail";
+export { NewsList } from "./NewsList";
 export { NewsManager } from "./NewsManager";

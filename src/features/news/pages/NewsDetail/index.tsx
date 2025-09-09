@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { DatePill } from "@/shared/components/DatePill/DatePill";
-import { db } from "@/lib/firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase/firestore";
+import { DatePill, Loading } from "@/shared/components";
 import { NewsProps } from "../../types";
-import { Loading } from "@/shared/components";
 
-export const NewsDetailPage = () => {
+import styles from "./NewsDetail.module.css";
+
+export const NewsDetail = () => {
     const { id } = useParams<{ id: string }>();
     const [news, setNews] = useState<NewsProps | null>(null);
     const [loading, setLoading] = useState(true);
@@ -42,10 +43,10 @@ export const NewsDetailPage = () => {
     }, [id]);
 
     if (loading) return <Loading />;
-    if (!news) return <p>Noticia no encontrada.</p>;
+    if (!news) return <p>Noticia no trobada.</p>;
 
     return (
-        <article style={{ padding: "1rem" }}>
+        <section className="page">
             <h1>{news.title}</h1>
             <DatePill date={news.date} />
             {news.imageUrl && (
@@ -53,9 +54,10 @@ export const NewsDetailPage = () => {
                     src={news.imageUrl}
                     alt={news.title}
                     style={{ width: "100%", margin: "1rem 0" }}
+                    className={styles.newsImg}
                 />
             )}
             <p>{news.description}</p>
-        </article>
+        </section>
     );
 };

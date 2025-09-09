@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Card, Button } from "@/shared/components";
-import { useForm } from "@/shared/hooks/useForm";
+import { useForm } from "@/shared/hooks";
 import { uploadToCloudinary } from "@/shared/utils";
 
 import { ActivityForm } from "../../types";

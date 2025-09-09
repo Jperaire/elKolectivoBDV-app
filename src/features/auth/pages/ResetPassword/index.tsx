@@ -1,4 +1,4 @@
-import { useForm } from "@/shared/hooks/useForm";
+import { useForm } from "@/shared/hooks";
 import { Button, Card } from "@/shared/components";
 
 import { useSubmitState } from "../../hooks/";
