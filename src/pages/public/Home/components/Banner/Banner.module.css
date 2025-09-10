@@ -27,18 +27,16 @@
     text-align: center;
     letter-spacing: var(--space-xs);
     color: rgb(252, 242, 222);
-    font-weight: 500;
-    font-size: clamp(1rem, 1.6vw, 1.8rem);
+    font-weight: 600;
+    font-size: var(--fs-lg);
 }
 
 .bannerLogo {
-    font-weight: 700;
+    font-weight: 900;
     color: wheat;
     font-size: clamp(2rem, 11vw, 8rem);
-    text-transform: uppercase;
     user-select: none;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
 .reversedK {
@@ -51,6 +49,10 @@
     display: none;
     width: 80%;
     max-width: 1200px;
+}
+
+.mainBtn {
+    font-size: var(--fs-lg);
 }
 
 @media (min-width: 768px) {

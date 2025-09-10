@@ -8,6 +8,7 @@ export const Banner = () => {
         <div className={styles.banner}>
             <div className={styles.bannerInfo}>
                 <p className={styles.bannerKicker}>BENVINGUDIS A</p>
+
                 <h1
                     className={`${styles.bannerLogo} animate__animated animate__backInDown`}
                     translate="no"
@@ -16,6 +17,7 @@ export const Banner = () => {
                     EL <span className={styles.reversedK}>K</span>
                     OLECTIVO BDV
                 </h1>
+
                 <p className={styles.bannerSubtitle}>
                     EL COL·LECTIU LGTBINBQ+ DEL VALLÈS
                 </p>
@@ -23,7 +25,7 @@ export const Banner = () => {
             <Button
                 to="/activities"
                 variant="button--main"
-                className="animate__animated animate__pulse animate__infinite"
+                className={`animate__animated animate__pulse animate__infinite ${styles.mainBtn}`}
             >
                 Properes activitats
             </Button>

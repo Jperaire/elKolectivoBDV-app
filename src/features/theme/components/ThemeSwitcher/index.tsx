@@ -5,7 +5,12 @@ export const ThemeSwitcher = () => {
     const { theme, setTheme } = useTheme();
 
     return (
-        <div className={styles.segment} role="group" aria-label="Theme">
+        <div
+            className={styles.segment}
+            role="group"
+            aria-label="Theme"
+            title="Canva entre tema clar i tema de colors"
+        >
             <button
                 type="button"
                 className={styles.segmentBtn}

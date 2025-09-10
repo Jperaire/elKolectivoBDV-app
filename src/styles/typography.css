@@ -1,47 +1,14 @@
-:root {
-    --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.9rem);
-    --fs-sm: clamp(0.875rem, 0.83rem + 0.25vw, 1rem);
-    --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-    --fs-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.5rem);
-    --fs-xl: clamp(1.375rem, 1.2rem + 1vw, 2.25rem);
-    --fs-xxl: clamp(1.75rem, 1.4rem + 2vw, 3rem);
-    --fs-display: clamp(2rem, 1.5rem + 3vw, 3.5rem);
-
-    --lh-tight: 1.15;
-    --lh-snug: 1.3;
-    --lh-normal: 1.6;
+html {
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+    color: var(--color-text);
     font-size: var(--fs-md);
-    font-weight: 400;
     line-height: var(--lh-normal);
-}
-
-h1 {
-    font-size: var(--fs-xxl);
-    color: rgb(1, 24, 61);
     font-weight: 400;
-    width: 100%;
-    display: flex;
-    flex-direction: start;
-}
-
-h2 {
-    font-size: var(--fs-xl);
-    font-weight: 400;
-    color: rgb(1, 24, 61);
-    font-family: "Montserrat" !important;
-}
-
-h3 {
-    font-size: var(--fs-xl);
-    line-height: var(--lh-snug);
-}
-
-h4 {
-    font-size: var(--fs-lg);
-    line-height: var(--lh-snug);
 }
 
 h1,
@@ -50,46 +17,48 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Oswald", sans-serif;
-    letter-spacing: 0.12rem;
+    font-weight: 700;
+    letter-spacing: var(--ls-heading);
     text-transform: uppercase;
+    color: #01183d;
 }
 
-.subtitle {
-    text-align: center;
-    color: #444141;
-    max-width: 55ch;
-    margin-inline: auto;
+h1 {
+    font-size: var(--fs-xxl);
+    line-height: var(--lh-tight);
+}
+
+h2 {
+    font-size: var(--fs-xl);
+    line-height: var(--lh-snug);
+}
+
+h3 {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-snug);
+}
+
+h4 {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-snug);
+}
+
+h5,
+h6 {
+    font-size: var(--fs-md);
+    line-height: var(--lh-snug);
 }
 
 p {
-    font-size: var(--fs-lg);
-    line-height: var(--lh-normal);
-    color: var(--color-text);
-}
-
-div,
-p,
-a,
-ul,
-ol,
-li,
-label,
-input,
-textarea,
-button,
-table {
-    font-family: "Montserrat", sans-serif;
     font-size: var(--fs-md);
+    line-height: var(--lh-normal);
 }
 
-@media (max-width: 360px) {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        letter-spacing: 0.08rem;
-    }
+button,
+input,
+select,
+textarea,
+span {
+    font-family: inherit;
+    font-size: inherit;
 }

@@ -1,8 +1,8 @@
-import "./fonts.css";
-import "./forms.css";
-import "./layout.css";
+import "./animations.css";
 import "./reset.css";
-import "./spacing.css";
-import "./table.css";
-import "./typography.css";
 import "./variables.css";
+import "./fonts.css";
+import "./typography.css";
+import "./layout.css";
+import "./forms.css";
+import "./table.css";

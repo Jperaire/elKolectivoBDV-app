@@ -1,4 +1,4 @@
-Copyright 2016 The Oswald Project Authors (https://github.com/googlefonts/OswaldFont)
+Copyright 2011 The Roboto Project Authors (https://github.com/googlefonts/roboto-classic)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
@@ -62,7 +62,7 @@ binary files as long as those fields can be easily viewed by the user.
 
 3) No Modified Version of the Font Software may use the Reserved Font
 Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the button--purple font name as
+Copyright Holder. This restriction only applies to the primary font name as
 presented to the users.
 
 4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font

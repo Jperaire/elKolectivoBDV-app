@@ -40,14 +40,7 @@ export const Home = () => {
                         <h2 id={sections.values.id}>{sections.values.title}</h2>
                         <ul className={styles.chipList}>
                             {values.map((val, i) => (
-                                <li
-                                    key={i}
-                                    className={styles.chip}
-                                    style={{
-                                        backgroundColor:
-                                            allColors[i % allColors.length],
-                                    }}
-                                >
+                                <li key={i} className={styles.chip}>
                                     {val}
                                 </li>
                             ))}

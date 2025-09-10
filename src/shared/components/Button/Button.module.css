@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.2rem;
 
     padding: 1rem 1.2rem;
     border-radius: 10px;
@@ -11,7 +11,7 @@
 
     cursor: pointer;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 
     transition: background-color 0.25s ease, box-shadow 0.25s ease,
         transform 0.1s ease;
@@ -36,10 +36,11 @@
 .button--main {
     background-color: var(--energetic-purple);
     color: rgb(247, 243, 235);
-    border: 2px solid wheat;
+
     letter-spacing: 1px;
-    padding: var(--space-md) var(--space-xl);
+    padding: var(--space-md);
     font-size: var(--fs-lg);
+    border-radius: 15px;
 }
 
 .button--main:hover {

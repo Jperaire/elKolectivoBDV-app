@@ -44,7 +44,7 @@ export const Navbar = () => {
                     ))}
 
                     {!loading && userData?.role === "admin" && (
-                        <li>
+                        <li className={styles.cta}>
                             <Button to="/admin" variant="button--blue">
                                 Zona Admin
                             </Button>

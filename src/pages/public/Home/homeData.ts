@@ -21,7 +21,8 @@ export const sections = {
     },
 };
 
-export const description = `El ꓘolectivo és un espai d’acompanyament, segur i informatiu dirigit a persones del col·lectiu LGTBINBQ+ i familiars que busquin suport, recursos i una comunitat a Barberà del Vallès.`;
+export const description = `El ꓘolectivo és un espai d’acompanyament, segur i informatiu dirigit a persones del col·lectiu LGTBINBQ+ que busquin suport, recursos i una comunitat a Barberà del Vallès. 
+Som una associació sense ànim de lucre i el nostre objectiu és fomentar la cultura, la convivència i la participació ciutadana dissident. Volem crear un espai on les persones puguin compartir inquietuds i desenvolupar projectes socials i culturals. Ens definim com una associació queer, oberta a les persones aliades, promovent la diversitat i la inclusió.`;
 
 export const whatWeDo = [
     "Creem espais interns de suport mutu, segurs i càlids per a totes les persones del col·lectiu.",

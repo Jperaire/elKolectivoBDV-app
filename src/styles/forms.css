@@ -10,7 +10,6 @@ form textarea,
 form select {
     width: 100%;
     padding: 1rem;
-    font-size: var(--fs-lg);
     border: 2px solid #ccc;
     border-radius: 6px;
     background: #fff;
@@ -20,8 +19,8 @@ form input:focus,
 form textarea:focus,
 form select:focus {
     outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    border-color: wheat;
+    box-shadow: 0 0 0 1px var(--wheat-color);
 }
 
 form input[type="checkbox"] {
