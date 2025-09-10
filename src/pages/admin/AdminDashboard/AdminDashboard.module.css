@@ -6,6 +6,12 @@
     place-items: center;
 }
 
+.h1 {
+    justify-content: center;
+    background-color: rgb(1, 24, 61);
+    color: white;
+}
+
 .bubble {
     aspect-ratio: 1;
     border-radius: 100%;
@@ -34,8 +40,7 @@
 
 .title {
     font-size: 1.5rem;
-    color: #444;
-    background-color: antiquewhite;
+    color: rgb(251, 243, 228);
     border-radius: 10px;
 }
 

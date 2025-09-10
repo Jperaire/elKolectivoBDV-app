@@ -44,12 +44,16 @@ export const NewsManager = () => {
 
     return (
         <div className="page">
-            <h1>Notícies</h1>
-            <p className="subtitle">
-                Crea i gestiona les notícies de la comunitat.
-            </p>
+            <h1>Crea, edita i elimina noticies</h1>
 
             <section className={styles.content}>
+                <Button
+                    onClick={() => setCreating(true)}
+                    className={styles.createBtn}
+                    variant="button--pink"
+                >
+                    + Crear notícia
+                </Button>
                 {rows.length === 0 ? (
                     <p>No hi ha notícies.</p>
                 ) : (
@@ -107,14 +111,6 @@ export const NewsManager = () => {
                         </tbody>
                     </table>
                 )}
-
-                <Button
-                    onClick={() => setCreating(true)}
-                    className={styles.createBtn}
-                    variant="button--pink"
-                >
-                    + Crear notícia
-                </Button>
 
                 <CreateNewsModal
                     open={creating}

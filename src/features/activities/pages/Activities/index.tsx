@@ -30,7 +30,7 @@ export const Activities = () => {
 
     return (
         <div className="page">
-            <h1>Activitats</h1>
+            <h1 className={styles.h1}>Activitats</h1>
 
             <FilterByYear selected={year} onSelect={setYear} />
 

@@ -9,8 +9,8 @@ export const IDCard = () => {
     const [showAddr, setShowAddr] = useState(false);
 
     return (
-        <Card>
-            <article className={styles.cardWrapper}>
+        <Card className={styles.card}>
+            <article className={styles.article}>
                 <h2>Dades Fiscals Entitat</h2>
 
                 <table className={styles.entityTable}>

@@ -5,7 +5,7 @@ import styles from "./LinkCard.module.css";
 
 export const LinkCard = ({ resource }: LinkCardProps) => {
     return (
-        <Card>
+        <Card className={styles.card}>
             <article className={styles.cardWrapper}>
                 <div className={styles.mainContainer}>
                     <a

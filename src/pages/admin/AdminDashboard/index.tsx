@@ -7,7 +7,7 @@ import styles from "./AdminDashboard.module.css";
 export const AdminDashboard = () => {
     return (
         <div className="page">
-            <h1>Admin Dashboard</h1>
+            <h1 className={styles.h1}>Admin Dashboard</h1>
 
             <Card>
                 <section className={styles.cards}>

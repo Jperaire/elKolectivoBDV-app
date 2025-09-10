@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 import { db } from "@/lib/firebase/firestore";
-import { Card, DatePill, Loading } from "@/shared/components";
+import { BackButton, Card, DatePill, Loading } from "@/shared/components";
 
 import { NewsProps } from "../../types";
 
@@ -67,6 +67,7 @@ export const NewsDetail = () => {
                         <p key={i}>{paragraph}</p>
                     ))}
                 </Card>
+                <BackButton to="/news" />
             </section>
         </>
     );

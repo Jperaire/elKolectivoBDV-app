@@ -33,7 +33,7 @@
     justify-content: center;
     position: fixed;
     inset: 0;
-    background: var(--variable-bg);
+    background: var(--energetic-bg);
     z-index: 1002;
 }
 

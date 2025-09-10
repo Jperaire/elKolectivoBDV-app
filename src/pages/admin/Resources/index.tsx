@@ -6,7 +6,6 @@ export const Resources = () => {
     return (
         <div className="page">
             <h1>Recursos i links d'interès</h1>
-            <p className="subtitle">Informació útil i links d'interès</p>
 
             <section className={styles.section}>
                 <div className={styles.entityWrapper}>

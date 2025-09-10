@@ -57,9 +57,17 @@ export const ActivitiesManager = () => {
 
     return (
         <div className="page">
-            <h1>Activitats</h1>
-            <p className="subtitle">Crea, edita i elimina activitats.</p>
+            <h1>Crea, edita i elimina activitats</h1>
+
             <section className={styles.content}>
+                <Button
+                    onClick={() => setCreating(true)}
+                    variant="button--pink"
+                    className={styles.createBtn}
+                >
+                    + Afegir activitat
+                </Button>
+
                 {activities.length === 0 ? (
                     <p>No hi ha activitats.</p>
                 ) : (
@@ -114,13 +122,6 @@ export const ActivitiesManager = () => {
                         </tbody>
                     </table>
                 )}
-
-                <Button
-                    onClick={() => setCreating(true)}
-                    variant="button--pink"
-                >
-                    + Crear nova activitat
-                </Button>
 
                 <EditActivityModal
                     open={!!editing}

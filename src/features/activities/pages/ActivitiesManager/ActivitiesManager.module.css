@@ -2,21 +2,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-xs);
+    width: 100%;
+}
+
+.table {
+    width: 90%;
 }
 
 .actions {
-    display: flex;
-    gap: var(--space-md);
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .iconBtn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0.6rem;
     border-radius: 6px;
     transition: background-color 0.2s ease;
 }
@@ -40,6 +42,10 @@
 .table th:nth-child(3),
 .table td:nth-child(3) {
     display: none;
+}
+
+.createBtn {
+    padding: 0.5rem;
 }
 
 @media (min-width: 576px) {

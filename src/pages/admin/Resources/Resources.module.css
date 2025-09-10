@@ -11,6 +11,6 @@
 
 .linksWrapper {
     display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }

@@ -1,7 +1,11 @@
-.cardWrapper {
+.card {
+    padding: 40px;
+}
+
+.article {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-xs);
 }
 
 .entityTable {

@@ -37,6 +37,8 @@
     font-size: clamp(2rem, 11vw, 8rem);
     text-transform: uppercase;
     user-select: none;
+    display: flex;
+    justify-content: center;
 }
 
 .reversedK {

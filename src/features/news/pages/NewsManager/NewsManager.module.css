@@ -1,5 +1,6 @@
 .table {
     word-break: normal;
+    width: 90%;
 }
 
 .table td:nth-child(1) {
@@ -10,21 +11,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-xs);
 }
 
 .actions {
-    display: flex;
-    gap: var(--space-md);
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .iconBtn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem;
+    padding: 0.6rem;
     border-radius: 6px;
     transition: background-color 0.2s ease;
 }
@@ -41,4 +39,8 @@
 
 .iconBtn:active {
     background-color: rgba(0, 0, 0, 0.15);
+}
+
+.createBtn {
+    padding: 0.5rem;
 }
