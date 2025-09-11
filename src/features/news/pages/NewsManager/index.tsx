@@ -44,7 +44,7 @@ export const NewsManager = () => {
 
     return (
         <div className="page">
-            <h1>Crea, edita i elimina noticies</h1>
+            <h1 className="h1">Crea, edita i elimina noticies</h1>
 
             <section className={styles.content}>
                 <Button

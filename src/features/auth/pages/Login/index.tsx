@@ -68,7 +68,7 @@ export const Login = () => {
 
     return (
         <div className="page">
-            <h1>Inicia sessió</h1>
+            <h1 className="h1">Inicia sessió</h1>
 
             <Card>
                 <section className={styles.login}>

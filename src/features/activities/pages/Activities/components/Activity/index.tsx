@@ -12,6 +12,7 @@ import {
 import { CapacityBadge } from "../CapacityBadge";
 
 import styles from "./Activity.module.css";
+import { downloadICS, getGoogleCalendarUrl } from "@/features/activities/utils";
 
 export const Activity = ({
     title,
@@ -44,20 +45,25 @@ export const Activity = ({
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
-                {posterUrl && (
-                    <img
-                        src={posterUrl}
-                        alt={`Poster de l'activitat ${title}`}
-                        className={styles.poster}
-                        loading="lazy"
-                        decoding="async"
-                    />
-                )}
+                <div className={styles.content}>
+                    {posterUrl && (
+                        <img
+                            src={posterUrl}
+                            alt={`Poster de l'activitat ${title}`}
+                            className={styles.poster}
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    )}
 
-                <DatePill date={start} />
+                    <div className={styles.column}>
+                        <DatePill date={start} />
 
-                <h2>{title}</h2>
-                {description && <p>{description}</p>}
+                        <h2 className={styles.title}>{title}</h2>
+
+                        {description && <p>{description}</p>}
+                    </div>
+                </div>
 
                 <div className={styles.meta}>
                     {location && (
@@ -88,7 +94,7 @@ export const Activity = ({
                 <div className={styles.actions}>
                     {requiresSignup && !past && (
                         <Button
-                            className={styles.primary}
+                            className={styles.fourth}
                             disabled={isFull}
                             title={isFull ? "Aforament complet" : undefined}
                             onClick={handleSignupClick}
@@ -96,8 +102,25 @@ export const Activity = ({
                             Inscriu-t’hi
                         </Button>
                     )}
-                    <Button className={styles.ghost}>Google Calendar</Button>
-                    <Button className={styles.secondary}>ICS</Button>
+                    <Button
+                        className={styles.ghost}
+                        onClick={() =>
+                            window.open(
+                                getGoogleCalendarUrl(title, start, location),
+                                "_blank"
+                            )
+                        }
+                    >
+                        Google Calendar
+                    </Button>
+
+                    <Button
+                        className={styles.secondary}
+                        onClick={() => downloadICS(title, start, location)}
+                    >
+                        ICS
+                    </Button>
+
                     {instagramUrl && (
                         <Button
                             className={styles.third}
@@ -118,4 +141,3 @@ export const Activity = ({
         </Card>
     );
 };
-// TODO: CREAR FUNCION EN UTILS PARA CREAR google calendar y ICS

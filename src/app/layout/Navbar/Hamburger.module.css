@@ -41,7 +41,8 @@
     display: flex;
 }
 
-.menuLinks a {
+.menuLinks a,
+.logoutItem {
     color: white;
     font-weight: 600;
     font-size: var(--fs-lg);
@@ -49,10 +50,12 @@
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     border-bottom: 2px solid transparent;
+    cursor: pointer;
 }
 
 .menuLinks a:hover,
-.menuLinks a:active {
+.menuLinks a:active,
+.logoutItem:hover {
     border-bottom-color: rgb(249, 245, 236);
 }
 

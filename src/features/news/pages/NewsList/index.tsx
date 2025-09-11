@@ -37,9 +37,9 @@ export const NewsList = () => {
 
     return (
         <div className="page">
-            <h1>Noticies</h1>
-
-            <FilterByYear selected={year} onSelect={setYear} />
+            <h1 className="h1">
+                Noticies <FilterByYear selected={year} onSelect={setYear} />
+            </h1>
 
             <section className={styles.NewsList}>
                 {loading && <Loading message="Carregant notícies…" />}

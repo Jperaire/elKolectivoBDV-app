@@ -30,9 +30,10 @@ export const Activities = () => {
 
     return (
         <div className="page">
-            <h1 className={styles.h1}>Activitats</h1>
-
-            <FilterByYear selected={year} onSelect={setYear} />
+            <h1 className="h1">
+                Activitats
+                <FilterByYear selected={year} onSelect={setYear} />
+            </h1>
 
             {loading && <Loading message="Carregant activitats…" />}
             {!loading && items.length === 0 && <p>No hi ha activitats.</p>}

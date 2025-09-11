@@ -57,7 +57,7 @@ export const ActivitiesManager = () => {
 
     return (
         <div className="page">
-            <h1>Crea, edita i elimina activitats</h1>
+            <h1 className="h1">Crea, edita i elimina activitats</h1>
 
             <section className={styles.content}>
                 <Button

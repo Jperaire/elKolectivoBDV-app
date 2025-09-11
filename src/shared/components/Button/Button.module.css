@@ -34,17 +34,14 @@
 /* --- Variants --- */
 
 .button--main {
-    background-color: var(--energetic-purple);
+    background: linear-gradient(90deg, #b77ccf 0%, #ff9f66 100%);
     color: rgb(247, 243, 235);
-
     letter-spacing: 1px;
     padding: var(--space-md);
-    font-size: var(--fs-lg);
-    border-radius: 15px;
 }
 
 .button--main:hover {
-    background-color: transparent;
+    background: transparent;
     color: #fff;
 }
 .button--blue {

@@ -5,7 +5,7 @@ import styles from "./NotFound.module.css";
 export const NotFound = () => {
     return (
         <div className="page">
-            <h1>🤔 ¡Oops!</h1>
+            <h1 className="h1">🤔 ¡Oops!</h1>
             <p>Sembla que t'has perdut...</p>
 
             <img

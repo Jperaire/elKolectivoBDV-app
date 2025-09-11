@@ -27,7 +27,7 @@ export const Waitlist = () => {
 
     return (
         <div className="page">
-            <h1>Llista d’espera (Merch)</h1>
+            <h1 className="h1">Llista d’espera (Merch)</h1>
             <p className="subtitle">Consulta la llista d’espera.</p>
 
             <section

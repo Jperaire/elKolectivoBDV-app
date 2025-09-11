@@ -60,7 +60,7 @@ export const UserProfile = () => {
 
     return (
         <div className="page">
-            <h1>El meu perfil</h1>
+            <h1 className="h1">El meu perfil</h1>
 
             <section className={styles.section}>
                 {/* Feedback d'estat global */}

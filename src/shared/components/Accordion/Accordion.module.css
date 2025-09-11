@@ -10,8 +10,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: var(--space-md) var(--space-lg);
-    color: var(--wheat-color);
+    padding: var(--space-sm) var(--space-lg);
+    color: rgb(247, 245, 240);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -20,12 +20,12 @@
     font-weight: 700;
     letter-spacing: 0.4px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fcebeb 0%, wheat 90%);
+    background: var(--pastel-orange);
     transition: background-color 0.5s ease;
 }
 
 .header:hover {
-    background-color: var(--energetic-yellow);
+    background: rgb(247, 204, 204);
 }
 
 .icon {

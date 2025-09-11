@@ -5,7 +5,7 @@ import styles from "./Resources.module.css";
 export const Resources = () => {
     return (
         <div className="page">
-            <h1>Recursos i links d'interès</h1>
+            <h1 className="h1">Recursos i links d'interès</h1>
 
             <section className={styles.section}>
                 <div className={styles.entityWrapper}>

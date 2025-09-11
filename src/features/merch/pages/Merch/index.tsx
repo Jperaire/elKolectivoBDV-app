@@ -66,8 +66,8 @@ export const Merch = () => {
 
     return (
         <section className="page">
-            <h1>Merchan</h1>
-            <p className="subtitle">
+            <h1 className="h1">Merchan</h1>
+            <p className={styles.subtitle}>
                 Fem comandes periòdiques. Si t’interessa algun producte,
                 apunta’t a la llista d’espera i t’avisarem per correu quan obrim
                 comanda i t'informarem de com fer el pagament.
@@ -76,26 +76,22 @@ export const Merch = () => {
             <div className={styles.grid} aria-label="Catàleg de productes">
                 {merchanItems.map((item) => (
                     <article key={item.id}>
-                        <Card>
+                        <Card className={styles.card}>
                             <img src={item.img || FakeImg} alt={item.title} />
-
-                            <div className={styles.row}>
-                                <h2 className={styles.title}>{item.title}</h2>
-
-                                <div className={styles.right}>
-                                    <p className={styles.price}>
-                                        {fmtEUR.format(item.price)}
-                                    </p>
-                                    <Button
-                                        type="button"
-                                        variant="button--pink"
-                                        onClick={() => handleAdd(item)}
-                                    >
-                                        {waitlist[item.id]
-                                            ? "Ja no la vull"
-                                            : "La vull"}
-                                    </Button>
-                                </div>
+                            <div className={styles.cardContent}>
+                                <h3 className={styles.title}>{item.title}</h3>
+                                <p className={styles.price}>
+                                    {fmtEUR.format(item.price)}
+                                </p>
+                                <Button
+                                    type="button"
+                                    variant="button--pink"
+                                    onClick={() => handleAdd(item)}
+                                >
+                                    {waitlist[item.id]
+                                        ? "Ja no la vull"
+                                        : "La vull"}
+                                </Button>
                             </div>
                         </Card>
                     </article>

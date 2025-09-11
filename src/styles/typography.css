@@ -24,8 +24,18 @@ h6 {
 }
 
 h1 {
-    font-size: var(--fs-xxl);
+    font-size: var(--fs-xl);
     line-height: var(--lh-tight);
+}
+
+.h1 {
+    color: rgb(246, 234, 213);
+    background: linear-gradient(90deg, #f08db5 0%, #e9945b 100%);
+    padding: 0.75rem 1.5rem;
+    font-weight: 800;
+    border-radius: 1rem;
+    width: 100%;
+    text-align: center;
 }
 
 h2 {

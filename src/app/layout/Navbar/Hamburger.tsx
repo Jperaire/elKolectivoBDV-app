@@ -80,15 +80,14 @@ export const Hamburger = () => {
                 )}
 
                 {!loading && user && (
-                    <li onClick={() => setOpen(false)}>
-                        <Button
-                            variant="button--red"
-                            onClick={handleLogout}
-                            isLoading={signingOut}
-                            loadingText="Tancant…"
-                        >
-                            Tanca sessió
-                        </Button>
+                    <li
+                        className={styles.logoutItem}
+                        onClick={() => {
+                            handleLogout();
+                            setOpen(false);
+                        }}
+                    >
+                        Tanca sessió
                     </li>
                 )}
 

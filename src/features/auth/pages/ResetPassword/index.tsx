@@ -36,7 +36,7 @@ export const ResetPassword = () => {
 
     return (
         <div className="page">
-            <h1>Recupera la contrasenya</h1>
+            <h1 className="h1">Recupera la contrasenya</h1>
 
             <Card>
                 <section>
