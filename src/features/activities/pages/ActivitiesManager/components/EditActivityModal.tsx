@@ -22,6 +22,7 @@ export const EditActivityModal = ({
     onClose,
     onUpdated,
 }: EditActivityModalProps) => {
+    // Extendemos el formulario con signupUrl mientras actualizas types.ts
     const { setForm, ...form } = useForm({
         title: "",
         date: "",
@@ -32,6 +33,7 @@ export const EditActivityModal = ({
         hasCapacity: false,
         capacity: "",
         instagramUrl: "",
+        signupUrl: "", // ✅ nuevo
         posterFile: null as File | null,
     });
 
@@ -49,6 +51,7 @@ export const EditActivityModal = ({
             hasCapacity: Number.isFinite(d.capacity),
             capacity: d.capacity != null ? String(d.capacity) : "",
             instagramUrl: d.instagramUrl ?? "",
+            signupUrl: d.signupUrl ?? "", // ✅ precarga
             posterFile: null,
         });
     }, [activity, setForm]);
@@ -66,6 +69,7 @@ export const EditActivityModal = ({
             hasCapacity,
             capacity,
             instagramUrl,
+            signupUrl,
             posterFile,
         } = form.formState;
 
@@ -84,11 +88,17 @@ export const EditActivityModal = ({
         const instaNorm: string | null = instagramUrl.trim()
             ? instagramUrl.trim()
             : null;
+        const signupNorm: string | null = signupUrl.trim()
+            ? signupUrl.trim()
+            : null;
 
         let uploadedPoster: string | undefined;
         if (posterFile) uploadedPoster = await uploadToCloudinary(posterFile);
 
-        const payload: UpdateActivityInput = {
+        // payload ampliado con signupUrl
+        const payload: UpdateActivityInput & {
+            signupUrl?: string | null;
+        } = {
             title,
             date,
             time,
@@ -97,10 +107,11 @@ export const EditActivityModal = ({
             requiresSignup,
             capacity: capNum,
             instagramUrl: instaNorm,
+            signupUrl: signupNorm, // ✅ nuevo
             ...(uploadedPoster ? { posterUrl: uploadedPoster } : {}),
         };
 
-        await updateActivity(activity.id, payload);
+        await updateActivity(activity.id, payload as any);
 
         const newData: ActivityProps = {
             ...activity.data,
@@ -112,6 +123,7 @@ export const EditActivityModal = ({
             capacity: capNum ?? undefined,
             posterUrl: uploadedPoster ?? activity.data.posterUrl,
             instagramUrl: instaNorm ?? undefined,
+            signupUrl: signupNorm ?? undefined, // ✅ reflejamos en estado local
         };
 
         onUpdated(activity.id, newData);
@@ -180,6 +192,16 @@ export const EditActivityModal = ({
                     onChange={form.onInputChange}
                     placeholder="Enllaç a Instagram"
                 />
+
+                {/* ✅ NUEVO: enlace a Google Forms */}
+                <input
+                    name="signupUrl"
+                    type="text"
+                    value={form.signupUrl}
+                    onChange={form.onInputChange}
+                    placeholder="Enllaç a Google Forms (inscripció)"
+                />
+
                 <div className={styles.controlsRow}>
                     <label className={styles.checkbox}>
                         <input

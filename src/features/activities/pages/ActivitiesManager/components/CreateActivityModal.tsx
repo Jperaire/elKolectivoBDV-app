@@ -12,6 +12,8 @@ interface CreateActivityModalProps {
     onCreated: (newRow: { id: string; data: ActivityProps }) => void;
 }
 
+type ActivityFormWithSignup = ActivityForm & { signupUrl: string };
+
 export const CreateActivityModal = ({
     open,
     onClose,
@@ -27,11 +29,12 @@ export const CreateActivityModal = ({
         hasCapacity,
         capacity,
         instagramUrl,
+        signupUrl, // ✅ nuevo
         posterFile,
         fileKey,
         onInputChange,
         onResetForm,
-    } = useForm<ActivityForm>({
+    } = useForm<ActivityFormWithSignup>({
         title: "",
         date: "",
         time: "",
@@ -41,6 +44,7 @@ export const CreateActivityModal = ({
         hasCapacity: false,
         capacity: "",
         instagramUrl: "",
+        signupUrl: "", // ✅ inicializamos
         posterFile: null,
     });
 
@@ -59,7 +63,7 @@ export const CreateActivityModal = ({
                 ? await uploadToCloudinary(posterFile)
                 : undefined;
 
-            const newId = await createActivity({
+            const payload = {
                 title,
                 date,
                 time,
@@ -69,7 +73,10 @@ export const CreateActivityModal = ({
                 capacity: capNum,
                 posterUrl,
                 instagramUrl,
-            });
+                signupUrl: signupUrl?.trim() || null,
+            } as any;
+
+            const newId = await createActivity(payload);
 
             const dateTime = new Date(`${date}T${time}:00`);
 
@@ -83,7 +90,8 @@ export const CreateActivityModal = ({
                     requiresSignup,
                     capacity: capNum,
                     posterUrl,
-                    instagramUrl,
+                    instagramUrl: instagramUrl || undefined,
+                    signupUrl: signupUrl?.trim() || undefined,
                 },
             });
 
@@ -146,10 +154,19 @@ export const CreateActivityModal = ({
                     accept="image/*,application/pdf"
                     onChange={onInputChange}
                 />
+
                 <input
                     name="instagramUrl"
                     placeholder="Enllaç a Instagram"
                     value={instagramUrl}
+                    onChange={onInputChange}
+                />
+
+                {/* ✅ NUEVO: enlace a Google Forms */}
+                <input
+                    name="signupUrl"
+                    placeholder="Enllaç a Google Forms (inscripció)"
+                    value={signupUrl}
                     onChange={onInputChange}
                 />
 

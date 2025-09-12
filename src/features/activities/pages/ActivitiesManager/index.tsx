@@ -77,6 +77,7 @@ export const ActivitiesManager = () => {
                                 <th>Títol</th>
                                 <th>Data</th>
                                 <th>Ubicació</th>
+                                <th>Formulari</th>
                                 <th>Accions</th>
                             </tr>
                         </thead>
@@ -97,6 +98,21 @@ export const ActivitiesManager = () => {
                                             : String(data.date)}
                                     </td>
                                     <td>{data.location}</td>
+                                    <td>
+                                        {data.signupUrl ? (
+                                            <a
+                                                href={data.signupUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Obrir
+                                            </a>
+                                        ) : (
+                                            <span style={{ opacity: 0.6 }}>
+                                                —
+                                            </span>
+                                        )}
+                                    </td>
                                     <td className={styles.actions}>
                                         <button
                                             className={styles.iconBtn}

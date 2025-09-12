@@ -3,6 +3,7 @@ export { default as ArrowIcon } from "./icons/arrow-icon.svg";
 export { default as BackIcon } from "./icons/back-icon.svg";
 export { default as CheckIcon } from "./icons/check-icon.png";
 export { default as CloseIcon } from "./icons/close-icon.svg";
+export { default as CloseRedIcon } from "./icons/close-red-icon.svg";
 export { default as CopyIcon } from "./icons/copy-icon.svg";
 export { default as EmailIcon } from "./icons/email-icon.png";
 export { default as InstagramIcon } from "./icons/instagram-icon.png";

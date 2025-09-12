@@ -1,8 +1,8 @@
 /* ===== Design Tokens ===== */
 :root {
     /* Tipografía */
-    --font-main: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
-        Arial, sans-serif;
+    --font-main: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial,
+        sans-serif;
     --ls-heading: 0.12rem; /* letter-spacing headings */
 
     /* Escala tipográfica */

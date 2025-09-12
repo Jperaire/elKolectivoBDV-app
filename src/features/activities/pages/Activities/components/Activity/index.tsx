@@ -1,18 +1,16 @@
-import { useNavigate } from "react-router-dom";
-
-import { useAuth } from "@/features/auth/hooks";
 import { Button, Card, DatePill } from "@/shared/components";
 import { normalizeDate, isPast } from "@/shared/utils";
 import { ActivityProps } from "@/features/activities/types";
 import {
+    downloadICS,
+    getGoogleCalendarUrl,
     getMapHref,
     isActivityFull,
-} from "@/features/activities/utils/activity";
+} from "@/features/activities/utils";
 
 import { CapacityBadge } from "../CapacityBadge";
 
 import styles from "./Activity.module.css";
-import { downloadICS, getGoogleCalendarUrl } from "@/features/activities/utils";
 
 export const Activity = ({
     title,
@@ -24,19 +22,8 @@ export const Activity = ({
     requiresSignup = false,
     posterUrl,
     instagramUrl,
+    signupUrl,
 }: ActivityProps) => {
-    const navigate = useNavigate();
-
-    const { user } = useAuth();
-
-    const handleSignupClick = () => {
-        if (!user) {
-            navigate(`/login`);
-            return;
-        }
-        // TODO: implementar inscripción real (cuando toque)
-    };
-
     const start = normalizeDate(date);
     const past = isPast(start);
     const isFull = isActivityFull(capacity, attendeesCount);
@@ -92,16 +79,19 @@ export const Activity = ({
                 </div>
 
                 <div className={styles.actions}>
-                    {requiresSignup && !past && (
+                    {requiresSignup && signupUrl && !past && (
                         <Button
                             className={styles.fourth}
                             disabled={isFull}
                             title={isFull ? "Aforament complet" : undefined}
-                            onClick={handleSignupClick}
+                            to={signupUrl}
+                            rel="noopener noreferrer"
+                            aria-label="Obrir formulari d'inscripció"
                         >
                             Inscriu-t’hi
                         </Button>
                     )}
+
                     <Button
                         className={styles.ghost}
                         onClick={() =>

@@ -9,6 +9,7 @@ export type ActivityForm = {
     hasCapacity: boolean;
     instagramUrl: string;
     posterFile: File | null;
+    signupUrl?: string;
 };
 
 export type CapacityBadgeProps = {
@@ -27,6 +28,7 @@ export type ActivityProps = {
     requiresSignup?: boolean;
     posterUrl?: string;
     instagramUrl?: string;
+    signupUrl?: string;
 };
 
 export interface EditActivityModalProps {
