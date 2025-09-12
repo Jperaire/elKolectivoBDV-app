@@ -13,6 +13,7 @@
     transition: background 0.2s;
     font-weight: 700;
     color: white;
+    font-size: var(--fs-md);
 }
 
 .filterByYear li:hover {

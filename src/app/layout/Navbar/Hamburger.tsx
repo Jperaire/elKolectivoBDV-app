@@ -87,7 +87,7 @@ export const Hamburger = () => {
                             setOpen(false);
                         }}
                     >
-                        Tanca sessió
+                        {signingOut ? "Tancant…" : "Tanca sessió"}
                     </li>
                 )}
 

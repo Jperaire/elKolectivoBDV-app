@@ -59,7 +59,7 @@ export const Navbar = () => {
 
                     {!loading && !user && (
                         <li className={styles.cta}>
-                            <Button to="/login" variant="button--pink">
+                            <Button to="/login" variant="button--purple">
                                 Inicia sessió
                             </Button>
                         </li>

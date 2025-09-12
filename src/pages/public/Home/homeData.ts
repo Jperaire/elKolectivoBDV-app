@@ -32,16 +32,14 @@ export const whatWeDo = [
 ];
 
 export const values = [
-    "Equitat",
-    "Transfeminisme",
-    "Inclusió",
-    "Companyia",
-    "Solidaritat",
-    "Respecte",
     "Antiracisme",
     "Anticapacitisme",
     "Antifeixisme",
     "Anticapitalisme",
+    "Transfeminisme",
+    "Companyia",
+    "Solidaritat",
+    "Respecte",
 ];
 
 export const faqs = [

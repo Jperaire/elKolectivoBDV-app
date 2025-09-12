@@ -5,12 +5,12 @@ export const MembersManager = () => {
     return (
         <div className="page">
             <h1 className="h1">Membres</h1>
-            <p className="subtitle">
+            <p>
                 Visualitza els membres de la comunitat i aprova les noves
                 sol·licituds.
             </p>
 
-            <section></section>
+            <section className={styles.members}></section>
 
             <BackButton to="/admin" />
         </div>

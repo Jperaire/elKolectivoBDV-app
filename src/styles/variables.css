@@ -3,8 +3,6 @@
     /* Tipografía */
     --font-main: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
         Arial, sans-serif;
-    --secondary-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto,
-        Arial, sans-serif;
     --ls-heading: 0.12rem; /* letter-spacing headings */
 
     /* Escala tipográfica */
@@ -23,8 +21,9 @@
 
     /* Backgrounds */
     --energetic-bg: linear-gradient(90deg, #b77ccf, #e9945b, #f3d448, #5ed1d6);
-    --pastel-bg: #f6f1ee;
+    --pastel-bg: linear-gradient(90deg, #f08db5 0%, #e9945b 100%);
     --plane-bg: #faf9f9;
+    --body-bg: #efeded;
 
     /* Paleta Pastel */
     --pastel-purple: #a977e6;
@@ -58,7 +57,7 @@
     --radius-lg: 20px;
 
     /* Layout */
-    --nav-h: 80px;
+    --nav-h: 100px;
 
     /* Line height*/
     --lh-tight: 1.15;
@@ -84,7 +83,11 @@
 /* Temas */
 [data-theme="pastel"] {
     --variable-bg: var(--pastel-bg);
+    --variable-bg-title: var(--energetic-bg);
 }
 [data-theme="energetic"] {
     --variable-bg: var(--energetic-bg);
+    --variable-bg-title: var(--pastel-bg);
 }
+
+/* energetic: banner, navbar, hamburger */

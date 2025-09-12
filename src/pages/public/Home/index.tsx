@@ -1,5 +1,4 @@
 import { Accordion, AccordionItem, Card } from "@/shared/components";
-import { allColors } from "@/shared/utils/colors";
 import { Banner, Contact, QueerFlagsMarquee, WhatWeDo } from "./components";
 import { sections, description, values, faqs } from "./homeData";
 
@@ -55,13 +54,15 @@ export const Home = () => {
                 >
                     <Card>
                         <h2 id={sections.faqs.id}>{sections.faqs.title}</h2>
-                        <Accordion>
-                            {faqs.map((faq, i) => (
-                                <AccordionItem key={i} title={faq.q}>
-                                    {faq.a}
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
+                        <div className={styles.accordionWrapper}>
+                            <Accordion>
+                                {faqs.map((faq, i) => (
+                                    <AccordionItem key={i} title={faq.q}>
+                                        {faq.a}
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </div>
                     </Card>
                 </section>
 
@@ -74,7 +75,7 @@ export const Home = () => {
                         <h2 id={sections.contact.id}>
                             {sections.contact.title}
                         </h2>
-                        <p className="subtitle">
+                        <p>
                             Tens algun dubte o vols preguntar-nos alguna cosa?
                             Ets una entitat i tens una proposta? Contacta’ns a
                             través de les nostres xarxes socials o mitjançant el

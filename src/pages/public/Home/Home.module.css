@@ -9,7 +9,7 @@
 /* Headings */
 .home h2 {
     color: rgb(246, 234, 213);
-    background: linear-gradient(90deg, #f08db5 0%, #e9945b 100%);
+    background: var(--variable-bg-title);
     padding: 0.75rem 1.5rem;
     font-weight: 800;
     border-radius: 1rem;
@@ -31,34 +31,40 @@
 /* ===== VALUES ===== */
 .chipList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+
     gap: var(--space-md);
-    max-width: 900px;
-    margin-inline: auto;
+    justify-content: center;
 }
 
+/* Estilos base */
 .chip {
     border-radius: 9999px;
-    padding: 0.75rem 1.25rem;
-    border: 2px solid var(--pastel-yellow);
+    padding: 0.5rem 1.25rem;
+    border: 2px solid #ee8e9d;
     font-weight: 700;
     font-size: var(--fs-md);
     letter-spacing: 0.1rem;
     text-align: center;
-    color: var(--wheat-color);
     text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-    background: #fff;
-    transition: box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+    background-color: #f9f7f7;
+    color: #ee8e9d; /* texto blanco por defecto */
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
+/* Hover moderno: ligero zoom, sombra y brillo */
 .chip:hover {
-    background: linear-gradient(
-        135deg,
-        var(--pastel-yellow) 0%,
-        var(--pastel-orange) 100%
-    );
-    color: rgb(255, 253, 250);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.18);
+    filter: brightness(1.1);
+}
+
+/* ===== FAQs ===== */
+
+.accordionWrapper {
+    width: 97%;
+    margin: auto;
 }
 
 /* ===== CONTACT ===== */

@@ -10,22 +10,27 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: var(--space-sm) var(--space-lg);
-    color: rgb(247, 245, 240);
+    padding: var(--space-xs) var(--space-lg);
     border: none;
-    border-radius: 10px;
+    border-radius: 9999px;
     cursor: pointer;
     text-align: left;
     font-size: var(--fs-md);
-    font-weight: 700;
-    letter-spacing: 0.4px;
+    letter-spacing: 1px;
+    font-weight: 600;
     text-transform: uppercase;
-    background: var(--pastel-orange);
-    transition: background-color 0.5s ease;
+    color: white;
+    background: #f2aab5;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.35s ease, color 0.35s ease,
+        transform 0.25s ease, box-shadow 0.35s ease;
 }
 
 .header:hover {
-    background: rgb(247, 204, 204);
+    background: var(--pastel-yellow);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
 }
 
 .icon {

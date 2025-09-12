@@ -3,7 +3,7 @@
     margin-left: calc(50% - 50vw);
     padding: 15vh 0;
 
-    background: var(--energetic-bg);
+    background: var(--variable-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,6 +53,8 @@
 
 .mainBtn {
     font-size: var(--fs-lg);
+    border-radius: 9999px;
+    border: 2px solid wheat;
 }
 
 @media (min-width: 768px) {

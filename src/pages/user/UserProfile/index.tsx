@@ -3,7 +3,7 @@ import { updateProfile } from "firebase/auth";
 
 import { Card, Button, Loading } from "@/shared/components";
 import { deleteAccount, signOutUser } from "@/features/auth/firebase/methods";
-import { ThemeSwitcher, Pallete } from "@/features/theme/components/";
+import { ThemeSwitcher } from "@/features/theme/components/";
 import { updateUser } from "@/shared/services/";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 
@@ -108,7 +108,6 @@ export const UserProfile = () => {
                         <h2 id="signout-title">Canviar tema</h2>
                         <div className={styles.switcherWrapper}>
                             <ThemeSwitcher />
-                            <Pallete />
                         </div>
                     </article>
                 </Card>
