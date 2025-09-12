@@ -18,6 +18,7 @@ export const Merch = () => {
     const [showModal, setShowModal] = useState(false);
     const [selected, setSelected] = useState<Item | null>(null);
     const [waitlist, setWaitlist] = useState<Record<string, boolean>>({});
+    const [zoomImg, setZoomImg] = useState<string | null>(null);
 
     useEffect(() => {
         if (!user) return;
@@ -77,7 +78,12 @@ export const Merch = () => {
                 {merchanItems.map((item) => (
                     <article key={item.id}>
                         <Card className={styles.card}>
-                            <img src={item.img || FakeImg} alt={item.title} />
+                            <img
+                                src={item.img || FakeImg}
+                                alt={item.title}
+                                className={styles.cardImg}
+                                onClick={() => setZoomImg(item.img || FakeImg)}
+                            />
                             <div className={styles.cardContent}>
                                 <h3 className={styles.title}>{item.title}</h3>
                                 <p className={styles.price}>
@@ -98,7 +104,6 @@ export const Merch = () => {
                 ))}
             </div>
 
-            {/* Modal de login */}
             <Modal
                 open={showModal}
                 onClose={() => setShowModal(false)}
@@ -127,6 +132,20 @@ export const Merch = () => {
                         Cancel·la
                     </Button>
                 </div>
+            </Modal>
+
+            <Modal
+                open={!!zoomImg}
+                onClose={() => setZoomImg(null)}
+                titleId="zoom-img"
+            >
+                {zoomImg && (
+                    <img
+                        src={zoomImg}
+                        alt="Vista ampliada"
+                        className={styles.zoomImg}
+                    />
+                )}
             </Modal>
         </section>
     );

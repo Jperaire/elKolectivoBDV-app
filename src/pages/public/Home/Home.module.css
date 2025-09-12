@@ -41,14 +41,14 @@
 .chip {
     border-radius: 9999px;
     padding: 0.5rem 1.25rem;
-    border: 2px solid #ee8e9d;
+    border: 2px solid var(--pastel-yellow);
     font-weight: 700;
     font-size: var(--fs-md);
     letter-spacing: 0.1rem;
     text-align: center;
     text-transform: uppercase;
     background-color: #f9f7f7;
-    color: #ee8e9d; /* texto blanco por defecto */
+    color: var(--wheat-color);
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }

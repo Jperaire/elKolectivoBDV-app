@@ -20,7 +20,7 @@ h6 {
     font-weight: 700;
     letter-spacing: var(--ls-heading);
     text-transform: uppercase;
-    color: #01183d;
+    color: #4b4b4c;
 }
 
 h1 {
@@ -31,7 +31,7 @@ h1 {
 .h1 {
     color: rgb(246, 234, 213);
     background: var(--variable-bg-title);
-    padding: 0.75rem 1.5rem;
+    padding: 2rem;
     font-weight: 800;
     border-radius: 1rem;
     width: 100%;
@@ -39,13 +39,15 @@ h1 {
 }
 
 h2 {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-lg);
     line-height: var(--lh-snug);
+    text-align: center;
 }
 
 h3 {
     font-size: var(--fs-lg);
     line-height: var(--lh-snug);
+    font-weight: 400;
 }
 
 h4 {

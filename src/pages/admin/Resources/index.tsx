@@ -1,6 +1,7 @@
 import { IDCard, LinkCard } from "./components";
 import { LINKS } from "./utils/data";
 import styles from "./Resources.module.css";
+import { BackButton } from "@/shared/components";
 
 export const Resources = () => {
     return (
@@ -18,6 +19,8 @@ export const Resources = () => {
                     ))}
                 </div>
             </section>
+
+            <BackButton to="/admin" />
         </div>
     );
 };

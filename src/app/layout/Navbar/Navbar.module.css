@@ -65,14 +65,14 @@
 .userMenu ul {
     position: absolute;
     right: 0;
-    top: 120%;
+    top: 150%;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 10px;
-    min-width: 160px;
+    min-width: 200px;
     padding: 8px;
     display: grid;
-    gap: 6px;
+    gap: 0.5rem;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
     z-index: 1003;
 }
@@ -89,6 +89,7 @@
     width: 100%;
     cursor: pointer;
     display: block;
+    letter-spacing: 1px;
 }
 
 .navLinks li.userMenu ul a:hover,
@@ -101,7 +102,7 @@
 }
 
 .userIcon:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 @media (min-width: 992px) {

@@ -11,25 +11,23 @@
     align-items: center;
     width: 100%;
     padding: var(--space-xs) var(--space-lg);
-    border: none;
+    border: 3px solid var(--pastel-yellow);
     border-radius: 9999px;
     cursor: pointer;
     text-align: left;
     font-size: var(--fs-md);
     letter-spacing: 1px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    color: white;
-    background: #f2aab5;
+    color: var(--wheat-color);
+    background: none;
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.06);
     transition: background-color 0.35s ease, color 0.35s ease,
         transform 0.25s ease, box-shadow 0.35s ease;
 }
 
 .header:hover {
-    background: var(--pastel-yellow);
-    color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: 0 12px 12px rgba(0, 0, 0, 0.15);
 }
 

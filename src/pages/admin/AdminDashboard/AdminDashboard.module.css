@@ -6,12 +6,6 @@
     place-items: center;
 }
 
-.h1 {
-    justify-content: center;
-    background-color: rgb(1, 24, 61);
-    color: white;
-}
-
 .bubble {
     aspect-ratio: 1;
     border-radius: 100%;
