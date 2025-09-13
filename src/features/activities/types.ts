@@ -19,7 +19,6 @@ export type CapacityBadgeProps = {
 };
 
 export type ActivityProps = {
-    id: string;
     title: string;
     description?: string;
     date: Date;
