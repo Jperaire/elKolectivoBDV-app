@@ -14,8 +14,14 @@ export const Banner = () => {
                     translate="no"
                     lang="zxx"
                 >
-                    <span className={styles.reversedK}>K</span>
-                    OLECTIVO BDV
+                    <span className={styles.line1}>
+                        EL{" "}
+                        <span className={styles.kolectivo}>
+                            <span className={styles.reversedK}>K</span>OLECTIVO
+                        </span>
+                    </span>
+                    <br />
+                    <span className={styles.line2}>BDV</span>
                 </h1>
 
                 <p className={styles.bannerSubtitle}>

@@ -48,4 +48,5 @@ export type UpdateActivityInput = Partial<{
     capacity: number | null;
     posterUrl: string | null;
     instagramUrl: string | null;
+    signupUrl: string | null;
 }>;

@@ -5,13 +5,14 @@ export { default as CheckIcon } from "./icons/check-icon.png";
 export { default as CloseIcon } from "./icons/close-icon.svg";
 export { default as CloseRedIcon } from "./icons/close-red-icon.svg";
 export { default as CopyIcon } from "./icons/copy-icon.svg";
+export { default as DeleteIcon } from "./icons/delete-icon.png";
+export { default as EditIcon } from "./icons/edit-icon.png";
 export { default as EmailIcon } from "./icons/email-icon.png";
+export { default as FilterIcon } from "./icons/filter-icon.svg";
 export { default as InstagramIcon } from "./icons/instagram-icon.png";
 export { default as MenuIcon } from "./icons/menu-icon.svg";
 export { default as PodcastIcon } from "./icons/podcast-icon.png";
 export { default as UserIcon } from "./icons/user-icon.svg";
-export { default as DeleteIcon } from "./icons/delete-icon.png";
-export { default as EditIcon } from "./icons/edit-icon.png";
 
 // logos
 export { default as CalendarLogo } from "./logos/google-calendar.png";

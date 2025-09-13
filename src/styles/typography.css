@@ -29,7 +29,7 @@ h1 {
 }
 
 .h1 {
-    color: rgb(246, 234, 213);
+    color: rgb(249, 242, 230);
     background: var(--variable-bg-title);
     padding: var(--space-sm) var(--space-xs);
     font-weight: 800;

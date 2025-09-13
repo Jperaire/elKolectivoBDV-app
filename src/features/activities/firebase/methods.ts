@@ -25,6 +25,7 @@ export const createActivity = async (input: {
     capacity?: number;
     posterUrl?: string;
     instagramUrl?: string;
+    signupUrl?: string | null;
 }) => {
     const startAt = combineDateTime(input.date, input.time);
     if (!startAt) throw new Error("INVALID_DATETIME");
@@ -39,11 +40,14 @@ export const createActivity = async (input: {
             : {}),
         posterUrl: input.posterUrl || null,
         instagramUrl: input.instagramUrl || null,
+        signupUrl: input.requiresSignup
+            ? input.signupUrl?.trim() || null
+            : null,
         startAt: Timestamp.fromDate(startAt),
         createdAt: serverTimestamp(),
     });
 
-    return docRef.id; // 🔹 devolvemos id para actualizar la UI
+    return docRef.id;
 };
 
 // READ
@@ -64,6 +68,7 @@ export const getActivitiesOnce = async (): Promise<
             startAt,
             posterUrl,
             instagramUrl,
+            signupUrl,
         } = d.data() as any;
 
         const props: ActivityProps = {
@@ -76,6 +81,7 @@ export const getActivitiesOnce = async (): Promise<
             requiresSignup,
             posterUrl: posterUrl ?? undefined,
             instagramUrl: instagramUrl ?? undefined,
+            signupUrl: signupUrl ?? undefined,
         };
 
         return { id: d.id, data: props };
