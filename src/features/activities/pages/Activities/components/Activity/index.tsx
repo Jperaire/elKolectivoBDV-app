@@ -1,4 +1,5 @@
-import { Button, Card, DatePill } from "@/shared/components";
+import { useEffect, useMemo, useState } from "react";
+import { Button, Card, DatePill, Modal } from "@/shared/components";
 import { normalizeDate, isPast } from "@/shared/utils";
 import { ActivityProps } from "@/features/activities/types";
 import {
@@ -7,12 +8,22 @@ import {
     getMapHref,
     isActivityFull,
 } from "@/features/activities/utils";
-
 import { CapacityBadge } from "../CapacityBadge";
+
+import { useAuth } from "@/features/auth/hooks";
+import {
+    addAttendee,
+    removeAttendee,
+    isUserAttending,
+    ActivityAttendee,
+} from "@/features/activities/services";
 
 import styles from "./Activity.module.css";
 
+type ActivityCardProps = ActivityProps & { id: string };
+
 export const Activity = ({
+    id,
     title,
     description = "",
     date,
@@ -22,12 +33,56 @@ export const Activity = ({
     requiresSignup = false,
     posterUrl,
     instagramUrl,
-    signupUrl,
-}: ActivityProps) => {
+}: ActivityCardProps) => {
     const start = normalizeDate(date);
     const past = isPast(start);
     const isFull = isActivityFull(capacity, attendeesCount);
     const mapHref = getMapHref(location);
+
+    const { user } = useAuth();
+    const [signed, setSigned] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
+
+    useEffect(() => {
+        (async () => {
+            if (!user) {
+                setSigned(false);
+                return;
+            }
+            const ok = await isUserAttending(id, user.uid);
+            setSigned(ok);
+        })();
+    }, [user, id]);
+
+    const attendee: ActivityAttendee | null = useMemo(() => {
+        if (!user) return null;
+        return {
+            uid: user.uid,
+            email: user.email || "sense-email",
+            name: user.displayName || "",
+        };
+    }, [user]);
+
+    const handleToggleSignup = async () => {
+        if (!user || !attendee) {
+            setShowLogin(true);
+            return;
+        }
+        try {
+            if (signed) {
+                await removeAttendee(id, attendee);
+                setSigned(false);
+                alert(`❌ T’has desapuntat de “${title}”.`);
+            } else {
+                await addAttendee(id, attendee);
+                setSigned(true);
+                alert(`✅ T’has inscrit a “${title}”.`);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Error, torna-ho a provar.");
+        }
+    };
 
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
@@ -76,16 +131,18 @@ export const Activity = ({
                 </div>
 
                 <div className={styles.actions}>
-                    {requiresSignup && signupUrl && !past && (
+                    {requiresSignup && !past && (
                         <Button
                             className={styles.fourth}
-                            disabled={isFull}
-                            title={isFull ? "Aforament complet" : undefined}
-                            to={signupUrl}
-                            rel="noopener noreferrer"
-                            aria-label="Obrir formulari d'inscripció"
+                            onClick={handleToggleSignup}
+                            disabled={isFull && !signed}
+                            title={
+                                isFull && !signed
+                                    ? "Aforament complet"
+                                    : undefined
+                            }
                         >
-                            Inscriu-t’hi
+                            {signed ? "Desapuntar-me" : "Inscriu-t’hi"}
                         </Button>
                     )}
 
@@ -125,6 +182,36 @@ export const Activity = ({
                     )}
                 </div>
             </article>
+
+            <Modal
+                open={showLogin}
+                onClose={() => setShowLogin(false)}
+                titleId="login-modal-title"
+            >
+                <h3 id="login-modal-title">Inicia sessió per inscriure’t</h3>
+                <p>
+                    Has d’<strong>iniciar sessió</strong> per inscriure’t a “
+                    {title}”.
+                </p>
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "0.5rem",
+                        justifyContent: "flex-end",
+                    }}
+                >
+                    <Button to="/login" variant="button--blue">
+                        Inicia sessió
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="button--gray"
+                        onClick={() => setShowLogin(false)}
+                    >
+                        Cancel·la
+                    </Button>
+                </div>
+            </Modal>
         </Card>
     );
 };

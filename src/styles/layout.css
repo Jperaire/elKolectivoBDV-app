@@ -21,7 +21,7 @@ main {
     padding-top: var(--nav-h);
     width: 90%;
     max-width: 1200px;
-    margin: 15px auto;
+    margin: 30px auto;
 }
 
 .page {

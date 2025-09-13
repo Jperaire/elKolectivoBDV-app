@@ -19,6 +19,7 @@ export type CapacityBadgeProps = {
 };
 
 export type ActivityProps = {
+    id: string;
     title: string;
     description?: string;
     date: Date;
@@ -50,3 +51,9 @@ export type UpdateActivityInput = Partial<{
     instagramUrl: string | null;
     signupUrl: string | null;
 }>;
+
+export type ActivityAttendee = {
+    uid: string;
+    email: string;
+    name?: string;
+};

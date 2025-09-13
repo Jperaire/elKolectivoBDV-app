@@ -40,7 +40,7 @@ export const Activities = () => {
 
             <section className={styles.section}>
                 {filtered.map(({ id, data }) => (
-                    <Activity key={id} {...data} />
+                    <Activity key={id} id={id} {...data} />
                 ))}
             </section>
         </div>

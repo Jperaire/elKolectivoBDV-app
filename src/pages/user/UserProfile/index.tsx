@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { updateProfile } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -8,25 +8,47 @@ import { ThemeSwitcher } from "@/features/theme/components/";
 import { updateUser } from "@/shared/services/";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { db } from "@/lib/firebase/firestore";
-import { fmtEUR } from "@/shared/utils";
+import { fmtEUR, normalizeDate, isPast } from "@/shared/utils";
 
 import { leaveWaitlist } from "@/features/merch/services/waitlist-service";
 import { merchanItems } from "@/features/merch/data/items";
 import { FakeImg, CloseRedIcon } from "@/assets/images";
 
+import { getActivitiesOnce } from "@/features/activities/firebase/methods";
+import {
+    removeAttendee,
+    ActivityAttendee,
+} from "@/features/activities/services";
+
 import styles from "./UserProfile.module.css";
 
 export const UserProfile = () => {
     const { user, userData, loading } = useAuth();
+
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
     const [password, setPassword] = useState("");
     const [busy, setBusy] = useState(false);
     const [status, setStatus] = useState<string>("");
 
+    // ====== MERCH WAITLIST ======
     const [waitItems, setWaitItems] = useState<
         { id: string; title: string; price: number; img?: string }[]
     >([]);
     const [loadingWait, setLoadingWait] = useState(false);
+
+    // ====== MY ACTIVITIES (UPCOMING) ======
+    type MyAct = { id: string; title: string; date: Date; location?: string };
+    const [myActs, setMyActs] = useState<MyAct[]>([]);
+    const [loadingActs, setLoadingActs] = useState(false);
+
+    const meAttendee: ActivityAttendee | null = useMemo(() => {
+        if (!user) return null;
+        return {
+            uid: user.uid,
+            email: user.email || "sense-email",
+            name: user.displayName || "",
+        };
+    }, [user]);
 
     useEffect(() => {
         if (!user) return;
@@ -61,6 +83,44 @@ export const UserProfile = () => {
             }
         };
         load();
+    }, [user]);
+
+    // Cargar actividades donde estoy inscrito (próximas)
+    useEffect(() => {
+        const loadMyActivities = async () => {
+            if (!user) {
+                setMyActs([]);
+                return;
+            }
+            setLoadingActs(true);
+            try {
+                const rows = await getActivitiesOnce(); // [{id, data}]
+                const mine = rows
+                    .filter(({ data }) => {
+                        const start = normalizeDate(data.date);
+                        const attendees = (data as any).attendees as
+                            | ActivityAttendee[]
+                            | undefined;
+                        const iAttend = Array.isArray(attendees)
+                            ? attendees.some((a) => a?.uid === user.uid)
+                            : false;
+                        return iAttend && !isPast(start);
+                    })
+                    .map(({ id, data }) => ({
+                        id,
+                        title: data.title,
+                        date: normalizeDate(data.date),
+                        location: data.location,
+                    }))
+                    .sort((a, b) => a.date.getTime() - b.date.getTime());
+                setMyActs(mine);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                setLoadingActs(false);
+            }
+        };
+        loadMyActivities();
     }, [user]);
 
     if (loading) return <Loading message="Comprovant sessió…" />;
@@ -123,6 +183,21 @@ export const UserProfile = () => {
         }
     };
 
+    const handleUnsubscribe = async (activityId: string, title: string) => {
+        if (!user || !meAttendee) return;
+        const ok = window.confirm(`Vols desapuntar-te d’“${title}”?`);
+        if (!ok) return;
+
+        try {
+            await removeAttendee(activityId, meAttendee);
+            setMyActs((prev) => prev.filter((x) => x.id !== activityId));
+            setStatus(`❌ T’has desapuntat de “${title}”.`);
+        } catch (e) {
+            console.error(e);
+            setStatus("❌ No s’ha pogut desapuntar. Torna-ho a provar.");
+        }
+    };
+
     return (
         <div className="page">
             <h1 className="h1">El meu perfil</h1>
@@ -175,6 +250,69 @@ export const UserProfile = () => {
                         <div className={styles.switcherWrapper}>
                             <ThemeSwitcher />
                         </div>
+                    </article>
+                </Card>
+
+                {/* ====== Les meves activitats (UPCOMING) */}
+                <Card>
+                    <article
+                        aria-labelledby="myacts-title"
+                        className={styles.article}
+                    >
+                        <h2 id="myacts-title">Les meves activitats</h2>
+
+                        {loadingActs ? (
+                            <Loading message="Carregant les teves activitats…" />
+                        ) : myActs.length === 0 ? (
+                            <p>No tens inscripcions pròximes.</p>
+                        ) : (
+                            <div style={{ overflowX: "auto" }}>
+                                <table className={styles.table}>
+                                    <thead>
+                                        <tr>
+                                            <th>Activitat</th>
+                                            <th>Data</th>
+                                            <th>Ubicació</th>
+                                            <th>Accions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {myActs.map((r) => (
+                                            <tr key={r.id}>
+                                                <td>{r.title}</td>
+                                                <td>
+                                                    {r.date.toLocaleString(
+                                                        "ca-ES",
+                                                        {
+                                                            day: "2-digit",
+                                                            month: "2-digit",
+                                                            year: "numeric",
+                                                            hour: "2-digit",
+                                                            minute: "2-digit",
+                                                        }
+                                                    )}
+                                                </td>
+                                                <td>{r.location || "—"}</td>
+                                                <td>
+                                                    <Button
+                                                        variant="button--gray"
+                                                        onClick={() =>
+                                                            handleUnsubscribe(
+                                                                r.id,
+                                                                r.title
+                                                            )
+                                                        }
+                                                        disabled={busy}
+                                                    >
+                                                        Desapuntar-me
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
                     </article>
                 </Card>
 
