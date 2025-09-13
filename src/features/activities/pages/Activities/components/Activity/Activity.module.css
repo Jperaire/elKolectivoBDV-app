@@ -1,13 +1,8 @@
-.card {
-    padding: 2rem 1rem;
-    width: 100%;
-}
-
 .activity {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
 }
 
 .content {
@@ -24,15 +19,13 @@
 
 .title {
     font-weight: 400;
-    font-size: var(--fs-xl);
 }
 
 .poster {
     width: 100%;
-    aspect-ratio: 4 / 5;
     height: 300px;
-    border-radius: 10px;
     object-fit: cover;
+    border-radius: 10px;
     margin-bottom: 1rem;
     display: block;
 }

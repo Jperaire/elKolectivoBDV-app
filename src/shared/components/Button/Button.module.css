@@ -3,9 +3,9 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    letter-spacing: 0.2rem;
+    font-size: var(--fs-sm);
 
-    padding: 1rem 1.2rem;
+    padding: var(--space-xs);
     border-radius: 10px;
     border: none;
 

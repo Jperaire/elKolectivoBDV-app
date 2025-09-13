@@ -6,7 +6,7 @@
     --ls-heading: 0.12rem; /* letter-spacing headings */
 
     /* Escala tipográfica */
-    --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.9rem);
+    --fs-xs: clamp(0.5rem, 0.7rem + 0.2vw, 0.75rem);
     --fs-sm: clamp(0.875rem, 0.83rem + 0.25vw, 1rem);
     --fs-md: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
     --fs-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.5rem);
