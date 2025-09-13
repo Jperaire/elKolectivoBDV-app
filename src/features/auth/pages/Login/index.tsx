@@ -68,9 +68,8 @@ export const Login = () => {
 
     return (
         <div className="page">
-            <h1 className="h1">Inicia sessió</h1>
-
             <Card>
+                <h1>Inicia sessió</h1>
                 <section className={styles.login}>
                     <form onSubmit={handleSubmit} noValidate>
                         <input
@@ -107,12 +106,13 @@ export const Login = () => {
                                 onClick={handleGoogleLogin}
                                 isLoading={submitting}
                                 loadingText="Connectant..."
-                                variant="button--orange"
+                                variant="button--blue"
                             >
                                 Continua amb Google
                             </Button>
                         </div>
                     </form>
+
                     <p className={styles.helperText}>
                         Encara no tens usuari? Registra't{" "}
                         <Link to="/register" className={styles.registerLink}>

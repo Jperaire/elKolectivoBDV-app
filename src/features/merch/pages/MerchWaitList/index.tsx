@@ -5,9 +5,9 @@ import { BackButton, Loading } from "@/shared/components";
 import { getAllWaitlist } from "../../services/waitlist-service";
 import { WaitlistEntry } from "../../types";
 
-import styles from "./WaitList.module.css";
+import styles from "./MerchWaitList.module.css";
 
-export const Waitlist = () => {
+export const MerchWaitlist = () => {
     const [entries, setEntries] = useState<WaitlistEntry[]>([]);
     const [loading, setLoading] = useState(true);
 

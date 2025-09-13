@@ -28,7 +28,7 @@
 .menuLinks {
     display: none;
     flex-direction: column;
-    gap: var(--space-xxl);
+    gap: var(--space-xl);
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -45,7 +45,7 @@
 .logoutItem {
     color: white;
     font-weight: 600;
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
     transition: color 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.1rem;

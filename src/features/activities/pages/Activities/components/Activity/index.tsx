@@ -32,6 +32,7 @@ export const Activity = ({
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
+                <DatePill date={start} />
                 <div className={styles.content}>
                     {posterUrl && (
                         <img
@@ -44,38 +45,34 @@ export const Activity = ({
                     )}
 
                     <div className={styles.column}>
-                        <DatePill date={start} />
-
                         <h2 className={styles.title}>{title}</h2>
-
                         {description && <p>{description}</p>}
+                        <div className={styles.meta}>
+                            {location && (
+                                <a
+                                    href={mapHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.locationLink}
+                                    aria-label={`Obrir ubicació a Google Maps: ${location}`}
+                                >
+                                    {location}
+                                </a>
+                            )}
+                            <CapacityBadge
+                                capacity={capacity}
+                                attendeesCount={attendeesCount}
+                            />
+                            {!requiresSignup && (
+                                <span
+                                    className={styles.signupReq}
+                                    aria-label="Aquesta activitat no requereix inscripció"
+                                >
+                                    No requereix inscripció
+                                </span>
+                            )}
+                        </div>
                     </div>
-                </div>
-
-                <div className={styles.meta}>
-                    {location && (
-                        <a
-                            href={mapHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.locationLink}
-                            aria-label={`Obrir ubicació a Google Maps: ${location}`}
-                        >
-                            {location}
-                        </a>
-                    )}
-                    <CapacityBadge
-                        capacity={capacity}
-                        attendeesCount={attendeesCount}
-                    />
-                    {!requiresSignup && (
-                        <span
-                            className={styles.signupReq}
-                            aria-label="Aquesta activitat no requereix inscripció"
-                        >
-                            No requereix inscripció
-                        </span>
-                    )}
                 </div>
 
                 <div className={styles.actions}>
@@ -101,7 +98,7 @@ export const Activity = ({
                             )
                         }
                     >
-                        Google Calendar
+                        Google Cal
                     </Button>
 
                     <Button

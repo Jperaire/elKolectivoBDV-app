@@ -36,9 +36,10 @@ export const ResetPassword = () => {
 
     return (
         <div className="page">
-            <h1 className="h1">Recupera la contrasenya</h1>
-
             <Card>
+                <h1 style={{ marginBottom: "20px" }}>
+                    Recupera la contrasenya
+                </h1>
                 <section>
                     <form
                         onSubmit={handleReset}

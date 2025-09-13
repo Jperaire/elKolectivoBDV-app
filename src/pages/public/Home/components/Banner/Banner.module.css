@@ -28,13 +28,13 @@
     letter-spacing: var(--space-xs);
     color: rgb(252, 242, 222);
     font-weight: 600;
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
 }
 
 .bannerLogo {
     font-weight: 900;
     color: wheat;
-    font-size: clamp(2rem, 11vw, 8rem);
+    font-size: clamp(3.5rem, 11vw, 8rem);
     user-select: none;
     text-align: center;
 }

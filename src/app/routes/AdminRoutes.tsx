@@ -4,7 +4,7 @@ import { ActivitiesManager } from "@/features/activities/pages";
 import { AdminDashboard, Resources } from "@/pages/admin";
 import { MembersManager } from "@/features/members/pages";
 import { NewsManager } from "@/features/news/pages";
-import { Waitlist } from "@/features/merch/pages";
+import { MerchWaitlist } from "@/features/merch/pages";
 
 export const AdminRoutes = (
     <Route path="admin">
@@ -13,6 +13,6 @@ export const AdminRoutes = (
         <Route path="members" element={<MembersManager />} />
         <Route path="resources" element={<Resources />} />
         <Route path="news" element={<NewsManager />} />
-        <Route path="waitlist" element={<Waitlist />} />
+        <Route path="waitlist" element={<MerchWaitlist />} />
     </Route>
 );

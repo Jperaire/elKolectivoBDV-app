@@ -14,7 +14,7 @@ export const Banner = () => {
                     translate="no"
                     lang="zxx"
                 >
-                    EL <span className={styles.reversedK}>K</span>
+                    <span className={styles.reversedK}>K</span>
                     OLECTIVO BDV
                 </h1>
 

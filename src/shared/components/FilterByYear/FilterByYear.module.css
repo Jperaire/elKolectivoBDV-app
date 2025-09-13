@@ -1,27 +1,37 @@
 .filterByYear {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
+    align-items: center;
     border-radius: 10px;
     margin-top: 1rem;
     font-size: 1rem;
+    gap: var(--space-sm);
 }
 
 .filterByYear li {
+    width: fit-content;
     cursor: pointer;
     padding: 0.2rem 1rem;
     transition: background 0.2s;
     font-weight: 700;
     color: white;
     font-size: var(--fs-md);
+    border-radius: 10px;
 }
 
 .filterByYear li:hover {
-    border-radius: 10px;
-    background: rgb(244, 195, 102);
+    background: var(--variable-bg);
 }
 
 .active {
-    background: rgb(244, 195, 102);
+    background: var(--variable-bg);
     border-radius: 10px;
+}
+
+@media (min-width: 568px) {
+    .filterByYear {
+        flex-direction: row;
+    }
 }

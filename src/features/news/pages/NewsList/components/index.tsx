@@ -17,6 +17,7 @@ export const News = ({
 
     return (
         <Card className={styles.card}>
+            <DatePill date={date} />
             <article className={styles.news}>
                 {imageUrl && (
                     <img
@@ -28,9 +29,8 @@ export const News = ({
                     />
                 )}
 
-                <div className={styles.content}>
+                <div className={styles.column}>
                     <h2 className={styles.title}>{title}</h2>
-                    <DatePill date={date} />
                     <p>{summary}</p>
                     {onReadMore && (
                         <Button className={styles.primary} onClick={onReadMore}>

@@ -63,9 +63,8 @@ export const Register = () => {
 
     return (
         <div className="page">
-            <h1 className="h1">Formulari de registre</h1>
-
             <Card>
+                <h1 style={{ marginBottom: "20px" }}>Formulari de registre</h1>
                 <section>
                     <form onSubmit={handleSubmit} noValidate>
                         {success ? (

@@ -7,6 +7,7 @@ import {
     doc,
     updateDoc,
     deleteDoc,
+    QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { BackButton, Button, Loading } from "@/shared/components";
 import { db } from "@/lib/firebase/firestore";
@@ -14,7 +15,37 @@ import { db } from "@/lib/firebase/firestore";
 import styles from "./MembersManager.module.css";
 
 type Role = "user" | "admin";
-type Member = { id: string; displayName?: string; email?: string; role?: Role };
+
+type FirestoreUser = {
+    displayName?: string;
+    email?: string;
+    role?: Role;
+};
+
+type Member = {
+    id: string; // uid
+    displayName?: string;
+    email?: string;
+    role?: Role;
+};
+
+const getErrorCode = (e: unknown): string | undefined => {
+    if (typeof e === "object" && e !== null && "code" in e) {
+        const code = (e as Record<string, unknown>).code;
+        return typeof code === "string" ? code : undefined;
+    }
+    return undefined;
+};
+
+const mapDocToMember = (d: QueryDocumentSnapshot): Member => {
+    const data = d.data() as FirestoreUser;
+    return {
+        id: d.id,
+        displayName: data.displayName ?? "",
+        email: data.email ?? "",
+        role: data.role ?? "user",
+    };
+};
 
 export const MembersManager = () => {
     const [members, setMembers] = useState<Member[]>([]);
@@ -30,15 +61,7 @@ export const MembersManager = () => {
                     orderBy("displayName")
                 );
                 const snap = await getDocs(q);
-                const rows: Member[] = snap.docs.map((d) => {
-                    const data = d.data() as any;
-                    return {
-                        id: d.id,
-                        displayName: data.displayName ?? "",
-                        email: data.email ?? "",
-                        role: (data.role as Role) ?? "user",
-                    };
-                });
+                const rows = snap.docs.map(mapDocToMember);
                 setMembers(rows);
             } catch (e) {
                 console.error(e);
@@ -72,10 +95,11 @@ export const MembersManager = () => {
                     m.id === member.id ? { ...m, role: nextRole } : m
                 )
             );
-        } catch (e: any) {
+        } catch (e) {
             console.error(e);
+            const code = getErrorCode(e);
             setError(
-                e?.code === "permission-denied"
+                code === "permission-denied"
                     ? "No tens permisos."
                     : "Error actualitzant el rol."
             );
@@ -98,10 +122,11 @@ export const MembersManager = () => {
         try {
             await deleteDoc(doc(db, "users", member.id));
             setMembers((prev) => prev.filter((m) => m.id !== member.id));
-        } catch (e: any) {
+        } catch (e) {
             console.error(e);
+            const code = getErrorCode(e);
             setError(
-                e?.code === "permission-denied"
+                code === "permission-denied"
                     ? "No tens permisos per eliminar."
                     : "Error eliminant usuari."
             );
@@ -196,7 +221,6 @@ export const MembersManager = () => {
                                             </Button>
                                         )}
 
-                                        {/* ✅ Botó eliminar */}
                                         <Button
                                             variant="button--pink"
                                             type="button"
