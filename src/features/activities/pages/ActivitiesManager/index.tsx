@@ -8,10 +8,10 @@ import { ActivityProps } from "@/features/activities/types";
 import {
     EditActivityModal,
     CreateActivityModal,
-} from "./components/ActivityModal";
-import { DeleteIcon, EditIcon, UsersIcon } from "@/assets/images";
+    AttendeesModal,
+} from "./components";
+import { DeleteIcon, EditIcon } from "@/assets/images";
 import styles from "./ActivitiesManager.module.css";
-import { AttendeesModal } from "./components/AttendeesModal";
 
 type Row = { id: string; data: ActivityProps };
 
