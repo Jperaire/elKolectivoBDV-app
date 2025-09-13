@@ -6,37 +6,37 @@ import {
     getDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
+import type { ActivityAttendee } from "../types";
 
-export type ActivityAttendee = { uid: string; email: string; name?: string };
 const COLL = "activities";
 
 export const addAttendee = async (
     activityId: string,
     attendee: ActivityAttendee
 ) => {
-    const ref = doc(db, COLL, activityId);
-    await updateDoc(ref, { attendees: arrayUnion(attendee) });
+    await updateDoc(doc(db, COLL, activityId), {
+        attendees: arrayUnion(attendee),
+    });
 };
 
 export const removeAttendee = async (
     activityId: string,
     attendee: ActivityAttendee
 ) => {
-    const ref = doc(db, COLL, activityId);
-    await updateDoc(ref, { attendees: arrayRemove(attendee) });
+    await updateDoc(doc(db, COLL, activityId), {
+        attendees: arrayRemove(attendee),
+    });
 };
 
 export const isUserAttending = async (activityId: string, uid: string) => {
-    const ref = doc(db, COLL, activityId);
-    const snap = await getDoc(ref);
+    const snap = await getDoc(doc(db, COLL, activityId));
     if (!snap.exists()) return false;
     const list = (snap.data().attendees as ActivityAttendee[]) || [];
     return list.some((a) => a.uid === uid);
 };
 
 export const getAttendees = async (activityId: string) => {
-    const ref = doc(db, COLL, activityId);
-    const snap = await getDoc(ref);
+    const snap = await getDoc(doc(db, COLL, activityId));
     return snap.exists()
         ? (snap.data().attendees as ActivityAttendee[]) || []
         : [];

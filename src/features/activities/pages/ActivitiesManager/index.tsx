@@ -5,11 +5,13 @@ import {
     deleteActivity,
 } from "@/features/activities/firebase/methods";
 import { ActivityProps } from "@/features/activities/types";
-
-import { EditActivityModal, CreateActivityModal } from "./components/";
-
+import {
+    EditActivityModal,
+    CreateActivityModal,
+} from "./components/ActivityModal";
+import { DeleteIcon, EditIcon, UsersIcon } from "@/assets/images";
 import styles from "./ActivitiesManager.module.css";
-import { DeleteIcon, EditIcon } from "@/assets/images";
+import { AttendeesModal } from "./components/AttendeesModal";
 
 type Row = { id: string; data: ActivityProps };
 
@@ -18,6 +20,11 @@ export const ActivitiesManager = () => {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState<Row | null>(null);
     const [creating, setCreating] = useState(false);
+
+    const [viewing, setViewing] = useState<{
+        id: string;
+        title: string;
+    } | null>(null);
 
     useEffect(() => {
         const load = async () => {
@@ -77,64 +84,96 @@ export const ActivitiesManager = () => {
                                 <th>Títol</th>
                                 <th>Data</th>
                                 <th>Ubicació</th>
-                                <th>Formulari</th>
+                                <th>Inscrits</th>
                                 <th>Accions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {activities.map(({ id, data }) => (
-                                <tr key={id}>
-                                    <td>{data.title}</td>
-                                    <td>
-                                        {data.date instanceof Date
-                                            ? data.date.toLocaleDateString(
-                                                  "ca-ES",
-                                                  {
-                                                      day: "2-digit",
-                                                      month: "2-digit",
-                                                      year: "numeric",
-                                                  }
-                                              )
-                                            : String(data.date)}
-                                    </td>
-                                    <td>{data.location}</td>
-                                    <td>
-                                        {data.signupUrl ? (
-                                            <a
-                                                href={data.signupUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                            {activities.map(({ id, data }) => {
+                                const count =
+                                    Number.isFinite(data.attendeesCount) &&
+                                    (data.attendeesCount as number) > 0
+                                        ? (data.attendeesCount as number)
+                                        : Array.isArray(data.attendees)
+                                        ? data.attendees!.length
+                                        : 0;
+
+                                return (
+                                    <tr key={id}>
+                                        <td>{data.title}</td>
+                                        <td>
+                                            {data.date instanceof Date
+                                                ? data.date.toLocaleDateString(
+                                                      "ca-ES",
+                                                      {
+                                                          day: "2-digit",
+                                                          month: "2-digit",
+                                                          year: "numeric",
+                                                      }
+                                                  )
+                                                : String(data.date)}
+                                        </td>
+                                        <td>{data.location}</td>
+                                        <td>
+                                            <div
+                                                className={styles.enrolledCell}
                                             >
-                                                Obrir
-                                            </a>
-                                        ) : (
-                                            <span style={{ opacity: 0.6 }}>
-                                                —
-                                            </span>
-                                        )}
-                                    </td>
-                                    <td className={styles.actions}>
-                                        <button
-                                            className={styles.iconBtn}
-                                            onClick={() =>
-                                                setEditing({ id, data })
-                                            }
-                                            aria-label="Editar activitat"
-                                            type="button"
-                                        >
-                                            <img src={EditIcon} alt="" />
-                                        </button>
-                                        <button
-                                            className={styles.iconBtn}
-                                            onClick={() => handleDelete(id)}
-                                            aria-label="Eliminar activitat"
-                                            type="button"
-                                        >
-                                            <img src={DeleteIcon} alt="" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                                <span
+                                                    className={
+                                                        styles.enrolledCount
+                                                    }
+                                                >
+                                                    {count}
+                                                </span>
+                                                {data.requiresSignup ? (
+                                                    <Button
+                                                        type="button"
+                                                        variant="button--gray"
+                                                        className={
+                                                            styles.viewBtn
+                                                        }
+                                                        onClick={() =>
+                                                            setViewing({
+                                                                id,
+                                                                title: data.title,
+                                                            })
+                                                        }
+                                                        aria-label={`Veure inscrits de ${data.title}`}
+                                                    >
+                                                        Veure
+                                                    </Button>
+                                                ) : (
+                                                    <span
+                                                        style={{ opacity: 0.6 }}
+                                                    >
+                                                        —
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </td>
+                                        <td className={styles.actions}>
+                                            <button
+                                                className={styles.iconBtn}
+                                                onClick={() =>
+                                                    setEditing({ id, data })
+                                                }
+                                                aria-label="Editar activitat"
+                                                type="button"
+                                            >
+                                                <img src={EditIcon} alt="" />
+                                            </button>
+                                            <button
+                                                className={styles.iconBtn}
+                                                onClick={() => handleDelete(id)}
+                                                aria-label="Eliminar activitat"
+                                                type="button"
+                                            >
+                                                <img src={DeleteIcon} alt="" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 )}
@@ -150,6 +189,20 @@ export const ActivitiesManager = () => {
                     open={creating}
                     onClose={() => setCreating(false)}
                     onCreated={handleCreated}
+                />
+
+                {/* Modal d’inscrits */}
+                <AttendeesModal
+                    open={!!viewing}
+                    activityId={viewing?.id || ""}
+                    activityTitle={viewing?.title || ""}
+                    onClose={() => setViewing(null)}
+                    onChanged={() => {
+                        (async () => {
+                            const rows = await getActivitiesOnce();
+                            setActivities(rows);
+                        })();
+                    }}
                 />
             </section>
 

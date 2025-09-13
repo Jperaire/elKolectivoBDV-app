@@ -1,0 +1,21 @@
+.enrolledCell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.enrolledCount {
+    display: inline-flex;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 999px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.viewBtn {
+    padding: 0.25rem 0.6rem;
+}

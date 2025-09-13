@@ -29,6 +29,7 @@ export type ActivityProps = {
     posterUrl?: string;
     instagramUrl?: string;
     signupUrl?: string;
+    attendees?: ActivityAttendee[];
 };
 
 export interface EditActivityModalProps {

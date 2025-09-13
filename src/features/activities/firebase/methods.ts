@@ -9,10 +9,12 @@ import {
     deleteDoc,
     doc,
     setDoc,
+    QuerySnapshot,
+    DocumentData,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
 import { combineDateTime } from "@/shared/utils";
-import { ActivityProps, UpdateActivityInput } from "../types";
+import { ActivityAttendee, ActivityProps, UpdateActivityInput } from "../types";
 
 // CREATE
 export const createActivity = async (input: {
@@ -55,9 +57,11 @@ export const getActivitiesOnce = async (): Promise<
     Array<{ id: string; data: ActivityProps }>
 > => {
     const q = query(collection(db, "activities"), orderBy("startAt", "asc"));
-    const snap = await getDocs(q);
+    const snap: QuerySnapshot<DocumentData> = await getDocs(q);
 
     return snap.docs.map((d) => {
+        const raw = d.data() as Record<string, unknown>;
+
         const {
             title = "",
             description = "",
@@ -69,12 +73,25 @@ export const getActivitiesOnce = async (): Promise<
             posterUrl,
             instagramUrl,
             signupUrl,
-        } = d.data() as any;
+            attendees = [],
+        } = raw as {
+            title?: string;
+            description?: string;
+            location?: string;
+            capacity?: number;
+            attendeesCount?: number;
+            requiresSignup?: boolean;
+            startAt?: { toDate: () => Date };
+            posterUrl?: string | null;
+            instagramUrl?: string | null;
+            signupUrl?: string | null;
+            attendees?: ActivityAttendee[];
+        };
 
         const props: ActivityProps = {
             title,
             description,
-            date: startAt ? startAt.toDate() : new Date(), // 🔹 siempre Date
+            date: startAt ? startAt.toDate() : new Date(),
             location,
             capacity,
             attendeesCount,
@@ -82,6 +99,7 @@ export const getActivitiesOnce = async (): Promise<
             posterUrl: posterUrl ?? undefined,
             instagramUrl: instagramUrl ?? undefined,
             signupUrl: signupUrl ?? undefined,
+            attendees, // 👈 importante
         };
 
         return { id: d.id, data: props };

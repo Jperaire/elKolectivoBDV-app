@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -15,12 +15,11 @@ import { merchanItems } from "@/features/merch/data/items";
 import { FakeImg, CloseRedIcon } from "@/assets/images";
 
 import { getActivitiesOnce } from "@/features/activities/firebase/methods";
-import {
-    removeAttendee,
-    ActivityAttendee,
-} from "@/features/activities/services";
+import { removeAttendee } from "@/features/activities/services";
 
 import styles from "./UserProfile.module.css";
+
+type MyAct = { id: string; title: string; date: Date; location?: string };
 
 export const UserProfile = () => {
     const { user, userData, loading } = useAuth();
@@ -37,95 +36,10 @@ export const UserProfile = () => {
     const [loadingWait, setLoadingWait] = useState(false);
 
     // ====== MY ACTIVITIES (UPCOMING) ======
-    type MyAct = { id: string; title: string; date: Date; location?: string };
     const [myActs, setMyActs] = useState<MyAct[]>([]);
     const [loadingActs, setLoadingActs] = useState(false);
 
-    const meAttendee: ActivityAttendee | null = useMemo(() => {
-        if (!user) return null;
-        return {
-            uid: user.uid,
-            email: user.email || "sense-email",
-            name: user.displayName || "",
-        };
-    }, [user]);
-
-    useEffect(() => {
-        if (!user) return;
-        const load = async () => {
-            setLoadingWait(true);
-            try {
-                const selected: {
-                    id: string;
-                    title: string;
-                    price: number;
-                    img?: string;
-                }[] = [];
-                await Promise.all(
-                    merchanItems.map(async (m) => {
-                        const ref = doc(db, "waitlist", `${user.uid}_${m.id}`);
-                        const snap = await getDoc(ref);
-                        if (snap.exists()) {
-                            selected.push({
-                                id: m.id,
-                                title: m.title,
-                                price: m.price,
-                                img: m.img || FakeImg,
-                            });
-                        }
-                    })
-                );
-                setWaitItems(selected);
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setLoadingWait(false);
-            }
-        };
-        load();
-    }, [user]);
-
-    // Cargar actividades donde estoy inscrito (próximas)
-    useEffect(() => {
-        const loadMyActivities = async () => {
-            if (!user) {
-                setMyActs([]);
-                return;
-            }
-            setLoadingActs(true);
-            try {
-                const rows = await getActivitiesOnce(); // [{id, data}]
-                const mine = rows
-                    .filter(({ data }) => {
-                        const start = normalizeDate(data.date);
-                        const attendees = (data as any).attendees as
-                            | ActivityAttendee[]
-                            | undefined;
-                        const iAttend = Array.isArray(attendees)
-                            ? attendees.some((a) => a?.uid === user.uid)
-                            : false;
-                        return iAttend && !isPast(start);
-                    })
-                    .map(({ id, data }) => ({
-                        id,
-                        title: data.title,
-                        date: normalizeDate(data.date),
-                        location: data.location,
-                    }))
-                    .sort((a, b) => a.date.getTime() - b.date.getTime());
-                setMyActs(mine);
-            } catch (e) {
-                console.error(e);
-            } finally {
-                setLoadingActs(false);
-            }
-        };
-        loadMyActivities();
-    }, [user]);
-
-    if (loading) return <Loading message="Comprovant sessió…" />;
-    if (!user) return <p>No has iniciat sessió.</p>;
-
+    // ---------- helpers ----------
     const run = async (fn: () => Promise<void>) => {
         setStatus("");
         setBusy(true);
@@ -139,12 +53,86 @@ export const UserProfile = () => {
         }
     };
 
+    const loadWaitlist = async (uid: string) => {
+        setLoadingWait(true);
+        try {
+            const selected: {
+                id: string;
+                title: string;
+                price: number;
+                img?: string;
+            }[] = [];
+            await Promise.all(
+                merchanItems.map(async (m) => {
+                    const ref = doc(db, "waitlist", `${uid}_${m.id}`);
+                    const snap = await getDoc(ref);
+                    if (snap.exists()) {
+                        selected.push({
+                            id: m.id,
+                            title: m.title,
+                            price: m.price,
+                            img: m.img || FakeImg,
+                        });
+                    }
+                })
+            );
+            setWaitItems(selected);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setLoadingWait(false);
+        }
+    };
+
+    const loadMyActivities = async (uid: string) => {
+        setLoadingActs(true);
+        try {
+            const rows = await getActivitiesOnce(); // [{ id, data }]
+            const mine: MyAct[] = rows
+                .filter(({ data }) => {
+                    const start = normalizeDate(data.date);
+                    const iAttend = Array.isArray(data.attendees)
+                        ? data.attendees.some((a) => a?.uid === uid)
+                        : false;
+                    return iAttend && !isPast(start);
+                })
+                .map(({ id, data }) => ({
+                    id,
+                    title: data.title,
+                    date: normalizeDate(data.date),
+                    location: data.location,
+                }))
+                .sort((a, b) => a.date.getTime() - b.date.getTime());
+
+            setMyActs(mine);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setLoadingActs(false);
+        }
+    };
+
+    // ---------- effects ----------
+    useEffect(() => {
+        if (!user) return;
+        loadWaitlist(user.uid);
+    }, [user]);
+
+    useEffect(() => {
+        if (!user) {
+            setMyActs([]);
+            return;
+        }
+        loadMyActivities(user.uid);
+    }, [user]);
+
+    // ---------- handlers ----------
     const onSubmitUpdate: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         run(async () => {
             const next = { displayName: displayName.trim() };
-            await updateProfile(user, next);
-            await updateUser(user.uid, next);
+            await updateProfile(user!, next);
+            await updateUser(user!.uid, next);
             setStatus("✅ Perfil actualitzat.");
         });
     };
@@ -167,11 +155,12 @@ export const UserProfile = () => {
 
     const handleLeave = async (id: string, title: string) => {
         if (!user) return;
-
-        const ok = window.confirm(
-            `Segur que vols treure “${title}” de la llista d’espera?`
-        );
-        if (!ok) return;
+        if (
+            !window.confirm(
+                `Segur que vols treure “${title}” de la llista d’espera?`
+            )
+        )
+            return;
 
         try {
             await leaveWaitlist(user.uid, id);
@@ -184,12 +173,17 @@ export const UserProfile = () => {
     };
 
     const handleUnsubscribe = async (activityId: string, title: string) => {
-        if (!user || !meAttendee) return;
-        const ok = window.confirm(`Vols desapuntar-te d’“${title}”?`);
-        if (!ok) return;
+        if (!user) return;
+        if (!window.confirm(`Vols desapuntar-te d’“${title}”?`)) return;
 
         try {
-            await removeAttendee(activityId, meAttendee);
+            // Construimos el mismo objeto que se añadió con arrayUnion
+            const attendee = {
+                uid: user.uid,
+                email: user.email || "sense-email",
+                name: user.displayName || "",
+            };
+            await removeAttendee(activityId, attendee);
             setMyActs((prev) => prev.filter((x) => x.id !== activityId));
             setStatus(`❌ T’has desapuntat de “${title}”.`);
         } catch (e) {
@@ -198,17 +192,22 @@ export const UserProfile = () => {
         }
     };
 
+    // ---------- guards ----------
+    if (loading) return <Loading message="Comprovant sessió…" />;
+    if (!user) return <p>No has iniciat sessió.</p>;
+
+    // ---------- render ----------
     return (
         <div className="page">
             <h1 className="h1">El meu perfil</h1>
 
             <section className={styles.section}>
-                {/* Feedback d'estat global */}
+                {/* feedback d'estat global */}
                 <p role="status" aria-live="polite">
                     {status}
                 </p>
 
-                {/* ====== Perfil */}
+                {/* Perfil */}
                 <Card>
                     <article
                         aria-labelledby="update-title"
@@ -240,7 +239,7 @@ export const UserProfile = () => {
                     </article>
                 </Card>
 
-                {/* ====== Canviar tema */}
+                {/* Canviar tema */}
                 <Card>
                     <article
                         aria-labelledby="change-theme"
@@ -253,7 +252,7 @@ export const UserProfile = () => {
                     </article>
                 </Card>
 
-                {/* ====== Les meves activitats (UPCOMING) */}
+                {/* Les meves activitats (pròximes) */}
                 <Card>
                     <article
                         aria-labelledby="myacts-title"
@@ -316,7 +315,7 @@ export const UserProfile = () => {
                     </article>
                 </Card>
 
-                {/* ====== Merchan pendent (WAITLIST) */}
+                {/* Merchan pendent (waitlist) */}
                 <Card>
                     <article
                         aria-labelledby="waitlist-title"
@@ -371,7 +370,7 @@ export const UserProfile = () => {
                     </article>
                 </Card>
 
-                {/* ====== Esborrar compte */}
+                {/* Esborrar compte */}
                 <Card>
                     <article
                         aria-labelledby="delete-title"
@@ -407,7 +406,7 @@ export const UserProfile = () => {
                     </article>
                 </Card>
 
-                {/* ====== Tancar sessió */}
+                {/* Tancar sessió */}
                 <Card>
                     <article
                         aria-labelledby="signout-title"
