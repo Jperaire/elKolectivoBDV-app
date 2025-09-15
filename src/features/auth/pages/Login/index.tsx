@@ -68,7 +68,7 @@ export const Login = () => {
 
     return (
         <div className="page">
-            <Card>
+            <Card className={styles.card}>
                 <h1>Inicia sessió</h1>
                 <section className={styles.login}>
                     <form onSubmit={handleSubmit} noValidate>

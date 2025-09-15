@@ -3,9 +3,9 @@ import { updateProfile } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 import { Loading } from "@/shared/components";
-import { deleteAccount, signOutUser } from "@/features/auth/firebase/methods";
+import { deleteAccount } from "@/features/auth/firebase/methods";
 import { updateUser } from "@/shared/services/";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAuth, useLogout } from "@/features/auth/hooks";
 import { db } from "@/lib/firebase/firestore";
 import { normalizeDate, isPast } from "@/shared/utils";
 
@@ -23,9 +23,12 @@ import {
     ProfilePreferencesCard,
     SecurityCard,
 } from "./components";
+import { useConfirm } from "@/shared/hooks/useConfirm";
 
 export const UserProfile = () => {
     const { user, userData, loading } = useAuth();
+    const { logout, loggingOut } = useLogout();
+    const { confirm } = useConfirm();
 
     const [displayName, setDisplayName] = useState(userData?.displayName ?? "");
     const [password, setPassword] = useState("");
@@ -135,30 +138,21 @@ export const UserProfile = () => {
         });
     };
 
-    const onDelete = () => {
-        if (!window.confirm("Segur que vols esborrar el compte?")) return;
+    const onDelete = async () => {
+        const ok = confirm("Segur que vols esborrar el compte?");
+        if (!ok) return;
         run(async () => {
             await deleteAccount(password);
             setStatus("🗑️ Compte esborrat.");
         });
     };
 
-    const onSignOut = () => {
-        if (!window.confirm("Segur que vols tancar la sessió?")) return;
-        run(async () => {
-            await signOutUser();
-            setStatus("👋 Sessió tancada.");
-        });
-    };
-
     const handleLeave = async (id: string, title: string) => {
         if (!user) return;
-        if (
-            !window.confirm(
-                `Segur que vols treure “${title}” de la llista d’espera?`
-            )
-        )
-            return;
+        const ok = confirm(
+            `Segur que vols treure “${title}” de la llista d’espera?`
+        );
+        if (!ok) return;
 
         try {
             await leaveWaitlist(user.uid, id);
@@ -172,7 +166,8 @@ export const UserProfile = () => {
 
     const handleUnsubscribe = async (activityId: string, title: string) => {
         if (!user) return;
-        if (!window.confirm(`Vols desapuntar-te d’“${title}”?`)) return;
+        const ok = confirm(`Vols desapuntar-te d’“${title}”?`);
+        if (!ok) return;
 
         try {
             const attendee = {
@@ -229,8 +224,8 @@ export const UserProfile = () => {
                 <SecurityCard
                     password={password}
                     setPassword={setPassword}
-                    busy={busy}
-                    onSignOut={onSignOut}
+                    busy={busy || loggingOut}
+                    onSignOut={logout}
                     onDelete={onDelete}
                 />
             </section>

@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { BackButton, Button, Loading } from "@/shared/components";
 import { db } from "@/lib/firebase/firestore";
+import { useConfirm } from "@/shared/hooks/useConfirm";
 
 import styles from "./MembersManager.module.css";
 
@@ -53,6 +54,8 @@ export const MembersManager = () => {
     const [savingId, setSavingId] = useState<string | null>(null);
     const [error, setError] = useState<string>("");
 
+    const { confirm } = useConfirm(); // ⬅️ USO
+
     useEffect(() => {
         const load = async () => {
             try {
@@ -84,7 +87,8 @@ export const MembersManager = () => {
                 : `Segur que vols treure permisos d'ADMIN a “${
                       member.displayName || member.email
                   }”?`;
-        if (!window.confirm(question)) return;
+
+        if (!confirm(question)) return;
 
         setSavingId(member.id);
         setError("");
@@ -111,11 +115,11 @@ export const MembersManager = () => {
     const onDeleteUser = async (member: Member) => {
         const name = member.displayName || member.email || member.id;
         if (
-            !window.confirm(
+            !confirm(
                 `Eliminar l'usuari “${name}”? Aquesta acció no es pot desfer.`
             )
         )
-            return;
+            return; // ⬅️
 
         setSavingId(member.id);
         setError("");

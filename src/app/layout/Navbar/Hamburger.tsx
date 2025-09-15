@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Button } from "@/shared/components";
 import { CloseIcon, MenuIcon } from "@/assets/images";
-import { signOutUser } from "@/features/auth/firebase/methods";
 import { ThemeSwitcher } from "@/features/theme/components";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAuth, useLogout } from "@/features/auth/hooks";
 
 import { BASE_LINKS, ADMIN_LINKS, USER_LINKS } from "./navLinks";
 
@@ -14,19 +13,7 @@ import styles from "./Hamburger.module.css";
 export const Hamburger = () => {
     const [open, setOpen] = useState(false);
     const { user, userData, loading } = useAuth();
-    const [signingOut, setSigningOut] = useState(false);
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-            setSigningOut(true);
-            await signOutUser();
-            setOpen(false);
-            navigate("/");
-        } finally {
-            setSigningOut(false);
-        }
-    };
+    const { logout, loggingOut } = useLogout();
 
     const links = [
         ...BASE_LINKS,
@@ -82,12 +69,12 @@ export const Hamburger = () => {
                 {!loading && user && (
                     <li
                         className={styles.logoutItem}
-                        onClick={() => {
-                            handleLogout();
+                        onClick={async () => {
+                            await logout();
                             setOpen(false);
                         }}
                     >
-                        {signingOut ? "Tancant…" : "Tanca sessió"}
+                        {loggingOut ? "Tancant…" : "Tanca sessió"}
                     </li>
                 )}
 

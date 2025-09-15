@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { Button, Loading } from "@/shared/components";
-import { MainLogo } from "@/assets/images/index";
-import { signOutUser } from "@/features/auth/firebase/methods";
-import { useAuth } from "@/features/auth/hooks/useAuth";
-import { UserIcon } from "@/assets/images";
+import { MainLogo, UserIcon } from "@/assets/images/index";
+import { useAuth, useLogout } from "@/features/auth/hooks";
 
 import { BASE_LINKS } from "./navLinks";
 import { Hamburger } from "./Hamburger";
@@ -14,16 +11,7 @@ import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
     const { user, userData, loading } = useAuth();
-    const [signingOut, setSigningOut] = useState(false);
-
-    const handleLogout = async () => {
-        try {
-            setSigningOut(true);
-            await signOutUser();
-        } finally {
-            setSigningOut(false);
-        }
-    };
+    const { logout, loggingOut } = useLogout();
 
     return (
         <nav className={styles.navbar} aria-label="Primary">
@@ -86,11 +74,12 @@ export const Navbar = () => {
                                     )}
                                     <li>
                                         <Button
-                                            onClick={handleLogout}
-                                            isLoading={signingOut}
-                                            loadingText="Tancant…"
+                                            onClick={logout}
+                                            disabled={loggingOut}
                                         >
-                                            Tanca sessió
+                                            {loggingOut
+                                                ? "Tancant…"
+                                                : "Tanca sessió"}
                                         </Button>
                                     </li>
                                 </ul>

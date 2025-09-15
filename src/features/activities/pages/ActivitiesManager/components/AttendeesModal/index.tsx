@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Button, Loading } from "@/shared/components";
 import { getAttendees, removeAttendee } from "@/features/activities/services";
 import type { ActivityAttendee } from "@/features/activities/types";
+import { useConfirm } from "@/shared/hooks/useConfirm";
 
 type Props = {
     open: boolean;
@@ -21,6 +22,7 @@ export const AttendeesModal = ({
     const [loading, setLoading] = useState(false);
     const [list, setList] = useState<ActivityAttendee[]>([]);
     const [busy, setBusy] = useState(false);
+    const { confirm } = useConfirm();
 
     useEffect(() => {
         if (!open || !activityId) return;
@@ -38,15 +40,14 @@ export const AttendeesModal = ({
     }, [open, activityId]);
 
     const handleRemove = async (att: ActivityAttendee) => {
-        if (
-            !window.confirm(
-                `Eliminar ${att.name || att.email} d’aquesta activitat?`
-            )
-        )
-            return;
+        const ok = confirm(
+            `Eliminar ${att.name || att.email} d’aquesta activitat?`
+        );
+        if (!ok) return;
+
         try {
             setBusy(true);
-            await removeAttendee(activityId, att); // arrayRemove con objeto exacto
+            await removeAttendee(activityId, att);
             setList((prev) => prev.filter((a) => a.uid !== att.uid));
             onChanged?.();
         } catch (e) {
@@ -91,7 +92,7 @@ export const AttendeesModal = ({
                                             disabled={busy}
                                             title="Eliminar d’aquesta activitat"
                                         >
-                                            Elimina
+                                            {busy ? "Eliminant…" : "Elimina"}
                                         </Button>
                                     </td>
                                 </tr>

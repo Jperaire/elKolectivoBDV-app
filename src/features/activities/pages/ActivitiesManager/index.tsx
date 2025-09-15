@@ -11,6 +11,8 @@ import {
     AttendeesModal,
 } from "./components";
 import { DeleteIcon, EditIcon } from "@/assets/images";
+import { useConfirm } from "@/shared/hooks/useConfirm";
+
 import styles from "./ActivitiesManager.module.css";
 
 type Row = { id: string; data: ActivityProps };
@@ -20,33 +22,39 @@ export const ActivitiesManager = () => {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState<Row | null>(null);
     const [creating, setCreating] = useState(false);
-
     const [viewing, setViewing] = useState<{
         id: string;
         title: string;
     } | null>(null);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
+
+    const { confirm } = useConfirm(
+        "Segur que vols eliminar aquesta activitat?"
+    );
 
     useEffect(() => {
-        const load = async () => {
+        (async () => {
             try {
                 const rows = await getActivitiesOnce();
                 setActivities(rows);
             } finally {
                 setLoading(false);
             }
-        };
-        load();
+        })();
     }, []);
 
-    const handleDelete = async (id: string) => {
-        if (!window.confirm("Segur que vols eliminar aquesta activitat?"))
+    const handleDelete = async (id: string, title?: string) => {
+        if (!confirm(title ? `Eliminar activitat “${title}”?` : undefined))
             return;
         try {
+            setDeletingId(id);
             await deleteActivity(id);
             setActivities((prev) => prev.filter((a) => a.id !== id));
         } catch (err) {
             console.error("Error eliminant activitat:", err);
             alert("No s'ha pogut eliminar.");
+        } finally {
+            setDeletingId(null);
         }
     };
 
@@ -164,9 +172,17 @@ export const ActivitiesManager = () => {
                                             </button>
                                             <button
                                                 className={styles.iconBtn}
-                                                onClick={() => handleDelete(id)}
+                                                onClick={() =>
+                                                    handleDelete(id, data.title)
+                                                }
                                                 aria-label="Eliminar activitat"
                                                 type="button"
+                                                disabled={deletingId === id}
+                                                title={
+                                                    deletingId === id
+                                                        ? "Eliminant…"
+                                                        : "Eliminar activitat"
+                                                }
                                             >
                                                 <img src={DeleteIcon} alt="" />
                                             </button>
@@ -197,11 +213,9 @@ export const ActivitiesManager = () => {
                     activityId={viewing?.id || ""}
                     activityTitle={viewing?.title || ""}
                     onClose={() => setViewing(null)}
-                    onChanged={() => {
-                        (async () => {
-                            const rows = await getActivitiesOnce();
-                            setActivities(rows);
-                        })();
+                    onChanged={async () => {
+                        const rows = await getActivitiesOnce();
+                        setActivities(rows);
                     }}
                 />
             </section>
