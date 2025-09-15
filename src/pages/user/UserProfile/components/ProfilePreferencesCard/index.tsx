@@ -21,30 +21,34 @@ export const ProfilePreferencesCard = ({
             <article aria-labelledby="profile-prefs" className={styles.article}>
                 <h2 id="profile-prefs">Perfil i Preferències</h2>
 
-                <form onSubmit={onSubmitUpdate} className={styles.profileRow}>
-                    <label htmlFor="displayName">Nom visible:</label>
-                    <div className={styles.inputGroup}>
-                        <input
-                            id="displayName"
-                            name="displayName"
-                            value={displayName}
-                            onChange={(e) => setDisplayName(e.target.value)}
-                            autoComplete="name"
-                            required
-                        />
-                        <Button
-                            type="submit"
-                            variant="button--red"
-                            disabled={busy}
-                        >
-                            {busy ? "Guardant…" : "Desa canvis"}
-                        </Button>
+                <div className={styles.container}>
+                    <form
+                        onSubmit={onSubmitUpdate}
+                        className={styles.profileRow}
+                    >
+                        <label htmlFor="displayName">Nom visible:</label>
+                        <div className={styles.inputGroup}>
+                            <input
+                                id="displayName"
+                                name="displayName"
+                                value={displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
+                                autoComplete="name"
+                                required
+                            />
+                            <Button
+                                type="submit"
+                                variant="button--red"
+                                disabled={busy}
+                            >
+                                {busy ? "Guardant…" : "Desa canvis"}
+                            </Button>
+                        </div>
+                    </form>
+                    <div className={styles.switcherWrapper}>
+                        <span className={styles.switcherLabel}>Tema:</span>
+                        <ThemeSwitcher />
                     </div>
-                </form>
-
-                <div className={styles.switcherWrapper}>
-                    <span className={styles.switcherLabel}>Tema:</span>
-                    <ThemeSwitcher />
                 </div>
             </article>
         </Card>

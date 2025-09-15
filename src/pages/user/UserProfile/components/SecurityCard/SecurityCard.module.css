@@ -21,6 +21,7 @@
 .actionsWrapper a {
     font-size: var(--fs-md);
     background-color: var(--pastel-orange);
+    text-align: center;
 }
 
 .dangerZone {

@@ -1,26 +1,39 @@
 .article {
-    display: grid;
-    gap: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
 }
 
-.profileRow {
-    max-width: 600px;
-    margin: auto;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: var(--space-lg);
 }
 
 .inputGroup {
     display: flex;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
+    align-items: center;
+}
+
+.inputGroup button {
+    padding: 1px;
+}
+
+.profileRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    width: fit-content;
 }
 
 .switcherWrapper {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin: auto;
-    max-width: 600px;
-    width: 100%;
-    gap: var(--space-sm);
+
+    align-items: center;
+    gap: var(--space-md);
 }
 
 .switcherLabel {
