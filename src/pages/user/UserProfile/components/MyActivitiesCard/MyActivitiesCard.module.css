@@ -28,3 +28,12 @@
 .table tr {
     background: none !important;
 }
+
+@media (max-width: 576px) {
+    .table th:nth-child(2),
+    .table th:nth-child(3),
+    .table td:nth-child(2),
+    .table td:nth-child(3) {
+        display: none;
+    }
+}

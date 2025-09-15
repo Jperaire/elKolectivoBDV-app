@@ -45,20 +45,9 @@ h2 {
 }
 
 h3 {
-    font-size: var(--fs-lg);
-    line-height: var(--lh-snug);
-    font-weight: 400;
-}
-
-h4 {
-    font-size: var(--fs-lg);
-    line-height: var(--lh-snug);
-}
-
-h5,
-h6 {
     font-size: var(--fs-md);
     line-height: var(--lh-snug);
+    font-weight: 400;
 }
 
 p {
