@@ -1,4 +1,4 @@
-import { CapacityBadgeProps } from "../../../../types";
+import { CapacityBadgeProps } from "@/features/activities/types";
 import styles from "./CapacityBadge.module.css";
 
 export const CapacityBadge = ({

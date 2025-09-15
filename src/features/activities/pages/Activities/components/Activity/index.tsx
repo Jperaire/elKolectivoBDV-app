@@ -192,13 +192,7 @@ export const Activity = ({
                     Has d’<strong>iniciar sessió</strong> per inscriure’t a “
                     {title}”.
                 </p>
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        justifyContent: "flex-end",
-                    }}
-                >
+                <div className={styles.modalActions}>
                     <Button to="/login" variant="button--blue">
                         Inicia sessió
                     </Button>

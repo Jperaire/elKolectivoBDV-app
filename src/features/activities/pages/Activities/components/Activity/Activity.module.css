@@ -111,6 +111,12 @@
     border-color: rgba(0, 0, 0, 0.12);
 }
 
+.modalActions {
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: flex-end;
+}
+
 @media (min-width: 768px) {
     .poster {
         margin-bottom: 0;
