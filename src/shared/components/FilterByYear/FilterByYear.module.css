@@ -31,10 +31,9 @@
     display: block;
 }
 .triggerLabel {
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     color: white;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
 .collapse {
