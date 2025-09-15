@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 import { Button, Loading } from "@/shared/components";
 import { MainLogo, UserIcon } from "@/assets/images/index";
@@ -6,12 +7,26 @@ import { useAuth, useLogout } from "@/features/auth/hooks";
 
 import { BASE_LINKS } from "./navLinks";
 import { Hamburger } from "./Hamburger";
-
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
     const { user, userData, loading } = useAuth();
     const { logout, loggingOut } = useLogout();
+
+    const detailsRef = useRef<HTMLDetailsElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (
+                detailsRef.current &&
+                !detailsRef.current.contains(e.target as Node)
+            ) {
+                detailsRef.current.removeAttribute("open");
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, []);
 
     return (
         <nav className={styles.navbar} aria-label="Primary">
@@ -55,7 +70,7 @@ export const Navbar = () => {
 
                     {!loading && user && (
                         <li className={styles.userMenu}>
-                            <details>
+                            <details ref={detailsRef}>
                                 <summary aria-label="Obrir menú d'usuari">
                                     <img
                                         src={UserIcon}
