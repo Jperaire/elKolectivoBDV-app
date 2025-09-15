@@ -9,8 +9,16 @@ import { RegisterForm } from "../../types";
 export const Register = () => {
     const { loading } = useAuth();
 
-    const { error, success, submitting, start, stop, fail, ok } =
-        useSubmitState();
+    const {
+        error,
+        success,
+        submitting,
+        start,
+        stop,
+        fail,
+        ok,
+        failWithMessage,
+    } = useSubmitState();
 
     const {
         userName,
@@ -36,8 +44,9 @@ export const Register = () => {
             password,
             confirmPassword,
         });
+
         if (msg) {
-            fail({ code: "", message: msg } as unknown);
+            failWithMessage(msg);
             return;
         }
 
@@ -64,7 +73,7 @@ export const Register = () => {
     return (
         <div className="page">
             <Card>
-                <h1 style={{ marginBottom: "20px" }}>Formulari de registre</h1>
+                <h1>Formulari de registre</h1>
                 <section>
                     <form onSubmit={handleSubmit} noValidate>
                         {success ? (

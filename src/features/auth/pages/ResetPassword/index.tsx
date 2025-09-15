@@ -14,12 +14,26 @@ export const ResetPassword = () => {
     const { email, onInputChange, onResetForm } = useForm<ResetForm>({
         email: "",
     });
-    const { error, success, submitting, start, stop, fail, ok } =
-        useSubmitState();
+    const {
+        error,
+        success,
+        submitting,
+        start,
+        stop,
+        fail,
+        ok,
+        failWithMessage,
+    } = useSubmitState();
 
     const handleReset = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (submitting || !isEmail(email)) return;
+        if (submitting) return;
+
+        if (!isEmail(email)) {
+            failWithMessage("Introdueix un email vàlid");
+            return;
+        }
+
         try {
             start();
             await resetPassword(email.trim().toLowerCase());
@@ -37,9 +51,7 @@ export const ResetPassword = () => {
     return (
         <div className="page">
             <Card>
-                <h1 style={{ marginBottom: "20px" }}>
-                    Recupera la contrasenya
-                </h1>
+                <h1>Recupera la contrasenya</h1>
                 <section>
                     <form
                         onSubmit={handleReset}

@@ -2,6 +2,8 @@ import type { FieldValue, Timestamp } from "firebase/firestore";
 
 export type Role = "user" | "admin";
 
+export type LoginForm = { email: string; password: string };
+
 export interface MembershipAnswers {
     [key: string]: string;
 }

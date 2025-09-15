@@ -1,135 +1,94 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+import { useAuth, useSignIn } from "@/features/auth/hooks";
 import { useForm } from "@/shared/hooks";
-import { validateLogin } from "@/shared/utils";
 import { Button, Card, Loading } from "@/shared/components";
-
-import { useSubmitState } from "../../hooks";
-import { loginWithEmail, loginWithGoogle } from "../../firebase/methods";
-import { useAuth } from "../../hooks/useAuth";
+import { LoginForm } from "../../types";
 
 import styles from "./Login.module.css";
 
-type LoginForm = { email: string; password: string };
-
 export const Login = () => {
     const navigate = useNavigate();
-    const { user, loading } = useAuth();
-
-    const { error, success, submitting, start, stop, fail, ok } =
-        useSubmitState();
-
-    const { email, password, onInputChange, onResetForm } = useForm<LoginForm>({
+    const { user, loading: checking } = useAuth();
+    const { signInWithEmail, signInWithGoogle, loading, error, setError } =
+        useSignIn();
+    const { email, password, onInputChange } = useForm<LoginForm>({
         email: "",
         password: "",
     });
 
     useEffect(() => {
-        if (!loading && user) navigate("/");
-    }, [loading, user, navigate]);
+        if (!checking && user) navigate("/");
+    }, [checking, user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (submitting) return;
-
-        const msg = validateLogin({ email, password });
-        if (msg) {
-            fail({ code: "", message: msg } as unknown);
+        if (!email || !password) {
+            setError("Falten camps");
             return;
         }
-
-        try {
-            start();
-            await loginWithEmail(email.trim().toLowerCase(), password);
-            onResetForm();
-            ok("Sessió iniciada correctament 🎉");
-        } catch (err: unknown) {
-            fail(err);
-        } finally {
-            stop();
-        }
+        await signInWithEmail(email, password);
     };
 
-    const handleGoogleLogin = async () => {
-        if (submitting) return;
-        try {
-            start();
-            await loginWithGoogle();
-            ok("Sessió iniciada amb Google");
-        } catch (err: unknown) {
-            fail(err);
-        } finally {
-            stop();
-        }
-    };
-
-    if (loading) return <Loading message="Comprovant sessió…" />;
+    if (checking) return <Loading message="Comprovant sessió…" />;
 
     return (
         <div className="page">
             <Card className={styles.card}>
                 <h1>Inicia sessió</h1>
-                <section className={styles.login}>
-                    <form onSubmit={handleSubmit} noValidate>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Escriu la teva adreça electrònica"
-                            value={email}
-                            onChange={onInputChange}
-                            required
-                            inputMode="email"
-                            autoComplete="email"
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Escriu la teva contrasenya"
-                            value={password}
-                            onChange={onInputChange}
-                            required
-                            minLength={6}
-                            autoComplete="current-password"
-                        />
-                        <div className={styles.buttons}>
-                            <Button
-                                isLoading={submitting}
-                                loadingText="Iniciant sessió..."
-                                variant="button--orange"
-                                type="submit"
-                            >
-                                Inicia sessió
-                            </Button>
-                            <Button
-                                type="button"
-                                onClick={handleGoogleLogin}
-                                isLoading={submitting}
-                                loadingText="Connectant..."
-                                variant="button--blue"
-                            >
-                                Continua amb Google
-                            </Button>
-                        </div>
-                    </form>
-
-                    <p className={styles.helperText}>
-                        Encara no tens usuari? Registra't{" "}
-                        <Link to="/register" className={styles.registerLink}>
-                            aquí
-                        </Link>
-                    </p>
-                    <p className={styles.forgot}>
-                        <Link to="/reset-password">
-                            No recordes la contrasenya?
-                        </Link>
-                    </p>
-
-                    <div aria-live="polite" aria-atomic="true">
-                        {error && <p className="error">⚠️ {error}</p>}
-                        {success && <p className="success">{success}</p>}
+                <form onSubmit={handleSubmit} noValidate>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Correu electrònic"
+                        value={email}
+                        onChange={onInputChange}
+                        autoComplete="email"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Contrasenya"
+                        value={password}
+                        onChange={onInputChange}
+                        autoComplete="current-password"
+                        required
+                        minLength={6}
+                    />
+                    <div className={styles.buttons}>
+                        <Button
+                            type="submit"
+                            variant="button--orange"
+                            isLoading={loading}
+                            loadingText="Iniciant…"
+                        >
+                            Inicia sessió
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="button--blue"
+                            onClick={signInWithGoogle}
+                            isLoading={loading}
+                            loadingText="Connectant…"
+                        >
+                            Continua amb Google
+                        </Button>
                     </div>
-                </section>
+                </form>
+
+                {error && <p className={styles.error}>⚠️ {error}</p>}
+
+                <p className={styles.helper}>
+                    Encara no tens usuari?{" "}
+                    <Link to="/register">Registra't aquí</Link>
+                </p>
+                <p className={styles.forgot}>
+                    <Link to="/reset-password">
+                        Has oblidat la contrasenya?
+                    </Link>
+                </p>
             </Card>
         </div>
     );

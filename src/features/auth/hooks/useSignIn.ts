@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { loginWithEmail, loginWithGoogle } from "../firebase/methods";
+import { authErrorMessage } from "../utils/authErrorMessage";
 
-export const useSignIn = () => {
+export function useSignIn() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    const getErrorMessage = (e: unknown) =>
-        e instanceof Error ? e.message : "Error iniciant sessió";
 
     async function signInWithEmail(email: string, password: string) {
         setError(null);
@@ -14,7 +12,7 @@ export const useSignIn = () => {
         try {
             await loginWithEmail(email.trim().toLowerCase(), password);
         } catch (e: unknown) {
-            setError(getErrorMessage(e));
+            setError(authErrorMessage(e));
         } finally {
             setLoading(false);
         }
@@ -26,17 +24,11 @@ export const useSignIn = () => {
         try {
             await loginWithGoogle();
         } catch (e: unknown) {
-            setError(getErrorMessage(e));
+            setError(authErrorMessage(e));
         } finally {
             setLoading(false);
         }
     }
 
-    return {
-        signInWithEmail,
-        signInWithGoogle,
-        loading,
-        error,
-        setError,
-    };
-};
+    return { signInWithEmail, signInWithGoogle, loading, error, setError };
+}
