@@ -76,8 +76,6 @@
 
 .cta {
     border-bottom: none !important;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
 }
 
 .cta:hover,
