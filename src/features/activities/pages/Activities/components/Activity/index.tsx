@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button, Card, DatePill, Modal } from "@/shared/components";
 import { normalizeDate, isPast } from "@/shared/utils";
-import { ActivityProps } from "@/features/activities/types";
+import { ActivityAttendee, ActivityProps } from "@/features/activities/types";
 import {
     downloadICS,
     getGoogleCalendarUrl,
@@ -15,7 +15,6 @@ import {
     addAttendee,
     removeAttendee,
     isUserAttending,
-    ActivityAttendee,
 } from "@/features/activities/services";
 
 import styles from "./Activity.module.css";
