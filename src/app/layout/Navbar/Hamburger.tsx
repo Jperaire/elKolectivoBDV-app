@@ -80,7 +80,13 @@ export const Hamburger = () => {
 
                 {userData?.role === "admin" && (
                     <li onClick={() => setOpen(false)}>
-                        <Button to="/admin" variant="button--blue">
+                        <Button
+                            to="/admin"
+                            variant="button--blue"
+                            className={styles.cta}
+                            aria-label="Zona Admin"
+                            title="Zona Admin"
+                        >
                             Zona Admin
                         </Button>
                     </li>

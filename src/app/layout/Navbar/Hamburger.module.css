@@ -74,6 +74,17 @@
     height: auto;
 }
 
+.cta {
+    border-bottom: none !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.cta:hover,
+.cta:active {
+    border-bottom: none !important;
+}
+
 /* Hamburger menu only visible in mobile */
 @media (min-width: 992px) {
     .hamburgerMenu {
