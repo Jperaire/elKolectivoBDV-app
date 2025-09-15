@@ -1,0 +1,29 @@
+.article {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.profileRow {
+    max-width: 600px;
+    margin: auto;
+}
+
+.inputGroup {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.switcherWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: auto;
+    max-width: 600px;
+    width: 100%;
+    gap: var(--space-sm);
+}
+
+.switcherLabel {
+    font-weight: 600;
+    text-transform: uppercase;
+}

@@ -28,6 +28,11 @@ form input[type="checkbox"] {
     accent-color: var(--energetic-blue);
 }
 
+label {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
 .error {
     color: var(--energetic-orange);
     font-weight: 400;

@@ -1,0 +1,32 @@
+.article {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.actionsWrapper {
+    margin: auto;
+}
+
+.actionsWrapper button,
+.actionsWrapper a {
+    background: none;
+    color: rgb(55, 54, 54);
+}
+
+.dangerZone {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm);
+    border: 1px dashed var(--energetic-red);
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.03);
+}
+
+.dangerTitle {
+    color: var(--pastel-red);
+}
+
+.password {
+    display: flex;
+    gap: var(--space-md);
+    max-width: 600px;
+}

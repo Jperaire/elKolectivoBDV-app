@@ -1,0 +1,30 @@
+.article {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    border-collapse: collapse;
+}
+.table th,
+.table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.table th {
+    background-color: var(--pastel-yellow);
+    color: var(--color-text);
+}
+
+.table tr {
+    background: none !important;
+}
