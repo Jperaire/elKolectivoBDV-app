@@ -88,8 +88,7 @@
 .button--ghost {
     background-color: transparent;
     color: rgba(0, 0, 0, 0.4);
-    font-size: var(--fs-xs);
-    padding: 3px;
+
     border: 1px solid transparent;
 }
 

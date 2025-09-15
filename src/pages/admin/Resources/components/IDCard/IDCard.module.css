@@ -8,10 +8,6 @@
     gap: var(--space-xs);
 }
 
-.entityTable {
-    font-size: var(--fs-xs);
-}
-
 .entityTable td {
     display: flex;
     justify-content: space-between;
@@ -32,6 +28,6 @@
 
 @media (min-width: 768px) {
     .entityTable {
-        width: 400px;
+        width: 550px;
     }
 }
