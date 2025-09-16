@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import confetti from "canvas-confetti";
 import { quizData } from "./quizData";
-import { Button, Card } from "@/shared/components";
+import { Button, Card, ProgressBar } from "@/shared/components";
 import styles from "./Quiz.module.css";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
@@ -105,9 +105,8 @@ export const Quiz = () => {
         <section className="page">
             <h1 className="h1">Test</h1>
             <Card className={styles.quizWrapper}>
-                <div className={styles.progress}>
-                    Pregunta {index + 1} de {quizData.length}
-                </div>
+                <ProgressBar value={(index / quizData.length) * 100} />
+
                 <h2 className={styles.question}>{q.question}</h2>
                 <ul className={styles.optionsList}>
                     {q.options.map((opt) => (

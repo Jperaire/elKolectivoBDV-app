@@ -8,3 +8,4 @@ export { DatePill } from "./DatePill";
 export { FilterByYear } from "./FilterByYear";
 export { Loading } from "./Loading";
 export { Modal } from "./Modal";
+export { ProgressBar } from "./ProgressBar";

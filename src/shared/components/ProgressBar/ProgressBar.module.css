@@ -1,0 +1,13 @@
+.progressBarWrapper {
+    width: 100%;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.progressBarFill {
+    height: 100%;
+    background: var(--energetic-bg);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
