@@ -4,6 +4,10 @@ import { quizData } from "./quizData";
 import { Button, Card } from "@/shared/components";
 import styles from "./Quiz.module.css";
 
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
+
 export const Quiz = () => {
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
@@ -15,14 +19,9 @@ export const Quiz = () => {
     );
 
     const handleAnswer = (answer: string) => {
-        if (answer === quizData[index].correct) {
-            setScore((s) => s + 1);
-        }
-        if (index + 1 < quizData.length) {
-            setIndex(index + 1);
-        } else {
-            setFinished(true);
-        }
+        if (answer === quizData[index].correct) setScore((s) => s + 1);
+        if (index + 1 < quizData.length) setIndex(index + 1);
+        else setFinished(true);
     };
 
     useEffect(() => {
@@ -33,6 +32,43 @@ export const Quiz = () => {
     }, [finished, percent]);
 
     if (finished) {
+        const wrong = quizData.length - score;
+
+        const data = {
+            labels: ["Encerts", "Errors"],
+            datasets: [
+                {
+                    data: [score, wrong],
+                    backgroundColor: [
+                        "rgba(94,209,214,0.85)",
+                        "rgba(233,148,91,0.85)",
+                    ],
+                    borderColor: ["rgba(94,209,214,1)", "rgba(233,148,91,1)"],
+                    borderWidth: 2,
+                    hoverOffset: 6,
+                },
+            ],
+        };
+
+        const options = {
+            responsive: true,
+            plugins: {
+                legend: { position: "bottom" as const },
+                title: { display: true, text: "Resultados" },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx: any) => {
+                            const v = ctx.parsed as number;
+                            const total = score + wrong;
+                            const p = Math.round((v / total) * 100);
+                            return `${ctx.label}: ${v} (${p}%)`;
+                        },
+                    },
+                },
+            },
+            animation: { animateRotate: true, animateScale: true },
+        };
+
         return (
             <section className="page">
                 <h1 className="h1">Test</h1>
@@ -41,9 +77,14 @@ export const Quiz = () => {
                     <p>
                         Has encertat {score} de {quizData.length} ({percent}%).
                     </p>
-                    <div style={{ marginTop: "1rem" }}>
+
+                    <div className={styles.chartWrap}>
+                        <Doughnut data={data} options={options} />
+                    </div>
+
+                    <div className={styles.actions}>
                         <Button
-                            variant="button--main"
+                            variant="button--purple"
                             onClick={() => {
                                 setIndex(0);
                                 setScore(0);

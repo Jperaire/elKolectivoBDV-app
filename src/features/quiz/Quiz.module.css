@@ -32,3 +32,12 @@
     font-size: 1.4rem;
     color: var(--wheat-color, #5a4a3f);
 }
+
+.chartWrap {
+    max-width: 360px;
+    margin: 1rem auto;
+}
+
+.actions {
+    margin-top: 1rem;
+}
