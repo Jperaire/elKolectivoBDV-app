@@ -1,7 +1,6 @@
 import { Route } from "react-router-dom";
 
-import { UserProfile } from "@/pages/user";
-import { Quiz } from "@/features/quiz/Quiz";
+import { UserProfile, Quiz } from "@/pages/user";
 
 export const PrivateRoutes = (
     <Route path="user">

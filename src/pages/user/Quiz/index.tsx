@@ -2,10 +2,12 @@ import { useState, useEffect, useMemo } from "react";
 import confetti from "canvas-confetti";
 import { quizData } from "./quizData";
 import { Button, Card, ProgressBar } from "@/shared/components";
-import styles from "./Quiz.module.css";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+
+import styles from "./Quiz.module.css";
+
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const Quiz = () => {
