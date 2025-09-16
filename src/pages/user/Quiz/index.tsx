@@ -7,7 +7,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 import styles from "./Quiz.module.css";
-
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const Quiz = () => {
