@@ -32,14 +32,46 @@ export const whatWeDo = [
 ];
 
 export const values = [
-    "Antiracisme",
-    "Anticapacitisme",
-    "Antifeixisme",
-    "Anticapitalisme",
-    "Transfeminisme",
-    "Companyia",
-    "Solidaritat",
-    "Respecte",
+    {
+        label: "Antiracisme",
+        definition:
+            "Compromís actiu per rebutjar i combatre qualsevol forma de racisme i discriminació ètnica o cultural.",
+    },
+    {
+        label: "Anticapacitisme",
+        definition:
+            "Defensa de la igualtat i la inclusió de les persones amb diversitat funcional, oposant-nos a la discriminació per capacitat.",
+    },
+    {
+        label: "Antifeixisme",
+        definition:
+            "Rebuig ferm a les ideologies feixistes i autoritàries, defensant la llibertat i els drets humans.",
+    },
+    {
+        label: "Anticapitalisme",
+        definition:
+            "Crítica al sistema capitalista i aposta per models econòmics més justos, solidaris i sostenibles.",
+    },
+    {
+        label: "Transfeminisme",
+        definition:
+            "Feminisme inclusiu que defensa els drets de les persones trans i lluita per la igualtat de gènere per a tothom.",
+    },
+    {
+        label: "Companyia",
+        definition:
+            "Cuidem el sentit de comunitat i l’acompanyament mutu, creant vincles de suport i amistat.",
+    },
+    {
+        label: "Solidaritat",
+        definition:
+            "Actuem conjuntament per recolzar-nos els uns als altres, especialment en moments de dificultat.",
+    },
+    {
+        label: "Respecte",
+        definition:
+            "Tractem totes les persones amb dignitat, escolta activa i consideració mútua.",
+    },
 ];
 
 export const faqs = [

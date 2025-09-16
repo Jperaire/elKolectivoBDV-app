@@ -31,16 +31,16 @@ export const Home = () => {
                 <WhatWeDo />
 
                 {/* Values */}
-                <section
-                    aria-labelledby={sections.values.id}
-                    className={styles.sectionValues}
-                >
+                <section aria-labelledby={sections.values.id}>
                     <Card>
                         <h2 id={sections.values.id}>{sections.values.title}</h2>
                         <ul className={styles.chipList}>
                             {values.map((val, i) => (
                                 <li key={i} className={styles.chip}>
-                                    {val}
+                                    {val.label}
+                                    <span className={styles.tooltip}>
+                                        {val.definition}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
