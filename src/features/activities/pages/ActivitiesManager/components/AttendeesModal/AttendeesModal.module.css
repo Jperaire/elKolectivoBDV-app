@@ -1,21 +1,65 @@
-.enrolledCell {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.empty {
+    opacity: 0.7;
+    padding: 0.5rem 0;
 }
 
-.enrolledCount {
-    display: inline-flex;
-    min-width: 28px;
-    height: 28px;
-    padding: 0 8px;
-    border-radius: 999px;
+.list {
+    list-style: circle !important;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.name {
     font-weight: 600;
 }
 
-.viewBtn {
-    padding: 0.25rem 0.6rem;
+.email {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    word-break: break-all;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.deleteBtn img {
+    width: 30px;
+}
+
+.deleteBtn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.deleteBtn:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }

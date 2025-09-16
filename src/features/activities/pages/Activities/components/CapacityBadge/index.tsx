@@ -7,7 +7,6 @@ export const CapacityBadge = ({
     className = "",
 }: CapacityBadgeProps) => {
     const hasCapacity = Number.isFinite(capacity) && (capacity as number) > 0;
-
     if (!hasCapacity) return null;
 
     const isFull = (attendeesCount ?? 0) >= (capacity as number);

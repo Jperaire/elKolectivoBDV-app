@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button, Card, DatePill, Modal } from "@/shared/components";
 import { normalizeDate, isPast } from "@/shared/utils";
-import { ActivityAttendee, ActivityProps } from "@/features/activities/types";
+import type {
+    ActivityAttendee,
+    ActivityProps,
+} from "@/features/activities/types";
 import {
     downloadICS,
     getGoogleCalendarUrl,
@@ -19,7 +22,10 @@ import {
 
 import styles from "./Activity.module.css";
 
-type ActivityCardProps = ActivityProps & { id: string };
+type ActivityCardProps = ActivityProps & {
+    id: string;
+    onChanged?: () => void;
+};
 
 export const Activity = ({
     id,
@@ -28,19 +34,35 @@ export const Activity = ({
     date,
     location,
     capacity,
+    attendees,
     attendeesCount = 0,
     requiresSignup = false,
     posterUrl,
     instagramUrl,
+    onChanged,
 }: ActivityCardProps) => {
     const start = normalizeDate(date);
     const past = isPast(start);
-    const isFull = isActivityFull(capacity, attendeesCount);
     const mapHref = getMapHref(location);
 
     const { user } = useAuth();
     const [signed, setSigned] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
+
+    const initialCount =
+        typeof attendeesCount === "number" && attendeesCount > 0
+            ? attendeesCount
+            : Array.isArray(attendees)
+            ? attendees.length
+            : 0;
+
+    const [count, setCount] = useState<number>(initialCount);
+
+    useEffect(() => {
+        setCount(initialCount);
+    }, [initialCount]);
+
+    const isFull = isActivityFull(capacity, count);
 
     useEffect(() => {
         (async () => {
@@ -71,10 +93,14 @@ export const Activity = ({
             if (signed) {
                 await removeAttendee(id, attendee);
                 setSigned(false);
+                setCount((c) => Math.max(0, c - 1));
+                onChanged?.();
                 alert(`❌ T’has desapuntat de “${title}”.`);
             } else {
                 await addAttendee(id, attendee);
                 setSigned(true);
+                setCount((c) => c + 1);
+                onChanged?.();
                 alert(`✅ T’has inscrit a “${title}”.`);
             }
         } catch (e) {
@@ -87,6 +113,7 @@ export const Activity = ({
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
                 <DatePill date={start} />
+
                 <div className={styles.content}>
                     {posterUrl && (
                         <img
@@ -101,6 +128,7 @@ export const Activity = ({
                     <div className={styles.column}>
                         <h2 className={styles.title}>{title}</h2>
                         {description && <p>{description}</p>}
+
                         <div className={styles.meta}>
                             {location && (
                                 <a
@@ -113,10 +141,12 @@ export const Activity = ({
                                     {location}
                                 </a>
                             )}
+
                             <CapacityBadge
                                 capacity={capacity}
-                                attendeesCount={attendeesCount}
+                                attendeesCount={count}
                             />
+
                             {!requiresSignup && (
                                 <span
                                     className={styles.signupReq}

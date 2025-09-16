@@ -3,6 +3,8 @@ import { Modal, Button, Loading } from "@/shared/components";
 import { getAttendees, removeAttendee } from "@/features/activities/services";
 import type { ActivityAttendee } from "@/features/activities/types";
 import { useConfirm } from "@/shared/hooks/useConfirm";
+import styles from "./AttendeesModal.module.css";
+import { DeleteIcon } from "@/assets/images";
 
 type Props = {
     open: boolean;
@@ -60,56 +62,37 @@ export const AttendeesModal = ({
 
     return (
         <Modal open={open} onClose={onClose} titleId="attendees-title">
-            <h2 id="attendees-title" style={{ marginBottom: "0.5rem" }}>
-                Inscrits — {activityTitle}
-            </h2>
+            <h2 id="attendees-title">Inscrits - {activityTitle}</h2>
 
             {loading ? (
                 <Loading message="Carregant inscrits…" />
             ) : list.length === 0 ? (
-                <p>No hi ha inscrits.</p>
+                <p className={styles.empty}>No hi ha inscrits.</p>
             ) : (
-                <div style={{ overflowX: "auto" }}>
-                    <table
-                        style={{ width: "100%", borderCollapse: "collapse" }}
-                    >
-                        <thead>
-                            <tr>
-                                <th style={{ textAlign: "left" }}>Nom</th>
-                                <th style={{ textAlign: "left" }}>Email</th>
-                                <th style={{ textAlign: "left" }}>Accions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {list.map((a) => (
-                                <tr key={a.uid}>
-                                    <td>{a.name || "—"}</td>
-                                    <td>{a.email}</td>
-                                    <td>
-                                        <Button
-                                            variant="button--gray"
-                                            onClick={() => handleRemove(a)}
-                                            disabled={busy}
-                                            title="Eliminar d’aquesta activitat"
-                                        >
-                                            {busy ? "Eliminant…" : "Elimina"}
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                <ul className={styles.list}>
+                    {list.map((a) => (
+                        <li key={a.uid} className={styles.item}>
+                            <div className={styles.info}>
+                                <span className={styles.name}>
+                                    {a.name || "—"}
+                                </span>
+                                <span className={styles.email}>{a.email}</span>
+                            </div>
+                            <button
+                                className={styles.deleteBtn}
+                                onClick={() => handleRemove(a)}
+                                disabled={busy}
+                                aria-label={`Eliminar ${a.name || a.email}`}
+                                title="Eliminar d’aquesta activitat"
+                            >
+                                <img src={DeleteIcon} alt="Delete Icon" />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
             )}
 
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    gap: "0.5rem",
-                    marginTop: "1rem",
-                }}
-            >
+            <div className={styles.actions}>
                 <Button variant="button--secondary" onClick={onClose}>
                     Tancar
                 </Button>
