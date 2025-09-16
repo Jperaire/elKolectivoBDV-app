@@ -22,7 +22,6 @@ export const EditActivityModal = ({
     onClose,
     onUpdated,
 }: EditActivityModalProps) => {
-    // Extendemos el formulario con signupUrl mientras actualizas types.ts
     const { setForm, ...form } = useForm({
         title: "",
         date: "",
@@ -33,7 +32,7 @@ export const EditActivityModal = ({
         hasCapacity: false,
         capacity: "",
         instagramUrl: "",
-        signupUrl: "", // ✅ nuevo
+        signupUrl: "",
         posterFile: null as File | null,
     });
 
@@ -51,7 +50,7 @@ export const EditActivityModal = ({
             hasCapacity: Number.isFinite(d.capacity),
             capacity: d.capacity != null ? String(d.capacity) : "",
             instagramUrl: d.instagramUrl ?? "",
-            signupUrl: d.signupUrl ?? "", // ✅ precarga
+            signupUrl: d.signupUrl ?? "",
             posterFile: null,
         });
     }, [activity, setForm]);
@@ -95,7 +94,6 @@ export const EditActivityModal = ({
         let uploadedPoster: string | undefined;
         if (posterFile) uploadedPoster = await uploadToCloudinary(posterFile);
 
-        // payload ampliado con signupUrl
         const payload: UpdateActivityInput & {
             signupUrl?: string | null;
         } = {
@@ -107,7 +105,7 @@ export const EditActivityModal = ({
             requiresSignup,
             capacity: capNum,
             instagramUrl: instaNorm,
-            signupUrl: signupNorm, // ✅ nuevo
+            signupUrl: signupNorm,
             ...(uploadedPoster ? { posterUrl: uploadedPoster } : {}),
         };
 
@@ -123,7 +121,7 @@ export const EditActivityModal = ({
             capacity: capNum ?? undefined,
             posterUrl: uploadedPoster ?? activity.data.posterUrl,
             instagramUrl: instaNorm ?? undefined,
-            signupUrl: signupNorm ?? undefined, // ✅ reflejamos en estado local
+            signupUrl: signupNorm ?? undefined,
         };
 
         onUpdated(activity.id, newData);
@@ -138,6 +136,7 @@ export const EditActivityModal = ({
                     e.preventDefault();
                     handleSave();
                 }}
+                className={styles.form}
             >
                 <input
                     name="title"
@@ -193,7 +192,6 @@ export const EditActivityModal = ({
                     placeholder="Enllaç a Instagram"
                 />
 
-                {/* ✅ NUEVO: enlace a Google Forms */}
                 <input
                     name="signupUrl"
                     type="text"

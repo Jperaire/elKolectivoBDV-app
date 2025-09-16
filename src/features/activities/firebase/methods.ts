@@ -99,7 +99,7 @@ export const getActivitiesOnce = async (): Promise<
             posterUrl: posterUrl ?? undefined,
             instagramUrl: instagramUrl ?? undefined,
             signupUrl: signupUrl ?? undefined,
-            attendees, // 👈 importante
+            attendees,
         };
 
         return { id: d.id, data: props };

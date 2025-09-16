@@ -29,7 +29,7 @@ export const CreateActivityModal = ({
         hasCapacity,
         capacity,
         instagramUrl,
-        signupUrl, // ✅ nuevo
+        signupUrl,
         posterFile,
         fileKey,
         onInputChange,
@@ -44,7 +44,7 @@ export const CreateActivityModal = ({
         hasCapacity: false,
         capacity: "",
         instagramUrl: "",
-        signupUrl: "", // ✅ inicializamos
+        signupUrl: "",
         posterFile: null,
     });
 
@@ -108,7 +108,7 @@ export const CreateActivityModal = ({
     return (
         <Modal open={open} onClose={onClose}>
             <h2>Crear nova activitat</h2>
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} noValidate className={styles.form}>
                 <input
                     name="title"
                     placeholder="Títol"
@@ -162,7 +162,6 @@ export const CreateActivityModal = ({
                     onChange={onInputChange}
                 />
 
-                {/* ✅ NUEVO: enlace a Google Forms */}
                 <input
                     name="signupUrl"
                     placeholder="Enllaç a Google Forms (inscripció)"

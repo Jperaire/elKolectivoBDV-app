@@ -11,7 +11,7 @@ import {
     getMapHref,
     isActivityFull,
 } from "@/features/activities/utils";
-import { CapacityBadge } from "../CapacityBadge";
+import { CapacityBadge } from "@/features/activities/components";
 
 import { useAuth } from "@/features/auth/hooks";
 import {

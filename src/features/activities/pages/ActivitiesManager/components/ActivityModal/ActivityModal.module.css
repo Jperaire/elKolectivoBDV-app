@@ -1,3 +1,12 @@
+.form {
+    max-height: 80vh;
+    gap: var(--space-xs);
+    font-size: var(--fs-sm);
+}
+
+.form input {
+    padding: 10px;
+}
 .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -6,7 +15,7 @@
 
 .controlsRow {
     display: flex;
-    flex-direction: column;
+
     justify-content: start;
     gap: var(--space-sm);
     flex-wrap: wrap;
@@ -25,7 +34,12 @@
 }
 
 .capacity input {
-    width: 45px;
+    width: 55px;
     height: 30px;
     padding: 2px;
+}
+
+.actions {
+    display: flex;
+    gap: var(--space-sm);
 }

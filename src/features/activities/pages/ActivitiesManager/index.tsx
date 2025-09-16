@@ -14,7 +14,7 @@ import { DeleteIcon, EditIcon } from "@/assets/images";
 import { useConfirm } from "@/shared/hooks/useConfirm";
 
 import styles from "./ActivitiesManager.module.css";
-import { CapacityBadge } from "../Activities/components/CapacityBadge";
+import { CapacityBadge } from "@/features/activities/components";
 
 type Row = { id: string; data: ActivityProps };
 

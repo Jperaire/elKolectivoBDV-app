@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Loading, FilterByYear } from "@/shared/components";
 import { useYearFilter } from "@/shared/hooks";
 
-import { Activity } from "./components/Activity";
+import { Activity } from "./components";
 import { getActivitiesOnce } from "../../firebase/methods";
 import { ActivityProps } from "../../types";
 
