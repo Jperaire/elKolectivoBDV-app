@@ -32,15 +32,3 @@ export async function ensureUser(uid: string, data: Partial<AppUserData>) {
 export async function updateUser(uid: string, data: Partial<AppUserData>) {
     await updateDoc(doc(db, "users", uid), data);
 }
-
-export async function approveMembership(uid: string) {
-    await updateDoc(doc(db, "users", uid), {
-        "membershipTest.status": "approved",
-    });
-}
-
-export async function rejectMembership(uid: string) {
-    await updateDoc(doc(db, "users", uid), {
-        "membershipTest.status": "rejected",
-    });
-}

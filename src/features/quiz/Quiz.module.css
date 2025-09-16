@@ -1,0 +1,34 @@
+.quizWrapper {
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    min-height: 50vh;
+    max-width: 700px;
+}
+
+.progress {
+    opacity: 0.7;
+}
+
+.optionsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.optionsList button {
+    width: 100%;
+    padding: var(--space-sm);
+}
+
+.optionsList button:hover {
+    background: var(--energetic-bg);
+}
+
+.result {
+    font-size: 1.4rem;
+    color: var(--wheat-color, #5a4a3f);
+}

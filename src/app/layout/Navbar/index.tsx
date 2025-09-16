@@ -84,7 +84,7 @@ export const Navbar = () => {
                                     </li>
                                     {userData?.role === "user" && (
                                         <li>
-                                            <Link to="/user/test">Test</Link>
+                                            <Link to="/user/quiz">quiz</Link>
                                         </li>
                                     )}
                                     <li>

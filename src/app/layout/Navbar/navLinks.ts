@@ -8,7 +8,7 @@ export const BASE_LINKS: NavLink[] = [
 
 export const USER_LINKS: NavLink[] = [
     { label: "El meu perfil", path: "/user" },
-    { label: "Test", path: "/user/test" },
+    { label: "quiz", path: "/user/quiz" },
 ];
 
 export const ADMIN_LINKS: NavLink[] = [
