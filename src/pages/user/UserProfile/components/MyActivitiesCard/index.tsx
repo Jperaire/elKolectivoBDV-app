@@ -1,5 +1,5 @@
 import { Card, Button, Loading } from "@/shared/components";
-import css from "./MyActivitiesCard.module.css";
+import styles from "./MyActivitiesCard.module.css";
 
 export type MyAct = {
     id: string;
@@ -23,7 +23,7 @@ export const MyActivitiesCard = ({
 }: Props) => {
     return (
         <Card>
-            <article aria-labelledby="myacts-title" className={css.article}>
+            <article aria-labelledby="myacts-title" className={styles.article}>
                 <h2 id="myacts-title">Les meves activitats</h2>
 
                 {loadingActs ? (
@@ -31,8 +31,8 @@ export const MyActivitiesCard = ({
                 ) : myActs.length === 0 ? (
                     <p>No tens inscripcions pròximes.</p>
                 ) : (
-                    <div className={css.tableWrapper}>
-                        <table className={css.table}>
+                    <div className={styles.tableWrapper}>
+                        <table className={styles.table}>
                             <thead>
                                 <tr>
                                     <th>Activitat</th>
