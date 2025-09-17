@@ -18,15 +18,12 @@
     margin-bottom: 20px;
 }
 
-.registerLink {
+.helper a,
+.forgot a {
     color: var(--energetic-blue);
+    text-decoration: underline;
 }
 
 .forgot {
     text-align: start;
-}
-
-.forgot a {
-    color: var(--energetic-blue);
-    text-decoration: underline;
 }
