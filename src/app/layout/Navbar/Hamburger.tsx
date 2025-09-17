@@ -60,7 +60,11 @@ export const Hamburger = () => {
 
                 {!loading && !user && (
                     <li onClick={() => setOpen(false)}>
-                        <Button to="/login" variant="button--pink">
+                        <Button
+                            to="/login"
+                            variant="button--pink"
+                            className={styles.cta}
+                        >
                             Inicia sessió
                         </Button>
                     </li>
