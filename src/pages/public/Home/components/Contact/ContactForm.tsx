@@ -32,7 +32,9 @@ export const ContactForm = () => {
             setSubmitting(true);
             await sendEmail({ name, email, message });
             onResetForm();
-            setSuccess("Missatge enviat! 🎉");
+            setSuccess(
+                "Missatge enviat! 🎉 Comprova la carpeta de correu brossa"
+            );
         } catch (error: unknown) {
             console.error(error);
 
