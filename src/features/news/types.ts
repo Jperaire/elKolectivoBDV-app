@@ -1,5 +1,6 @@
 export type NewsForm = {
     title: string;
+    subtitle: string;
     body: string;
     imageFile?: File | null;
 };
@@ -7,6 +8,7 @@ export type NewsForm = {
 export interface NewsProps {
     id?: string;
     title: string;
+    subtitle: string;
     description: string;
     date: Date;
     imageUrl?: string;
@@ -21,6 +23,7 @@ export interface CreateNewsModalProps {
 
 export type UpdateNewsInput = Partial<{
     title: string;
+    subtitle: string;
     body: string;
     imageUrl: string | null;
 }>;

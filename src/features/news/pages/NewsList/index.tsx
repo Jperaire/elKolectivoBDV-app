@@ -49,6 +49,7 @@ export const NewsList = () => {
                         <News
                             key={item.id}
                             title={item.data.title}
+                            subtitle={item.data.subtitle}
                             description={item.data.description}
                             date={item.data.date}
                             imageUrl={item.data.imageUrl}

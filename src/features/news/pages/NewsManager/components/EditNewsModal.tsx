@@ -16,6 +16,7 @@ export const EditNewsModal = ({
 }: EditNewsModalProps) => {
     const { setForm, ...form } = useForm({
         title: "",
+        subtitle: "",
         body: "",
         imageFile: null as File | null,
     });
@@ -24,6 +25,7 @@ export const EditNewsModal = ({
         if (!news) return;
         setForm({
             title: news.data.title,
+            subtitle: news.data.subtitle,
             body: news.data.description,
             imageFile: null,
         });
@@ -31,13 +33,14 @@ export const EditNewsModal = ({
 
     const handleSave = async () => {
         if (!news) return;
-        const { title, body, imageFile } = form.formState;
+        const { title, subtitle, body, imageFile } = form.formState;
 
         let uploaded: string | undefined;
         if (imageFile) uploaded = await uploadToCloudinary(imageFile);
 
         const payload: UpdateNewsInput = {
             title,
+            subtitle,
             body,
             ...(uploaded ? { imageUrl: uploaded } : {}),
         };
@@ -47,6 +50,7 @@ export const EditNewsModal = ({
         onUpdated(news.id, {
             ...news.data,
             title,
+            subtitle,
             description: body,
             imageUrl: uploaded ?? news.data.imageUrl,
         });
@@ -69,6 +73,13 @@ export const EditNewsModal = ({
                     value={form.title}
                     onChange={form.onInputChange}
                     placeholder="Títol"
+                    required
+                />
+                <input
+                    name="subtitle"
+                    value={form.subtitle}
+                    onChange={form.onInputChange}
+                    placeholder="Subtítol"
                     required
                 />
                 <textarea

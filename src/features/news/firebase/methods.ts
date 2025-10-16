@@ -14,6 +14,7 @@ import { NewsProps, UpdateNewsInput } from "../types";
 
 export const createNews = async (input: {
     title: string;
+    subtitle: string;
     body: string;
     imageUrl?: string;
 }) => {
@@ -35,11 +36,13 @@ export const getNewsOnce = async (): Promise<
     return snap.docs.map((d) => {
         const {
             title = "",
+            subtitle = "",
             body = "",
             imageUrl = null,
             createdAt,
         } = d.data() as {
             title?: string;
+            subtitle?: string;
             body?: string;
             imageUrl?: string | null;
             createdAt?: { toDate: () => Date };
@@ -47,6 +50,7 @@ export const getNewsOnce = async (): Promise<
 
         const props: NewsProps = {
             title,
+            subtitle,
             description: body,
             date: createdAt ? createdAt.toDate() : new Date(),
             imageUrl: imageUrl ?? undefined,

@@ -5,6 +5,7 @@ import styles from "./News.module.css";
 
 export const News = ({
     title,
+    subtitle,
     description,
     date,
     imageUrl,
@@ -31,6 +32,7 @@ export const News = ({
 
                 <div className={styles.column}>
                     <h2 className={styles.title}>{title}</h2>
+                    <h3>{subtitle}</h3>
                     <p>{summary}</p>
                     {onReadMore && (
                         <Button className={styles.primary} onClick={onReadMore}>

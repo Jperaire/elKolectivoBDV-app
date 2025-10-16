@@ -13,12 +13,20 @@ export const CreateNewsModal = ({
     onClose,
     onCreated,
 }: CreateNewsModalProps) => {
-    const { title, body, imageFile, fileKey, onInputChange, onResetForm } =
-        useForm({
-            title: "",
-            body: "",
-            imageFile: null as File | null,
-        });
+    const {
+        title,
+        subtitle,
+        body,
+        imageFile,
+        fileKey,
+        onInputChange,
+        onResetForm,
+    } = useForm({
+        title: "",
+        subtitle: "",
+        body: "",
+        imageFile: null as File | null,
+    });
     const [saving, setSaving] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -28,10 +36,16 @@ export const CreateNewsModal = ({
             const imageUrl = imageFile
                 ? await uploadToCloudinary(imageFile)
                 : undefined;
-            const id = await createNews({ title, body, imageUrl });
+            const id = await createNews({ title, subtitle, body, imageUrl });
             onCreated({
                 id,
-                data: { title, description: body, date: new Date(), imageUrl },
+                data: {
+                    title,
+                    subtitle,
+                    description: body,
+                    date: new Date(),
+                    imageUrl,
+                },
             });
             onResetForm();
             onClose();
@@ -51,6 +65,13 @@ export const CreateNewsModal = ({
                     name="title"
                     placeholder="Títol"
                     value={title}
+                    onChange={onInputChange}
+                    required
+                />
+                <input
+                    name="subtitle"
+                    placeholder="Subtítol"
+                    value={subtitle}
                     onChange={onInputChange}
                     required
                 />
