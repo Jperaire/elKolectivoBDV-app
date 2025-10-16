@@ -17,6 +17,7 @@ export const CreateNewsModal = ({
         title,
         subtitle,
         body,
+        date,
         imageFile,
         fileKey,
         onInputChange,
@@ -25,8 +26,10 @@ export const CreateNewsModal = ({
         title: "",
         subtitle: "",
         body: "",
+        date: "",
         imageFile: null as File | null,
     });
+
     const [saving, setSaving] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -36,17 +39,28 @@ export const CreateNewsModal = ({
             const imageUrl = imageFile
                 ? await uploadToCloudinary(imageFile)
                 : undefined;
-            const id = await createNews({ title, subtitle, body, imageUrl });
+
+            const selectedDate = date ? new Date(date) : new Date();
+
+            const id = await createNews({
+                title,
+                subtitle,
+                body,
+                imageUrl,
+                date: selectedDate,
+            });
+
             onCreated({
                 id,
                 data: {
                     title,
                     subtitle,
                     description: body,
-                    date: new Date(),
+                    date: selectedDate,
                     imageUrl,
                 },
             });
+
             onResetForm();
             onClose();
         } catch (err) {
@@ -80,6 +94,13 @@ export const CreateNewsModal = ({
                     placeholder="Contingut"
                     rows={6}
                     value={body}
+                    onChange={onInputChange}
+                    required
+                />
+                <input
+                    type="date"
+                    name="date"
+                    value={date}
                     onChange={onInputChange}
                     required
                 />

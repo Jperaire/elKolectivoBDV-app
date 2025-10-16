@@ -17,11 +17,12 @@ export const createNews = async (input: {
     subtitle: string;
     body: string;
     imageUrl?: string;
+    date: Date;
 }) => {
     const ref = await addDoc(collection(db, "news"), {
         title: input.title,
         body: input.body,
-        imageUrl: input.imageUrl ?? null,
+        date: input.date,
         createdAt: serverTimestamp(),
     });
     return ref.id;
