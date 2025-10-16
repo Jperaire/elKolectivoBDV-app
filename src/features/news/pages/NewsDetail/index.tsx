@@ -26,8 +26,11 @@ export const NewsDetail = () => {
                     const data = docSnap.data();
                     setNews({
                         title: data.title ?? "",
+                        subtitle: data.subtitle ?? "",
                         description: data.body ?? "",
-                        date: data.createdAt?.toDate() ?? new Date(),
+                        date: data.date?.toDate
+                            ? data.date.toDate()
+                            : new Date(data.date),
                         imageUrl: data.imageUrl ?? undefined,
                     });
                 } else {
@@ -51,7 +54,8 @@ export const NewsDetail = () => {
         <>
             <section className="page">
                 <Card className={styles.content}>
-                    <h2>{news.title}</h2>
+                    <h2 className={styles.title}>{news.title}</h2>
+                    <h3 className={styles.subtitle}>{news.subtitle}</h3>
                     <DatePill date={news.date} />
 
                     {news.imageUrl && (
@@ -62,10 +66,11 @@ export const NewsDetail = () => {
                             loading="lazy"
                         />
                     )}
-
-                    {news.description.split("\n\n").map((paragraph, i) => (
-                        <p key={i}>{paragraph}</p>
-                    ))}
+                    <div>
+                        {news.description.split("\n\n").map((paragraph, i) => (
+                            <p key={i}>{paragraph}</p>
+                        ))}
+                    </div>
                 </Card>
                 <BackButton to="/news" />
             </section>

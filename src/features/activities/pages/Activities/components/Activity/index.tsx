@@ -112,7 +112,7 @@ export const Activity = ({
     return (
         <Card className={`${styles.card} ${past ? styles.past : ""}`}>
             <article className={styles.activity}>
-                <DatePill date={start} />
+                <DatePill date={start} showTime />
 
                 <div className={styles.content}>
                     {posterUrl && (

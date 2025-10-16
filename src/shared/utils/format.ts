@@ -8,7 +8,11 @@ const toDate = (input: string | Date) =>
     typeof input === "string" ? new Date(input) : input;
 
 /** "6 d’octubre 2025 · 18:30" */
-export const formatDateLabel = (input: string | Date, locale = "ca-ES") => {
+export const formatDateLabel = (
+    input: string | Date,
+    locale = "ca-ES",
+    showTime = false
+) => {
     const d = toDate(input);
 
     const datePart = new Intl.DateTimeFormat(locale, {
@@ -16,6 +20,8 @@ export const formatDateLabel = (input: string | Date, locale = "ca-ES") => {
         month: "long",
         year: "numeric",
     }).format(d);
+
+    if (!showTime) return datePart;
 
     const timePart = new Intl.DateTimeFormat(locale, {
         hour: "2-digit",

@@ -8,6 +8,7 @@ import {
     deleteDoc,
     doc,
     setDoc,
+    Timestamp,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/firestore";
 import { NewsProps, UpdateNewsInput } from "../types";
@@ -21,6 +22,7 @@ export const createNews = async (input: {
 }) => {
     const ref = await addDoc(collection(db, "news"), {
         title: input.title,
+        subtitle: input.subtitle,
         body: input.body,
         date: input.date,
         createdAt: serverTimestamp(),
@@ -31,30 +33,27 @@ export const createNews = async (input: {
 export const getNewsOnce = async (): Promise<
     Array<{ id: string; data: NewsProps }>
 > => {
-    const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "news"), orderBy("date", "desc"));
     const snap = await getDocs(q);
 
     return snap.docs.map((d) => {
-        const {
-            title = "",
-            subtitle = "",
-            body = "",
-            imageUrl = null,
-            createdAt,
-        } = d.data() as {
-            title?: string;
-            subtitle?: string;
-            body?: string;
-            imageUrl?: string | null;
-            createdAt?: { toDate: () => Date };
-        };
+        const data = d.data();
+
+        let formattedDate: Date;
+        if (data.date instanceof Timestamp) {
+            formattedDate = data.date.toDate();
+        } else if (typeof data.date === "string") {
+            formattedDate = new Date(data.date);
+        } else {
+            formattedDate = new Date();
+        }
 
         const props: NewsProps = {
-            title,
-            subtitle,
-            description: body,
-            date: createdAt ? createdAt.toDate() : new Date(),
-            imageUrl: imageUrl ?? undefined,
+            title: data.title ?? "",
+            subtitle: data.subtitle ?? "",
+            description: data.body ?? "",
+            date: formattedDate,
+            imageUrl: data.imageUrl ?? undefined,
         };
 
         return { id: d.id, data: props };

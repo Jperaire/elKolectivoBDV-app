@@ -32,7 +32,7 @@ export const News = ({
 
                 <div className={styles.column}>
                     <h2 className={styles.title}>{title}</h2>
-                    <h3>{subtitle}</h3>
+                    <h3 className={styles.subtitle}>{subtitle}</h3>
                     <p>{summary}</p>
                     {onReadMore && (
                         <Button className={styles.primary} onClick={onReadMore}>

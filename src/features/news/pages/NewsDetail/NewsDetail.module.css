@@ -10,3 +10,13 @@
     align-items: center;
     gap: 1rem;
 }
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    letter-spacing: 0;
+    text-align: center;
+}
